@@ -13,6 +13,11 @@ async function visibleText(text) {
 try {
   await page.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
 
+  // Dismiss the romantic intro exactly as a real visitor would.
+  if (await page.locator('#startEvening').isVisible().catch(()=>false)) {
+    await page.locator('#startEvening').click();
+  }
+
   // Secret case must not appear as a normal top/mobile tab.
   assert.equal(await page.locator('[data-tab="detective"]').count(), 0, 'Detective should not be a normal navigation tab');
   await page.locator('#openSecretCase').click();
