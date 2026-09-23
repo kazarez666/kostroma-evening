@@ -1,0 +1,36 @@
+name: Detective E2E
+
+on:
+  push:
+    paths:
+      - "index.html"
+      - "tests/detective-e2e.mjs"
+      - ".github/workflows/detective-e2e.yml"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start local site
+        run: |
+          python3 -m http.server 4173 >/tmp/kostroma-http.log 2>&1 &
+          echo $! > /tmp/kostroma-http.pid
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:4173/index.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/kostroma-http.log
+          exit 1
+      - name: Run detective browser test
+        run: node tests/detective-e2e.mjs
