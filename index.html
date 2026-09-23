@@ -75,11 +75,27 @@
     .leaf-storm-item{position:fixed;z-index:130;top:-55px;pointer-events:none;font-size:clamp(20px,4vw,34px);animation:stormFall var(--dur,3.6s) cubic-bezier(.2,.6,.4,1) forwards}@keyframes stormFall{to{transform:translate(var(--x,20px),115vh) rotate(var(--rot,500deg));opacity:.55}}
     .final-banner{position:fixed;z-index:140;left:50%;top:48%;transform:translate(-50%,-50%) scale(.8);opacity:0;pointer-events:none;color:white;text-align:center;background:linear-gradient(145deg,#173b2b,#674835);border:1px solid rgba(255,255,255,.14);padding:24px 28px;border-radius:28px;box-shadow:0 30px 90px rgba(26,17,12,.36);transition:.35s ease}.final-banner.show{opacity:1;transform:translate(-50%,-50%) scale(1)}.final-banner b{display:block;font-size:28px;margin-bottom:6px}.final-banner span{opacity:.78}
 
+
+    .detective-launch{background:linear-gradient(135deg,#182824,#2f4137)!important;color:#fff!important;border-color:rgba(255,255,255,.06)!important}.detective-launch p{color:rgba(255,255,255,.68)!important}
+    .case-tab{color:#244336}.case-wrap{border-radius:30px;overflow:hidden;background:#101817;box-shadow:0 28px 75px rgba(26,22,17,.2);min-height:650px;color:#dfe9e4}.case-intro{min-height:650px;padding:56px 34px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 20%,rgba(114,157,132,.16),transparent 30%),linear-gradient(145deg,#0d1715,#17231f 58%,#251d19)}.case-intro__stamp{border:1px solid rgba(188,210,198,.28);padding:8px 12px;border-radius:5px;font:800 11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;color:#9bb5a7;transform:rotate(-1.5deg)}.case-intro__icon{width:68px;height:68px;border:1px solid rgba(176,206,190,.24);border-radius:50%;display:grid;place-items:center;margin:22px 0 4px;font-size:28px;color:#c4d8cd;box-shadow:0 0 45px rgba(111,158,132,.12)}.case-eyebrow{font:800 11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.2em;color:#789588;margin:12px 0 8px}.case-intro h2{font-size:clamp(43px,8vw,78px);line-height:.98;letter-spacing:-.055em;margin:0;color:#f0f4f1}.case-lead{max-width:720px;line-height:1.7;color:#aabbb2;font-size:16px;margin:20px auto}.case-rules{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.case-rules span{padding:8px 10px;border:1px solid rgba(176,206,190,.13);border-radius:999px;background:rgba(255,255,255,.035);font-size:12px;color:#afc1b7}.case-warning{font-size:11px;color:#62766c;margin:20px 0 12px}.case-start{border:0;border-radius:14px;background:#d9e8df;color:#14231d;padding:14px 19px;font-weight:900;box-shadow:0 12px 28px rgba(0,0,0,.22)}
+    .case-desk{min-height:700px;background:linear-gradient(180deg,#121b19,#17221f)}.case-head{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:20px 22px;border-bottom:1px solid rgba(190,218,202,.08);background:rgba(8,15,13,.52)}.case-head small{font:750 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.16em;color:#6f8b7d}.case-head h2{margin:4px 0 0;font-size:21px;color:#edf4ef;letter-spacing:-.02em}.case-head__right{display:flex;align-items:center;gap:10px}.case-progress{display:grid;text-align:right}.case-progress span{font-size:10px;color:#6f8b7d;text-transform:uppercase;letter-spacing:.1em}.case-progress b{font:850 15px ui-monospace,SFMono-Regular,Menlo,monospace;color:#d2e5da}.case-reset{border:1px solid rgba(220,235,226,.12);background:transparent;color:#80968a;border-radius:10px;padding:8px 10px;font-size:11px}
+    .case-apps{display:flex;gap:6px;overflow-x:auto;padding:9px 10px;border-bottom:1px solid rgba(190,218,202,.08);background:#0e1715;scrollbar-width:thin}.case-app{flex:0 0 auto;border:0;border-radius:10px;background:transparent;color:#789087;padding:8px 10px;font-size:11px;font-weight:800;white-space:nowrap}.case-app span{margin-right:4px}.case-app.active{background:#263b33;color:#eef6f1}.case-app--final{color:#d3b48b}.case-screen{padding:22px;min-height:560px}
+    .case-screen h3{margin:0;color:#edf4ef}.case-screen p{color:#9eb0a7;line-height:1.6}.case-section-title{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:16px}.case-section-title small{color:#688076;font:750 10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em}.case-section-title h3{font-size:27px;letter-spacing:-.035em}.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.case-card{border:1px solid rgba(190,218,202,.09);border-radius:16px;background:#192522;padding:16px}.case-card--important{background:linear-gradient(145deg,#1b2d27,#27251f);border-color:rgba(208,179,132,.16)}.case-card small{font:750 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.09em;color:#698279}.case-card h4{color:#e8efeb;margin:5px 0 8px;font-size:16px}.case-card p{margin:0;font-size:13px}.case-time{color:#c5a77c!important;font:800 11px ui-monospace,SFMono-Regular,Menlo,monospace!important}.case-note{padding:14px 15px;border-left:3px solid #6e907d;background:#18231f;border-radius:0 12px 12px 0;color:#a7b9af;font-size:13px;line-height:1.55}.case-timeline{display:grid;gap:8px}.case-event{display:grid;grid-template-columns:68px 1fr;gap:12px;align-items:start;padding:11px 0;border-bottom:1px dashed rgba(190,218,202,.08)}.case-event time{font:800 11px ui-monospace,SFMono-Regular,Menlo,monospace;color:#b89a73}.case-event div{color:#a9b8b1;font-size:13px;line-height:1.45}
+    .person-card{display:grid;grid-template-columns:74px 1fr;gap:13px}.case-avatar{width:70px;height:82px;border-radius:12px;display:grid;place-items:center;font-size:25px;font-weight:900;color:rgba(255,255,255,.9);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}.av-marina{background:linear-gradient(145deg,#6e493f,#a57262)}.av-denis{background:linear-gradient(145deg,#334b56,#5c7984)}.av-alina{background:linear-gradient(145deg,#5c4d70,#8a76a1)}.av-pavel{background:linear-gradient(145deg,#3d5350,#698077)}.av-artem{background:linear-gradient(145deg,#574b3d,#8b755e)}.person-meta{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.person-meta span{font-size:10px;padding:4px 6px;border-radius:6px;background:#26332f;color:#91a69b}.person-link{border:0;background:transparent;color:#b6cfc1;padding:0;text-decoration:underline;font-size:12px}
+    .thread-list{display:grid;grid-template-columns:210px 1fr;gap:12px}.thread-tabs{display:grid;gap:7px;align-content:start}.thread-btn{border:1px solid rgba(190,218,202,.08);background:#17211f;color:#8fa298;text-align:left;padding:11px;border-radius:11px}.thread-btn.active{background:#263a33;color:#edf4ef}.thread-pane{border:1px solid rgba(190,218,202,.08);border-radius:14px;background:#141e1c;padding:14px;min-height:390px}.msg{max-width:82%;padding:9px 11px;margin:8px 0;border-radius:13px;background:#24312d;color:#b6c5bd;font-size:13px;line-height:1.45}.msg.me{margin-left:auto;background:#29493d;color:#dbe8e1}.msg time{display:block;font:700 9px ui-monospace,SFMono-Regular,Menlo,monospace;opacity:.55;margin-bottom:4px}
+    .lock-screen{max-width:520px;margin:34px auto;padding:27px;text-align:center;border:1px solid rgba(190,218,202,.1);border-radius:20px;background:#16211e}.lock-icon{font-size:38px}.lock-screen h3{margin:9px 0}.lock-screen input{width:100%;margin:12px 0 8px;border:1px solid rgba(190,218,202,.14);border-radius:11px;background:#0f1816;color:#e7f0eb;padding:12px;outline:0;text-align:center}.lock-screen button{width:100%;border:0;border-radius:11px;background:#d9e8df;color:#14231d;padding:11px;font-weight:900}.lock-hint{font-size:11px!important;color:#748a80!important}
+    .mail-item,.social-post,.photo-item,.file-item{border:1px solid rgba(190,218,202,.09);border-radius:14px;background:#182420;padding:15px;margin-bottom:10px}.mail-head,.post-head,.file-head{display:flex;justify-content:space-between;gap:12px}.mail-head b,.post-head b,.file-head b{color:#e7efea}.mail-head span,.post-head span,.file-head span{font:700 10px ui-monospace,SFMono-Regular,Menlo,monospace;color:#73887e}.mail-subject{color:#c9b18b!important;font-weight:800!important}.clue-btn{margin-top:11px;border:1px solid rgba(202,177,139,.23);background:rgba(177,141,91,.08);color:#d8bf99;border-radius:9px;padding:7px 9px;font-size:11px;font-weight:800}.clue-btn.added{color:#7c9788;border-color:rgba(114,152,131,.16);background:rgba(73,111,91,.07)}
+    .social-profile{display:flex;gap:12px;align-items:center;margin-bottom:12px}.social-profile .case-avatar{width:48px;height:48px;border-radius:50%;font-size:17px}.social-post strong{color:#e2ebe6}.post-image{height:126px;margin:10px 0;border-radius:12px;display:grid;place-items:center;font-size:46px;background:linear-gradient(145deg,#283732,#3b3029);color:#fff}.post-meta{font-size:11px;color:#72877d}.photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo-item{margin:0}.fake-photo{height:165px;border-radius:11px;background:linear-gradient(145deg,#293732,#4a392f);display:flex;align-items:end;padding:12px;font-size:38px}.fake-photo span{font-size:11px;color:#e5ede8;background:rgba(12,18,16,.7);padding:6px 8px;border-radius:8px}.exif{margin-top:8px;font:700 10px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;color:#80968b}
+    .fake-browser{border:1px solid rgba(190,218,202,.09);border-radius:16px;overflow:hidden;background:#131d1b}.browser-bar{display:grid;grid-template-columns:1fr auto;gap:8px;padding:11px;background:#0d1513}.browser-bar input{border:1px solid rgba(190,218,202,.12);background:#192320;color:#dfe8e3;border-radius:9px;padding:10px}.browser-bar button{border:0;border-radius:9px;background:#d8e7df;color:#15231d;padding:0 13px;font-weight:900}.browser-results{padding:15px;min-height:400px}.browser-result{padding:12px 0;border-bottom:1px solid rgba(190,218,202,.08)}.browser-result a{color:#b9d4c5;font-weight:850;cursor:pointer}.browser-result small{display:block;color:#5f776c;margin:4px 0}.browser-result p{margin:0;font-size:12px}.browser-page{padding:5px}.browser-back{border:0;background:transparent;color:#93aea0;padding:0 0 12px}.browser-page h3{font-size:25px}.browser-url{font:700 10px ui-monospace,SFMono-Regular,Menlo,monospace;color:#627a6e}.browser-page article{margin-top:15px;padding:16px;border-radius:13px;background:#1a2622;color:#aabbb2;line-height:1.65;font-size:13px}
+    .board-empty{text-align:center;padding:70px 20px;color:#677d72}.board-list{display:grid;gap:9px}.board-clue{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:13px;border-radius:13px;background:#192622;border:1px solid rgba(190,218,202,.08)}.board-clue>span{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:#263a33}.board-clue b{color:#e1ebe5;font-size:13px}.board-clue p{margin:3px 0 0;font-size:12px}.hint-box{max-width:680px}.hint-level{padding:14px;margin-bottom:10px;border:1px solid rgba(190,218,202,.09);border-radius:13px;background:#18241f}.hint-level.locked{opacity:.32;filter:blur(2.4px);user-select:none}.hint-level b{color:#d7e4dd}.hint-actions{display:flex;gap:8px;flex-wrap:wrap}.hint-actions button{border:0;border-radius:10px;background:#d7e5dd;color:#16251e;padding:10px 12px;font-weight:850}
+    .final-form{max-width:720px}.final-form label{display:block;color:#8da098;font-size:11px;font-weight:850;margin:12px 0 5px}.final-form select{width:100%;border:1px solid rgba(190,218,202,.12);background:#111b18;color:#e2ebe6;border-radius:11px;padding:11px}.final-submit{margin-top:17px;border:0;border-radius:12px;background:#d3ba94;color:#201b16;padding:12px 16px;font-weight:900}.final-feedback{margin-top:14px;padding:13px;border-radius:12px;background:#18231f;color:#9fb0a8;font-size:13px;line-height:1.55}.case-solved{padding:20px;border:1px solid rgba(199,170,126,.2);border-radius:17px;background:linear-gradient(145deg,#1b2b25,#30281f)}.case-solved h3{font-size:29px;color:#f0e2ca}.case-solved p{color:#c1c9c4}.case-solved .solution-line{padding:10px 0;border-bottom:1px dashed rgba(231,215,187,.12)}.case-solved .solution-line b{color:#e8d1aa}.case-footnote{font-size:11px!important;color:#667a70!important}
+    @media(max-width:760px){.case-wrap{border-radius:22px;margin-bottom:10px}.case-intro{min-height:620px;padding:38px 20px}.case-head{align-items:flex-start;padding:15px}.case-head h2{font-size:17px}.case-head__right{flex-direction:column;align-items:end}.case-screen{padding:14px}.case-grid,.photo-grid{grid-template-columns:1fr}.thread-list{grid-template-columns:1fr}.thread-tabs{display:flex;overflow-x:auto}.thread-btn{flex:0 0 auto}.person-card{grid-template-columns:62px 1fr}.case-avatar{width:58px;height:70px}.fake-photo{height:145px}.case-app{font-size:10px;padding:8px}.mnav{font-size:9px}}
+
     footer{text-align:center;color:var(--muted);padding:0 0 30px;font-size:13px}
     .mobile-nav{display:none}
     @media(max-width:760px){
       .shell{width:min(100% - 20px,1040px)}.hero{padding-top:10px}.hero-card{padding:26px 20px;border-radius:28px}.hero-card:after{font-size:130px}.topline{align-items:flex-start}.status{display:none}.kicker{margin-top:26px}.hero p.sub{font-size:15px}.tabs{display:none}
-      main{padding-top:12px;padding-bottom:110px}.section-head{align-items:flex-start;flex-direction:column}.phase{grid-template-columns:46px 1fr;padding:18px 15px;gap:12px}.icon{width:44px;height:44px;font-size:21px}.mini{grid-template-columns:1fr}.food-grid{grid-template-columns:1fr}.dinner-options{grid-template-columns:repeat(2,1fr)}.custom-food>div{grid-template-columns:1fr}.movie-grid{grid-template-columns:1fr}.slots{grid-template-columns:1fr}.draw{padding:22px}.emoji-card{padding:28px 18px}.question{min-height:190px}.mobile-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));z-index:40;padding:6px;background:rgba(255,250,243,.93);backdrop-filter:blur(20px);border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 40px rgba(57,40,29,.16)}.mnav{border:0;background:transparent;color:var(--muted);padding:8px 2px;border-radius:14px;font-size:10px;font-weight:800}.mnav span{display:block;font-size:19px;margin-bottom:2px}.mnav.active{background:var(--forest);color:white}
+      main{padding-top:12px;padding-bottom:110px}.section-head{align-items:flex-start;flex-direction:column}.phase{grid-template-columns:46px 1fr;padding:18px 15px;gap:12px}.icon{width:44px;height:44px;font-size:21px}.mini{grid-template-columns:1fr}.food-grid{grid-template-columns:1fr}.dinner-options{grid-template-columns:repeat(2,1fr)}.custom-food>div{grid-template-columns:1fr}.movie-grid{grid-template-columns:1fr}.slots{grid-template-columns:1fr}.draw{padding:22px}.emoji-card{padding:28px 18px}.question{min-height:190px}.mobile-nav{display:grid;grid-template-columns:repeat(6,1fr);position:fixed;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));z-index:40;padding:6px;background:rgba(255,250,243,.93);backdrop-filter:blur(20px);border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 40px rgba(57,40,29,.16)}.mnav{border:0;background:transparent;color:var(--muted);padding:8px 2px;border-radius:14px;font-size:10px;font-weight:800}.mnav span{display:block;font-size:19px;margin-bottom:2px}.mnav.active{background:var(--forest);color:white}
     }
   </style>
 </head>
@@ -158,6 +174,7 @@
   <nav class="tabs shell">
     <button class="tab active" data-tab="plan">⌂ Вечер</button>
     <button class="tab" data-tab="food">🍽️ Еда</button>
+    <button class="tab case-tab" data-tab="detective">🔎 Дело</button>
     <button class="tab" data-tab="movies">🎬 Кино</button>
     <button class="tab" data-tab="emoji">🎭 Фильм по эмодзи</button>
     <button class="tab" data-tab="talk">☕ Поболтать</button>
@@ -184,14 +201,14 @@
           <label class="check"><input type="checkbox" data-check="9"><span class="box"></span><span>Спокойно поужинать: <b id="dinnerPlanName">сначала выберите ужин во вкладке «Еда»</b>. Фондю пока не трогать — это десерт.</span></label>
           <label class="check"><input type="checkbox" data-check="10"><span class="box"></span><span>Подарить <b>маленький сюрприз</b> — просто между делом.</span></label>
         </div></div></article>
-        <article class="phase p4"><div class="icon">🍫</div><div><p class="time">после ужина</p><h3>Игры, шоколад и творчество</h3><div class="checklist">
-          <label class="check"><input type="checkbox" data-check="11"><span class="box"></span><span><b>Фондю + слепая дегустация.</b></span></label>
-          <label class="check"><input type="checkbox" data-check="12"><span class="box"></span><span><b>Сладкий тест</b> напитков/сладостей.</span></label>
-          <label class="check"><input type="checkbox" data-check="13"><span class="box"></span><span><b>Один рисунок на двоих</b> — каждый красит свою половину.</span></label>
-          <label class="check"><input type="checkbox" data-check="14"><span class="box"></span><span><b>Фотки</b> — красивые и дурацкие.</span></label>
-          <label class="check"><input type="checkbox" data-check="15"><span class="box"></span><span><b>Эмодзи + разговорные игры</b> по настроению.</span></label>
+        <article class="phase p4"><div class="icon">🕵️</div><div><p class="time">≈ 20:30–22:00</p><h3>Дело на двоих: «Последний эфир»</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="11"><span class="box"></span><span><b>Подготовить фондю, вкусняшки и напитки</b> перед расследованием.</span></label>
+          <label class="check"><input type="checkbox" data-check="12"><span class="box"></span><span>Открыть вкладку <b>«Дело»</b> и начать расследование.</span></label>
+          <label class="check"><input type="checkbox" data-check="13"><span class="box"></span><span>Спокойно копаться в почте, сообщениях и уликах, параллельно <b>есть фондю</b>.</span></label>
+          <label class="check"><input type="checkbox" data-check="14"><span class="box"></span><span>Если реально застряли — использовать <b>подсказку</b>, а не мучиться.</span></label>
+          <label class="check"><input type="checkbox" data-check="15"><span class="box"></span><span><b>Назвать убийцу</b> и открыть развязку дела.</span></label>
         </div></div></article>
-        <article class="phase p5"><div class="icon">🎞️</div><div><p class="time">финал</p><h3>Какао, жеребьёвка и кино</h3><div class="checklist">
+        <article class="phase p5"><div class="icon">🎞️</div><div><p class="time">после расследования</p><h3>Какао, жеребьёвка и кино</h3><div class="checklist">
           <label class="check"><input type="checkbox" data-check="16"><span class="box"></span><span>Сделать <b>какао-бомбочки с маршмеллоу</b>.</span></label>
           <label class="check"><input type="checkbox" data-check="17"><span class="box"></span><span>Зарандомить один из <b>6 фильмов</b>.</span></label>
           <label class="check"><input type="checkbox" data-check="18"><span class="box"></span><span><b>Дальше никакой программы.</b> Плед, проектор и обниматься.</span></label>
@@ -200,6 +217,7 @@
       <div class="mini">
         <button class="mini-card mini-button" data-open="food"><h3>🍫 Собрать фондю</h3><p>Выбрать до 8 продуктов и посмотреть простой вариант шоколадной смеси.</p></button>
         <button class="mini-card mini-button" data-open="food"><h3><span id="miniDinnerIcon">🍽️</span> Выбрать ужин</h3><p id="miniDinnerText">Пока не выбрано — откройте вкладку «Еда».</p></button>
+        <button class="mini-card mini-button detective-launch" data-open="detective"><h3>🔎 Открыть дело №24</h3><p>«Последний эфир» — цифровое расследование примерно на 60–90 минут.</p></button>
         <button class="mini-card mini-button moment-launch" id="randomMoment" type="button"><h3>✨ Случайный момент</h3><p>Маленькая штука, которую можно сделать прямо сейчас вдвоём.</p></button>
       </div>
     </section>
@@ -276,6 +294,51 @@
       <article class="choco-card"><div class="choco-icon">🍫</div><div><small>ШОКОЛАД ДЛЯ ФОНДЮ</small><h3>Milka можно — но есть вариант получше</h3><p><b>Milka без начинки подойдёт</b>, если любите сладкий молочный шоколад. Для более гладкой и менее приторной смеси: <b>150 г молочного + 50 г тёмного шоколада 50–60% + около 50 мл сливок 20–33%</b>.</p><p class="note">Шоколад со сливками лучше растопить отдельно до гладкости, а свечку использовать для поддержания тепла. Так меньше шанс перегреть шоколад.</p></div></article>
     </section>
 
+
+    <section class="panel" id="detective">
+      <div class="case-wrap">
+        <div class="case-intro" id="caseIntro">
+          <div class="case-intro__stamp">CASE FILE №24</div>
+          <div class="case-intro__icon">◉</div>
+          <p class="case-eyebrow">ДЕЛО НА ДВОИХ</p>
+          <h2>Последний эфир</h2>
+          <p class="case-lead">Автор небольшого расследовательского подкаста найден мёртвым в студии за несколько часов до публикации нового выпуска. Пять человек могли хотеть, чтобы эфир не состоялся.</p>
+          <div class="case-rules">
+            <span>⏱️ 60–90 минут</span><span>👥 лучше вдвоём</span><span>🧠 средняя сложность</span><span>💡 есть подсказки</span>
+          </div>
+          <p class="case-warning">Всё внутри дела вымышлено. Настоящие сайты, аккаунты и пароли не используются.</p>
+          <button class="case-start" id="startCase" type="button">Получить доступ к материалам →</button>
+        </div>
+
+        <div class="case-desk hidden" id="caseDesk">
+          <header class="case-head">
+            <div>
+              <small>ОТДЕЛ ЦИФРОВЫХ РАССЛЕДОВАНИЙ</small>
+              <h2>Дело №24 · Последний эфир</h2>
+            </div>
+            <div class="case-head__right">
+              <div class="case-progress"><span>Улики</span><b id="caseProgress">0/8</b></div>
+              <button class="case-reset" id="resetCase" type="button">Начать заново</button>
+            </div>
+          </header>
+          <nav class="case-apps" id="caseApps">
+            <button class="case-app active" data-case-app="brief"><span>📋</span>Сводка</button>
+            <button class="case-app" data-case-app="people"><span>👤</span>Люди</button>
+            <button class="case-app" data-case-app="messages"><span>💬</span>Сообщения</button>
+            <button class="case-app" data-case-app="mail"><span>✉️</span>Почта</button>
+            <button class="case-app" data-case-app="social"><span>◎</span>Соцсеть</button>
+            <button class="case-app" data-case-app="photos"><span>▧</span>Фото</button>
+            <button class="case-app" data-case-app="browser"><span>🌐</span>Браузер</button>
+            <button class="case-app" data-case-app="files"><span>🗂️</span>Файлы</button>
+            <button class="case-app" data-case-app="board"><span>🧷</span>Доска</button>
+            <button class="case-app" data-case-app="hints"><span>💡</span>Подсказки</button>
+            <button class="case-app case-app--final" data-case-app="final"><span>⚖️</span>Версия</button>
+          </nav>
+          <div class="case-screen" id="caseScreen"></div>
+        </div>
+      </div>
+    </section>
+
     <section class="panel" id="movies">
       <div class="section-head"><div><h2>Какой фильм смотрим?</h2><p>Два фильма Сони + четыре ваших. Поля сохраняются на устройстве.</p></div></div>
       <div class="movie-grid">
@@ -310,6 +373,7 @@
   <nav class="mobile-nav">
     <button class="mnav active" data-tab="plan"><span>⌂</span>Вечер</button>
     <button class="mnav" data-tab="food"><span>🍽️</span>Еда</button>
+    <button class="mnav" data-tab="detective"><span>🔎</span>Дело</button>
     <button class="mnav" data-tab="movies"><span>🎬</span>Кино</button>
     <button class="mnav" data-tab="emoji"><span>🎭</span>Эмодзи</button>
     <button class="mnav" data-tab="talk"><span>☕</span>Поболтать</button>
@@ -434,6 +498,197 @@
     function showFinalBanner(){var b=q("#finalBanner");b.classList.add("show");setTimeout(function(){b.classList.remove("show")},4000)}
     if(!sessionStorage.getItem("kostromaWelcomeShown")){q("#welcome").classList.remove("hidden")}q("#startEvening").addEventListener("click",function(){sessionStorage.setItem("kostromaWelcomeShown","1");q("#welcome").classList.add("hidden");leafStorm(24);showToast("🍂 Начинаем наш вечер")});
     document.addEventListener("keydown",function(e){if(e.key==="Escape"){q("#loveModal").classList.add("hidden");q("#couponModal").classList.add("hidden");q("#momentModal").classList.add("hidden")}});
+
+
+    // ---------- Дело №24: «Последний эфир» ----------
+    var caseNow=new Date(),caseTripDay=caseNow.getFullYear()===2026&&caseNow.getMonth()===9&&caseNow.getDate()===2;
+    if(caseTripDay&&!sessionStorage.getItem("case24TripFresh")){localStorage.removeItem("case24State");sessionStorage.setItem("case24TripFresh","1")}
+    var caseDefault={started:false,mail:false,files:false,clues:[],hint:0,solved:false,app:"brief"};
+    var caseState=Object.assign({},caseDefault,JSON.parse(localStorage.getItem("case24State")||"{}"));
+    function saveCase(){localStorage.setItem("case24State",JSON.stringify(caseState))}
+    var caseClues={
+      meeting:{title:"Встреча в 21:15",text:"Кирилл попросил Марину вернуться в студию на десять минут и назначил встречу на 21:15."},
+      leak:{title:"Утечка черновика",text:"Из почты видно, что Марина передавала Денису материалы ещё до публикации и обсуждала оплату за задержку выпуска."},
+      fake_story:{title:"Старое фото вместо алиби",text:"Сторис Марины «дома наконец-то» опубликована в 21:32, но исходный файл снят 14 июля."},
+      weapon:{title:"Пропавшая статуэтка",text:"На фото студии в 19:52 на полке стоит тяжёлая латунная статуэтка «Золотой микрофон». После убийства её нет."},
+      access:{title:"Бейдж M-14",text:"В 21:11 боковую дверь открыли бейджем M-14. В досье этот бейдж закреплён за Мариной Орловой."},
+      wifi:{title:"Marina-iPhone в студии",text:"В 21:12 телефон Марины снова подключился к Wi-Fi студии, хотя она утверждает, что уже была дома."},
+      voice:{title:"Запись в 21:21",text:"Автоматически сохранённая голосовая заметка начинается словами Кирилла: «Марин, я не собираюсь делать вид, что этих денег не было…»."},
+      time:{title:"Окно смерти",text:"Последняя запись пульса на часах Кирилла — 21:23. Это совпадает со временем встречи и цифровыми следами в студии."}
+    };
+    function caseProgress(){var n=caseState.clues.filter(function(x){return caseClues[x]}).length;q("#caseProgress").textContent=n+"/8"}
+    function addClue(id){if(caseState.clues.indexOf(id)<0){caseState.clues.push(id);saveCase();caseProgress();showToast("🧷 Улика добавлена на доску")}renderCaseApp(caseState.app)}
+    function clueButton(id){if(!id)return"";var added=caseState.clues.indexOf(id)>=0;return '<button class="clue-btn '+(added?'added':'')+'" data-add-clue="'+id+'">'+(added?'✓ На доске':'＋ Добавить на доску')+'</button>'}
+    function bindClues(){qa("[data-add-clue]",q("#caseScreen")).forEach(function(b){b.addEventListener("click",function(){addClue(b.getAttribute("data-add-clue"))})})}
+    var suspects=[
+      {id:"marina",name:"Марина Орлова",initials:"МО",av:"marina",age:"29",role:"продюсер подкаста",badge:"M-14",alibi:"Утверждает, что ушла около 20:35 и с 20:50 была дома.",link:"quietcity.local/marina",note:"Работает с Кириллом третий год. В последние недели они часто спорили о новом выпуске."},
+      {id:"denis",name:"Денис Карпов",initials:"ДК",av:"denis",age:"36",role:"директор PR-агентства Prism",badge:"V-03",alibi:"Говорит, что с 20:45 до 22:05 ужинал в ресторане «Порт 12».",link:"prism.local/team/karpov",note:"Компания его клиента фигурирует в расследовании. Угрожал Кириллу судом."},
+      {id:"alina",name:"Алина Петрова",initials:"АП",av:"alina",age:"24",role:"ресерчер",badge:"A-08",alibi:"Уехала из студии около 20:48. Утверждает, что в 21:02 села на автобус домой.",link:"quietcity.local/alina",note:"Собирала документы и общалась с источником. Боялась, что Кирилл назовёт источник в эфире."},
+      {id:"pavel",name:"Павел Чернов",initials:"ПЧ",av:"pavel",age:"32",role:"звукорежиссёр",badge:"P-02",alibi:"Ушёл после экспорта выпуска. Говорит, что в 21:18 уже был на заправке.",link:"studio-cherdak.local/team/pavel",note:"Имеет постоянный доступ в студию и знает расположение камер."},
+      {id:"artem",name:"Артём Зорин",initials:"АЗ",av:"artem",age:"30",role:"источник расследования",badge:"нет",alibi:"Утверждает, что в 21:03 уехал из города электричкой.",link:"search.local/?q=artem+zorin",note:"Настоящее имя источника долго скрывал. Просил Кирилла не публиковать часть документов."}
+    ];
+    var threads={
+      marina:[
+        ["20:12","Марина","Ты серьёзно собираешься оставить этот кусок в выпуске?"],
+        ["20:14","Кирилл","Не в выпуске. Сначала поговорим о том, откуда Денис знает про черновик."],
+        ["20:35","Марина","Я ушла. Завтра поговорим."],
+        ["21:06","Кирилл","Вернись на десять минут. Сегодня закончим. 21:15 в студии."],
+        ["21:07","система","Сообщение доставлено. Ответа нет."]
+      ],
+      denis:[
+        ["18:44","Денис","Если вы выпускаете этот материал в таком виде — утром получите иск."],
+        ["18:47","Кирилл","Присылай комментарий. Угрозы в выпуск тоже красиво лягут."],
+        ["19:03","Денис","Ты понятия не имеешь, во что лезешь."],
+        ["20:02","Кирилл","Отлично. Тогда на этом всё."]
+      ],
+      alina:[
+        ["19:32","Алина","Я перепроверила таблицу платежей. Там точно есть связка через Prism."],
+        ["19:34","Кирилл","Скинь в закрытую папку. Имя источника в эфире не будет."],
+        ["20:46","Алина","Я уехала. Автобус через 12 минут. Пожалуйста, не меняй решение насчёт источника."],
+        ["20:47","Кирилл","Не поменяю."]
+      ],
+      pavel:[
+        ["20:24","Павел","Я экспортнул master_final_7. Старый take3 можно снести? Там мой мат на фоне 😅"],
+        ["20:25","Кирилл","Да, удаляй take3. Финал не трогай."],
+        ["20:51","Павел","Я всё. Закрыл аппаратную и поехал."],
+        ["20:52","Кирилл","Спасибо."]
+      ],
+      artem:[
+        ["19:58","Артём","Я всё ещё не хочу, чтобы всплыло моё настоящее имя."],
+        ["20:01","Кирилл","Не всплывёт. Документы покажу, тебя — нет."],
+        ["20:56","Артём","Я на вокзале. Сажусь на 21:03, дальше буду без связи."],
+        ["20:57","Кирилл","Принял. Спасибо за риск."]
+      ]
+    };
+    var mails=[
+      {from:"m.orlova@quietcity.media",to:"d.karpov@prism.local",time:"28 сентября · 23:14",subject:"Re: консультация",body:"Черновик у тебя. Я смогу потянуть публикацию ещё несколько дней, но Кирилл уже что-то подозревает.",clue:"leak"},
+      {from:"d.karpov@prism.local",to:"m.orlova@quietcity.media",time:"29 сентября · 09:06",subject:"акт / октябрь",body:"180 после того, как материал окончательно ляжет на стол и не выйдет. Назначение платежа оставляем «редакторские консультации».",clue:"leak"},
+      {from:"k.volkov@quietcity.media",to:"law@northmail.local",time:"2 октября · 18:03",subject:"внутренняя утечка",body:"Похоже, черновик сливает кто-то из команды. Если сегодня подтвержу платёж, завтра прекращаю договор с продюсером и передаю всё юристу.",clue:null},
+      {from:"a.petrova@quietcity.media",to:"k.volkov@quietcity.media",time:"2 октября · 17:21",subject:"источник",body:"Прошу ещё раз: не публикуй настоящее имя Артёма. Документов достаточно и без этого.",clue:null}
+    ];
+    var socials=[
+      {who:"Кирилл Волков",av:"pavel",initials:"КВ",time:"19 апреля 2024",text:"Фиби сегодня ровно пять лет как дома. И да, все мои пароли всё ещё слишком предсказуемые 🙃",image:"🐕",meta:"публичный пост · quietcity.local/kirill",hint:"Питомца зовут Фиби. Из подписи следует, что она появилась дома в 2019 году."},
+      {who:"Подкаст «Тихий город»",av:"alina",initials:"ТГ",time:"07 ноября 2024",text:"Первый выпуск вышел. Кажется, мы действительно это сделали.",image:"🎙️",meta:"закреплённый пост",hint:"Дата первого эфира: 07.11.2024."},
+      {who:"Марина Орлова",av:"marina",initials:"МО",time:"2 октября · 21:32",text:"Дома наконец-то. День закончился.",image:"🪟 ☕",meta:"сторис сохранена в материалах дела",clue:"fake_story"},
+      {who:"Денис Карпов",av:"denis",initials:"ДК",time:"2 октября · 21:18",text:"Поздний ужин, наконец без звонков.",image:"🍽️",meta:"геометка: ресторан «Порт 12»",clue:null},
+      {who:"Алина Петрова",av:"alina",initials:"АП",time:"2 октября · 21:04",text:"Когда автобус приходит сразу — это почти чудо.",image:"🚌",meta:"геометка: остановка «Театральная»",clue:null}
+    ];
+    var photos=[
+      {title:"IMG_4418 · студия",visual:"🎙️  🏆",caption:"Снимок рабочего стола перед записью",exif:"02.10.2026 19:52 · Studio Cherdak · камера Pixel 8",clue:"weapon",detail:"На верхней полке видна тяжёлая латунная статуэтка «Золотой микрофон». В описи места происшествия её нет."},
+      {title:"story_export_2132",visual:"🪟  ☕",caption:"Кадр из сторис Марины",exif:"ОПУБЛИКОВАНО 02.10.2026 21:32 · ИСХОДНЫЙ ФАЙЛ 14.07.2026 22:08",clue:"fake_story",detail:"Сторис подтверждает только время публикации. Сам снимок сделан почти три месяца назад."},
+      {title:"restaurant_2117",visual:"🍽️  🥂",caption:"Фото Дениса из ресторана",exif:"02.10.2026 21:17 · GPS: Port 12 · iPhone 16",clue:null,detail:"Метаданные совпадают с геометкой ресторана."},
+      {title:"bus_stop_2104",visual:"🚌  🌧️",caption:"Фото Алины на остановке",exif:"02.10.2026 21:04 · GPS: Театральная · Samsung S25",clue:null,detail:"От студии до остановки около 11 минут пешком."},
+      {title:"platform_2126",visual:"🚆  🌙",caption:"Фото Артёма на платформе",exif:"02.10.2026 21:26 · станция Лесная · iPhone 14",clue:null,detail:"Станция находится в 34 км от студии."},
+      {title:"control_room_2034",visual:"🎛️  🎧",caption:"Павел тестирует финальный экспорт",exif:"02.10.2026 20:34 · Studio Cherdak",clue:null,detail:"На фото системные часы аппаратной показывают 20:34."}
+    ];
+    var fileDocs=[
+      {name:"access_log_02-10.csv",time:"система доступа",body:"20:32 · M-14 · MAIN EXIT\n20:49 · A-08 · MAIN EXIT\n20:52 · P-02 · MAIN EXIT\n21:11 · M-14 · SIDE ENTRY\n21:27 · SIDE DOOR · OPEN FROM INSIDE",clue:"access"},
+      {name:"wifi_log_02-10.txt",time:"роутер студии",body:"20:49 alina-s25 DISCONNECTED\n20:53 pavel-pixel DISCONNECTED\n21:12 marina-iphone CONNECTED\n21:29 marina-iphone DISCONNECTED",clue:"wifi"},
+      {name:"voice_note_2121.m4a",time:"автосохранение · 00:17",body:"РАСШИФРОВКА: «Марин, я не собираюсь делать вид, что этих денег не было. Ты слила ему черновик, а теперь…» [резкий шум] [запись обрывается]",clue:"voice"},
+      {name:"watch_health.csv",time:"часы Кирилла",body:"21:20 pulse 93\n21:21 pulse 101\n21:22 pulse 118\n21:23 last_valid_reading\nпосле 21:23 данных нет",clue:"time"},
+      {name:"scene_inventory.txt",time:"место происшествия",body:"Следов взлома нет. На верхней полке прямоугольный след пыли 11×24 см — предмет недавно снят. По фото 19:52 на этом месте находилась латунная награда «Золотой микрофон».",clue:"weapon"},
+      {name:"parking_and_receipts.txt",time:"проверка алиби",body:"Денис Карпов: Port 12, чек 20:48; карта оплачена 22:02. Павел Чернов: АЗС «Орбита», оплата 21:18. Артём Зорин: билет отсканирован турникетом 20:58.",clue:null}
+    ];
+    var browserPages=[
+      {id:"first",title:"Тихий город — архив выпусков",url:"quietcity.local/archive",keywords:"тихий город первый выпуск архив 07 11",text:"Архив подкаста «Тихий город». Выпуск №1 опубликован 07.11.2024. Автор — Кирилл Волков. Продюсер — Марина Орлова.",clue:null},
+      {id:"kirill",title:"Кирилл Волков — публичный профиль",url:"quietcity.local/kirill",keywords:"кирилл волков фиби собака пароль питомец",text:"Пост от 19.04.2024: «Фиби сегодня ровно пять лет как дома. И да, все мои пароли всё ещё слишком предсказуемые 🙃».",clue:null},
+      {id:"studio",title:"Студия «Чердак» — правила доступа",url:"studio-cherdak.local/access",keywords:"чердак студия боковая дверь доступ бейдж",text:"Основной вход закрывается в 21:00. После 21:00 сотрудники могут войти через боковую дверь персональным бейджем. Все проходы записываются в журнал доступа.",clue:null},
+      {id:"prism",title:"Prism Communications — команда",url:"prism.local/team/karpov",keywords:"prism денис карпов агентство",text:"Денис Карпов — директор по антикризисным коммуникациям. Среди клиентов — группа «Северная линия», которой посвящён неопубликованный выпуск «Тихого города».",clue:null},
+      {id:"restaurant",title:"Ресторан «Порт 12»",url:"port12.local/info",keywords:"порт 12 ресторан расстояние студия",text:"Адрес ресторана находится примерно в 27 минутах езды от студии «Чердак» вечером без пробок.",clue:null},
+      {id:"train",title:"Расписание электричек",url:"rail.local/0210",keywords:"электричка 21 03 лесная артем",text:"Поезд 6412: Центральная 21:03 → Лесная 21:24. Турникеты закрываются за 2 минуты до отправления.",clue:null}
+    ];
+    var caseHints=[
+      "Сначала не ищите убийцу. Проверьте алиби каждого человека по независимым цифровым следам: сообщения, фото, чеки, транспорт.",
+      "У одного подозреваемого есть очень удобное «доказательство», что он уже дома. Но время публикации картинки и время создания картинки — не одно и то же.",
+      "Почта Кирилла закрыта. В публичном профиле есть кличка питомца и число, из которого можно получить год. Формат пароля: имя латиницей + год.",
+      "Закрытая папка использует четырёхзначный PIN. В почте есть намёк «как дата первого эфира». Дату первого выпуска можно найти через браузер.",
+      "Сравните досье подозреваемых с журналом боковой двери. Там используются номера бейджей.",
+      "Сопоставьте время входа через боковую дверь с журналом Wi-Fi. Телефон обычно выдаёт присутствие лучше, чем сторис.",
+      "Для мотива важны не угрозы Дениса сами по себе, а переписка о черновике и деньгах.",
+      "Если уже нашли запись 21:21 и последнюю запись часов 21:23, вы почти восстановили последние минуты Кирилла.",
+      "Орудие не нужно искать в реальном мире: сравните фото студии до убийства с описью места происшествия.",
+      "Почти ответ: человек, чей бейдж и телефон вернулись в студию перед 21:15, соврал об алиби и имел финансовую причину бояться разговора с Кириллом."
+    ];
+
+    function renderCaseApp(app){
+      caseState.app=app;saveCase();qa(".case-app").forEach(function(b){b.classList.toggle("active",b.getAttribute("data-case-app")===app)});
+      var s=q("#caseScreen"),out="";
+      if(app==="brief"){
+        out='<div class="case-section-title"><div><small>МАТЕРИАЛЫ ДЕЛА</small><h3>Первичная сводка</h3></div></div>'+
+        '<div class="case-grid"><div class="case-card case-card--important"><small>ПОТЕРПЕВШИЙ</small><h4>Кирилл Волков, 31 год</h4><p>Автор подкаста «Тихий город». Готовил расследовательский выпуск о платежах вокруг группы «Северная линия».</p></div>'+
+        '<div class="case-card"><small>МЕСТО</small><h4>Студия «Чердак»</h4><p>Кирилла нашла уборщица в 22:10. Следов взлома нет. После 21:00 попасть внутрь можно через боковую дверь по бейджу.</p></div>'+
+        '<div class="case-card"><small>ПРИЧИНА СМЕРТИ</small><h4>Один сильный удар тяжёлым предметом</h4><p>Предварительное окно смерти: 21:15–21:30. На месте не найден предмет, который точно подходит под характер травмы.</p></div>'+
+        '<div class="case-card"><small>ЗАДАЧА</small><h4>Восстановить последние 45 минут</h4><p>Определите убийцу, мотив, способ и ключевую цифровую улику. Не все подозрительные факты относятся к убийству.</p></div></div>'+
+        '<div class="case-section-title" style="margin-top:22px"><div><small>ХРОНОЛОГИЯ</small><h3>Что уже известно</h3></div></div>'+
+        '<div class="case-timeline"><div class="case-event"><time>20:32</time><div>Марина отмечается на выходе из студии.</div></div><div class="case-event"><time>20:49</time><div>Алина выходит из здания.</div></div><div class="case-event"><time>20:52</time><div>Павел пишет, что закончил работу и уезжает.</div></div><div class="case-event"><time>21:06</time><div>Кирилл отправляет последнее исходящее сообщение одному из подозреваемых.</div></div><div class="case-event"><time>21:15–21:30</time><div>Предполагаемое время убийства.</div></div><div class="case-event"><time>22:10</time><div>Тело обнаружено.</div></div></div>'+
+        '<div class="case-note" style="margin-top:16px">Совет: открывайте всё подряд, но записывайте только то, что действительно помогает подтвердить мотив, присутствие и время.</div>';
+      }else if(app==="people"){
+        out='<div class="case-section-title"><div><small>5 ЧЕЛОВЕК</small><h3>Подозреваемые</h3></div></div><div class="case-grid">'+suspects.map(function(p){return '<div class="case-card person-card"><div class="case-avatar av-'+p.av+'">'+p.initials+'</div><div><small>БЕЙДЖ '+p.badge+'</small><h4>'+p.name+', '+p.age+'</h4><div class="person-meta"><span>'+p.role+'</span></div><p><b style="color:#dbe7e0">Алиби:</b> '+p.alibi+'</p><p>'+p.note+'</p><button class="person-link" data-browser-url="'+p.link+'">открытый профиль / поиск ↗</button></div></div>'}).join("")+'</div>';
+      }else if(app==="messages"){
+        var active=window.caseThread||"marina",names={marina:"Марина",denis:"Денис",alina:"Алина",pavel:"Павел",artem:"Артём"};
+        out='<div class="case-section-title"><div><small>РЕЗЕРВНАЯ КОПИЯ</small><h3>Сообщения Кирилла</h3></div></div><div class="thread-list"><div class="thread-tabs">'+Object.keys(threads).map(function(k){return '<button class="thread-btn '+(k===active?'active':'')+'" data-thread="'+k+'">'+names[k]+'</button>'}).join("")+'</div><div class="thread-pane">'+threads[active].map(function(m){var me=m[1]==="Кирилл";return '<div class="msg '+(me?'me':'')+'"><time>'+m[0]+' · '+m[1]+'</time>'+m[2]+'</div>'}).join("")+(active==="marina"?clueButton("meeting"):"")+'</div></div>';
+      }else if(app==="mail"){
+        if(!caseState.mail){out='<div class="lock-screen"><div class="lock-icon">✉️</div><h3>Почтовая копия зашифрована</h3><p>Подсказка восстановления: <b>кличка питомца латиницей + год, когда питомец появился дома</b>.</p><input id="mailPass" autocomplete="off" placeholder="пароль"><button id="unlockMail">Разблокировать</button><p class="lock-hint">Нужные данные есть в открытом доступе внутри дела.</p><p id="mailError"></p></div>'}
+        else out='<div class="case-section-title"><div><small>k.volkov@quietcity.media</small><h3>Почта</h3></div></div>'+mails.map(function(m){return '<article class="mail-item"><div class="mail-head"><b>'+m.from+'</b><span>'+m.time+'</span></div><p class="mail-subject">'+m.subject+'</p><p>'+m.body+'</p>'+clueButton(m.clue)+'</article>'}).join("");
+      }else if(app==="social"){
+        out='<div class="case-section-title"><div><small>ОТКРЫТЫЕ ПРОФИЛИ</small><h3>Соцсеть</h3></div></div>'+socials.map(function(p){return '<article class="social-post"><div class="social-profile"><div class="case-avatar av-'+p.av+'">'+p.initials+'</div><div><strong>'+p.who+'</strong><div class="post-meta">'+p.time+'</div></div></div><p>'+p.text+'</p><div class="post-image">'+p.image+'</div><div class="post-meta">'+p.meta+'</div>'+(p.hint?'<p class="case-note">'+p.hint+'</p>':'')+clueButton(p.clue)+'</article>'}).join("");
+      }else if(app==="photos"){
+        out='<div class="case-section-title"><div><small>6 ФАЙЛОВ</small><h3>Фотографии и метаданные</h3></div></div><div class="photo-grid">'+photos.map(function(p){return '<article class="photo-item"><div class="fake-photo">'+p.visual+'<span>'+p.caption+'</span></div><h4>'+p.title+'</h4><div class="exif">'+p.exif+'</div><p>'+p.detail+'</p>'+clueButton(p.clue)+'</article>'}).join("")+'</div>';
+      }else if(app==="browser"){
+        out='<div class="case-section-title"><div><small>ЛОКАЛЬНЫЙ ПОИСК</small><h3>Браузер</h3></div></div><div class="fake-browser"><div class="browser-bar"><input id="browserQuery" placeholder="Искать человека, место, дату или сайт"><button id="browserSearch">Найти</button></div><div class="browser-results" id="browserResults"><p>Это копия открытого веба внутри игры. Попробуйте искать имена, «первый выпуск», студию, ресторан или расписание.</p></div></div>';
+      }else if(app==="files"){
+        if(!caseState.files){out='<div class="lock-screen"><div class="lock-icon">🗂️</div><h3>Папка evidence_backup закрыта</h3><p>Подсказка владельца: <b>«PIN = дата первого эфира, без года»</b>.</p><input id="filesPin" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button id="unlockFiles">Открыть папку</button><p class="lock-hint">Найдите дату первого выпуска подкаста в открытом вебе.</p><p id="filesError"></p></div>'}
+        else out='<div class="case-section-title"><div><small>evidence_backup</small><h3>Системные файлы</h3></div></div>'+fileDocs.map(function(d){return '<article class="file-item"><div class="file-head"><b>'+d.name+'</b><span>'+d.time+'</span></div><pre style="white-space:pre-wrap;color:#aebeb5;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace">'+d.body+'</pre>'+clueButton(d.clue)+'</article>'}).join("");
+      }else if(app==="board"){
+        var valid=caseState.clues.filter(function(id){return caseClues[id]});
+        out='<div class="case-section-title"><div><small>ВАША РАБОЧАЯ ДОСКА</small><h3>Собранные улики</h3></div><b style="color:#b79a72">'+valid.length+'/8</b></div>'+(valid.length?'<div class="board-list">'+valid.map(function(id){var c=caseClues[id];return '<div class="board-clue"><span>🧷</span><div><b>'+c.title+'</b><p>'+c.text+'</p></div></div>'}).join("")+'</div>':'<div class="board-empty">Пока пусто. В документах ищите кнопку «Добавить на доску».</div>');
+      }else if(app==="hints"){
+        out='<div class="case-section-title"><div><small>ЕСЛИ ЗАСТРЯЛИ</small><h3>Подсказки</h3></div></div><div class="hint-box"><p>Открывайте их постепенно. Первые намёки мягкие, последние почти выводят к решению.</p>'+caseHints.map(function(h,i){return '<div class="hint-level '+(i<caseState.hint?'':'locked')+'"><b>Подсказка '+(i+1)+'</b><p>'+h+'</p></div>'}).join("")+'<div class="hint-actions">'+(caseState.hint<caseHints.length?'<button id="nextHint">Открыть следующую подсказку</button>':'<span>Все подсказки открыты.</span>')+'</div></div>';
+      }else if(app==="final"){
+        if(caseState.solved){
+          out='<div class="case-solved"><small>ДЕЛО ЗАКРЫТО</small><h3>Вы раскрыли «Последний эфир»</h3><div class="solution-line"><b>Убийца:</b> Марина Орлова.</div><div class="solution-line"><b>Мотив:</b> Кирилл обнаружил, что она сливала Денису черновик расследования и получала деньги за задержку публикации. Он собирался прекратить договор и передать материалы юристу.</div><div class="solution-line"><b>Что произошло:</b> после ухода Марина получила сообщение Кирилла и вернулась через боковую дверь к 21:15. Разговор перерос в конфликт. Удар был нанесён тяжёлой латунной статуэткой «Золотой микрофон», которая после убийства исчезла с полки.</div><div class="solution-line"><b>Цепочка:</b> M-14 в 21:11 → Marina-iPhone в 21:12 → голосовая запись в 21:21 → последняя запись часов в 21:23. Сторис «из дома» оказалась старым снимком.</div><p class="case-footnote">Денис действительно платил за утечку и угрожал Кириллу, но независимые метки ресторана удерживают его вдали от студии в момент убийства. Остальные подозрительные действия тоже имеют объяснение.</p></div>';
+        }else{
+          out='<div class="case-section-title"><div><small>ФИНАЛЬНАЯ ВЕРСИЯ</small><h3>Кого вы обвиняете?</h3></div></div><div class="final-form"><p>Не обязательно собрать все 8 карточек. Если цепочка уже понятна — выносите версию.</p>'+
+          '<label>Убийца</label><select id="finalWho"><option value="">— выбрать —</option><option value="marina">Марина Орлова</option><option value="denis">Денис Карпов</option><option value="alina">Алина Петрова</option><option value="pavel">Павел Чернов</option><option value="artem">Артём Зорин</option></select>'+
+          '<label>Главный мотив</label><select id="finalMotive"><option value="">— выбрать —</option><option value="leak">Скрыть платную утечку расследования и избежать разоблачения</option><option value="lawsuit">Остановить выпуск ради клиента PR-агентства</option><option value="revenge">Личная месть Кириллу</option><option value="source">Не дать раскрыть личность источника</option><option value="plagiarism">Спор из-за авторства расследования</option></select>'+
+          '<label>Орудие</label><select id="finalMethod"><option value="">— выбрать —</option><option value="trophy">Латунная статуэтка «Золотой микрофон»</option><option value="poison">Яд в кофе</option><option value="cable">Кабель из аппаратной</option><option value="fall">Инсценированное падение</option></select>'+
+          '<label>Какая связка лучше всего подтверждает присутствие?</label><select id="finalEvidence"><option value="">— выбрать —</option><option value="wifi_voice">Wi-Fi телефона + голосовая запись 21:21</option><option value="access_story">Бейдж M-14 + фальшивое фото-алиби</option><option value="photo_email">Фото ресторана + письмо Дениса</option><option value="threat_receipt">Угроза судом + ресторанный чек</option></select>'+
+          '<button class="final-submit" id="submitCase">Проверить версию</button><div class="final-feedback hidden" id="finalFeedback"></div></div>';
+        }
+      }
+      s.innerHTML=out;caseProgress();bindClues();bindCaseScreen(app);
+    }
+    function bindCaseScreen(app){
+      if(app==="people")qa("[data-browser-url]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.app="browser";renderCaseApp("browser");setTimeout(function(){var input=q("#browserQuery");input.value=b.getAttribute("data-browser-url");doBrowserSearch(input.value)},50)}});
+      if(app==="messages")qa("[data-thread]",q("#caseScreen")).forEach(function(b){b.onclick=function(){window.caseThread=b.getAttribute("data-thread");renderCaseApp("messages")}});
+      if(app==="mail"&&!caseState.mail){q("#unlockMail").onclick=function(){var v=q("#mailPass").value.trim().toLowerCase();if(v===atob("ZmliaTIwMTk=")||v===atob("cGhvZWJlMjAxOQ==")){caseState.mail=true;saveCase();showToast("✉️ Почта разблокирована");renderCaseApp("mail")}else q("#mailError").textContent="Пароль не подошёл."};q("#mailPass").onkeydown=function(e){if(e.key==="Enter")q("#unlockMail").click()}}
+      if(app==="files"&&!caseState.files){q("#unlockFiles").onclick=function(){if(q("#filesPin").value.trim()===atob("MDcxMQ==")){caseState.files=true;saveCase();showToast("🗂️ Папка открыта");renderCaseApp("files")}else q("#filesError").textContent="PIN не подошёл."};q("#filesPin").onkeydown=function(e){if(e.key==="Enter")q("#unlockFiles").click()}}
+      if(app==="browser"){q("#browserSearch").onclick=function(){doBrowserSearch(q("#browserQuery").value)};q("#browserQuery").onkeydown=function(e){if(e.key==="Enter")doBrowserSearch(q("#browserQuery").value)}}
+      if(app==="hints"&&q("#nextHint"))q("#nextHint").onclick=function(){caseState.hint=Math.min(caseHints.length,caseState.hint+1);saveCase();renderCaseApp("hints")};
+      if(app==="final"&&!caseState.solved&&q("#submitCase"))q("#submitCase").onclick=submitCaseVersion;
+    }
+    function doBrowserSearch(raw){
+      var query=(raw||"").toLowerCase().trim(),box=q("#browserResults");if(!box)return;
+      var direct=browserPages.find(function(p){return query===p.url.toLowerCase()});
+      if(direct){renderBrowserPage(direct);return}
+      var words=query.split(/\s+/).filter(Boolean),found=browserPages.filter(function(p){var hay=(p.title+" "+p.url+" "+p.keywords+" "+p.text).toLowerCase();return words.length&&words.some(function(w){return hay.indexOf(w)>=0})});
+      box.innerHTML=found.length?found.map(function(p){return '<div class="browser-result"><a data-page="'+p.id+'">'+p.title+'</a><small>'+p.url+'</small><p>'+p.text.slice(0,145)+'…</p></div>'}).join(""):'<p>Ничего полезного. Попробуйте более общий запрос или имя человека.</p>';
+      qa("[data-page]",box).forEach(function(a){a.onclick=function(){renderBrowserPage(browserPages.find(function(p){return p.id===a.getAttribute("data-page")}))}});
+    }
+    function renderBrowserPage(p){var box=q("#browserResults");box.innerHTML='<div class="browser-page"><button class="browser-back" id="browserBack">← к поиску</button><div class="browser-url">'+p.url+'</div><h3>'+p.title+'</h3><article>'+p.text+'</article>'+clueButton(p.clue)+'</div>';q("#browserBack").onclick=function(){renderCaseApp("browser")};bindClues()}
+    async function caseHash(str){var buf=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(str));return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,"0")}).join("")}
+    async function submitCaseVersion(){
+      var who=q("#finalWho").value,m=q("#finalMotive").value,method=q("#finalMethod").value,e=q("#finalEvidence").value,fb=q("#finalFeedback");
+      if(!who||!m||!method||!e){fb.textContent="Заполните все четыре пункта версии.";fb.classList.remove("hidden");return}
+      var h=await caseHash([who,m,method,e].join("|")),ok=["d3b46805f65a17841896aab7fbfa3268e8fcab732c28ca731e8ea7516fd78e52","c8add48ff3ca3d0df84f094cd18b09c2e452b92538dd5c3eced207060afa0dd5"].indexOf(h)>=0;
+      if(ok){caseState.solved=true;saveCase();var done=checks.find(function(x){return x.getAttribute("data-check")==="15"});if(done&&!done.checked){done.checked=true;saved["15"]=true;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()}leafStorm(32);showToast("🔎 Дело раскрыто");renderCaseApp("final")}
+      else{fb.textContent="Версия пока не сходится со всеми цифровыми следами. Проверьте время, алиби и то, кто действительно вернулся в студию.";fb.classList.remove("hidden")}
+    }
+    function startCaseDesk(){caseState.started=true;saveCase();q("#caseIntro").classList.add("hidden");q("#caseDesk").classList.remove("hidden");renderCaseApp(caseState.app||"brief");var started=checks.find(function(x){return x.getAttribute("data-check")==="12"});if(started&&!started.checked){started.checked=true;saved["12"]=true;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()}}
+    q("#startCase").addEventListener("click",startCaseDesk);
+    qa(".case-app").forEach(function(b){b.addEventListener("click",function(){renderCaseApp(b.getAttribute("data-case-app"))})});
+    q("#resetCase").addEventListener("click",function(){if(confirm("Начать расследование с нуля? Улики и открытые пароли сбросятся.")){caseState=Object.assign({},caseDefault,{started:true});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
+    if(caseState.started){q("#caseIntro").classList.add("hidden");q("#caseDesk").classList.remove("hidden");renderCaseApp(caseState.app||"brief")}
 
     var movies=qa(".movie"), savedMovies=JSON.parse(localStorage.getItem("kostromaMovies")||"null");
     if(savedMovies){savedMovies.forEach(function(v,i){if(movies[i])movies[i].value=v})}
