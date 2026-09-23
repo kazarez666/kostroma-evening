@@ -708,7 +708,7 @@
         setCaseContext("Приложение к материалам осмотра и цифровой экспертизы");
         out='<div class="case-section-title"><div><small>6 ДОКУМЕНТОВ</small><h3>Материалы полиции</h3></div></div>'+
         '<div class="police-intro"><b>Что это вообще такое:</b> здесь лежат не «загадочные компьютерные файлы», а обычные приложения к делу — журналы дверей, данные роутера, восстановленная запись, часы и протокол осмотра. Каждый документ ниже сначала объясняется человеческим языком.</div>'+
-        policeFiles.map(function(d){return '<article class="police-file"><div class="police-file__top"><b>'+d.title+'</b><span>'+d.kind+'</span></div><div class="police-file__explain"><b>Что это:</b> '+d.what+'</div><small style="display:block;margin:10px 0 5px;color:#61786d">Техническое имя файла: '+d.file+'</small><pre>'+d.body+'</pre><div class="police-file__meaning"><b>Что из этого можно понять:</b> '+d.meaning+'</div>'+clueButton(d.clue)+'</article>'}).join("");
+        policeFiles.map(function(d){return '<article class="police-file"><div class="police-file__top"><b>'+d.title+'</b><span>'+d.kind+'</span></div><div class="police-file__explain"><b>Что это:</b> '+d.what+'</div><pre style="margin-top:10px">'+d.body+'</pre><div class="police-file__meaning"><b>Что из этого можно понять:</b> '+d.meaning+'</div>'+clueButton(d.clue)+'</article>'}).join("");
       }else if(app==="board"){
         setCaseContext("Ваша рабочая доска");
         var valid=caseState.clues.filter(function(id){return caseClues[id]});
