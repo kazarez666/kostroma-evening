@@ -76,7 +76,8 @@ try{
   assert.notEqual(await page.locator('#cozyLevel').innerText(),cozyBefore);
 
   // Checklist/progress reset.
-  await page.locator('[data-check="1"]').check();
+  await page.locator('label.check').first().click();
+  assert.equal(await page.locator('[data-check="1"]').isChecked(),true);
   assert.notEqual((await page.locator('#progressText').innerText()).trim(),'0%');
   await page.locator('#reset').click();
   assert.equal((await page.locator('#progressText').innerText()).trim(),'0%');
