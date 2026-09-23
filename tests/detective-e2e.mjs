@@ -37,9 +37,11 @@ try {
   await page.locator('[data-case-app="people"]').click();
   await visibleText('Люди');
   await visibleText('Марина Орлова');
+  await page.waitForFunction(()=>[...document.querySelectorAll('.person-photo img')].length>=6 && [...document.querySelectorAll('.person-photo img')].every(img=>img.complete&&img.naturalWidth>0),null,{timeout:10000});
   await page.locator('[data-profile="marina"]').first().click();
   await visibleText('Марина Орлова');
   await visibleText('Дома наконец-то');
+  await page.waitForFunction(()=>[...document.querySelectorAll('.feed-image img')].filter(img=>img.offsetParent!==null).every(img=>img.complete&&img.naturalWidth>0),null,{timeout:10000});
   await page.locator('[data-web-home]').click();
   await visibleText('Открытый веб');
 
@@ -85,6 +87,10 @@ try {
   await page.locator('[data-case-app="police"]').click();
   await visibleText('Материалы полиции');
   assert.equal(await page.locator('.police-file').count(), 7);
+  const evidencePhoto=page.locator('.material-photo img');
+  if(await evidencePhoto.count()) {
+    await page.waitForFunction(()=>[...document.querySelectorAll('.material-photo img')].every(img=>img.complete&&img.naturalWidth>0),null,{timeout:10000});
+  }
   for (let i=0;i<10;i++) {
     const pending = page.locator('[data-add-clue]:not(.added)');
     if (await pending.count()===0) break;
