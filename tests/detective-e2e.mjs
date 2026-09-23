@@ -35,7 +35,8 @@ try {
 
   // People -> public profile -> back to web.
   await page.locator('[data-case-app="people"]').click();
-  await visibleText('Подозреваемые');
+  await visibleText('Люди');
+  await visibleText('Марина Орлова');
   await page.locator('[data-profile="marina"]').first().click();
   await visibleText('Марина Орлова');
   await visibleText('Дома наконец-то');
