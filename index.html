@@ -120,6 +120,22 @@
     .police-file__meaning{margin-top:9px;padding:10px 11px;border-radius:10px;background:#2b261f;color:#d4c0a1;font-size:12px;line-height:1.55;border:1px solid rgba(207,178,132,.12)}
     @media(max-width:760px){.case-secret-launch{grid-template-columns:45px 1fr}.case-secret-launch__icon{width:44px;height:44px;border-radius:14px}.case-secret-launch__button{grid-column:1/-1;width:100%}}
 
+
+    /* Case file document */
+    .case-file-shell{max-width:900px;margin:0 auto}.case-file-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.case-file-toolbar__meta{display:flex;gap:8px;flex-wrap:wrap}.case-file-toolbar__meta span{padding:6px 9px;border-radius:999px;background:#1b2824;border:1px solid rgba(190,218,202,.09);font:800 9px ui-monospace,SFMono-Regular,Menlo,monospace;color:#8da499;letter-spacing:.08em}.case-file-pages{perspective:1400px}.case-paper{position:relative;min-height:650px;padding:42px 46px 54px;background:
+      linear-gradient(rgba(101,75,45,.025) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(101,75,45,.018) 1px,transparent 1px),
+      #f0eadf;background-size:20px 20px;color:#2c2924;border-radius:7px 16px 16px 7px;box-shadow:0 28px 80px rgba(0,0,0,.34),inset 0 0 0 1px rgba(80,65,48,.12);transform-origin:left center;animation:casePaperIn .34s ease}
+    .case-paper:before{content:"";position:absolute;left:18px;top:0;bottom:0;width:2px;background:rgba(126,68,55,.18);box-shadow:5px 0 0 rgba(126,68,55,.06)}.case-paper:after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(circle at 15% 10%,rgba(255,255,255,.5),transparent 25%),radial-gradient(circle at 92% 90%,rgba(111,83,51,.06),transparent 28%)}
+    @keyframes casePaperIn{from{opacity:.4;transform:rotateY(-7deg) translateX(-8px)}to{opacity:1;transform:none}}
+    .case-paper>*{position:relative;z-index:1}.case-doc-head{display:grid;grid-template-columns:1fr auto;gap:20px;padding-bottom:18px;border-bottom:2px solid #39342d}.case-doc-agency{font:900 11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;color:#4a443b}.case-doc-title{font-family:Georgia,"Times New Roman",serif;font-size:34px;line-height:1.05;margin:8px 0 3px;color:#221f1a}.case-doc-subtitle{color:#665f54;font:700 12px ui-monospace,SFMono-Regular,Menlo,monospace}.case-doc-stamp{align-self:start;border:3px double #8e3f36;color:#8e3f36;padding:9px 12px;font:900 11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;transform:rotate(-4deg);opacity:.82}
+    .case-doc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;margin:20px 0}.case-doc-field{padding-bottom:9px;border-bottom:1px dotted #9a9082}.case-doc-field small{display:block;font:900 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;color:#7a7165;text-transform:uppercase}.case-doc-field b{display:block;margin-top:4px;font-size:14px;color:#2d2923}.case-doc-section{margin:20px 0}.case-doc-section h4{font:900 12px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;color:#403a32;text-transform:uppercase;margin:0 0 9px}.case-doc-section p,.case-doc-section li{font-family:Georgia,"Times New Roman",serif;font-size:15px;line-height:1.63;color:#3b3730}.case-doc-section ul{padding-left:22px;margin:8px 0}.case-doc-callout{padding:13px 15px;border-left:4px solid #8e3f36;background:rgba(142,63,54,.07);font-family:Georgia,"Times New Roman",serif;line-height:1.55;color:#3a332d}.case-doc-warning{padding:12px 14px;border:1px solid rgba(65,59,48,.18);background:rgba(71,65,54,.045);font-size:12px;line-height:1.5;color:#5a5248}
+    .scene-sheet{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:start}.scene-photo{position:relative;min-height:320px;border:8px solid #fff;box-shadow:0 5px 18px rgba(65,52,37,.22);background:#292e2d;overflow:hidden;transform:rotate(-.4deg)}.scene-photo svg{display:block;width:100%;height:100%}.scene-caption{position:absolute;left:0;right:0;bottom:0;background:rgba(24,24,21,.82);color:#eee9df;padding:8px 10px;font:700 10px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace}.body-marker{display:inline-block;padding:5px 8px;border-radius:7px;background:#6d2f2a;color:#fff;font:800 10px ui-monospace,SFMono-Regular,Menlo,monospace}
+    .case-timeline-paper{display:grid;gap:0;margin-top:12px;border:1px solid #b6ac9f}.case-timeline-paper>div{display:grid;grid-template-columns:82px 1fr;gap:12px;padding:10px 12px;border-bottom:1px solid #c9c0b5}.case-timeline-paper>div:last-child{border-bottom:0}.case-timeline-paper time{font:900 11px ui-monospace,SFMono-Regular,Menlo,monospace;color:#7e3e36}.case-timeline-paper span{font-family:Georgia,"Times New Roman",serif;font-size:14px;line-height:1.45}
+    .case-suspects-paper{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.case-suspect-paper{padding:11px 12px;border:1px solid #bcb2a5;background:rgba(255,255,255,.38)}.case-suspect-paper b{display:block;font-size:13px}.case-suspect-paper span{display:block;color:#6f675d;font-size:11px;margin-top:3px;line-height:1.4}
+    .case-doc-foot{position:absolute;left:46px;right:46px;bottom:22px;display:flex;justify-content:space-between;gap:12px;padding-top:8px;border-top:1px solid #b9afa2;font:800 9px ui-monospace,SFMono-Regular,Menlo,monospace;color:#756c60}.case-file-controls{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:14px}.case-file-controls button{border:1px solid rgba(218,234,224,.12);background:#1b2824;color:#dce7e1;border-radius:11px;padding:9px 12px;font-weight:850}.case-file-controls button:disabled{opacity:.28;cursor:default}.case-file-pagecount{min-width:70px;text-align:center;color:#849a8f;font:800 10px ui-monospace,SFMono-Regular,Menlo,monospace}
+    @media(max-width:760px){.case-paper{padding:28px 20px 58px;min-height:720px}.case-doc-head{grid-template-columns:1fr}.case-doc-stamp{justify-self:start}.case-doc-title{font-size:27px}.case-doc-grid,.scene-sheet,.case-suspects-paper{grid-template-columns:1fr}.case-doc-foot{left:20px;right:20px}.scene-photo{min-height:245px}.case-file-toolbar{align-items:flex-start;flex-direction:column}}
+
     footer{color:var(--muted);padding:0 0 30px;font-size:13px}
     .mobile-nav{display:none}
     @media(max-width:760px){
@@ -329,7 +345,7 @@
           <div class="case-intro__icon">◉</div>
           <p class="case-eyebrow">ДЕЛО НА ДВОИХ</p>
           <h2>Последний эфир</h2>
-          <p class="case-lead">Кирилл Волков, автор подкаста «Тихий город», найден мёртвым в студии за несколько часов до публикации нового расследовательского выпуска.</p>
+          <p class="case-lead">Кирилл Волков, автор подкаста «Тихий город», найден мёртвым в студии за несколько часов до публикации нового расследовательского выпуска. Сначала вам выдадут официальную сводку дела — прочитайте её как настоящее следственное дело, а уже потом переходите к цифровым материалам.</p>
           <div class="case-source-note">
             <b>Что у вас есть:</b>
             <span>резервная копия телефона Кирилла</span>
@@ -341,7 +357,7 @@
             <span>⏱️ 60–90 минут</span><span>👥 игра на двоих</span><span>🧠 средняя сложность</span><span>💡 подсказки отдельно</span>
           </div>
           <p class="case-warning">Все персонажи, аккаунты и данные внутри расследования вымышлены.</p>
-          <button class="case-start" id="startCase" type="button">Открыть материалы дела →</button>
+          <button class="case-start" id="startCase" type="button">Открыть дело №24 →</button>
         </div>
 
         <div class="case-desk hidden" id="caseDesk">
@@ -432,7 +448,7 @@
       window.scrollTo({top:0,behavior:"smooth"})
     }
     qa("[data-tab]").forEach(function(b){b.addEventListener("click",function(){showTab(b.getAttribute("data-tab"))})});qa("[data-open]").forEach(function(b){b.addEventListener("click",function(){showTab(b.getAttribute("data-open"))})});
-    q("#openSecretCase").addEventListener("click",function(){sessionStorage.setItem("kostromaSecretCaseOpened","1");showTab("detective")})
+    q("#openSecretCase").addEventListener("click",function(){sessionStorage.setItem("kostromaSecretCaseOpened","1");if(typeof caseState!=="undefined"&&!caseState.started){caseState.app="brief";caseState.briefPage=0;saveCase()}showTab("detective")})
 
     var checks=qa("[data-check]"), saved=JSON.parse(localStorage.getItem("kostromaChecks")||"{}");
     function progress(){var done=checks.filter(function(x){return x.checked}).length,p=Math.round(done/checks.length*100);q("#progressBar").style.width=p+"%";q("#progressText").textContent=p===100?"Вечер удался ❤️":p+"%";var gift=checks.find(function(x){return x.getAttribute("data-check")==="10"});if(gift)q("#sheepPeek").classList.toggle("hidden",!gift.checked);if(p===100&&!sessionStorage.getItem("kostromaFinale")){sessionStorage.setItem("kostromaFinale","1");setTimeout(function(){leafStorm(34);showFinalBanner()},150)}}
@@ -568,7 +584,9 @@
 
     var caseNow=new Date(),caseTripDay=caseNow.getFullYear()===2026&&caseNow.getMonth()===9&&caseNow.getDate()===2;
     if(caseTripDay&&!sessionStorage.getItem("case24TripFresh")){localStorage.removeItem("case24State");sessionStorage.setItem("case24TripFresh","1")}
-    var caseDefault={started:false,mail:false,files:false,clues:[],hint:0,solved:false,app:"brief",device:"hub",filePath:"root",webPage:"home"};
+    var caseSchema="case24-dossier-v1";
+    if(localStorage.getItem("case24Schema")!==caseSchema){localStorage.removeItem("case24State");localStorage.setItem("case24Schema",caseSchema)}
+    var caseDefault={started:false,mail:false,files:false,clues:[],hint:0,solved:false,app:"brief",device:"hub",filePath:"root",webPage:"home",briefPage:0};
     var caseState=Object.assign({},caseDefault,JSON.parse(localStorage.getItem("case24State")||"{}"));
     function saveCase(){localStorage.setItem("case24State",JSON.stringify(caseState))}
     function caseImg(src,alt){return '<img src="'+src+'" alt="'+alt+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'">'}
@@ -680,21 +698,36 @@
     ];
 
     function setCaseContext(t){q("#caseContext").textContent=t||""}
+    function renderCaseFileDocument(){
+      var page=Math.max(0,Math.min(3,Number(caseState.briefPage)||0));
+      var pages=[
+        '<div class="case-doc-head"><div><div class="case-doc-agency">ОТДЕЛ РАССЛЕДОВАНИЙ · НОВОГРАД</div><div class="case-doc-title">Уголовное дело №24/10-26</div><div class="case-doc-subtitle">ПЕРВИЧНАЯ ОПЕРАТИВНАЯ СВОДКА · 02.10.2026</div></div><div class="case-doc-stamp">КОПИЯ<br>ДЛЯ РАБОТЫ</div></div>'+
+        '<div class="case-doc-grid"><div class="case-doc-field"><small>Потерпевший</small><b>Волков Кирилл Андреевич, 31 год</b></div><div class="case-doc-field"><small>Род занятий</small><b>журналист, автор подкаста «Тихий город»</b></div><div class="case-doc-field"><small>Место происшествия</small><b>студия «Чердак», ул. Заводская, 18, 3 этаж</b></div><div class="case-doc-field"><small>Обнаружение</small><b>2 октября 2026, 22:10</b></div><div class="case-doc-field"><small>Кем обнаружен</small><b>сотрудница клининга, при плановом обходе</b></div><div class="case-doc-field"><small>Предварительная квалификация</small><b>насильственная смерть; рассматривается убийство</b></div></div>'+
+        '<div class="case-doc-section"><h4>Краткое изложение обстоятельств</h4><p>В 22:10 сотрудница клининга обнаружила Кирилла Волкова без признаков жизни на полу основной комнаты студии «Чердак». Вечером Волков должен был закончить монтаж и подготовку нового расследовательского выпуска подкаста. По словам коллег, в течение дня он был напряжён и несколько раз говорил, что после записи намерен «закрыть вопрос с утечкой».</p><p>Основной вход после 21:00 закрывается. Сотрудники могут попасть внутрь через боковую служебную дверь по персональному электронному пропуску. Явных следов взлома при первичном осмотре не обнаружено.</p></div>'+
+        '<div class="case-doc-callout"><b>Рабочая версия на момент составления:</b> потерпевший знал человека, который находился с ним в студии незадолго до смерти. Точная личность и мотив на момент первичного осмотра не установлены.</div>',
+
+        '<div class="case-doc-head"><div><div class="case-doc-agency">ПРИЛОЖЕНИЕ №1</div><div class="case-doc-title">Осмотр места и тела</div><div class="case-doc-subtitle">ПРЕДВАРИТЕЛЬНЫЕ ДАННЫЕ · БЕЗ ОКОНЧАТЕЛЬНОЙ ЭКСПЕРТИЗЫ</div></div><div class="case-doc-stamp">МЕСТО<br>ПРОИСШЕСТВИЯ</div></div>'+
+        '<div class="scene-sheet"><div class="scene-photo"><svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="roomg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2b3436"/><stop offset="1" stop-color="#141b1c"/></linearGradient></defs><rect width="600" height="380" fill="url(#roomg)"/><rect x="35" y="45" width="250" height="125" rx="8" fill="#101516" stroke="#65716f"/><rect x="315" y="52" width="230" height="110" rx="8" fill="#182326" stroke="#65716f"/><rect x="62" y="205" width="210" height="70" rx="8" fill="#4a4037"/><rect x="330" y="205" width="150" height="55" rx="8" fill="#3d4645"/><circle cx="425" cy="111" r="24" fill="#b79b67"/><rect x="411" y="116" width="28" height="48" rx="8" fill="#ad8c58"/><path d="M285 286c42-12 82-7 106 12 15 11 14 30-6 36-31 10-85 4-123-4-22-5-19-35 23-44z" fill="#b7b8b4" opacity=".9"/><circle cx="271" cy="304" r="17" fill="#c3c2bd"/><line x1="286" y1="284" x2="367" y2="311" stroke="#d0d1cd" stroke-width="18" stroke-linecap="round"/><rect x="208" y="302" width="24" height="38" rx="6" fill="#1c2325"/><circle cx="220" cy="315" r="3" fill="#7ea78f"/><text x="28" y="27" fill="#dfe6e3" font-size="15" font-family="Arial">СХЕМА-ФОТОТАБЛИЦА 01 · основная комната студии</text><path d="M410 170 L410 200" stroke="#d36a5d" stroke-width="3"/><circle cx="410" cy="171" r="6" fill="#d36a5d"/><text x="426" y="179" fill="#f0c3bc" font-size="13" font-family="Arial">полка</text><path d="M300 278 L285 253" stroke="#d36a5d" stroke-width="3"/><circle cx="300" cy="278" r="6" fill="#d36a5d"/><text x="150" y="249" fill="#f0c3bc" font-size="13" font-family="Arial">место обнаружения</text></svg><div class="scene-caption">Схематичное изображение места. Без графических деталей.</div></div><div><span class="body-marker">ОБЪЕКТ №1 · ПОТЕРПЕВШИЙ</span><div class="case-doc-section"><h4>Положение</h4><p>Тело находилось на полу между рабочим столом и дверью в аппаратную, на правом боку. Рядом лежал мобильный телефон потерпевшего. Следов перемещения тела после смерти по первичному осмотру не выявлено.</p></div><div class="case-doc-section"><h4>Одежда и обстановка</h4><p>Обычная рабочая одежда. Личные вещи при потерпевшем. Кошелёк и техника не похищены. В помещении нет признаков длительной борьбы или беспорядочного обыска.</p></div></div></div>'+
+        '<div class="case-doc-section"><h4>Предварительное заключение осмотра</h4><ul><li>Наиболее существенное повреждение — одиночная травма в области головы, совместимая с воздействием тяжёлого тупого предмета.</li><li>Окончательное орудие на месте не установлено и не изъято.</li><li>Ориентировочный интервал смерти по совокупности первичных данных: <b>21:15–21:30</b>.</li><li>Признаков проникновения постороннего через взломанные окна или двери нет.</li></ul></div>'+
+        '<div class="case-doc-warning"><b>Важно:</b> это предварительная сводка, а не окончательное заключение судебно-медицинской экспертизы. Игрокам известны только факты, которые были доступны следствию на старте дела.</div>',
+
+        '<div class="case-doc-head"><div><div class="case-doc-agency">ПРИЛОЖЕНИЕ №2</div><div class="case-doc-title">Известная хронология</div><div class="case-doc-subtitle">СОБЫТИЯ ДО ОБНАРУЖЕНИЯ ТЕЛА</div></div><div class="case-doc-stamp">ХРОНОЛОГИЯ</div></div>'+
+        '<div class="case-timeline-paper"><div><time>19:52</time><span>На телефоне Кирилла сделана фотография основной комнаты студии перед записью.</span></div><div><time>20:32</time><span>Продюсер Марина Орлова отмечена системой доступа на выходе.</span></div><div><time>20:49</time><span>Ресерчер Алина Петрова покидает здание.</span></div><div><time>20:52</time><span>Звукорежиссёр Павел Чернов сообщает, что закончил работу и уехал.</span></div><div><time>20:56</time><span>Артём Зорин пишет Кириллу, что находится на вокзале перед электричкой.</span></div><div><time>21:06</time><span>Кирилл отправляет одно из последних исходящих сообщений. Содержание доступно в резервной копии телефона.</span></div><div><time>21:15–21:30</time><span>Предполагаемый интервал смерти.</span></div><div><time>22:10</time><span>Тело обнаружено сотрудницей клининга. Вызваны экстренные службы.</span></div></div>'+
+        '<div class="case-doc-section"><h4>Что уже изъято и доступно для проверки</h4><ul><li>резервная копия мобильного телефона Кирилла;</li><li>образ жёсткого диска его ноутбука;</li><li>журналы электронной системы доступа студии;</li><li>журнал подключений к Wi‑Fi;</li><li>смарт‑часы потерпевшего;</li><li>публичные страницы людей из его окружения;</li><li>чеки и транспортные данные, использованные для проверки алиби.</li></ul></div>',
+
+        '<div class="case-doc-head"><div><div class="case-doc-agency">ПРИЛОЖЕНИЕ №3</div><div class="case-doc-title">Круг лиц и задачи расследования</div><div class="case-doc-subtitle">ИСХОДНЫЙ СПИСОК ДЛЯ ПРОВЕРКИ</div></div><div class="case-doc-stamp">В РАБОТЕ</div></div>'+
+        '<div class="case-suspects-paper"><div class="case-suspect-paper"><b>Марина Орлова, 29</b><span>Продюсер подкаста. Ушла со студии около 20:32. Заявляет, что позже находилась дома.</span></div><div class="case-suspect-paper"><b>Денис Карпов, 36</b><span>Директор PR‑агентства Prism. Его клиент фигурирует в готовящемся расследовании.</span></div><div class="case-suspect-paper"><b>Алина Петрова, 24</b><span>Ресерчер. Имела доступ к исходным документам и знала личность конфиденциального источника.</span></div><div class="case-suspect-paper"><b>Павел Чернов, 32</b><span>Звукорежиссёр. Знает студию и систему доступа, работал с финальным монтажом.</span></div><div class="case-suspect-paper"><b>Артём Зорин, 30</b><span>Источник расследования. Просил Кирилла не раскрывать его личность.</span></div><div class="case-suspect-paper"><b>Неустановленное лицо</b><span>Версия сохраняется до проверки журналов доступа и цифровых следов.</span></div></div>'+
+        '<div class="case-doc-section"><h4>Основные вопросы, на которые должно ответить расследование</h4><ol><li>Кто находился в студии в промежутке 21:15–21:30?</li><li>Кто имел причину остановить публикацию нового выпуска?</li><li>Почему Кирилл незадолго до смерти говорил о внутренней утечке?</li><li>Какой предмет мог быть использован при нападении и куда он исчез?</li><li>Какие алиби подтверждаются независимыми цифровыми следами, а какие — только словами самого человека?</li></ol></div>'+
+        '<div class="case-doc-callout"><b>После прочтения:</b> переходите во вкладки «Люди», «Устройства», «Открытый веб» и «Материалы». Не пытайтесь угадать убийцу сразу — сначала восстановите последние 40–50 минут вечера.</div>'
+      ];
+      return '<div class="case-file-shell"><div class="case-file-toolbar"><div><small style="color:#71887c;font:800 10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em">ОФИЦИАЛЬНАЯ СВОДКА ДЕЛА</small><h3 style="margin-top:4px">Сначала прочитайте материалы</h3></div><div class="case-file-toolbar__meta"><span>ДЕЛО 24/10-26</span><span>4 СТРАНИЦЫ</span></div></div><div class="case-file-pages"><article class="case-paper">'+pages[page]+'<div class="case-doc-foot"><span>ДЕЛО №24/10-26 · КОПИЯ</span><span>СТР. '+(page+1)+' / 4</span></div></article></div><div class="case-file-controls"><button id="casePrevPage" '+(page===0?'disabled':'')+'>← Предыдущая</button><span class="case-file-pagecount">'+(page+1)+' / 4</span><button id="caseNextPage" '+(page===3?'disabled':'')+'>Следующая →</button></div></div>';
+    }
     function renderCaseApp(app){
       caseState.app=app;saveCase();qa(".case-app").forEach(function(b){b.classList.toggle("active",b.getAttribute("data-case-app")===app)});
       var s=q("#caseScreen"),out="";
       if(app==="brief"){
-        setCaseContext("Сводка дела");
-        out='<div class="case-section-title"><div><small>ПЕРЕД НАЧАЛОМ</small><h3>Что именно вы расследуете</h3></div></div>'+
-        '<div class="case-grid"><div class="case-card case-card--important"><small>ПОТЕРПЕВШИЙ</small><h4>Кирилл Волков, 31 год</h4><p>Автор подкаста «Тихий город». Найден в студии в 22:10. Предварительное окно смерти: 21:15–21:30.</p></div>'+
-        '<div class="case-card"><small>ВАША ЗАДАЧА</small><h4>Не «найти всё», а доказать версию</h4><p>Нужны убийца, мотив, способ и цифровая цепочка, подтверждающая присутствие человека в студии.</p></div></div>'+
-        '<div class="case-section-title" style="margin-top:20px"><div><small>ИСТОЧНИКИ</small><h3>Откуда взялись материалы</h3></div></div>'+
-        '<div class="source-grid">'+
-          '<div class="source-card"><div class="source-card__icon">📱</div><h4>Телефон Кирилла</h4><p>Резервная копия: сообщения, звонки, заметки и галерея.</p><div class="source-actions"><button class="case-action" data-device="phone">Открыть телефон</button></div></div>'+
-          '<div class="source-card"><div class="source-card__icon">💻</div><h4>Ноутбук Кирилла</h4><p>Образ диска: почта, браузер и локальные папки пользователя.</p><div class="source-actions"><button class="case-action" data-device="laptop">Открыть ноутбук</button></div></div>'+
-          '<div class="source-card"><div class="source-card__icon">🌐</div><h4>Открытый веб</h4><p>Публичные страницы людей, компаний, транспорта и студии.</p><div class="source-actions"><button class="case-action" data-open-app="web">Искать в сети</button></div></div>'+
-          '<div class="source-card"><div class="source-card__icon">🗃️</div><h4>Полицейское приложение</h4><p>Журналы доступа, сетевые логи, выгрузка часов и осмотр места.</p><div class="source-actions"><button class="case-action" data-open-app="police">Открыть материалы</button></div></div>'+
-        '</div><div class="case-note" style="margin-top:16px">Никаких подсказок внутри почты или файлов больше нет. Если реально застрянете — отдельная вкладка «Подсказки» справа.</div>';
+        setCaseContext("Официальная сводка дела");
+        out=renderCaseFileDocument();
       }else if(app==="devices"){
         setCaseContext("Цифровые копии устройств Кирилла Волкова");
         out=renderDevices();
@@ -798,6 +831,10 @@
     }
 
     function bindCaseScreen(app){
+      if(app==="brief"){
+        if(q("#casePrevPage"))q("#casePrevPage").onclick=function(){caseState.briefPage=Math.max(0,(Number(caseState.briefPage)||0)-1);saveCase();renderCaseApp("brief")};
+        if(q("#caseNextPage"))q("#caseNextPage").onclick=function(){caseState.briefPage=Math.min(3,(Number(caseState.briefPage)||0)+1);saveCase();renderCaseApp("brief")};
+      }
       qa("[data-open-app]",q("#caseScreen")).forEach(function(b){b.onclick=function(){renderCaseApp(b.getAttribute("data-open-app"))}});
       qa("[data-device]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.app="devices";caseState.device=b.getAttribute("data-device");saveCase();renderCaseApp("devices")}});
       qa("[data-filepath]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.filePath=b.getAttribute("data-filepath");saveCase();renderCaseApp("devices")}});
@@ -820,7 +857,7 @@
       if(ok){caseState.solved=true;saveCase();var done=checks.find(function(x){return x.getAttribute("data-check")==="15"});if(done&&!done.checked){done.checked=true;saved["15"]=true;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()}leafStorm(32);showToast("🔎 Дело раскрыто");renderCaseApp("final")}
       else{fb.textContent="Версия пока не объясняет все цифровые следы. Сверьте присутствие в студии, время и мотив.";fb.classList.remove("hidden")}
     }
-    function startCaseDesk(){caseState.started=true;saveCase();q("#caseIntro").classList.add("hidden");q("#caseDesk").classList.remove("hidden");renderCaseApp(caseState.app||"brief");var started=checks.find(function(x){return x.getAttribute("data-check")==="12"});if(started&&!started.checked){started.checked=true;saved["12"]=true;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()}}
+    function startCaseDesk(){caseState.started=true;caseState.app="brief";caseState.briefPage=0;saveCase();q("#caseIntro").classList.add("hidden");q("#caseDesk").classList.remove("hidden");renderCaseApp("brief");var started=checks.find(function(x){return x.getAttribute("data-check")==="12"});if(started&&!started.checked){started.checked=true;saved["12"]=true;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()}}
     q("#startCase").addEventListener("click",startCaseDesk);
     qa(".case-app").forEach(function(b){b.addEventListener("click",function(){renderCaseApp(b.getAttribute("data-case-app"))})});
     q("#resetCase").addEventListener("click",function(){if(confirm("Сбросить расследование? Откроется чистая версия дела.")){caseState=Object.assign({},caseDefault,{started:true});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
