@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#163a2a">
+  <title>Наш вечер в Костроме 🍂</title>
+  <style>
+    :root{
+      --forest:#173b2b;--forest2:#234f3a;--moss:#61745f;--brown:#5b3d2f;--brown2:#7b5640;
+      --cream:#fffaf1;--paper:#fffdf8;--sand:#efe2d2;--amber:#c28a57;--ink:#28231f;--muted:#756b63;
+      --line:rgba(76,54,39,.12);--shadow:0 18px 50px rgba(65,45,31,.12);--radius:24px;
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(54,96,67,.18),transparent 28%),
+        radial-gradient(circle at 95% 20%,rgba(185,132,87,.16),transparent 28%),
+        linear-gradient(180deg,#efe4d6,#f8f0e7 36%,#f0e3d4);
+      min-height:100vh}
+    button,input{font:inherit}button{cursor:pointer}
+    .shell{width:min(1040px,calc(100% - 28px));margin:auto}
+    .hero{padding:24px 0 14px}
+    .hero-card{position:relative;overflow:hidden;border-radius:34px;padding:34px;color:white;
+      background:radial-gradient(circle at 85% 10%,rgba(255,255,255,.12),transparent 25%),
+      linear-gradient(135deg,#163b2a,#234b37 55%,#624635 120%);box-shadow:0 28px 70px rgba(46,35,26,.2)}
+    .hero-card:after{content:"🍂";position:absolute;right:-18px;bottom:-55px;font-size:180px;opacity:.08;transform:rotate(-14deg)}
+    .topline,.hero-main,.moods,.progress{position:relative;z-index:1}
+    .topline{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .pill{padding:8px 12px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(255,255,255,.09);font-size:13px;font-weight:800}
+    .status{opacity:.64;font-size:13px}
+    .kicker{margin:30px 0 8px;text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:900;opacity:.68}
+    h1{font-size:clamp(42px,8vw,78px);letter-spacing:-.055em;line-height:.95;margin:0;max-width:760px}
+    .hero p.sub{max-width:690px;line-height:1.6;color:rgba(255,255,255,.8);font-size:17px;margin:18px 0 0}
+    .moods{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.moods span{font-size:12px;padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08)}
+    .progress{margin-top:26px;max-width:520px}.progress-copy{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.72);margin-bottom:8px}
+    .track{height:7px;background:rgba(255,255,255,.14);border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#d5b07f,#f1dfc7);transition:.25s;border-radius:99px}
+    .tabs{position:sticky;top:10px;z-index:30;display:flex;gap:8px;padding:7px;margin:4px auto 24px;border:1px solid var(--line);border-radius:18px;background:rgba(255,250,243,.86);backdrop-filter:blur(18px);box-shadow:0 8px 24px rgba(60,42,30,.08)}
+    .tab{flex:1;border:0;background:transparent;color:var(--muted);padding:12px 10px;border-radius:13px;font-weight:800}.tab.active{color:white;background:var(--forest);box-shadow:0 8px 18px rgba(23,59,43,.2)}
+    main{padding-bottom:90px}.panel{display:none}.panel.active{display:block;animation:fade .25s ease}@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:24px 2px 18px}.section-head h2{margin:0 0 8px;font-size:clamp(30px,5vw,46px);letter-spacing:-.04em}.section-head p{margin:0;color:var(--muted);line-height:1.55}
+    .soft{border:1px solid var(--line);background:rgba(255,253,248,.78);color:var(--brown);padding:10px 12px;border-radius:12px;font-weight:800}
+    .flow{display:grid;gap:14px}.phase{display:grid;grid-template-columns:58px 1fr;gap:16px;padding:22px;border-radius:22px;border:1px solid rgba(76,54,39,.08);box-shadow:0 10px 28px rgba(62,43,29,.07)}
+    .p1{background:linear-gradient(135deg,#e3ece5,#f8f1e7)}.p2{background:linear-gradient(135deg,#eee0d1,#faf4ea)}.p3{background:linear-gradient(135deg,#fff8ef,#f1e5d4)}.p4{background:linear-gradient(135deg,#f2dfc6,#f8eee2)}.p5{background:linear-gradient(135deg,#dde8df,#eadfce)}
+    .icon{width:50px;height:50px;border-radius:16px;background:rgba(255,255,255,.62);display:grid;place-items:center;font-size:24px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.8)}
+    .time{font-size:11px;text-transform:uppercase;letter-spacing:.09em;font-weight:900;color:var(--brown2);margin:0 0 4px}.phase h3{margin:0 0 12px;font-size:20px}
+    .checklist{display:grid;gap:8px}.check{display:grid;grid-template-columns:22px 1fr;gap:9px;line-height:1.45;color:#4f4943;align-items:start}.check input{display:none}.box{width:20px;height:20px;border:1.5px solid rgba(45,65,51,.28);border-radius:7px;background:rgba(255,255,255,.55);display:grid;place-items:center}.box:after{content:"✓";color:white;font-weight:900;font-size:12px;opacity:0}.check input:checked+.box{background:var(--forest2);border-color:var(--forest2)}.check input:checked+.box:after{opacity:1}.check input:checked~span:last-child{opacity:.5;text-decoration:line-through}
+    .mini{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}.mini-card{background:rgba(255,253,248,.82);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 8px 24px rgba(58,42,30,.06)}.mini-card h3{margin:0 0 6px}.mini-card p{margin:0;color:var(--muted);line-height:1.5;font-size:14px}
+    .movie-grid{display:grid;grid-template-columns:1.35fr .75fr;gap:18px}.slots{display:grid;grid-template-columns:1fr 1fr;gap:12px}.slot{display:block;padding:15px;border-radius:17px;background:rgba(255,253,248,.9);border:1px solid var(--line);box-shadow:0 8px 22px rgba(60,43,31,.06)}.slot.sonya{background:linear-gradient(145deg,#f7ede2,#fffaf3)}.owner{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.11em;font-weight:900;color:var(--brown2);margin-bottom:8px}.slot input{border:0;outline:0;background:transparent;width:100%;font-weight:750;color:var(--ink);font-size:15px}
+    .draw{border-radius:24px;padding:24px;color:white;background:linear-gradient(145deg,#173b2b,#5a3d2f);box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;text-align:center}.draw .big{font-size:38px}.draw small{text-transform:uppercase;letter-spacing:.13em;opacity:.62}.result{min-height:76px;display:grid;place-items:center;font-size:20px;font-weight:850;line-height:1.2;margin:15px 0}.primary{border:0;border-radius:14px;background:#fff;color:var(--forest);padding:14px 16px;font-weight:900}.rule{font-size:12px;opacity:.65;margin:10px 0 0}
+    .emoji-card{position:relative;overflow:hidden;border-radius:28px;background:linear-gradient(145deg,#173c2b,#684a36);color:white;padding:34px;text-align:center;box-shadow:var(--shadow)}.emoji-line{font-size:clamp(42px,9vw,78px);letter-spacing:.08em;min-height:100px;display:grid;place-items:center}.answer{font-size:20px;font-weight:850;margin-bottom:18px}.hidden{display:none!important}.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.ghost{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:white;padding:12px 15px;border-radius:13px;font-weight:800}.counter{text-align:center;color:var(--muted);margin-top:12px;font-size:13px}
+    .gamechips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.chip{border:1px solid var(--line);background:rgba(255,253,248,.78);color:var(--brown);padding:10px 12px;border-radius:999px;font-weight:800}.chip.active{background:var(--forest);color:white;border-color:var(--forest)}
+    .talk-card{border-radius:26px;padding:28px;color:white;background:linear-gradient(145deg,#173a2a,#5a3e30);box-shadow:var(--shadow)}.talk-top{display:flex;justify-content:space-between;gap:12px;align-items:center}.badge{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.1);font-size:12px;font-weight:800}.count{font-size:12px;opacity:.62}.question{font-size:clamp(23px,4vw,36px);font-weight:800;line-height:1.22;letter-spacing:-.025em;min-height:150px;display:flex;align-items:center}.all{margin-top:14px;background:rgba(255,253,248,.85);border:1px solid var(--line);border-radius:18px;padding:18px}.all li{margin:0 0 10px;line-height:1.45}
+    footer{text-align:center;color:var(--muted);padding:0 0 30px;font-size:13px}
+    .mobile-nav{display:none}
+    @media(max-width:760px){
+      .shell{width:min(100% - 20px,1040px)}.hero{padding-top:10px}.hero-card{padding:26px 20px;border-radius:28px}.hero-card:after{font-size:130px}.topline{align-items:flex-start}.status{display:none}.kicker{margin-top:26px}.hero p.sub{font-size:15px}.tabs{display:none}
+      main{padding-top:12px;padding-bottom:110px}.section-head{align-items:flex-start;flex-direction:column}.phase{grid-template-columns:46px 1fr;padding:18px 15px;gap:12px}.icon{width:44px;height:44px;font-size:21px}.mini{grid-template-columns:1fr}.movie-grid{grid-template-columns:1fr}.slots{grid-template-columns:1fr}.draw{padding:22px}.emoji-card{padding:28px 18px}.question{min-height:190px}.mobile-nav{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));z-index:40;padding:6px;background:rgba(255,250,243,.93);backdrop-filter:blur(20px);border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 40px rgba(57,40,29,.16)}.mnav{border:0;background:transparent;color:var(--muted);padding:8px 4px;border-radius:14px;font-size:11px;font-weight:800}.mnav span{display:block;font-size:19px;margin-bottom:2px}.mnav.active{background:var(--forest);color:white}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero shell">
+    <div class="hero-card">
+      <div class="topline"><span class="pill">2 октября • Кострома</span><span class="status">вечер для двоих</span></div>
+      <div class="hero-main">
+        <p class="kicker">пятница • домашний вечер</p>
+        <h1>Наш уютный вечер</h1>
+        <p class="sub">Камин, свечи, какао, шоколадное фондю, игры и кино под проектор. Никуда не спешим.</p>
+      </div>
+      <div class="moods"><span>🌲 тёмно-зелёный</span><span>🤎 шоколадный</span><span>🕯️ Cinnabon · espresso · vanilla</span></div>
+      <div class="progress"><div class="progress-copy"><span>План вечера</span><b id="progressText">0%</b></div><div class="track"><div class="bar" id="progressBar"></div></div></div>
+    </div>
+  </header>
+
+  <nav class="tabs shell">
+    <button class="tab active" data-tab="plan">⌂ Вечер</button>
+    <button class="tab" data-tab="movies">🎬 Кино</button>
+    <button class="tab" data-tab="emoji">✨ Эмодзи</button>
+    <button class="tab" data-tab="talk">☕ Поболтать</button>
+  </nav>
+
+  <main class="shell">
+    <section class="panel active" id="plan">
+      <div class="section-head"><div><h2>Как пройдёт вечер</h2><p>Мягкий маршрут, а не расписание по минутам.</p></div><button class="soft" id="reset">Сбросить галочки</button></div>
+      <div class="flow">
+        <article class="phase p1"><div class="icon">🏠</div><div><p class="time">17:00–19:00</p><h3>Приехали и выдохнули</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="1"><span class="box"></span><span><b>Заселиться</b> и немного отдохнуть после дороги.</span></label>
+          <label class="check"><input type="checkbox" data-check="2"><span class="box"></span><span><b>Небольшая прогулка</b> по центру без туристического марафона.</span></label>
+          <label class="check"><input type="checkbox" data-check="3"><span class="box"></span><span><b>Магазин:</b> молоко, фрукты, маршмеллоу, печенье/вафли, напитки.</span></label>
+          <label class="check"><input type="checkbox" data-check="4"><span class="box"></span><span><b>Заказать ужин домой</b> примерно к 19:15–19:30.</span></label>
+        </div></div></article>
+        <article class="phase p2"><div class="icon">🕯️</div><div><p class="time">≈ 19:00</p><h3>Включаем уют</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="5"><span class="box"></span><span>Переодеться: <b>зелёные футболки + коричневые штаны + бежевые носки</b>.</span></label>
+          <label class="check"><input type="checkbox" data-check="6"><span class="box"></span><span>Включить <b>камин, проектор и ваш плейлист</b>.</span></label>
+          <label class="check"><input type="checkbox" data-check="7"><span class="box"></span><span>Зажечь <b>Cinnabon</b> и 2–3 маленьких свечи espresso/vanilla.</span></label>
+          <label class="check"><input type="checkbox" data-check="8"><span class="box"></span><span>Разложить еду, поставить молоко, подготовить какао и фондюшницу.</span></label>
+        </div></div></article>
+        <article class="phase p3"><div class="icon">🍣</div><div><p class="time">19:30–20:15</p><h3>Сначала нормально поесть</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="9"><span class="box"></span><span>Спокойно поужинать. <b>Фондю пока не трогать</b> — это десерт.</span></label>
+          <label class="check"><input type="checkbox" data-check="10"><span class="box"></span><span>Подарить Соне <b>овечку Милу</b> — просто милый сюрприз.</span></label>
+        </div></div></article>
+        <article class="phase p4"><div class="icon">🍫</div><div><p class="time">после ужина</p><h3>Игры, шоколад и творчество</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="11"><span class="box"></span><span><b>Фондю + слепая дегустация.</b></span></label>
+          <label class="check"><input type="checkbox" data-check="12"><span class="box"></span><span><b>Сладкий тест</b> напитков/сладостей.</span></label>
+          <label class="check"><input type="checkbox" data-check="13"><span class="box"></span><span><b>Один рисунок на двоих</b> — каждый красит свою половину.</span></label>
+          <label class="check"><input type="checkbox" data-check="14"><span class="box"></span><span><b>Фотки</b> — красивые и дурацкие.</span></label>
+          <label class="check"><input type="checkbox" data-check="15"><span class="box"></span><span><b>Эмодзи + разговорные игры</b> по настроению.</span></label>
+        </div></div></article>
+        <article class="phase p5"><div class="icon">🎞️</div><div><p class="time">финал</p><h3>Какао, жеребьёвка и кино</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="16"><span class="box"></span><span>Сделать <b>какао-бомбочки с маршмеллоу</b>.</span></label>
+          <label class="check"><input type="checkbox" data-check="17"><span class="box"></span><span>Зарандомить один из <b>6 фильмов</b>.</span></label>
+          <label class="check"><input type="checkbox" data-check="18"><span class="box"></span><span><b>Дальше никакой программы.</b> Плед, проектор и обниматься.</span></label>
+        </div></div></article>
+      </div>
+      <div class="mini">
+        <div class="mini-card"><h3>🍫 В фондю</h3><p>Банан, виноград/клубника, груша, маршмеллоу, печенье, вафли. Солёный крекер — для эксперимента.</p></div>
+        <div class="mini-card"><h3>🍱 Что заказать</h3><p>Роллы/суши + одна горячая позиция. Альтернатива — пицца.</p></div>
+      </div>
+    </section>
+
+    <section class="panel" id="movies">
+      <div class="section-head"><div><h2>Какой фильм смотрим?</h2><p>Два фильма Сони + четыре ваших. Поля сохраняются на устройстве.</p></div></div>
+      <div class="movie-grid">
+        <div class="slots">
+          <label class="slot sonya"><span class="owner">Соня · 1</span><input class="movie" placeholder="Вписать фильм Сони"></label>
+          <label class="slot sonya"><span class="owner">Соня · 2</span><input class="movie" placeholder="Вписать фильм Сони"></label>
+          <label class="slot"><span class="owner">Ваш выбор · 1</span><input class="movie" value="Как отделаться от парня за 10 дней"></label>
+          <label class="slot"><span class="owner">Ваш выбор · 2</span><input class="movie" value="Предложение"></label>
+          <label class="slot"><span class="owner">Ваш выбор · 3</span><input class="movie" value="С глаз — долой, из чарта — вон!"></label>
+          <label class="slot"><span class="owner">Ваш выбор · 4</span><input class="movie" value="Кейт и Лео"></label>
+        </div>
+        <aside class="draw"><div class="big">🎬</div><small>вечер решает судьба</small><div class="result" id="movieResult">Добавьте два фильма Сони</div><button class="primary" id="pickMovie">Зарандомить фильм</button><p class="rule">Что выпало — то и смотрим. Без переигровок 🙂</p></aside>
+      </div>
+    </section>
+
+    <section class="panel" id="emoji">
+      <div class="section-head"><div><h2>Угадай фильм по эмодзи</h2><p>Одна загадка за раз. Сначала отвечаете вслух, потом открываете.</p></div></div>
+      <div class="emoji-card"><div class="emoji-line" id="emojiLine"></div><div class="answer hidden" id="emojiAnswer"></div><div class="actions"><button class="primary" id="reveal">Показать ответ</button><button class="ghost" id="nextEmoji">Следующая →</button><button class="ghost" id="shuffle">↻ Перемешать</button></div></div>
+      <div class="counter"><span id="emojiIndex">1</span> / <span id="emojiTotal">20</span></div>
+    </section>
+
+    <section class="panel" id="talk">
+      <div class="section-head"><div><h2>Пять режимов разговора</h2><p>Выберите настроение и доставайте вопросы по одному.</p></div></div>
+      <div class="gamechips" id="gamechips"></div>
+      <div class="talk-card"><div class="talk-top"><span class="badge" id="talkLabel"></span><span class="count">10 вопросов</span></div><div class="question" id="talkQuestion">Нажмите «Следующий вопрос» — и начинаем.</div><div class="actions"><button class="primary" id="nextQuestion">🎲 Следующий вопрос</button><button class="ghost" id="showAll">Показать все 10</button></div></div>
+      <div class="all hidden" id="allQuestions"></div>
+    </section>
+  </main>
+
+  <footer class="shell">🍂 Кострома • 2 октября • один очень уютный вечер</footer>
+
+  <nav class="mobile-nav">
+    <button class="mnav active" data-tab="plan"><span>⌂</span>Вечер</button>
+    <button class="mnav" data-tab="movies"><span>🎬</span>Кино</button>
+    <button class="mnav" data-tab="emoji"><span>✨</span>Эмодзи</button>
+    <button class="mnav" data-tab="talk"><span>☕</span>Поболтать</button>
+  </nav>
+
+  <script>
+    function q(s,r){return (r||document).querySelector(s)}
+    function qa(s,r){return Array.from((r||document).querySelectorAll(s))}
+    function showTab(id){
+      qa(".panel").forEach(function(x){x.classList.toggle("active",x.id===id)})
+      qa("[data-tab]").forEach(function(x){x.classList.toggle("active",x.getAttribute("data-tab")===id)})
+      window.scrollTo({top:0,behavior:"smooth"})
+    }
+    qa("[data-tab]").forEach(function(b){b.addEventListener("click",function(){showTab(b.getAttribute("data-tab"))})})
+
+    var checks=qa("[data-check]"), saved=JSON.parse(localStorage.getItem("kostromaChecks")||"{}");
+    function progress(){var done=checks.filter(function(x){return x.checked}).length,p=Math.round(done/checks.length*100);q("#progressBar").style.width=p+"%";q("#progressText").textContent=p+"%"}
+    checks.forEach(function(c){c.checked=!!saved[c.getAttribute("data-check")];c.addEventListener("change",function(){saved[c.getAttribute("data-check")]=c.checked;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()})});progress();
+    q("#reset").addEventListener("click",function(){saved={};localStorage.removeItem("kostromaChecks");checks.forEach(function(c){c.checked=false});progress()})
+
+    var movies=qa(".movie"), savedMovies=JSON.parse(localStorage.getItem("kostromaMovies")||"null");
+    if(savedMovies){savedMovies.forEach(function(v,i){if(movies[i])movies[i].value=v})}
+    movies.forEach(function(i){i.addEventListener("input",function(){localStorage.setItem("kostromaMovies",JSON.stringify(movies.map(function(x){return x.value})))})})
+    q("#pickMovie").addEventListener("click",function(){
+      var list=movies.map(function(x){return x.value.trim()}).filter(Boolean),res=q("#movieResult");
+      if(list.length<6){res.textContent="Заполнено "+list.length+" из 6 фильмов";return}
+      var n=0,t=setInterval(function(){res.textContent=list[Math.floor(Math.random()*list.length)];n++;if(n>=20){clearInterval(t);res.textContent="🍿 "+list[Math.floor(Math.random()*list.length)]}},70)
+    })
+
+    var emoji=[
+      ["⚡ 👓 🪄 🏰","Гарри Поттер"],["🧌 👸 🐴 🏰","Шрек"],["🐀 👨‍🍳 🍲 🇫🇷","Рататуй"],["🚗 ⚡ 🕒","Назад в будущее"],
+      ["🎈 🏠 👴 👦","Вверх"],["🦁 👑 🌅","Король Лев"],["🏠 👦 🎄 🪤","Один дома"],["🏴‍☠️ 🚢 🧭 🍹","Пираты Карибского моря"],
+      ["👠 👜 📰 😈","Дьявол носит Prada"],["👻 🔫 🚫","Охотники за привидениями"],["🕷️ 🧑 🏙️","Человек-паук"],["🤖 ❤️ 🌱 🚀","ВАЛЛ-И"],
+      ["🐼 🥋 🐉","Кунг-фу Панда"],["🦖 🏝️ 🚙","Парк юрского периода"],["💍 🌋 🧙‍♂️","Властелин колец"],["👽 🚲 🌕","Инопланетянин"],
+      ["🕶️ 💊 💻","Матрица"],["🎹 🌃 💃 ❤️","Ла-Ла Ленд"],["💼 💍 🇨🇦 ❤️","Предложение"],["💛 📝 🔟 ➡️ ❤️","Как отделаться от парня за 10 дней"]
+    ],ei=0,revealed=false;
+    function renderEmoji(){q("#emojiLine").textContent=emoji[ei][0];q("#emojiAnswer").textContent=emoji[ei][1];q("#emojiAnswer").classList.toggle("hidden",!revealed);q("#reveal").textContent=revealed?"Скрыть ответ":"Показать ответ";q("#emojiIndex").textContent=ei+1;q("#emojiTotal").textContent=emoji.length}
+    q("#reveal").addEventListener("click",function(){revealed=!revealed;renderEmoji()})
+    q("#nextEmoji").addEventListener("click",function(){ei=(ei+1)%emoji.length;revealed=false;renderEmoji()})
+    q("#shuffle").addEventListener("click",function(){emoji.sort(function(){return Math.random()-.5});ei=0;revealed=false;renderEmoji()});renderEmoji()
+
+    var games={
+      "Деньги, но с условием":[
+        "10 млн ₽, но год нельзя пользоваться соцсетями. Берёшь?","30 млн ₽, но следующие пять лет нельзя выезжать из России.",
+        "5 млн ₽, но год вообще нельзя заказывать доставку еды.","50 млн ₽, но до конца жизни можно жить только в одном выбранном городе.",
+        "20 млн ₽, но пять лет нельзя покупать новую одежду — только то, что уже есть или б/у.","100 млн ₽, но вы обязаны переехать в город до 20 тысяч жителей на 10 лет.",
+        "3 млн ₽, но целый год без сериалов, фильмов и YouTube.","15 млн ₽, но следующие три года каждый отпуск только в одном и том же месте.",
+        "10 млн ₽, но навсегда отказываетесь от любимой еды.","1 млрд ₽, но жить можно только в доме мечты посреди леса в 50 км от города."
+      ],
+      "Абсурдный выбор":[
+        "Летать со скоростью ходьбы или телепортироваться максимум на 500 метров?","Всегда говорить шёпотом или всегда так, будто выступаешь перед толпой?",
+        "Всю жизнь спать под слишком тёплым одеялом или вообще без одеяла?","Месяц есть только сладкое или только солёное?",
+        "Мысли раз в день произносятся вслух или раз в день случайно отправляется сообщение из черновиков?","Всегда приходить на час раньше или на 20 минут позже?",
+        "Разговаривать с животными, которые тебя ненавидят, или понимать младенцев, которые постоянно жалуются?","Никогда больше не смотреть фильмы или никогда больше не слушать музыку?",
+        "Всегда ходить в мокрых носках или спать на слишком горячей подушке?","Перематывать жизнь на 10 секунд назад или раз в сутки ставить всё вокруг на паузу на минуту?"
+      ],
+      "Открываем бизнес":[
+        "Какой бизнес мы вообще могли бы открыть вдвоём?","Как бы он назывался?","Как выглядел бы логотип?","Кто из нас начальник, а кто делает всю настоящую работу?",
+        "Какой был бы самый популярный товар или услуга?","Какой интерьер был бы у нашего места?","Какую максимально странную услугу мы бы добавили?",
+        "Какой сотрудник нам точно нужен?","Какой рекламный слоган мы бы придумали?","Бизнес приносит миллион в месяц. Что открываем вторым?"
+      ],
+      "Суд над вещами":[
+        "Ананас на пицце.","Голосовые сообщения длиннее двух минут.","Завтрак в постели.","Душ утром против душа вечером.","Искусственная ёлка против настоящей.",
+        "Отпуск all inclusive.","Смотреть сериал целиком за два дня.","Носить носки во время сна.","Заказывать доставку, когда дома полно еды.","Кому должен достаться последний кусок вкусной еды?"
+      ],
+      "Что хуже?":[
+        "8 часов застрять в лифте или 8 часов ехать стоя в переполненном автобусе?","Всегда иметь 5% заряда или всегда очень медленный интернет?",
+        "Никогда больше не есть картошку или никогда больше не есть сыр?","Месяц без горячей воды или месяц без домашнего интернета?",
+        "Одна песня каждый раз в машине или одна реклама перед каждым видео?","Спать 4 часа в шикарной кровати или 10 часов на очень неудобном диване?",
+        "Неделя в прекрасном месте под дождём или неделя в унылом месте с идеальной погодой?","Всегда слегка пересаливать еду или всегда есть её слегка холодной?",
+        "Отправить маме переписку для Сони или Соне переписку для друга?","Громко пукнуть в тихом ресторане или упасть перед всем залом по пути к столику?"
+      ]
+    },current=Object.keys(games)[0],prev=-1;
+    function gameTabs(){var wrap=q("#gamechips");wrap.innerHTML="";Object.keys(games).forEach(function(name){var b=document.createElement("button");b.className="chip"+(name===current?" active":"");b.textContent=name;b.onclick=function(){current=name;prev=-1;q("#talkLabel").textContent=current;q("#talkQuestion").textContent="Нажмите «Следующий вопрос» — и начинаем.";q("#allQuestions").classList.add("hidden");gameTabs()};wrap.appendChild(b)});q("#talkLabel").textContent=current}
+    gameTabs();
+    q("#nextQuestion").addEventListener("click",function(){var a=games[current],i=Math.floor(Math.random()*a.length);while(a.length>1&&i===prev)i=Math.floor(Math.random()*a.length);prev=i;q("#talkQuestion").textContent=a[i]})
+    q("#showAll").addEventListener("click",function(){var box=q("#allQuestions");if(!box.classList.contains("hidden")){box.classList.add("hidden");return}box.innerHTML="<ol>"+games[current].map(function(x){return "<li>"+x+"</li>"}).join("")+"</ol>";box.classList.remove("hidden")})
+  </script>
+</body>
+</html>
