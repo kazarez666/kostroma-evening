@@ -26,7 +26,7 @@ try{
   await page.locator('#fondueRecommend').click();
   assert.equal((await page.locator('#fondueCount').innerText()).trim(),'8');
   assert.ok(await page.locator('.fondue-chip:disabled').count()>0,'Unselected fondue options should lock at 8');
-  await page.locator('.fondue-chip.active').first().click();
+  await page.locator('.fondue-chip.selected').first().click();
   assert.equal((await page.locator('#fondueCount').innerText()).trim(),'7');
   assert.equal(await page.locator('.fondue-chip:disabled').count(),0,'Options should unlock after removing one item');
 
