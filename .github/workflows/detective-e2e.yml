@@ -5,6 +5,7 @@ on:
     paths:
       - "index.html"
       - "tests/detective-e2e.mjs"
+      - "tests/site-smoke.mjs"
       - ".github/workflows/detective-e2e.yml"
   workflow_dispatch:
 
@@ -32,5 +33,7 @@ jobs:
           done
           cat /tmp/kostroma-http.log
           exit 1
+      - name: Run full site smoke test
+        run: node tests/site-smoke.mjs
       - name: Run detective browser test
         run: node tests/detective-e2e.mjs
