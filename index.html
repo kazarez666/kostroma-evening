@@ -17,7 +17,8 @@
         radial-gradient(circle at 10% 0%,rgba(54,96,67,.18),transparent 28%),
         radial-gradient(circle at 95% 20%,rgba(185,132,87,.16),transparent 28%),
         linear-gradient(180deg,#efe4d6,#f8f0e7 36%,#f0e3d4);
-      min-height:100vh}
+      min-height:100vh;position:relative}
+    body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(circle at 20% 30%,rgba(255,255,255,.18),transparent 18%),radial-gradient(circle at 75% 72%,rgba(255,255,255,.12),transparent 19%);mix-blend-mode:soft-light}
     button,input{font:inherit}button{cursor:pointer}
     .shell{width:min(1040px,calc(100% - 28px));margin:auto}
     .hero{padding:24px 0 14px}
@@ -53,10 +54,10 @@
     .talk-card{border-radius:26px;padding:28px;color:white;background:linear-gradient(145deg,#173a2a,#5a3e30);box-shadow:var(--shadow)}.talk-top{display:flex;justify-content:space-between;gap:12px;align-items:center}.badge{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.1);font-size:12px;font-weight:800}.count{font-size:12px;opacity:.62}.question{font-size:clamp(23px,4vw,36px);font-weight:800;line-height:1.22;letter-spacing:-.025em;min-height:150px;display:flex;align-items:center}.all{margin-top:14px;background:rgba(255,253,248,.85);border:1px solid var(--line);border-radius:18px;padding:18px}.all li{margin:0 0 10px;line-height:1.45}
 
     .fondue-recommend{width:100%;margin:10px 0 2px;border:1px dashed rgba(91,61,47,.25);background:rgba(255,255,255,.48);color:var(--brown);padding:10px 12px;border-radius:13px;font-weight:850;transition:.18s ease}.fondue-recommend:hover{background:#fff;transform:translateY(-1px)}
-    .secret-leaves{position:fixed;inset:0;pointer-events:none;z-index:24;overflow:hidden}.secret-leaf{position:absolute;pointer-events:auto;border:0;background:transparent;font-size:25px;filter:drop-shadow(0 5px 8px rgba(74,48,28,.15));opacity:.54;animation:leafFloat 7s ease-in-out infinite;transition:.2s;cursor:pointer}.secret-leaf:hover{opacity:1;transform:scale(1.18) rotate(8deg)}.leaf-a{left:1%;top:14%;animation-delay:-1s}.leaf-b{right:1%;top:21%;animation-delay:-3.5s}.leaf-c{left:1.6%;top:31%;animation-delay:-5s}.leaf-d{right:1.8%;top:41%;animation-delay:-2s}.leaf-e{left:.7%;top:48%;animation-delay:-4s}.leaf-f{right:.5%;top:56%;animation-delay:-6s}.leaf-g{left:1.5%;top:64%;animation-delay:-2.5s}.leaf-h{right:1.3%;top:70%;animation-delay:-1.8s}.leaf-i{left:.8%;top:79%;animation-delay:-5.5s}.leaf-j{right:.8%;top:84%;animation-delay:-.5s}.leaf-k{left:5%;top:9%;animation-delay:-6.4s}.leaf-l{right:5%;top:11%;animation-delay:-3.1s}.leaf-m{left:4%;top:91%;animation-delay:-2.2s}.leaf-n{right:4%;top:92%;animation-delay:-4.7s}@keyframes leafFloat{0%,100%{translate:0 0;rotate:-7deg}50%{translate:0 14px;rotate:9deg}}
-    .love-modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px}.love-backdrop{position:absolute;inset:0;background:rgba(24,20,16,.56);backdrop-filter:blur(7px)}.love-note{position:relative;z-index:1;width:min(420px,100%);padding:32px 27px 26px;border-radius:28px;text-align:center;background:linear-gradient(145deg,#fffaf2,#efe1d2);border:1px solid rgba(255,255,255,.75);box-shadow:0 30px 90px rgba(35,25,18,.3);animation:notePop .35s cubic-bezier(.2,.9,.25,1.15)}@keyframes notePop{from{opacity:0;transform:scale(.86) translateY(12px)}to{opacity:1;transform:none}}.love-note small{font-size:10px;letter-spacing:.14em;color:var(--brown2);font-weight:900}.love-note h3{font-size:31px;margin:7px 0 12px;letter-spacing:-.04em}.love-note p{font-family:Georgia,serif;font-size:20px;line-height:1.55;color:#4b3b31;margin:0 0 19px}.love-heart{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;background:var(--forest);color:#f5d8cf;font-size:22px;box-shadow:0 12px 30px rgba(23,59,43,.18)}.love-close{position:absolute;right:13px;top:11px;border:0;background:transparent;color:#7f6b5d;font-size:29px;line-height:1}.love-again{border:0;border-radius:999px;background:var(--forest);color:white;padding:11px 16px;font-weight:850}.heart-layer{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}.burst-heart{position:absolute;font-size:20px;animation:heartFly 1.25s ease-out forwards}@keyframes heartFly{0%{opacity:0;transform:translateY(8px) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-150px) rotate(var(--rot)) scale(1.15)}}.footer-heart{border:0;background:transparent;color:var(--brown2);font-size:18px;vertical-align:-1px;padding:3px 6px;transition:.2s}.footer-heart:hover{transform:scale(1.2);color:#9a3f45}
+    .secret-leaves{position:fixed;inset:0;pointer-events:none;z-index:24;overflow:hidden}.secret-leaf{position:absolute;pointer-events:auto;border:0;background:transparent;font-size:var(--size,22px);filter:drop-shadow(0 5px 8px rgba(74,48,28,.13));opacity:var(--opacity,.48);animation:leafFloatRandom var(--dur,8s) ease-in-out infinite;animation-delay:var(--delay,0s);cursor:pointer;transform-origin:center;transition:opacity .2s ease,filter .2s ease}.secret-leaf:hover{opacity:.92;filter:drop-shadow(0 7px 10px rgba(74,48,28,.2))}.secret-leaf.rustle{animation:leafRustle .62s ease both}@keyframes leafFloatRandom{0%,100%{transform:translate3d(0,0,0) rotate(var(--r0,-8deg))}50%{transform:translate3d(var(--sway,7px),var(--bob,13px),0) rotate(var(--r1,8deg))}}@keyframes leafRustle{0%{transform:rotate(var(--r0,-5deg)) scale(1)}28%{transform:rotate(-24deg) scale(1.15)}58%{transform:rotate(24deg) scale(.96)}100%{transform:rotate(var(--r1,7deg)) scale(1)}}.leaf-spark{position:fixed;z-index:80;pointer-events:none;font-size:15px;animation:leafSpark .8s ease-out forwards}@keyframes leafSpark{0%{opacity:0;transform:scale(.45)}20%{opacity:.9}100%{opacity:0;transform:translate(var(--sx,18px),-38px) rotate(var(--sr,30deg)) scale(.9)}}
+        .love-modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px}.love-backdrop{position:absolute;inset:0;background:rgba(24,20,16,.56);backdrop-filter:blur(7px)}.love-note{position:relative;z-index:1;width:min(420px,100%);padding:32px 27px 26px;border-radius:28px;text-align:center;background:linear-gradient(145deg,#fffaf2,#efe1d2);border:1px solid rgba(255,255,255,.75);box-shadow:0 30px 90px rgba(35,25,18,.3);animation:notePop .35s cubic-bezier(.2,.9,.25,1.15)}@keyframes notePop{from{opacity:0;transform:scale(.86) translateY(12px)}to{opacity:1;transform:none}}.love-note small{font-size:10px;letter-spacing:.14em;color:var(--brown2);font-weight:900}.love-note h3{font-size:31px;margin:7px 0 12px;letter-spacing:-.04em}.love-note p{font-family:Georgia,serif;font-size:20px;line-height:1.55;color:#4b3b31;margin:0 0 19px}.love-heart{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;background:var(--forest);color:#f5d8cf;font-size:22px;box-shadow:0 12px 30px rgba(23,59,43,.18)}.love-close{position:absolute;right:13px;top:11px;border:0;background:transparent;color:#7f6b5d;font-size:29px;line-height:1}.love-again{border:0;border-radius:999px;background:var(--forest);color:white;padding:11px 16px;font-weight:850}.heart-layer{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}.burst-heart{position:absolute;font-size:20px;animation:heartFly 1.25s ease-out forwards}@keyframes heartFly{0%{opacity:0;transform:translateY(8px) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-150px) rotate(var(--rot)) scale(1.15)}}.footer-heart{border:0;background:transparent;color:var(--brown2);font-size:18px;vertical-align:-1px;padding:3px 6px;transition:.2s}.footer-heart:hover{transform:scale(1.2);color:#9a3f45}
     .phase,.mini-card,.food-box,.slot,.emoji-card,.talk-card,.draw{transition:transform .2s ease,box-shadow .2s ease}.phase:hover,.food-box:hover{transform:translateY(-2px)}button:active{transform:scale(.97)}.food-choice.selected,.fondue-chip.selected{animation:tinyPop .22s ease}@keyframes tinyPop{50%{transform:scale(1.045)}}
-    @media(max-width:760px){.secret-leaf{font-size:20px;opacity:.42}.leaf-a,.leaf-c,.leaf-e,.leaf-g,.leaf-i{left:-3px}.leaf-b,.leaf-d,.leaf-f,.leaf-h,.leaf-j{right:-3px}.leaf-k,.leaf-l,.leaf-m,.leaf-n{display:none}.love-note{padding:28px 22px 24px}.love-note p{font-size:18px}.romance-actions{gap:6px}.romance-pill{padding:8px 9px;font-size:11px}.toast{top:10px}.sheep-peek{bottom:88px}}
+    @media(max-width:760px){.secret-leaf{opacity:calc(var(--opacity,.48) * .88)}.love-note{padding:28px 22px 24px}.love-note p{font-size:18px}.romance-actions{gap:6px}.romance-pill{padding:8px 9px;font-size:11px}.toast{top:10px}.sheep-peek{bottom:88px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.secret-leaf,.falling-leaf,.leaf-storm-item{display:none}}
 
 
@@ -83,22 +84,7 @@
   </style>
 </head>
 <body>
-  <div class="secret-leaves" aria-label="Секретные осенние листики">
-    <button class="secret-leaf leaf-a" aria-label="Осенний листик">🍁</button>
-    <button class="secret-leaf leaf-b" aria-label="Осенний листик">🍂</button>
-    <button class="secret-leaf leaf-c" aria-label="Осенний листик">🍁</button>
-    <button class="secret-leaf leaf-d" aria-label="Осенний листик">🍂</button>
-    <button class="secret-leaf leaf-e" aria-label="Осенний листик">🍁</button>
-    <button class="secret-leaf leaf-f" aria-label="Осенний листик">🍂</button>
-    <button class="secret-leaf leaf-g" aria-label="Осенний листик">🍁</button>
-    <button class="secret-leaf leaf-h" aria-label="Осенний листик">🍂</button>
-    <button class="secret-leaf leaf-i" aria-label="Осенний листик">🍁</button>
-    <button class="secret-leaf leaf-j" aria-label="Осенний листик">🍂</button>
-    <button class="secret-leaf leaf-k" aria-label="Осенний листик">🍁</button>
-    <button class="secret-leaf leaf-l" aria-label="Осенний листик">🍂</button>
-    <button class="secret-leaf leaf-m" aria-label="Осенний листик">🍁</button>
-    <button class="secret-leaf leaf-n" aria-label="Осенний листик">🍂</button>
-  </div>
+  <div class="secret-leaves" id="secretLeaves" aria-label="Осенние листики"></div>
   <div class="love-modal hidden" id="loveModal" role="dialog" aria-modal="true" aria-labelledby="loveTitle">
     <div class="love-backdrop" data-close-love></div>
     <div class="love-note">
@@ -373,18 +359,47 @@
       "Если ты это читаешь — я, скорее всего, смотрю на тебя и улыбаюсь.",
       "Ты — мой любимый человек для совместного ничего-не-делания.",
       "Финальная записка: я тебя люблю. Всё остальное можно не усложнять ❤️"
-    ],foundNotes=JSON.parse(localStorage.getItem("kostromaFoundNotes")||"[]"),lastLove=-1;
+    ];
+    var tripNow=new Date(),tripDay=tripNow.getFullYear()===2026&&tripNow.getMonth()===9&&tripNow.getDate()===2;
+    if(tripDay&&!sessionStorage.getItem("kostromaTripFreshNotes")){sessionStorage.removeItem("kostromaFoundNotes");sessionStorage.removeItem("kostromaAllNotes");sessionStorage.setItem("kostromaTripFreshNotes","1")}
+    var foundNotes=JSON.parse(sessionStorage.getItem("kostromaFoundNotes")||"[]"),lastLove=-1;
 
     function showToast(text){var t=q("#toast");t.textContent=text;t.classList.add("show");clearTimeout(showToast.timer);showToast.timer=setTimeout(function(){t.classList.remove("show")},2300)}
     function burstHearts(x,y){var layer=q("#heartLayer");for(var i=0;i<10;i++){var h=document.createElement("span");h.className="burst-heart";h.textContent=i%3===0?"🍁":"❤";h.style.left=(x+(Math.random()*46-23))+"px";h.style.top=(y+(Math.random()*22-11))+"px";h.style.setProperty("--dx",(Math.random()*150-75)+"px");h.style.setProperty("--rot",(Math.random()*100-50)+"deg");layer.appendChild(h);setTimeout(function(el){el.remove()},1300,h)}}
     function updateNoteCounter(){var txt=foundNotes.length+"/"+loveNotes.length;q("#noteCount").textContent=txt;q("#noteFoundMeta").textContent="Найдено "+txt}
     function nextUnseenNote(){var unseen=[];for(var i=0;i<loveNotes.length;i++)if(foundNotes.indexOf(i)<0)unseen.push(i);if(unseen.length)return unseen[Math.floor(Math.random()*unseen.length)];var r=Math.floor(Math.random()*loveNotes.length);while(loveNotes.length>1&&r===lastLove)r=Math.floor(Math.random()*loveNotes.length);return r}
-    function openLove(ev,forced){q("#loveTitle").textContent="Для Сони";var i=typeof forced==="number"?forced:nextUnseenNote();lastLove=i;if(foundNotes.indexOf(i)<0){foundNotes.push(i);localStorage.setItem("kostromaFoundNotes",JSON.stringify(foundNotes));showToast("🍁 Найдена записка "+foundNotes.length+" из "+loveNotes.length)}q("#loveText").textContent=loveNotes[i];q("#noteMeta").textContent="Записка "+(i+1)+" из "+loveNotes.length;q("#loveModal").classList.remove("hidden");updateNoteCounter();var x=innerWidth/2,y=innerHeight*.48;if(ev&&typeof ev.clientX==="number"){x=ev.clientX;y=ev.clientY}burstHearts(x,y);if(foundNotes.length===loveNotes.length&&!localStorage.getItem("kostromaAllNotes")){localStorage.setItem("kostromaAllNotes","1");setTimeout(function(){leafStorm(30);showToast("❤️ Все 20 записок найдены")},300)}}
+    function openLove(ev,forced){q("#loveTitle").textContent="Для Сони";var i=typeof forced==="number"?forced:nextUnseenNote();lastLove=i;if(foundNotes.indexOf(i)<0){foundNotes.push(i);sessionStorage.setItem("kostromaFoundNotes",JSON.stringify(foundNotes));showToast("🍁 Найдена записка "+foundNotes.length+" из "+loveNotes.length)}q("#loveText").textContent=loveNotes[i];q("#noteMeta").textContent="Записка "+(i+1)+" из "+loveNotes.length;q("#loveModal").classList.remove("hidden");updateNoteCounter();var x=innerWidth/2,y=innerHeight*.48;if(ev&&typeof ev.clientX==="number"){x=ev.clientX;y=ev.clientY}burstHearts(x,y);if(foundNotes.length===loveNotes.length&&!sessionStorage.getItem("kostromaAllNotes")){sessionStorage.setItem("kostromaAllNotes","1");setTimeout(function(){leafStorm(30);showToast("❤️ Все 20 записок найдены")},300)}}
     updateNoteCounter();
-    qa(".secret-leaf").forEach(function(b){b.addEventListener("click",openLove)});
+    function leafSpark(x,y){for(var i=0;i<3;i++){var s=document.createElement("span");s.className="leaf-spark";s.textContent=Math.random()>.5?"🍂":"🍁";s.style.left=(x+Math.random()*18-9)+"px";s.style.top=(y+Math.random()*12-6)+"px";s.style.setProperty("--sx",(Math.random()*52-26)+"px");s.style.setProperty("--sr",(Math.random()*100-50)+"deg");document.body.appendChild(s);setTimeout(function(el){el.remove()},850,s)}}
+    function makeAmbientLeaves(){
+      var wrap=q("#secretLeaves");wrap.innerHTML="";
+      var mobile=innerWidth<760,count=mobile?24:38;
+      for(var i=0;i<count;i++){
+        var b=document.createElement("button");b.className="secret-leaf";b.textContent=Math.random()>.48?"🍁":"🍂";b.setAttribute("aria-label","Осенний листик");
+        var leftSide=Math.random()>.5,edge=mobile?Math.random()*7:Math.random()*9;
+        b.style.left=leftSide?edge+"vw":"auto";b.style.right=leftSide?"auto":edge+"vw";
+        b.style.top=(4+Math.random()*91)+"vh";
+        b.style.setProperty("--size",(mobile?14+Math.random()*12:16+Math.random()*17)+"px");
+        b.style.setProperty("--opacity",(0.22+Math.random()*.44).toFixed(2));
+        b.style.setProperty("--dur",(5.5+Math.random()*7).toFixed(2)+"s");
+        b.style.setProperty("--delay",(-Math.random()*8).toFixed(2)+"s");
+        b.style.setProperty("--sway",(Math.random()*20-10).toFixed(1)+"px");
+        b.style.setProperty("--bob",(7+Math.random()*22).toFixed(1)+"px");
+        b.style.setProperty("--r0",(Math.random()*70-35).toFixed(1)+"deg");
+        b.style.setProperty("--r1",(Math.random()*90-45).toFixed(1)+"deg");
+        b.addEventListener("click",function(ev){
+          ev.stopPropagation();var leaf=ev.currentTarget,r=leaf.getBoundingClientRect();
+          leaf.classList.remove("rustle");void leaf.offsetWidth;leaf.classList.add("rustle");leafSpark(r.left+r.width/2,r.top+r.height/2);
+          if(Math.random()<.22)openLove(ev);
+        });
+        wrap.appendChild(b)
+      }
+    }
+    makeAmbientLeaves();
+    var resizeLeafTimer;addEventListener("resize",function(){clearTimeout(resizeLeafTimer);resizeLeafTimer=setTimeout(makeAmbientLeaves,250)});
     q("#footerHeart").addEventListener("click",openLove);
     q("#noteCollection").addEventListener("click",function(){if(foundNotes.length)openLove(null,foundNotes[Math.floor(Math.random()*foundNotes.length)]);else openLove()});
-    var resetNotesTimer;q("#noteCollection").addEventListener("pointerdown",function(){resetNotesTimer=setTimeout(function(){foundNotes=[];localStorage.removeItem("kostromaFoundNotes");localStorage.removeItem("kostromaAllNotes");updateNoteCounter();showToast("🍁 Коллекция записок сброшена")},1600)});["pointerup","pointercancel","pointerleave"].forEach(function(ev){q("#noteCollection").addEventListener(ev,function(){clearTimeout(resetNotesTimer)})});
+    var resetNotesTimer;q("#noteCollection").addEventListener("pointerdown",function(){resetNotesTimer=setTimeout(function(){foundNotes=[];sessionStorage.removeItem("kostromaFoundNotes");sessionStorage.removeItem("kostromaAllNotes");updateNoteCounter();showToast("🍁 Коллекция записок сброшена")},1600)});["pointerup","pointercancel","pointerleave"].forEach(function(ev){q("#noteCollection").addEventListener(ev,function(){clearTimeout(resetNotesTimer)})});
     qa("[data-close-love]").forEach(function(x){x.addEventListener("click",function(){q("#loveModal").classList.add("hidden")})});
 
     function leafStorm(count){for(var i=0;i<(count||18);i++){(function(delay){setTimeout(function(){var el=document.createElement("span");el.className="leaf-storm-item";el.textContent=Math.random()>.45?"🍁":"🍂";el.style.left=(Math.random()*100)+"vw";el.style.setProperty("--x",(Math.random()*180-90)+"px");el.style.setProperty("--rot",(Math.random()*900-450)+"deg");el.style.setProperty("--dur",(2.7+Math.random()*2.2)+"s");document.body.appendChild(el);setTimeout(function(){el.remove()},5200)},delay)})(i*55)}}
