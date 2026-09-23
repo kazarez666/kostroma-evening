@@ -896,7 +896,12 @@
     }
     function startCaseDesk(){caseState.started=true;caseState.app="brief";caseState.briefPage=0;saveCase();q("#caseIntro").classList.add("hidden");q("#caseDesk").classList.remove("hidden");renderCaseApp("brief");var started=checks.find(function(x){return x.getAttribute("data-check")==="12"});if(started&&!started.checked){started.checked=true;saved["12"]=true;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()}}
     q("#startCase").addEventListener("click",startCaseDesk);
-    qa(".case-app").forEach(function(b){b.addEventListener("click",function(){renderCaseApp(b.getAttribute("data-case-app"))})});
+    qa(".case-app").forEach(function(b){b.addEventListener("click",function(){
+      var app=b.getAttribute("data-case-app");
+      if(app==="devices"){caseState.device="hub";caseState.filePath="root"}
+      if(app==="web"){caseState.webPage="home"}
+      saveCase();renderCaseApp(app)
+    })});
     q("#resetCase").addEventListener("click",function(){if(confirm("Сбросить расследование? Откроется чистая версия дела.")){caseState=Object.assign({},caseDefault,{started:true});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
     if(caseState.started){q("#caseIntro").classList.add("hidden");q("#caseDesk").classList.remove("hidden");renderCaseApp(caseState.app||"brief")}
 
