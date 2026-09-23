@@ -53,11 +53,26 @@
     .talk-card{border-radius:26px;padding:28px;color:white;background:linear-gradient(145deg,#173a2a,#5a3e30);box-shadow:var(--shadow)}.talk-top{display:flex;justify-content:space-between;gap:12px;align-items:center}.badge{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.1);font-size:12px;font-weight:800}.count{font-size:12px;opacity:.62}.question{font-size:clamp(23px,4vw,36px);font-weight:800;line-height:1.22;letter-spacing:-.025em;min-height:150px;display:flex;align-items:center}.all{margin-top:14px;background:rgba(255,253,248,.85);border:1px solid var(--line);border-radius:18px;padding:18px}.all li{margin:0 0 10px;line-height:1.45}
 
     .fondue-recommend{width:100%;margin:10px 0 2px;border:1px dashed rgba(91,61,47,.25);background:rgba(255,255,255,.48);color:var(--brown);padding:10px 12px;border-radius:13px;font-weight:850;transition:.18s ease}.fondue-recommend:hover{background:#fff;transform:translateY(-1px)}
-    .secret-leaves{position:fixed;inset:0;pointer-events:none;z-index:24;overflow:hidden}.secret-leaf{position:absolute;pointer-events:auto;border:0;background:transparent;font-size:25px;filter:drop-shadow(0 5px 8px rgba(74,48,28,.15));opacity:.65;animation:leafFloat 7s ease-in-out infinite;transition:.2s;cursor:pointer}.secret-leaf:hover{opacity:1;transform:scale(1.18) rotate(8deg)}.leaf-a{left:1.5%;top:19%;animation-delay:-1s}.leaf-b{right:1.5%;top:35%;animation-delay:-3.5s}.leaf-c{left:2%;top:67%;animation-delay:-5s}.leaf-d{right:2%;top:76%;animation-delay:-2s}@keyframes leafFloat{0%,100%{translate:0 0;rotate:-7deg}50%{translate:0 14px;rotate:9deg}}
+    .secret-leaves{position:fixed;inset:0;pointer-events:none;z-index:24;overflow:hidden}.secret-leaf{position:absolute;pointer-events:auto;border:0;background:transparent;font-size:25px;filter:drop-shadow(0 5px 8px rgba(74,48,28,.15));opacity:.54;animation:leafFloat 7s ease-in-out infinite;transition:.2s;cursor:pointer}.secret-leaf:hover{opacity:1;transform:scale(1.18) rotate(8deg)}.leaf-a{left:1%;top:14%;animation-delay:-1s}.leaf-b{right:1%;top:21%;animation-delay:-3.5s}.leaf-c{left:1.6%;top:31%;animation-delay:-5s}.leaf-d{right:1.8%;top:41%;animation-delay:-2s}.leaf-e{left:.7%;top:48%;animation-delay:-4s}.leaf-f{right:.5%;top:56%;animation-delay:-6s}.leaf-g{left:1.5%;top:64%;animation-delay:-2.5s}.leaf-h{right:1.3%;top:70%;animation-delay:-1.8s}.leaf-i{left:.8%;top:79%;animation-delay:-5.5s}.leaf-j{right:.8%;top:84%;animation-delay:-.5s}.leaf-k{left:5%;top:9%;animation-delay:-6.4s}.leaf-l{right:5%;top:11%;animation-delay:-3.1s}.leaf-m{left:4%;top:91%;animation-delay:-2.2s}.leaf-n{right:4%;top:92%;animation-delay:-4.7s}@keyframes leafFloat{0%,100%{translate:0 0;rotate:-7deg}50%{translate:0 14px;rotate:9deg}}
     .love-modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px}.love-backdrop{position:absolute;inset:0;background:rgba(24,20,16,.56);backdrop-filter:blur(7px)}.love-note{position:relative;z-index:1;width:min(420px,100%);padding:32px 27px 26px;border-radius:28px;text-align:center;background:linear-gradient(145deg,#fffaf2,#efe1d2);border:1px solid rgba(255,255,255,.75);box-shadow:0 30px 90px rgba(35,25,18,.3);animation:notePop .35s cubic-bezier(.2,.9,.25,1.15)}@keyframes notePop{from{opacity:0;transform:scale(.86) translateY(12px)}to{opacity:1;transform:none}}.love-note small{font-size:10px;letter-spacing:.14em;color:var(--brown2);font-weight:900}.love-note h3{font-size:31px;margin:7px 0 12px;letter-spacing:-.04em}.love-note p{font-family:Georgia,serif;font-size:20px;line-height:1.55;color:#4b3b31;margin:0 0 19px}.love-heart{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;background:var(--forest);color:#f5d8cf;font-size:22px;box-shadow:0 12px 30px rgba(23,59,43,.18)}.love-close{position:absolute;right:13px;top:11px;border:0;background:transparent;color:#7f6b5d;font-size:29px;line-height:1}.love-again{border:0;border-radius:999px;background:var(--forest);color:white;padding:11px 16px;font-weight:850}.heart-layer{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}.burst-heart{position:absolute;font-size:20px;animation:heartFly 1.25s ease-out forwards}@keyframes heartFly{0%{opacity:0;transform:translateY(8px) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-150px) rotate(var(--rot)) scale(1.15)}}.footer-heart{border:0;background:transparent;color:var(--brown2);font-size:18px;vertical-align:-1px;padding:3px 6px;transition:.2s}.footer-heart:hover{transform:scale(1.2);color:#9a3f45}
     .phase,.mini-card,.food-box,.slot,.emoji-card,.talk-card,.draw{transition:transform .2s ease,box-shadow .2s ease}.phase:hover,.food-box:hover{transform:translateY(-2px)}button:active{transform:scale(.97)}.food-choice.selected,.fondue-chip.selected{animation:tinyPop .22s ease}@keyframes tinyPop{50%{transform:scale(1.045)}}
-    @media(max-width:760px){.secret-leaf{font-size:21px;opacity:.48}.leaf-a{left:-2px}.leaf-b,.leaf-d{right:-2px}.love-note{padding:28px 22px 24px}.love-note p{font-size:18px}}
-    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.secret-leaf{display:none}}
+    @media(max-width:760px){.secret-leaf{font-size:20px;opacity:.42}.leaf-a,.leaf-c,.leaf-e,.leaf-g,.leaf-i{left:-3px}.leaf-b,.leaf-d,.leaf-f,.leaf-h,.leaf-j{right:-3px}.leaf-k,.leaf-l,.leaf-m,.leaf-n{display:none}.love-note{padding:28px 22px 24px}.love-note p{font-size:18px}.romance-actions{gap:6px}.romance-pill{padding:8px 9px;font-size:11px}.toast{top:10px}.sheep-peek{bottom:88px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.secret-leaf,.falling-leaf,.leaf-storm-item{display:none}}
+
+
+    .romance-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px;position:relative;z-index:2}.romance-pill{border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:9px 12px;font-size:12px;font-weight:800;backdrop-filter:blur(8px);transition:.2s}.romance-pill:hover{background:rgba(255,255,255,.15);transform:translateY(-1px)}.romance-pill b{font-variant-numeric:tabular-nums;color:#ecd6b9}
+    .secret-date,.coupon-secret{cursor:pointer;user-select:none}.secret-date.pulse{animation:dateSecret .7s ease}@keyframes dateSecret{50%{transform:scale(1.08);background:rgba(255,255,255,.2)}}
+    .note-meta{display:flex;justify-content:center;gap:16px;color:var(--muted);font-size:11px;margin:-7px 0 14px;font-weight:750}
+    .toast{position:fixed;z-index:120;top:18px;left:50%;translate:-50% -20px;opacity:0;pointer-events:none;background:rgba(23,59,43,.95);color:#fff;border:1px solid rgba(255,255,255,.13);box-shadow:0 18px 50px rgba(25,21,17,.22);padding:11px 15px;border-radius:999px;font-weight:800;font-size:13px;transition:.28s ease;max-width:calc(100% - 30px);text-align:center}.toast.show{opacity:1;translate:-50% 0}
+    .falling-leaf{position:fixed;z-index:55;top:-50px;border:0;background:transparent;font-size:30px;cursor:pointer;filter:drop-shadow(0 7px 9px rgba(69,42,25,.2));animation:fallLeaf var(--fall,8s) linear forwards;pointer-events:auto}@keyframes fallLeaf{0%{transform:translate3d(0,-30px,0) rotate(0);opacity:0}8%{opacity:.92}50%{transform:translate3d(var(--drift,40px),50vh,0) rotate(280deg)}100%{transform:translate3d(calc(var(--drift,40px) * -.7),110vh,0) rotate(590deg);opacity:.35}}
+    .welcome{position:fixed;inset:0;z-index:150;display:grid;place-items:center;padding:22px}.welcome-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 30%,rgba(89,111,75,.36),transparent 38%),rgba(25,20,15,.72);backdrop-filter:blur(12px)}.welcome-card{position:relative;z-index:1;width:min(520px,100%);padding:42px 30px 34px;text-align:center;border-radius:34px;color:#fff;background:radial-gradient(circle at 30% 0%,rgba(255,255,255,.1),transparent 30%),linear-gradient(145deg,#153828,#5c4130);box-shadow:0 34px 100px rgba(18,13,10,.45);animation:notePop .55s cubic-bezier(.2,.9,.25,1.1)}.welcome-card small{letter-spacing:.16em;font-weight:900;opacity:.62}.welcome-card h2{font-size:clamp(34px,8vw,58px);line-height:1;letter-spacing:-.05em;margin:10px 0 16px}.welcome-card p{color:rgba(255,255,255,.78);line-height:1.6;margin:0 auto 22px;max-width:420px}.welcome-card button{border:0;border-radius:999px;background:#f7ead7;color:var(--forest);padding:13px 18px;font-weight:900}.welcome-leaf{font-size:54px;animation:leafFloat 4s ease-in-out infinite}
+    .coupon-modal,.moment-modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px}.coupon-card,.moment-card{position:relative;z-index:1;width:min(410px,100%);padding:32px 26px 26px;border-radius:28px;text-align:center;background:linear-gradient(145deg,#fffaf1,#ead8c4);box-shadow:0 30px 90px rgba(35,25,18,.32);animation:notePop .35s cubic-bezier(.2,.9,.25,1.15)}.coupon-card:before,.coupon-card:after{content:"";position:absolute;top:50%;width:24px;height:24px;border-radius:50%;background:#332820}.coupon-card:before{left:-12px}.coupon-card:after{right:-12px}.coupon-stamp,.moment-icon{width:56px;height:56px;border-radius:18px;margin:0 auto 12px;display:grid;place-items:center;font-size:27px;background:var(--forest);color:white}.coupon-card small,.moment-card small{font-size:10px;letter-spacing:.14em;color:var(--brown2);font-weight:900}.coupon-card h3,.moment-card h3{font-size:29px;margin:6px 0 9px}.coupon-card p,.moment-card p{font-family:Georgia,serif;font-size:19px;line-height:1.5;color:#4b3b31;margin:0 0 18px}.coupon-use{border:0;border-radius:999px;background:var(--brown);color:white;padding:11px 15px;font-weight:850}
+    .sheep-peek{position:fixed;z-index:35;right:7px;bottom:92px;border:0;background:#fffaf2;border-radius:18px 0 0 18px;padding:10px 8px 10px 11px;font-size:28px;box-shadow:0 14px 36px rgba(58,42,30,.16);animation:sheepPeek 3s ease-in-out infinite;transform-origin:right center}@keyframes sheepPeek{0%,100%{translate:9px 0;rotate:1deg}50%{translate:0 -4px;rotate:-3deg}}
+    .moment-launch{grid-column:1/-1;background:linear-gradient(135deg,rgba(255,253,248,.9),rgba(222,234,223,.82))}
+    body.cozy-1{--amber:#c89362}body.cozy-2{background:radial-gradient(circle at 12% 0%,rgba(54,96,67,.22),transparent 28%),radial-gradient(circle at 90% 20%,rgba(196,126,70,.21),transparent 30%),linear-gradient(180deg,#eadac8,#f7ede2 36%,#eadac8)}body.cozy-3 .hero-card{box-shadow:0 30px 85px rgba(100,57,30,.32)}body.cozy-3 .phase,body.cozy-3 .food-box{box-shadow:0 16px 40px rgba(87,53,30,.11)}body.cozy-4:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(circle at 15% 20%,rgba(255,188,117,.08),transparent 20%),radial-gradient(circle at 85% 65%,rgba(255,207,145,.08),transparent 24%)}
+    .touch-spark{position:fixed;z-index:70;pointer-events:none;font-size:17px;animation:touchSpark .9s ease-out forwards}@keyframes touchSpark{0%{opacity:0;transform:scale(.4)}20%{opacity:.9}100%{opacity:0;transform:translateY(-38px) rotate(20deg) scale(1.1)}}
+    .leaf-storm-item{position:fixed;z-index:130;top:-55px;pointer-events:none;font-size:clamp(20px,4vw,34px);animation:stormFall var(--dur,3.6s) cubic-bezier(.2,.6,.4,1) forwards}@keyframes stormFall{to{transform:translate(var(--x,20px),115vh) rotate(var(--rot,500deg));opacity:.55}}
+    .final-banner{position:fixed;z-index:140;left:50%;top:48%;transform:translate(-50%,-50%) scale(.8);opacity:0;pointer-events:none;color:white;text-align:center;background:linear-gradient(145deg,#173b2b,#674835);border:1px solid rgba(255,255,255,.14);padding:24px 28px;border-radius:28px;box-shadow:0 30px 90px rgba(26,17,12,.36);transition:.35s ease}.final-banner.show{opacity:1;transform:translate(-50%,-50%) scale(1)}.final-banner b{display:block;font-size:28px;margin-bottom:6px}.final-banner span{opacity:.78}
 
     footer{text-align:center;color:var(--muted);padding:0 0 30px;font-size:13px}
     .mobile-nav{display:none}
@@ -73,6 +88,16 @@
     <button class="secret-leaf leaf-b" aria-label="Осенний листик">🍂</button>
     <button class="secret-leaf leaf-c" aria-label="Осенний листик">🍁</button>
     <button class="secret-leaf leaf-d" aria-label="Осенний листик">🍂</button>
+    <button class="secret-leaf leaf-e" aria-label="Осенний листик">🍁</button>
+    <button class="secret-leaf leaf-f" aria-label="Осенний листик">🍂</button>
+    <button class="secret-leaf leaf-g" aria-label="Осенний листик">🍁</button>
+    <button class="secret-leaf leaf-h" aria-label="Осенний листик">🍂</button>
+    <button class="secret-leaf leaf-i" aria-label="Осенний листик">🍁</button>
+    <button class="secret-leaf leaf-j" aria-label="Осенний листик">🍂</button>
+    <button class="secret-leaf leaf-k" aria-label="Осенний листик">🍁</button>
+    <button class="secret-leaf leaf-l" aria-label="Осенний листик">🍂</button>
+    <button class="secret-leaf leaf-m" aria-label="Осенний листик">🍁</button>
+    <button class="secret-leaf leaf-n" aria-label="Осенний листик">🍂</button>
   </div>
   <div class="love-modal hidden" id="loveModal" role="dialog" aria-modal="true" aria-labelledby="loveTitle">
     <div class="love-backdrop" data-close-love></div>
@@ -82,13 +107,53 @@
       <small>НАЙДЕНА ОСЕННЯЯ ЗАПИСКА</small>
       <h3 id="loveTitle">Для Сони</h3>
       <p id="loveText"></p>
-      <button class="love-again" id="loveAgain" type="button">Ещё одну 🍁</button>
+      <div class="note-meta"><span id="noteMeta">Записка</span><span id="noteFoundMeta">Найдено 0/20</span></div>
+      <button class="love-again" data-close-love type="button">Спрятать обратно 🍁</button>
     </div>
   </div>
   <div class="heart-layer" id="heartLayer" aria-hidden="true"></div>
+  <div class="final-banner" id="finalBanner"><b>Вечер удался ❤️</b><span>Теперь просто отдыхайте и будьте рядом.</span></div>
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <div class="welcome hidden" id="welcome">
+    <div class="welcome-bg"></div>
+    <div class="welcome-card">
+      <div class="welcome-leaf">🍁</div>
+      <small>ПЯТНИЦА • КОСТРОМА</small>
+      <h2>Сегодня просто наш вечер</h2>
+      <p>Никуда не спешим. Камин, свечи, вкусное, игры, кино и мы вдвоём.</p>
+      <button id="startEvening" type="button">Начинаем 🍂</button>
+    </div>
+  </div>
+
+  <div class="coupon-modal hidden" id="couponModal">
+    <div class="love-backdrop" data-close-coupon></div>
+    <div class="coupon-card">
+      <button class="love-close" data-close-coupon aria-label="Закрыть">×</button>
+      <div class="coupon-stamp">🎟️</div>
+      <small>ОСЕННИЙ КУПОН</small>
+      <h3 id="couponTitle">Купон</h3>
+      <p id="couponText"></p>
+      <button class="coupon-use" data-close-coupon type="button">Использовать ❤️</button>
+    </div>
+  </div>
+
+  <div class="moment-modal hidden" id="momentModal">
+    <div class="love-backdrop" data-close-moment></div>
+    <div class="moment-card">
+      <button class="love-close" data-close-moment aria-label="Закрыть">×</button>
+      <div class="moment-icon">✨</div>
+      <small>СЛУЧАЙНЫЙ МОМЕНТ</small>
+      <h3>Прямо сейчас</h3>
+      <p id="momentText"></p>
+      <button class="love-again" id="anotherMoment" type="button">Другой вариант</button>
+    </div>
+  </div>
+
+  <button class="sheep-peek hidden" id="sheepPeek" aria-label="Секретная овечка">🐑</button>
   <header class="hero shell">
     <div class="hero-card">
-      <div class="topline"><span class="pill">2 октября • Кострома</span><span class="status">вечер для двоих</span></div>
+      <div class="topline"><span class="pill secret-date" id="datePill">2 октября • Кострома</span><span class="status coupon-secret" id="couponSecret">вечер для двоих</span></div>
       <div class="hero-main">
         <p class="kicker">пятница • домашний вечер</p>
         <h1>Наш уютный вечер</h1>
@@ -96,6 +161,11 @@
       </div>
       <div class="moods"><span>🍂 осенний уют</span><span>🕯️ тёплый свет</span><span>☕ какао · фондю · кино</span></div>
       <div class="progress"><div class="progress-copy"><span>План вечера</span><b id="progressText">0%</b></div><div class="track"><div class="bar" id="progressBar"></div></div></div>
+      <div class="romance-actions">
+        <button class="romance-pill" id="noteCollection" type="button">🍁 Записки <b id="noteCount">0/20</b></button>
+        <button class="romance-pill" id="luckyButton" type="button">✨ Мне повезло</button>
+        <button class="romance-pill" id="cozyButton" type="button">🕯️ Сделать уютнее <b id="cozyLevel">0/4</b></button>
+      </div>
     </div>
   </header>
 
@@ -144,6 +214,7 @@
       <div class="mini">
         <button class="mini-card mini-button" data-open="food"><h3>🍫 Собрать фондю</h3><p>Выбрать до 8 продуктов и посмотреть простой вариант шоколадной смеси.</p></button>
         <button class="mini-card mini-button" data-open="food"><h3><span id="miniDinnerIcon">🍽️</span> Выбрать ужин</h3><p id="miniDinnerText">Пока не выбрано — откройте вкладку «Еда».</p></button>
+        <button class="mini-card mini-button moment-launch" id="randomMoment" type="button"><h3>✨ Случайный момент</h3><p>Маленькая штука, которую можно сделать прямо сейчас вдвоём.</p></button>
       </div>
     </section>
 
@@ -269,22 +340,84 @@
     qa("[data-tab]").forEach(function(b){b.addEventListener("click",function(){showTab(b.getAttribute("data-tab"))})});qa("[data-open]").forEach(function(b){b.addEventListener("click",function(){showTab(b.getAttribute("data-open"))})})
 
     var checks=qa("[data-check]"), saved=JSON.parse(localStorage.getItem("kostromaChecks")||"{}");
-    function progress(){var done=checks.filter(function(x){return x.checked}).length,p=Math.round(done/checks.length*100);q("#progressBar").style.width=p+"%";q("#progressText").textContent=p+"%"}
+    function progress(){var done=checks.filter(function(x){return x.checked}).length,p=Math.round(done/checks.length*100);q("#progressBar").style.width=p+"%";q("#progressText").textContent=p===100?"Вечер удался ❤️":p+"%";var gift=checks.find(function(x){return x.getAttribute("data-check")==="10"});if(gift)q("#sheepPeek").classList.toggle("hidden",!gift.checked);if(p===100&&!sessionStorage.getItem("kostromaFinale")){sessionStorage.setItem("kostromaFinale","1");setTimeout(function(){leafStorm(34);showFinalBanner()},150)}}
     checks.forEach(function(c){c.checked=!!saved[c.getAttribute("data-check")];c.addEventListener("change",function(){saved[c.getAttribute("data-check")]=c.checked;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()})});progress();
     q("#reset").addEventListener("click",function(){saved={};localStorage.removeItem("kostromaChecks");checks.forEach(function(c){c.checked=false});progress()})
 
     var dinnerButtons=qa(".food-choice"),dinner=JSON.parse(localStorage.getItem("kostromaDinner")||"null")||{name:"",icon:"🍽️",custom:false};
     function renderDinner(){dinnerButtons.forEach(function(b){b.classList.toggle("selected",!dinner.custom&&b.getAttribute("data-dinner")===dinner.name)});var icon=dinner.icon||"🍽️",name=dinner.name||"пока ничего";q("#chosenDinnerIcon").textContent=icon;q("#chosenDinnerName").textContent=name;q("#dinnerPlanIcon").textContent=icon;q("#dinnerPlanName").textContent=dinner.name||"сначала выберите ужин во вкладке «Еда»";q("#miniDinnerIcon").textContent=icon;q("#miniDinnerText").textContent=dinner.name?"Выбрано: "+dinner.name+".":"Пока не выбрано — откройте вкладку «Еда»."}
-    function pickDinner(name,icon,custom){dinner={name:name,icon:icon||"🍽️",custom:!!custom};localStorage.setItem("kostromaDinner",JSON.stringify(dinner));renderDinner()}
+    function pickDinner(name,icon,custom){dinner={name:name,icon:icon||"🍽️",custom:!!custom};localStorage.setItem("kostromaDinner",JSON.stringify(dinner));renderDinner();showToast(icon+" Выбрано на ужин: "+name);leafStorm(9)}
     dinnerButtons.forEach(function(b){b.addEventListener("click",function(){pickDinner(b.getAttribute("data-dinner"),b.getAttribute("data-icon"),false)})});q("#saveCustomDinner").addEventListener("click",function(){var v=q("#customDinner").value.trim();if(v)pickDinner(v,"🍽️",true)});q("#customDinner").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();q("#saveCustomDinner").click()}});renderDinner();
     var fondueButtons=qa(".fondue-chip"),fondue=JSON.parse(localStorage.getItem("kostromaFondue")||"[]");
-    function renderFondue(){fondue=fondue.filter(function(n){return fondueButtons.some(function(b){return b.getAttribute("data-ing")===n})}).slice(0,8);q("#fondueCount").textContent=fondue.length;fondueButtons.forEach(function(b){var s=fondue.indexOf(b.getAttribute("data-ing"))>=0;b.classList.toggle("selected",s);b.disabled=!s&&fondue.length>=8});q("#fonduePicked").textContent=fondue.length?fondue.map(function(n){var b=fondueButtons.find(function(x){return x.getAttribute("data-ing")===n});return (b?b.getAttribute("data-icon"):"•")+" "+n}).join(" · "):"Выберите продукты — здесь появится ваш набор.";localStorage.setItem("kostromaFondue",JSON.stringify(fondue))}
+    function renderFondue(){var wasFull=sessionStorage.getItem("kostromaFondueFull")==="1";fondue=fondue.filter(function(n){return fondueButtons.some(function(b){return b.getAttribute("data-ing")===n})}).slice(0,8);q("#fondueCount").textContent=fondue.length;fondueButtons.forEach(function(b){var s=fondue.indexOf(b.getAttribute("data-ing"))>=0;b.classList.toggle("selected",s);b.disabled=!s&&fondue.length>=8});q("#fonduePicked").textContent=fondue.length?fondue.map(function(n){var b=fondueButtons.find(function(x){return x.getAttribute("data-ing")===n});return (b?b.getAttribute("data-icon"):"•")+" "+n}).join(" · "):"Выберите продукты — здесь появится ваш набор.";localStorage.setItem("kostromaFondue",JSON.stringify(fondue));if(fondue.length===8&&!wasFull){sessionStorage.setItem("kostromaFondueFull","1");showToast("🍫 Идеальный набор для фондю готов");leafStorm(18)}if(fondue.length<8)sessionStorage.removeItem("kostromaFondueFull")}
     fondueButtons.forEach(function(b){b.addEventListener("click",function(){var n=b.getAttribute("data-ing"),i=fondue.indexOf(n);if(i>=0)fondue.splice(i,1);else if(fondue.length<8)fondue.push(n);renderFondue()})});q("#fondueRecommend").addEventListener("click",function(){fondue=["Клубника","Банан","Груша","Ананас","Маршмеллоу","Вафли","Претцели","Малина"];renderFondue()});renderFondue();
 
-    var loveNotes=["Соня, я тебя очень люблю ❤️","Мне правда очень повезло, что рядом со мной именно ты.","С тобой даже обычный вечер становится маленьким событием.","Я люблю наши поездки, наши приколы и даже самые обычные дни вместе.","Ты — мой самый любимый человек. И да, это официальная осенняя записка 🍁","Спасибо, что смеёшься со мной над всякой ерундой.","Хочу ещё очень много таких вечеров с тобой.","Если ты это нашла — иди сюда. Тебе положен поцелуй 😌❤️","Мне нравится строить с тобой маленькие планы и потом превращать их в наши воспоминания.","Где бы мы ни были, мне уютнее всего рядом с тобой."],lastLove=-1;
-    function burstHearts(x,y){var layer=q("#heartLayer");for(var i=0;i<8;i++){var h=document.createElement("span");h.className="burst-heart";h.textContent=i%3===0?"🍁":"❤";h.style.left=(x+(Math.random()*46-23))+"px";h.style.top=(y+(Math.random()*22-11))+"px";h.style.setProperty("--dx",(Math.random()*140-70)+"px");h.style.setProperty("--rot",(Math.random()*90-45)+"deg");layer.appendChild(h);setTimeout(function(el){el.remove()},1300,h)}}
-    function openLove(ev){var i=Math.floor(Math.random()*loveNotes.length);while(loveNotes.length>1&&i===lastLove)i=Math.floor(Math.random()*loveNotes.length);lastLove=i;q("#loveText").textContent=loveNotes[i];q("#loveModal").classList.remove("hidden");var x=innerWidth/2,y=innerHeight*.48;if(ev&&typeof ev.clientX==="number"){x=ev.clientX;y=ev.clientY}burstHearts(x,y)}
-    qa(".secret-leaf").forEach(function(b){b.addEventListener("click",openLove)});q("#footerHeart").addEventListener("click",openLove);q("#loveAgain").addEventListener("click",openLove);qa("[data-close-love]").forEach(function(x){x.addEventListener("click",function(){q("#loveModal").classList.add("hidden")})});document.addEventListener("keydown",function(e){if(e.key==="Escape")q("#loveModal").classList.add("hidden")});
+    var loveNotes=[
+      "Соня, я тебя очень люблю ❤️",
+      "Мне очень хорошо рядом с тобой.",
+      "С тобой даже обычный вечер становится маленьким событием.",
+      "Этот вечер я придумал просто потому, что хотел сделать тебе приятно.",
+      "Ты — мой самый любимый человек.",
+      "Спасибо за наши приколы и за то, сколько мы смеёмся вместе.",
+      "Хочу ещё очень много поездок, вечеров и маленьких приключений с тобой.",
+      "Эта записка даёт право на один поцелуй. Срок действия: прямо сейчас 😌❤️",
+      "Мне нравится, что у нас появляются свои маленькие традиции.",
+      "С тобой уютно даже просто молчать рядом.",
+      "Ты делаешь обычные дни теплее.",
+      "Я очень рад, что мы вместе.",
+      "С тобой хочется придумывать такие вечера снова и снова.",
+      "Официально: сегодня ты обязана принять неограниченное количество обнимашек.",
+      "Эта осень стала лучше, потому что ты рядом 🍂",
+      "Я люблю, когда мы вместе занимаемся какой-нибудь ерундой и нам по-настоящему весело.",
+      "Хочу сохранить этот вечер как одно маленькое хорошее воспоминание.",
+      "Если ты это читаешь — я, скорее всего, смотрю на тебя и улыбаюсь.",
+      "Ты — мой любимый человек для совместного ничего-не-делания.",
+      "Финальная записка: я тебя люблю. Всё остальное можно не усложнять ❤️"
+    ],foundNotes=JSON.parse(localStorage.getItem("kostromaFoundNotes")||"[]"),lastLove=-1;
+
+    function showToast(text){var t=q("#toast");t.textContent=text;t.classList.add("show");clearTimeout(showToast.timer);showToast.timer=setTimeout(function(){t.classList.remove("show")},2300)}
+    function burstHearts(x,y){var layer=q("#heartLayer");for(var i=0;i<10;i++){var h=document.createElement("span");h.className="burst-heart";h.textContent=i%3===0?"🍁":"❤";h.style.left=(x+(Math.random()*46-23))+"px";h.style.top=(y+(Math.random()*22-11))+"px";h.style.setProperty("--dx",(Math.random()*150-75)+"px");h.style.setProperty("--rot",(Math.random()*100-50)+"deg");layer.appendChild(h);setTimeout(function(el){el.remove()},1300,h)}}
+    function updateNoteCounter(){var txt=foundNotes.length+"/"+loveNotes.length;q("#noteCount").textContent=txt;q("#noteFoundMeta").textContent="Найдено "+txt}
+    function nextUnseenNote(){var unseen=[];for(var i=0;i<loveNotes.length;i++)if(foundNotes.indexOf(i)<0)unseen.push(i);if(unseen.length)return unseen[Math.floor(Math.random()*unseen.length)];var r=Math.floor(Math.random()*loveNotes.length);while(loveNotes.length>1&&r===lastLove)r=Math.floor(Math.random()*loveNotes.length);return r}
+    function openLove(ev,forced){var i=typeof forced==="number"?forced:nextUnseenNote();lastLove=i;if(foundNotes.indexOf(i)<0){foundNotes.push(i);localStorage.setItem("kostromaFoundNotes",JSON.stringify(foundNotes));showToast("🍁 Найдена записка "+foundNotes.length+" из "+loveNotes.length)}q("#loveText").textContent=loveNotes[i];q("#noteMeta").textContent="Записка "+(i+1)+" из "+loveNotes.length;q("#loveModal").classList.remove("hidden");updateNoteCounter();var x=innerWidth/2,y=innerHeight*.48;if(ev&&typeof ev.clientX==="number"){x=ev.clientX;y=ev.clientY}burstHearts(x,y);if(foundNotes.length===loveNotes.length&&!localStorage.getItem("kostromaAllNotes")){localStorage.setItem("kostromaAllNotes","1");setTimeout(function(){leafStorm(30);showToast("❤️ Все 20 записок найдены")},300)}}
+    updateNoteCounter();
+    qa(".secret-leaf").forEach(function(b){b.addEventListener("click",openLove)});
+    q("#footerHeart").addEventListener("click",openLove);
+    q("#noteCollection").addEventListener("click",function(){if(foundNotes.length)openLove(null,foundNotes[Math.floor(Math.random()*foundNotes.length)]);else openLove()});
+    qa("[data-close-love]").forEach(function(x){x.addEventListener("click",function(){q("#loveModal").classList.add("hidden")})});
+
+    function leafStorm(count){for(var i=0;i<(count||18);i++){(function(delay){setTimeout(function(){var el=document.createElement("span");el.className="leaf-storm-item";el.textContent=Math.random()>.45?"🍁":"🍂";el.style.left=(Math.random()*100)+"vw";el.style.setProperty("--x",(Math.random()*180-90)+"px");el.style.setProperty("--rot",(Math.random()*900-450)+"deg");el.style.setProperty("--dur",(2.7+Math.random()*2.2)+"s");document.body.appendChild(el);setTimeout(function(){el.remove()},5200)},delay)})(i*55)}}
+    function spawnFallingLeaf(){if(document.hidden||matchMedia("(prefers-reduced-motion: reduce)").matches)return;var b=document.createElement("button");b.className="falling-leaf";b.textContent=Math.random()>.45?"🍁":"🍂";b.style.left=(8+Math.random()*84)+"vw";b.style.setProperty("--drift",(Math.random()*140-70)+"px");b.style.setProperty("--fall",(7+Math.random()*3)+"s");b.setAttribute("aria-label","Поймать падающий лист");b.addEventListener("click",function(ev){ev.stopPropagation();openLove(ev);b.remove()});document.body.appendChild(b);setTimeout(function(){if(b.isConnected)b.remove()},10500)}
+    setTimeout(spawnFallingLeaf,6500);setInterval(spawnFallingLeaf,17000);
+
+    var coupons=[
+      ["Один поцелуй","Предъявитель купона получает один поцелуй. Можно использовать немедленно."],
+      ["Обнимашки без лимита","Минимум 30 секунд. Максимум не установлен."],
+      ["Массаж плеч","10 спокойных минут после прогулки — без спешки."],
+      ["Последний маршмеллоу","Сегодня последний маршмеллоу официально твой."],
+      ["Выбор песни","Одна песня в плейлисте — без права вето со стороны второго."],
+      ["Выбор вкусняшки","Можно забрать себе самую вкусную штуку из фондю."],
+      ["Фото вдвоём","Купон обязывает сделать одно хорошее совместное фото прямо сейчас."],
+      ["Плед и обниматься","Срочно завернуться в плед и ничего не делать хотя бы пять минут."]
+    ];
+    function openCoupon(){var c=coupons[Math.floor(Math.random()*coupons.length)];q("#couponTitle").textContent=c[0];q("#couponText").textContent=c[1];q("#couponModal").classList.remove("hidden");burstHearts(innerWidth/2,innerHeight*.45)}
+    q("#couponSecret").addEventListener("click",openCoupon);qa("[data-close-coupon]").forEach(function(x){x.addEventListener("click",function(){q("#couponModal").classList.add("hidden")})});
+
+    q("#luckyButton").addEventListener("click",function(){q("#loveTitle").textContent="Мне повезло";q("#loveText").textContent="Из всех людей мне досталась ты. Неплохо я устроился ❤️";q("#noteMeta").textContent="не записка — просто факт";q("#loveModal").classList.remove("hidden");burstHearts(innerWidth/2,innerHeight*.42);setTimeout(function(){q("#loveTitle").textContent="Для Сони"},100)});
+    var dateTaps=0,dateTimer;q("#datePill").addEventListener("click",function(ev){dateTaps++;q("#datePill").classList.add("pulse");setTimeout(function(){q("#datePill").classList.remove("pulse")},700);clearTimeout(dateTimer);dateTimer=setTimeout(function(){dateTaps=0},1800);if(dateTaps>=4){dateTaps=0;q("#datePill").textContent="Соня ❤️";openLove(ev);setTimeout(function(){q("#datePill").textContent="2 октября • Кострома"},2600)}});
+
+    var cozy=parseInt(localStorage.getItem("kostromaCozy")||"0",10);function applyCozy(){document.body.classList.remove("cozy-1","cozy-2","cozy-3","cozy-4");if(cozy>0)document.body.classList.add("cozy-"+cozy);q("#cozyLevel").textContent=cozy+"/4";q("#cozyButton").childNodes[0].nodeValue=cozy===4?"🕯️ Максимальный уют ":"🕯️ Сделать уютнее "};applyCozy();q("#cozyButton").addEventListener("click",function(){if(cozy<4){cozy++;localStorage.setItem("kostromaCozy",String(cozy));applyCozy();leafStorm(5+cozy*3);showToast(cozy===4?"🍁 Максимальный уровень уюта достигнут":"🕯️ Уют: уровень "+cozy+" из 4")}else{showToast("❤️ Уют уже на максимуме")}});
+
+    var moments=["Поцелуйте друг друга без всякой причины.","Сделайте одно фото прямо сейчас — не позируя слишком долго.","Дайте друг другу попробовать по одной штуке из фондю с закрытыми глазами.","Обнимитесь на 30 секунд и ничего не говорите.","Каждый выбирает одну песню, которую хочет услышать прямо сейчас.","Скажите друг другу по одной смешной вещи, которая сегодня уже случилась.","Сядьте рядом под один плед хотя бы на пять минут.","Выберите следующую вкусняшку друг для друга.","Сделайте максимально дурацкое совместное селфи.","На минуту уберите телефоны и просто полежите рядом.","Каждый называет одно место, куда хотел бы съездить вдвоём.","Поменяйтесь кружками на один глоток — просто потому что можно."];
+    function openMoment(){q("#momentText").textContent=moments[Math.floor(Math.random()*moments.length)];q("#momentModal").classList.remove("hidden");burstHearts(innerWidth/2,innerHeight*.48)}
+    q("#randomMoment").addEventListener("click",openMoment);q("#anotherMoment").addEventListener("click",openMoment);qa("[data-close-moment]").forEach(function(x){x.addEventListener("click",function(){q("#momentModal").classList.add("hidden")})});
+
+    q("#sheepPeek").addEventListener("click",function(ev){showToast("🐑 Я вообще-то тоже приехала на свидание");openLove(ev)});
+    document.addEventListener("pointerdown",function(ev){if(ev.target.closest("button,input,label,.love-modal,.coupon-modal,.moment-modal,.welcome")||Math.random()>.38)return;var s=document.createElement("span");s.className="touch-spark";s.textContent=Math.random()>.55?"🍂":"♡";s.style.left=ev.clientX+"px";s.style.top=ev.clientY+"px";document.body.appendChild(s);setTimeout(function(){s.remove()},950)});
+
+    function showFinalBanner(){var b=q("#finalBanner");b.classList.add("show");setTimeout(function(){b.classList.remove("show")},4000)}
+    if(!sessionStorage.getItem("kostromaWelcomeShown")){q("#welcome").classList.remove("hidden")}q("#startEvening").addEventListener("click",function(){sessionStorage.setItem("kostromaWelcomeShown","1");q("#welcome").classList.add("hidden");leafStorm(24);showToast("🍂 Начинаем наш вечер")});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"){q("#loveModal").classList.add("hidden");q("#couponModal").classList.add("hidden");q("#momentModal").classList.add("hidden")}});
 
     var movies=qa(".movie"), savedMovies=JSON.parse(localStorage.getItem("kostromaMovies")||"null");
     if(savedMovies){savedMovies.forEach(function(v,i){if(movies[i])movies[i].value=v})}
@@ -292,7 +425,7 @@
     q("#pickMovie").addEventListener("click",function(){
       var list=movies.map(function(x){return x.value.trim()}).filter(Boolean),res=q("#movieResult");
       if(list.length<6){res.textContent="Заполнено "+list.length+" из 6 фильмов";return}
-      var n=0,t=setInterval(function(){res.textContent=list[Math.floor(Math.random()*list.length)];n++;if(n>=20){clearInterval(t);res.textContent="🍿 "+list[Math.floor(Math.random()*list.length)];var r=res.getBoundingClientRect();burstHearts(r.left+r.width/2,r.top+r.height/2)}},70)
+      var n=0,t=setInterval(function(){res.textContent=list[Math.floor(Math.random()*list.length)];n++;if(n>=20){clearInterval(t);res.textContent="🍿 "+list[Math.floor(Math.random()*list.length)];var r=res.getBoundingClientRect();burstHearts(r.left+r.width/2,r.top+r.height/2);leafStorm(18);showToast("🎬 Фильм выбран — судьба решила")}},70)
     })
 
     var emoji=[
