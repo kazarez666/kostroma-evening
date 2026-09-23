@@ -85,12 +85,10 @@ try {
   await page.locator('[data-case-app="police"]').click();
   await visibleText('Материалы полиции');
   assert.equal(await page.locator('.police-file').count(), 7);
-  const clueButtons = page.locator('[data-add-clue]');
-  const clueCount = await clueButtons.count();
-  for (let i=0;i<clueCount;i++) {
-    await page.locator('[data-add-clue]').first().click();
-    // re-render changes DOM; keep taking first remaining button until all are marked.
-    if (await page.locator('[data-add-clue]:not(.added)').count()===0) break;
+  for (let i=0;i<10;i++) {
+    const pending = page.locator('[data-add-clue]:not(.added)');
+    if (await pending.count()===0) break;
+    await pending.first().click();
   }
 
   // Add message clue and mail clue explicitly if needed.
