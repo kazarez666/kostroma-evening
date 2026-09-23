@@ -25,8 +25,10 @@ try{
   assert.match(await page.locator('#chosenDinnerName').innerText(),/Пицца/);
   await page.locator('#fondueRecommend').click();
   assert.equal((await page.locator('#fondueCount').innerText()).trim(),'8');
-  await page.locator('.fondue-chip').nth(12).click();
-  assert.ok(Number((await page.locator('#fondueCount').innerText()).trim())<=8);
+  assert.ok(await page.locator('.fondue-chip:disabled').count()>0,'Unselected fondue options should lock at 8');
+  await page.locator('.fondue-chip.active').first().click();
+  assert.equal((await page.locator('#fondueCount').innerText()).trim(),'7');
+  assert.equal(await page.locator('.fondue-chip:disabled').count(),0,'Options should unlock after removing one item');
 
   // Movie lottery with all six slots.
   await page.locator('.mnav[data-tab="movies"]').click();
