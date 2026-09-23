@@ -36,6 +36,7 @@ try{
   await movies.nth(0).fill('Амели');
   await movies.nth(1).fill('Отпуск по обмену');
   await page.locator('#pickMovie').click();
+  await page.waitForFunction(()=>document.querySelector('#movieResult')?.textContent?.startsWith('🍿'),null,{timeout:5000});
   assert.doesNotMatch(await page.locator('#movieResult').innerText(),/Добавьте/);
 
   // Emoji game.
