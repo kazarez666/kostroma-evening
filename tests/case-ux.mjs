@@ -80,7 +80,7 @@ try {
     noteLeaf: el.dataset.noteLeaf === '1',
   })));
   assert.ok(leafLayout.some(leaf => leaf.x > .35 && leaf.x < .65), 'Leaves should reach the middle of the interface');
-  assert.ok(leafLayout.every(leaf => leaf.interactive), 'Every scattered leaf should react to a click');
+  assert.ok(leafLayout.every(leaf => !leaf.interactive), 'Ambient leaves must never intercept case controls');
   assert.ok(leafLayout.some(leaf => leaf.noteLeaf), 'Some side leaves should contain romantic notes');
   assert.ok(leafLayout.some(leaf => !leaf.noteLeaf), 'Central leaves should stay decorative rather than opening notes');
 
@@ -94,12 +94,20 @@ try {
   assert.ok(Math.max(...mobileLeafStyles.map(x => x.fontSize)) <= 18.1, 'Mobile ambient leaves should remain compact');
 
   const centralLeaf = page.locator('.secret-leaf[data-note-leaf="0"]').first();
-  await centralLeaf.click({ force: true });
+  const centralBox = await centralLeaf.boundingBox();
+  await page.evaluate(({x,y}) => document.body.dispatchEvent(new MouseEvent('click', { bubbles:true, clientX:x, clientY:y })), {
+    x: centralBox.x + centralBox.width / 2,
+    y: centralBox.y + centralBox.height / 2,
+  });
   assert.equal(await page.locator('#loveModal').isVisible(), false, 'Central leaves should react without opening a note');
 
   const noteLeaf = page.locator('.secret-leaf[data-note-leaf="1"]').first();
-  await noteLeaf.click({ force: true });
-  assert.equal(await page.locator('#loveModal').isVisible(), true, 'Side leaves should open a note');
+  const noteBox = await noteLeaf.boundingBox();
+  await page.evaluate(({x,y}) => document.body.dispatchEvent(new MouseEvent('click', { bubbles:true, clientX:x, clientY:y })), {
+    x: noteBox.x + noteBox.width / 2,
+    y: noteBox.y + noteBox.height / 2,
+  });
+  assert.equal(await page.locator('#loveModal').isVisible(), true, 'Side leaves should open a note when tapped on free space');
   await page.locator('.love-again[data-close-love]').click();
 
   if (process.env.CI) await page.screenshot({ path: 'test-artifacts/scattered-leaves-desktop.png' });
