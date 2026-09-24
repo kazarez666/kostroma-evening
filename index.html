@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#163a2a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="./manifest.webmanifest">
   <title>Наш вечер в Костроме 🍂</title>
   <style>
     :root{
@@ -79,7 +82,25 @@
     .detective-launch{background:linear-gradient(135deg,#182824,#2f4137)!important;color:#fff!important;border-color:rgba(255,255,255,.06)!important}.detective-launch p{color:rgba(255,255,255,.68)!important}
     .case-tab{color:#244336}.case-wrap{border-radius:30px;overflow:clip;background:#101817;box-shadow:0 28px 75px rgba(26,22,17,.2);min-height:650px;color:#dfe9e4}.case-intro{min-height:650px;padding:56px 34px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 20%,rgba(114,157,132,.16),transparent 30%),linear-gradient(145deg,#0d1715,#17231f 58%,#251d19)}.case-intro__stamp{border:1px solid rgba(188,210,198,.28);padding:8px 12px;border-radius:5px;font:800 11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;color:#9bb5a7;transform:rotate(-1.5deg)}.case-intro__icon{width:68px;height:68px;border:1px solid rgba(176,206,190,.24);border-radius:50%;display:grid;place-items:center;margin:22px 0 4px;font-size:28px;color:#c4d8cd;box-shadow:0 0 45px rgba(111,158,132,.12)}.case-eyebrow{font:800 11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.2em;color:#789588;margin:12px 0 8px}.case-intro h2{font-size:clamp(43px,8vw,78px);line-height:.98;letter-spacing:-.055em;margin:0;color:#f0f4f1}.case-lead{max-width:720px;line-height:1.7;color:#aabbb2;font-size:16px;margin:20px auto}.case-rules{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.case-rules span{padding:8px 10px;border:1px solid rgba(176,206,190,.13);border-radius:999px;background:rgba(255,255,255,.035);font-size:12px;color:#afc1b7}.case-warning{font-size:11px;color:#62766c;margin:20px 0 12px}.case-start{border:0;border-radius:14px;background:#d9e8df;color:#14231d;padding:14px 19px;font-weight:900;box-shadow:0 12px 28px rgba(0,0,0,.22)}
     .case-desk{min-height:700px;background:linear-gradient(180deg,#121b19,#17221f)}.case-head{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:20px 22px;border-bottom:1px solid rgba(190,218,202,.08);background:rgba(8,15,13,.52)}.case-head small{font:750 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.16em;color:#6f8b7d}.case-head h2{margin:4px 0 0;font-size:21px;color:#edf4ef;letter-spacing:-.02em}.case-head__right{display:flex;align-items:center;gap:10px}.case-progress{display:grid;text-align:right}.case-progress span{font-size:10px;color:#6f8b7d;text-transform:uppercase;letter-spacing:.1em}.case-progress b{font:850 15px ui-monospace,SFMono-Regular,Menlo,monospace;color:#d2e5da}.case-reset{border:1px solid rgba(220,235,226,.12);background:transparent;color:#80968a;border-radius:10px;padding:8px 10px;font-size:11px}
-    .case-apps{display:flex;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:20;padding:9px 10px;border-bottom:1px solid rgba(190,218,202,.08);background:#0e1715;scrollbar-width:thin}.case-app{flex:0 0 auto;border:0;border-radius:10px;background:transparent;color:#789087;padding:8px 10px;font-size:11px;font-weight:800;white-space:nowrap}.case-app span{margin-right:4px}.case-app.active{background:#263b33;color:#eef6f1}.case-app--final{color:#d3b48b}.case-screen{padding:22px;min-height:560px}
+    .case-apps{display:flex;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:20;padding:9px 10px;border-bottom:1px solid rgba(190,218,202,.08);background:#0e1715;scrollbar-width:thin}.case-app{flex:0 0 auto;border:0;border-radius:10px;background:transparent;color:#789087;padding:8px 10px;font-size:11px;font-weight:800;white-space:nowrap}.case-app span{margin-right:4px}.case-app.active{background:#263b33;color:#eef6f1}.case-app--final{color:#d3b48b}.case-app[data-unseen="1"]{position:relative}.case-app[data-unseen="1"]:after{content:"";position:absolute;right:7px;top:7px;width:6px;height:6px;border-radius:50%;background:#d7b777;box-shadow:0 0 0 3px rgba(215,183,119,.08)}.case-screen{padding:22px;min-height:560px}
+    .view-state{display:inline-flex;align-items:center;gap:5px;margin-top:7px;font:800 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:#6f877b}.view-state:before{content:"";width:6px;height:6px;border-radius:50%;background:#638273}.view-state--new{color:#c6aa7d}.view-state--new:before{background:#d3b178}.police-index-card.is-seen{opacity:.68}.folder-card.is-seen{opacity:.72}
+    .case-autosave{display:block;margin-top:4px;color:#5f766b;font:700 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em}
+    @media(min-width:1000px){
+      .case-desk{display:grid;grid-template-columns:218px minmax(0,1fr);grid-template-rows:auto 1fr;align-items:start}
+      .case-desk.hidden{display:none}
+      .case-head{grid-column:1/-1;grid-row:1}
+      .case-apps{grid-column:1;grid-row:2;display:grid;gap:5px;align-content:start;overflow:visible;position:sticky;top:18px;z-index:18;padding:16px 12px;border-right:1px solid rgba(190,218,202,.08);border-bottom:0;background:#0e1715;min-height:calc(100vh - 36px)}
+      .case-app{width:100%;text-align:left;padding:11px 12px;font-size:12px;border-radius:11px}
+      .case-app span{display:inline-block;width:22px;margin-right:5px;text-align:center}
+      .case-app[data-unseen="1"]:after{right:12px;top:50%;transform:translateY(-50%)}
+      .case-screen{grid-column:2;grid-row:2;padding:30px 34px 40px;min-width:0;min-height:720px}
+      .case-section-title h3{font-size:31px}
+      .case-paper{max-width:900px;margin-left:auto;margin-right:auto}
+      .people-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .police-index{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .source-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .board-list{max-width:980px}
+    }
     .case-screen h3{margin:0;color:#edf4ef}.case-screen p{color:#9eb0a7;line-height:1.6}.case-section-title{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:16px}.case-section-title small{color:#688076;font:750 10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em}.case-section-title h3{font-size:27px;letter-spacing:-.035em}.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.case-card{border:1px solid rgba(190,218,202,.09);border-radius:16px;background:#192522;padding:16px}.case-card--important{background:linear-gradient(145deg,#1b2d27,#27251f);border-color:rgba(208,179,132,.16)}.case-card small{font:750 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.09em;color:#698279}.case-card h4{color:#e8efeb;margin:5px 0 8px;font-size:16px}.case-card p{margin:0;font-size:13px}.case-time{color:#c5a77c!important;font:800 11px ui-monospace,SFMono-Regular,Menlo,monospace!important}.case-note{padding:14px 15px;border-left:3px solid #6e907d;background:#18231f;border-radius:0 12px 12px 0;color:#a7b9af;font-size:13px;line-height:1.55}.case-timeline{display:grid;gap:8px}.case-event{display:grid;grid-template-columns:68px 1fr;gap:12px;align-items:start;padding:11px 0;border-bottom:1px dashed rgba(190,218,202,.08)}.case-event time{font:800 11px ui-monospace,SFMono-Regular,Menlo,monospace;color:#b89a73}.case-event div{color:#a9b8b1;font-size:13px;line-height:1.45}
     .person-card{display:grid;grid-template-columns:74px 1fr;gap:13px}.case-avatar{width:70px;height:82px;border-radius:12px;display:grid;place-items:center;font-size:25px;font-weight:900;color:rgba(255,255,255,.9);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}.av-marina{background:linear-gradient(145deg,#6e493f,#a57262)}.av-denis{background:linear-gradient(145deg,#334b56,#5c7984)}.av-alina{background:linear-gradient(145deg,#5c4d70,#8a76a1)}.av-pavel{background:linear-gradient(145deg,#3d5350,#698077)}.av-artem{background:linear-gradient(145deg,#574b3d,#8b755e)}.person-meta{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.person-meta span{font-size:10px;padding:4px 6px;border-radius:6px;background:#26332f;color:#91a69b}.person-link{border:0;background:transparent;color:#b6cfc1;padding:0;text-decoration:underline;font-size:12px}
     .thread-list{display:grid;grid-template-columns:210px 1fr;gap:12px}.thread-tabs{display:grid;gap:7px;align-content:start}.thread-btn{border:1px solid rgba(190,218,202,.08);background:#17211f;color:#8fa298;text-align:left;padding:11px;border-radius:11px}.thread-btn.active{background:#263a33;color:#edf4ef}.thread-pane{border:1px solid rgba(190,218,202,.08);border-radius:14px;background:#141e1c;padding:14px;min-height:390px}.msg{max-width:82%;padding:9px 11px;margin:8px 0;border-radius:13px;background:#24312d;color:#b6c5bd;font-size:13px;line-height:1.45}.msg.me{margin-left:auto;background:#29493d;color:#dbe8e1}.msg time{display:block;font:700 9px ui-monospace,SFMono-Regular,Menlo,monospace;opacity:.55;margin-bottom:4px}
@@ -436,7 +457,7 @@
             <div>
               <small>АРХИВ ЦИФРОВОЙ ЭКСПЕРТИЗЫ</small>
               <h2>№24 · Последний эфир</h2>
-              <p class="case-context" id="caseContext">Сводка дела</p>
+              <p class="case-context" id="caseContext">Сводка дела</p><span class="case-autosave">● прогресс сохраняется автоматически</span>
             </div>
             <div class="case-head__right">
               <div class="case-progress"><span>Материалов на доске</span><b id="caseProgress">0</b></div>
@@ -767,9 +788,23 @@
     }
     var caseSchema="case24-polish-v7";
     if(localStorage.getItem("case24Schema")!==caseSchema){localStorage.removeItem("case24State");localStorage.setItem("case24Schema",caseSchema)}
-    var caseDefault={started:false,mail:false,files:false,clues:[],pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",boardAnswers:{},suspectMarks:{},suspectNotes:{},caseNotebook:"",finalDraft:{},interrogation:{active:null,asked:{},visits:{}},hint:0,solved:false,app:"brief",device:"hub",filePath:"root",openFile:null,webPage:"home",briefPage:0,policePage:null};
+    var caseDefault={started:false,mail:false,files:false,clues:[],pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",boardAnswers:{},suspectMarks:{},suspectNotes:{},caseNotebook:"",finalDraft:{},visitedApps:{brief:true},seenPolice:[],seenFiles:[],interrogation:{active:null,asked:{},visits:{}},hint:0,solved:false,app:"brief",device:"hub",filePath:"root",openFile:null,webPage:"home",briefPage:0,policePage:null};
     var caseState=Object.assign({},caseDefault,JSON.parse(localStorage.getItem("case24State")||"{}"));
     function saveCase(){localStorage.setItem("case24State",JSON.stringify(caseState))}
+    var caseTrackedApps={devices:1,people:1,interview:1,web:1,police:1,board:1};
+    function syncCaseAppVisited(active){
+      caseState.visitedApps=caseState.visitedApps||{brief:true};
+      qa(".case-app").forEach(function(b){
+        var id=b.getAttribute("data-case-app");
+        b.classList.toggle("active",id===active);
+        if(caseTrackedApps[id])b.setAttribute("data-unseen",caseState.visitedApps[id]?"0":"1");
+        else b.removeAttribute("data-unseen");
+      });
+    }
+    function markSeen(listName,value){
+      caseState[listName]=Array.isArray(caseState[listName])?caseState[listName]:[];
+      if(caseState[listName].indexOf(value)<0)caseState[listName].push(value);
+    }
     var caseSoundEnabled=localStorage.getItem("case24Sound")==="1",caseAudio=null;
     function playCaseSound(kind){
       if(!caseSoundEnabled)return;
@@ -1209,14 +1244,14 @@
     function renderPoliceMaterials(){
       var page=Number(caseState.policePage);
       if(caseState.policePage===null||!Number.isInteger(page)||page<0||page>=policeFiles.length){
-        return '<div class="case-section-title"><div><small>ПРИЛОЖЕНИЯ К ДЕЛУ №24</small><h3>Материалы полиции</h3></div></div><p class="board-help">Семь самостоятельных документов. Откройте каждый лист, сопоставьте записи и при желании закрепите его на доске.</p><div class="police-index">'+policeFiles.map(function(d,i){return '<button type="button" class="police-index-card" data-police-open="'+i+'"><span class="police-index-card__number">'+String(i+1).padStart(2,"0")+'</span><span><small>'+caseEsc(d.kind)+'</small><b>'+caseEsc(d.title)+'</b><em>'+caseEsc(d.file)+'</em></span><span aria-hidden="true">↗</span></button>'}).join("")+'</div>';
+        return '<div class="case-section-title"><div><small>ПРИЛОЖЕНИЯ К ДЕЛУ №24</small><h3>Материалы полиции</h3></div></div><p class="board-help">Семь самостоятельных документов. Метка показывает только, открывали вы лист или нет — она ничего не говорит о важности.</p><div class="police-index">'+policeFiles.map(function(d,i){var seen=(caseState.seenPolice||[]).indexOf(i)>=0;return '<button type="button" class="police-index-card '+(seen?'is-seen':'')+'" data-police-open="'+i+'"><span class="police-index-card__number">'+String(i+1).padStart(2,"0")+'</span><span><small>'+caseEsc(d.kind)+'</small><b>'+caseEsc(d.title)+'</b><em>'+caseEsc(d.file)+'</em><span class="view-state '+(seen?'':'view-state--new')+'">'+(seen?'просмотрено':'не открывали')+'</span></span><span aria-hidden="true">↗</span></button>'}).join("")+'</div>';
       }
       var d=policeFiles[page];
       var rows=d.body.split("\n").map(function(line){var m=line.match(/^(\d{2}:\d{2}(?::\d{2})?)(?:\s*·\s*(.*))?$/);return m?'<div class="police-entry"><time>'+caseEsc(m[1])+'</time><span>'+caseEsc(m[2]||"Отметка времени записи")+'</span></div>':'<p class="police-entry__note">'+caseEsc(line)+'</p>'}).join("");
       return '<div class="case-file-shell"><div class="police-reader-top"><button type="button" class="browser-back" data-police-back>← К списку документов</button><span>ЛИСТ '+(page+1)+' / '+policeFiles.length+'</span></div><article class="case-paper police-paper"><div class="case-doc-head"><div><div class="case-doc-agency">ОТДЕЛ РАССЛЕДОВАНИЙ · НОВОГРАД</div><h3 class="case-doc-title">'+caseEsc(d.title)+'</h3><div class="case-doc-subtitle">ПРИЛОЖЕНИЕ №'+(page+1)+' · '+caseEsc(d.kind.toUpperCase())+'</div></div><div class="case-doc-stamp">КОПИЯ<br>ДЛЯ ДЕЛА</div></div><div class="police-paper__meta"><div><small>ИМЯ ФАЙЛА</small><b>'+caseEsc(d.file)+'</b></div><div><small>ИСТОЧНИК</small><b>'+caseEsc(d.kind)+'</b></div></div><div class="case-doc-section"><h4>Как получены данные</h4><p>'+caseEsc(d.what)+'</p></div><div class="police-attachment"><div class="police-attachment__head"><b>ПРИЛОЖЕННАЯ ЗАПИСЬ</b><span>ИСХОДНЫЕ ДАННЫЕ</span></div>'+rows+'</div>'+(d.img?'<div class="police-paper__photo">'+caseImg(d.img,d.title)+'<small>ИЗОБРАЖЕНИЕ, ПРИЛОЖЕННОЕ К ВЫГРУЗКЕ</small></div>':'')+'<div class="police-paper__pin">'+pinButton("police_"+page)+'</div><div class="case-doc-foot"><span>ДЕЛО №24/10-26 · КОПИЯ</span><span>ПРИЛ. '+(page+1)+' / '+policeFiles.length+'</span></div></article><div class="case-file-controls"><button data-police-prev '+(page===0?'disabled':'')+'>← Предыдущий</button><span class="case-file-pagecount">'+(page+1)+' / '+policeFiles.length+'</span><button data-police-next '+(page===policeFiles.length-1?'disabled':'')+'>Следующий →</button></div></div>';
     }
     function renderCaseApp(app){
-      caseState.app=app;saveCase();qa(".case-app").forEach(function(b){b.classList.toggle("active",b.getAttribute("data-case-app")===app)});
+      caseState.app=app;caseState.visitedApps=caseState.visitedApps||{brief:true};caseState.visitedApps[app]=true;saveCase();syncCaseAppVisited(app);
       var s=q("#caseScreen"),out="";
       if(app==="brief"){
         setCaseContext("Официальная сводка дела");
@@ -1282,7 +1317,7 @@
       var labels={root:"/Users/kvolkov",desktop:"/Users/kvolkov/Desktop",docs:"/Users/kvolkov/Documents",podcast:"/Users/kvolkov/Podcast",invoices:"/Users/kvolkov/Invoices",downloads:"/Users/kvolkov/Downloads",evidence:"/Users/kvolkov/Documents/evidence_backup"};
       return '<div class="file-toolbar"><button data-device="laptop">← Ноутбук</button>'+(path!=="root"?'<button data-filepath="'+(path==="evidence"?"docs":"root")+'">← Назад</button>':'')+'<span class="file-breadcrumb">'+labels[path]+'</span></div>'
     }
-    function renderFileCard(id){var d=caseFiles[id];return '<button class="folder-card file-card-button" data-open-file="'+id+'"><span class="folder-icon">'+d.icon+'</span><b>'+d.name+'</b><small>'+d.meta+'</small></button>'}
+    function renderFileCard(id){var d=caseFiles[id],seen=(caseState.seenFiles||[]).indexOf(id)>=0;return '<button class="folder-card file-card-button '+(seen?"is-seen":"")+'" data-open-file="'+id+'"><span class="folder-icon">'+d.icon+'</span><b>'+d.name+'</b><small>'+d.meta+'</small><span class="view-state '+(seen?"":"view-state--new")+'">'+(seen?"просмотрено":"не открывали")+'</span></button>'}
     function renderFileDoc(d,id){return '<div class="file-viewer"><div class="file-viewer__top"><button data-close-file>← К файлам</button><span>'+d.kind+'</span></div><div class="file-viewer__icon">'+d.icon+'</div><h3>'+d.name+'</h3><p class="file-viewer__meta">'+d.meta+'</p><pre class="file-viewer__body">'+caseEsc(d.body)+'</pre><span class="case-source-badge">ИСТОЧНИК: локальный файл Кирилла</span>'+pinButton("file_"+id)+'</div>'}
     function renderLaptop(view){
       if(view==="home")return deviceFrame("ThinkPad · образ диска","QC-TP-221",'<div class="app-grid"><button class="device-app" data-device="laptop_mail"><span>✉️</span><b>Почта</b><small>Quiet City Mail</small></button><button class="device-app" data-device="laptop_browser"><span>🌐</span><b>Браузер</b><small>история и закладки</small></button><button class="device-app" data-device="laptop_files"><span>🗂️</span><b>Файлы</b><small>/Users/kvolkov</small></button></div>');
@@ -1348,10 +1383,10 @@
         if(q("#caseNextPage"))q("#caseNextPage").onclick=function(){caseState.briefPage=Math.min(3,(Number(caseState.briefPage)||0)+1);saveCase();renderCaseApp("brief")};
       }
       if(app==="police"){
-        qa("[data-police-open]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.policePage=Number(b.getAttribute("data-police-open"));saveCase();playCaseSound("paper");renderCaseApp("police");scrollToCaseContent()}});
+        qa("[data-police-open]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.policePage=Number(b.getAttribute("data-police-open"));markSeen("seenPolice",caseState.policePage);saveCase();playCaseSound("paper");renderCaseApp("police");scrollToCaseContent()}});
         if(q("[data-police-back]"))q("[data-police-back]").onclick=function(){caseState.policePage=null;saveCase();renderCaseApp("police");scrollToCaseContent()};
-        if(q("[data-police-prev]"))q("[data-police-prev]").onclick=function(){caseState.policePage=Math.max(0,caseState.policePage-1);saveCase();playCaseSound("paper");renderCaseApp("police");scrollToCaseContent()};
-        if(q("[data-police-next]"))q("[data-police-next]").onclick=function(){caseState.policePage=Math.min(policeFiles.length-1,caseState.policePage+1);saveCase();playCaseSound("paper");renderCaseApp("police");scrollToCaseContent()};
+        if(q("[data-police-prev]"))q("[data-police-prev]").onclick=function(){caseState.policePage=Math.max(0,caseState.policePage-1);markSeen("seenPolice",caseState.policePage);saveCase();playCaseSound("paper");renderCaseApp("police");scrollToCaseContent()};
+        if(q("[data-police-next]"))q("[data-police-next]").onclick=function(){caseState.policePage=Math.min(policeFiles.length-1,caseState.policePage+1);markSeen("seenPolice",caseState.policePage);saveCase();playCaseSound("paper");renderCaseApp("police");scrollToCaseContent()};
       }
       if(app==="interview"){
         qa("[data-interview-suspect]",q("#caseScreen")).forEach(function(b){b.onclick=function(){ensureInterrogation();var id=b.getAttribute("data-interview-suspect");caseState.interrogation.active=id;caseState.interrogation.visits[id]=(caseState.interrogation.visits[id]||0)+1;saveCase();renderCaseApp("interview")}});
@@ -1360,7 +1395,7 @@
       }
       qa("[data-open-app]",q("#caseScreen")).forEach(function(b){b.onclick=function(){renderCaseApp(b.getAttribute("data-open-app"))}});
       qa("[data-device]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.app="devices";caseState.device=b.getAttribute("data-device");saveCase();renderCaseApp("devices")}});
-      qa("[data-filepath]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.filePath=b.getAttribute("data-filepath");caseState.openFile=null;saveCase();renderCaseApp("devices")}});qa("[data-open-file]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.openFile=b.getAttribute("data-open-file");saveCase();renderCaseApp("devices")}});qa("[data-close-file]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.openFile=null;saveCase();renderCaseApp("devices")}});
+      qa("[data-filepath]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.filePath=b.getAttribute("data-filepath");caseState.openFile=null;saveCase();renderCaseApp("devices")}});qa("[data-open-file]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.openFile=b.getAttribute("data-open-file");markSeen("seenFiles",caseState.openFile);saveCase();renderCaseApp("devices")}});qa("[data-close-file]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.openFile=null;saveCase();renderCaseApp("devices")}});
       bindWebLinks();
       qa("[data-open-web]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.app="web";caseState.webPage=b.getAttribute("data-open-web");saveCase();renderCaseApp("web")}});
       if(q("#caseWebSearch"))q("#caseWebSearch").onclick=function(){searchWeb(q("#caseWebQuery").value)};
@@ -1394,7 +1429,7 @@
       saveCase();renderCaseApp(app);
       q("#caseDesk").scrollIntoView({behavior:"smooth",block:"start"})
     })});
-    q("#resetCase").addEventListener("click",function(){if(confirm("Сбросить расследование? Откроется чистая версия дела.")){caseState=Object.assign({},caseDefault,{started:true,pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",boardAnswers:{},suspectMarks:{},suspectNotes:{},caseNotebook:"",finalDraft:{},interrogation:{active:null,asked:{},visits:{}},clues:[],hint:0,hints:{devices:0,timeline:0,motive:0},policePage:null});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
+    q("#resetCase").addEventListener("click",function(){if(confirm("Сбросить расследование? Откроется чистая версия дела.")){caseState=Object.assign({},caseDefault,{started:true,pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",boardAnswers:{},suspectMarks:{},suspectNotes:{},caseNotebook:"",finalDraft:{},visitedApps:{brief:true},seenPolice:[],seenFiles:[],interrogation:{active:null,asked:{},visits:{}},clues:[],hint:0,hints:{devices:0,timeline:0,motive:0},policePage:null});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
     if(caseState.started){q("#caseIntro").classList.add("hidden");q("#caseDesk").classList.remove("hidden");renderCaseApp(caseState.app||"brief")}
 
     var movies=qa(".movie"), savedMovies=JSON.parse(localStorage.getItem("kostromaMovies")||"null");
@@ -1464,6 +1499,7 @@
     gameTabs();
     q("#nextQuestion").addEventListener("click",function(){var a=games[current],i=Math.floor(Math.random()*a.length);while(a.length>1&&i===prev)i=Math.floor(Math.random()*a.length);prev=i;q("#talkQuestion").textContent=a[i]})
     q("#showAll").addEventListener("click",function(){var box=q("#allQuestions");if(!box.classList.contains("hidden")){box.classList.add("hidden");return}box.innerHTML="<ol>"+games[current].map(function(x){return "<li>"+x+"</li>"}).join("")+"</ol>";box.classList.remove("hidden")})
+    if("serviceWorker" in navigator&&location.hostname.endsWith("github.io")){addEventListener("load",function(){navigator.serviceWorker.register("./sw.js").catch(function(){})})}
   </script>
 </body>
 </html>
