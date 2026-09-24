@@ -9,6 +9,9 @@ on:
       - "tests/site-smoke.mjs"
       - "tests/trip-day-resume.mjs"
       - "tests/case-ux.mjs"
+      - "tests/desktop-case-ux.mjs"
+      - "sw.js"
+      - "manifest.webmanifest"
       - ".github/workflows/detective-e2e.yml"
   workflow_dispatch:
   pull_request:
@@ -45,6 +48,8 @@ jobs:
         run: node tests/trip-day-resume.mjs
       - name: Verify spoiler-safe case navigation and reading
         run: node tests/case-ux.mjs
+      - name: Verify laptop detective workspace
+        run: node tests/desktop-case-ux.mjs
       - name: Save reveal screenshots
         if: always()
         uses: actions/upload-artifact@v4
