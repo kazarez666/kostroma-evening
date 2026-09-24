@@ -124,12 +124,14 @@ try{
   await page.locator('[data-remove-pin]').first().click();
   assert.equal(await page.locator('.board-clue').count(),before-1);
 
-  // Optional hints and final screen still open.
+  // Optional hints and the complete final-answer flow still work.
   await app('hints');
   await page.locator('#nextHint').click();
   assert.ok(await page.locator('.hint-level:not(.locked)').count()>=1);
   await app('final');
-  assert.equal(await page.locator('#submitCase').count(),1);
+  for(const id of ['#finalWho','#finalMotive','#finalMethod','#finalEvidence']) await page.locator(id).selectOption({index:1});
+  await page.locator('#submitCase').click();
+  await textVisible('Вы раскрыли');
 
   await page.locator('.mnav[data-tab="plan"]').click();
   await textVisible('План вечера');
