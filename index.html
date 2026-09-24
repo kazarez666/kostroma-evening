@@ -484,7 +484,8 @@
       window.scrollTo({top:0,behavior:"smooth"})
     }
     qa("[data-tab]").forEach(function(b){b.addEventListener("click",function(){showTab(b.getAttribute("data-tab"))})});qa("[data-open]").forEach(function(b){b.addEventListener("click",function(){showTab(b.getAttribute("data-open"))})});
-    var secretPlanRevealed=sessionStorage.getItem("kostromaSecretPlanRevealed")==="1";
+    var caseToday=new Date(),caseTripDay=caseToday.getFullYear()===2026&&caseToday.getMonth()===9&&caseToday.getDate()===2;
+    var secretPlanRevealed=sessionStorage.getItem("kostromaSecretPlanRevealed")==="1" || (caseTripDay&&localStorage.getItem("kostromaSecretPlanRevealedOnTripDay")==="1");
     function openDetectiveCase(){
       sessionStorage.setItem("kostromaSecretCaseOpened","1");
       if(typeof caseState!=="undefined"&&!caseState.started){caseState.app="brief";caseState.briefPage=0;saveCase()}
@@ -524,6 +525,7 @@
         });
         localStorage.setItem("kostromaChecks",JSON.stringify(saved));
         sessionStorage.setItem("kostromaSecretPlanRevealed","1");
+        if(caseTripDay)localStorage.setItem("kostromaSecretPlanRevealedOnTripDay","1");
         applySecretPlanMode(true);
         progress();
         flow.classList.remove("plan-reveal-out");
@@ -673,8 +675,11 @@
       home:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80"
     };
 
-    var caseNow=new Date(),caseTripDay=caseNow.getFullYear()===2026&&caseNow.getMonth()===9&&caseNow.getDate()===2;
-    if(caseTripDay&&!sessionStorage.getItem("case24TripFresh")){localStorage.removeItem("case24State");sessionStorage.setItem("case24TripFresh","1")}
+    // Prepare a clean case once for the trip day. A new tab or browser session must not erase play in progress.
+    if(caseTripDay&&localStorage.getItem("case24TripPrepared")!=="2026-10-02"){
+      localStorage.removeItem("case24State");
+      localStorage.setItem("case24TripPrepared","2026-10-02");
+    }
     var caseSchema="case24-polish-v7";
     if(localStorage.getItem("case24Schema")!==caseSchema){localStorage.removeItem("case24State");localStorage.setItem("case24Schema",caseSchema)}
     var caseDefault={started:false,mail:false,files:false,clues:[],pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",suspectMarks:{},suspectNotes:{},caseNotebook:"",interrogation:{active:null,asked:{},visits:{}},hint:0,solved:false,app:"brief",device:"hub",filePath:"root",openFile:null,webPage:"home",briefPage:0};
