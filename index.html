@@ -110,6 +110,9 @@
     .file-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}.file-toolbar button{border:1px solid rgba(190,218,202,.1);background:#16211e;color:#9eb1a7;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:800}.file-breadcrumb{color:#71877c;font:750 10px ui-monospace,SFMono-Regular,Menlo,monospace;margin-left:auto}.file-side button[data-filepath]{cursor:pointer}.file-side button.active{background:#263932!important;color:#edf4ef!important}.file-card-button{width:100%;text-align:left;cursor:pointer}.file-empty{padding:30px;text-align:center;color:#6d8177;border:1px dashed rgba(190,218,202,.1);border-radius:13px}
     .file-viewer{max-width:700px;margin:auto;border:1px solid rgba(190,218,202,.1);border-radius:16px;background:#121c19;padding:18px}.file-viewer__top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}.file-viewer__top button{border:1px solid rgba(190,218,202,.1);background:#1b2924;color:#a9bbb1;border-radius:9px;padding:7px 9px;font-size:10px}.file-viewer__top span{color:#6f867a;font:800 9px ui-monospace,SFMono-Regular,Menlo,monospace}.file-viewer__icon{font-size:38px}.file-viewer h3{margin:6px 0 3px!important}.file-viewer__meta{margin:0 0 14px!important;color:#6f867a!important;font-size:10px!important}.file-viewer__body{white-space:pre-wrap;margin:0;padding:14px;border-radius:12px;background:#0e1715;border:1px solid rgba(190,218,202,.07);color:#aebeb5;font:11px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace}
     .board-clue{grid-template-columns:34px minmax(0,1fr)!important}.board-clue__source{display:block;color:#6f877b;font:800 9px ui-monospace,SFMono-Regular,Menlo,monospace;margin-bottom:3px}.board-clue textarea{width:100%;min-height:58px;margin-top:9px;resize:vertical;border:1px solid rgba(190,218,202,.09);border-radius:9px;background:#101a17;color:#d6e1db;padding:9px;font:11px/1.45 inherit;outline:0}.board-clue textarea:focus{border-color:rgba(193,216,203,.22)}.board-remove{margin-top:7px;border:0;background:transparent;color:#71867b;padding:3px 0;font-size:10px;text-decoration:underline;cursor:pointer}
+    .board-tabs{display:flex;gap:7px;overflow-x:auto;margin:0 0 16px}.board-tabs button{flex:0 0 auto;border:1px solid rgba(190,218,202,.09);border-radius:10px;background:#15201d;color:#80968b;padding:8px 10px;font-size:10px;font-weight:850}.board-tabs button.active{background:#294038;color:#e7f0eb;border-color:rgba(190,218,202,.18)}.board-card-tools{display:flex;gap:8px;margin-top:9px}.board-card-tools label{display:grid;gap:4px;color:#6e8579;font-size:9px;font-weight:800}.board-card-tools input{border:1px solid rgba(190,218,202,.1);border-radius:8px;background:#101916;color:#dbe5df;padding:7px 8px;color-scheme:dark}.board-tool-head{display:flex;justify-content:space-between;gap:12px;align-items:end;margin:10px 0}.board-tool-head small{color:#688076;font:750 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em}.board-tool-head h3{margin:3px 0 0!important}.board-tool-head span{color:#7e9489;font-size:10px}.board-help{font-size:11px!important;color:#71867b!important;margin:0 0 14px!important}.manual-timeline{display:grid;gap:0;border-left:2px solid #30483e;margin-left:34px}.timeline-row{display:grid;grid-template-columns:58px 1fr;gap:13px;position:relative;padding:0 0 15px 18px}.timeline-row:before{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:#9db5a8;left:-5.5px;top:4px;box-shadow:0 0 0 4px #17231f}.timeline-row time{font:850 12px ui-monospace,SFMono-Regular,Menlo,monospace;color:#d1b48d}.timeline-row small{display:block;color:#677e73;font-size:9px}.timeline-row b{display:block;color:#e0e9e4;margin:2px 0;font-size:12px}.timeline-row p{margin:0!important;font-size:11px!important}.link-builder{display:grid;grid-template-columns:1fr 130px 1fr auto;gap:7px;margin:12px 0}.link-builder select{min-width:0;border:1px solid rgba(190,218,202,.1);border-radius:9px;background:#101916;color:#d7e3dc;padding:9px;font-size:10px}.link-builder button{border:0;border-radius:9px;background:#d7e5dd;color:#15231d;padding:9px 11px;font-weight:900}.link-list{display:grid;gap:8px}.link-row{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid rgba(190,218,202,.08);border-radius:11px;background:#18241f;padding:10px}.link-row div{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.link-row b{color:#dbe6e0;font-size:11px}.link-row span{padding:4px 7px;border-radius:999px;background:#293a34;color:#92a99d;font-size:9px}.link-row button{border:0;background:transparent;color:#71867b;font-size:17px}
+    @media(max-width:760px){.link-builder{grid-template-columns:1fr}.manual-timeline{margin-left:16px}.timeline-row{grid-template-columns:50px 1fr;padding-left:14px}.board-clue textarea{min-height:66px}}
+
 
     .investigation-questions{display:grid;gap:9px;margin-bottom:16px}.investigation-question{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:11px 12px;border-radius:12px;background:#18241f;border:1px solid rgba(190,218,202,.08)}.investigation-question__mark{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:#24342e;color:#789184;font-weight:900}.investigation-question.done .investigation-question__mark{background:#6e907d;color:#102018}.investigation-question b{color:#dce7e1;font-size:12px}.investigation-question small{color:#647b70;font-size:9px}.investigation-question.done small{color:#87a594}
     .evidence-pair{margin-top:5px;color:#82988d;font-size:10px}.material-photo{height:180px;border-radius:12px;overflow:hidden;margin:10px 0;background:#202b27}.material-photo img{width:100%;height:100%;object-fit:cover;display:block}.material-photo span{display:block;padding:7px 9px;color:#70867a;font-size:9px}.case-source-badge{display:inline-flex;margin-top:7px;padding:4px 6px;border-radius:6px;background:#26332f;color:#8da399;font-size:9px;font-weight:800}
@@ -593,9 +596,9 @@
 
     var caseNow=new Date(),caseTripDay=caseNow.getFullYear()===2026&&caseNow.getMonth()===9&&caseNow.getDate()===2;
     if(caseTripDay&&!sessionStorage.getItem("case24TripFresh")){localStorage.removeItem("case24State");sessionStorage.setItem("case24TripFresh","1")}
-    var caseSchema="case24-polish-v3";
+    var caseSchema="case24-polish-v4";
     if(localStorage.getItem("case24Schema")!==caseSchema){localStorage.removeItem("case24State");localStorage.setItem("case24Schema",caseSchema)}
-    var caseDefault={started:false,mail:false,files:false,clues:[],pins:[],pinNotes:{},hint:0,solved:false,app:"brief",device:"hub",filePath:"root",openFile:null,webPage:"home",briefPage:0};
+    var caseDefault={started:false,mail:false,files:false,clues:[],pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",hint:0,solved:false,app:"brief",device:"hub",filePath:"root",openFile:null,webPage:"home",briefPage:0};
     var caseState=Object.assign({},caseDefault,JSON.parse(localStorage.getItem("case24State")||"{}"));
     function saveCase(){localStorage.setItem("case24State",JSON.stringify(caseState))}
     function caseImg(src,alt){return '<img src="'+src+'" alt="'+alt+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'">'}
@@ -648,15 +651,26 @@
     function syncHiddenClues(){var set=[];(caseState.pins||[]).forEach(function(id){var p=casePins[id];if(p&&p.clue&&set.indexOf(p.clue)<0)set.push(p.clue)});caseState.clues=set}
     function caseProgress(){var n=(caseState.pins||[]).filter(function(x){return casePins[x]}).length,el=q("#caseProgress");if(el)el.textContent=String(n)}
     function addPin(id){if(!casePins[id])return;caseState.pins=caseState.pins||[];caseState.pinNotes=caseState.pinNotes||{};if(caseState.pins.indexOf(id)<0){caseState.pins.push(id);syncHiddenClues();saveCase();caseProgress();showToast("🧷 Материал закреплён на доске")}renderCaseApp(caseState.app)}
-    function removePin(id){caseState.pins=(caseState.pins||[]).filter(function(x){return x!==id});if(caseState.pinNotes)delete caseState.pinNotes[id];syncHiddenClues();saveCase();caseProgress();renderCaseApp(caseState.app)}
+    function removePin(id){caseState.pins=(caseState.pins||[]).filter(function(x){return x!==id});if(caseState.pinNotes)delete caseState.pinNotes[id];if(caseState.pinTimes)delete caseState.pinTimes[id];caseState.links=(caseState.links||[]).filter(function(x){return x.from!==id&&x.to!==id});syncHiddenClues();saveCase();caseProgress();renderCaseApp(caseState.app)}
     function pinButton(id){if(!id||!casePins[id])return"";var added=(caseState.pins||[]).indexOf(id)>=0;return '<button class="clue-btn '+(added?'added':'')+'" data-pin="'+id+'">'+(added?'✓ На доске':'📌 На доску')+'</button>'}
     function bindPins(){
       qa("[data-pin]",q("#caseScreen")).forEach(function(b){b.onclick=function(){addPin(b.getAttribute("data-pin"))}});
       qa("[data-remove-pin]",q("#caseScreen")).forEach(function(b){b.onclick=function(){removePin(b.getAttribute("data-remove-pin"))}});
       qa("[data-pin-note]",q("#caseScreen")).forEach(function(el){el.oninput=function(){caseState.pinNotes=caseState.pinNotes||{};caseState.pinNotes[el.getAttribute("data-pin-note")]=el.value;saveCase()}});
+      qa("[data-pin-time]",q("#caseScreen")).forEach(function(el){el.onchange=function(){caseState.pinTimes=caseState.pinTimes||{};var id=el.getAttribute("data-pin-time");if(el.value)caseState.pinTimes[id]=el.value;else delete caseState.pinTimes[id];saveCase()}});
+      qa("[data-board-view]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.boardView=b.getAttribute("data-board-view");saveCase();renderCaseApp("board")}});
+      qa("[data-remove-link]",q("#caseScreen")).forEach(function(b){b.onclick=function(){var i=Number(b.getAttribute("data-remove-link"));caseState.links=(caseState.links||[]).filter(function(_,n){return n!==i});saveCase();renderCaseApp("board")}});
+      if(q("#addBoardLink"))q("#addBoardLink").onclick=function(){
+        var from=q("#linkFrom").value,to=q("#linkTo").value,type=q("#linkType").value;
+        if(!from||!to||from===to){showToast("Выберите два разных материала");return}
+        caseState.links=caseState.links||[];
+        var exists=caseState.links.some(function(x){return x.from===from&&x.to===to&&x.type===type});
+        if(!exists){caseState.links.push({from:from,to:to,type:type});saveCase();showToast("🔗 Связь добавлена")}
+        renderCaseApp("board")
+      };
     }
 
-    var threads={
+    var threads={    var threads={
       marina:[["20:12","Марина","Ты серьёзно собираешься оставить этот кусок в выпуске?"],["20:14","Кирилл","Не в выпуске. Сначала поговорим о том, откуда Денис знает про черновик."],["20:35","Марина","Я ушла. Завтра поговорим."],["21:06","Кирилл","Вернись на десять минут. Сегодня закончим. 21:15 в студии."],["21:07","система","Сообщение доставлено. Ответа нет."]],
       denis:[["18:44","Денис","Если вы выпускаете этот материал в таком виде — утром получите иск."],["18:47","Кирилл","Присылай комментарий. Угрозы в выпуск тоже красиво лягут."],["19:03","Денис","Ты понятия не имеешь, во что лезешь."],["20:02","Кирилл","Отлично. Тогда на этом всё."]],
       alina:[["19:32","Алина","Я перепроверила таблицу платежей. Там точно есть связка через Prism."],["19:34","Кирилл","Скинь в закрытую папку. Имя источника в эфире не будет."],["20:46","Алина","Я уехала. Автобус через 12 минут. Пожалуйста, не меняй решение насчёт источника."],["20:47","Кирилл","Не поменяю."]],
@@ -667,7 +681,9 @@
       {from:"m.orlova@quietcity.media",to:"k.volkov@quietcity.media",time:"28 сентября · 23:14",subject:"удалить после чтения",body:"Я поговорила с Денисом. Он видел только ту версию, которую я отправила. Если мы ещё на несколько дней двинем выпуск, всё можно закрыть без скандала.",clue:"leak"},
       {from:"k.volkov@quietcity.media",to:"law@northmail.local",time:"2 октября · 18:03",subject:"внутренняя утечка",body:"Похоже, черновик сливает кто-то из команды. Если сегодня подтвержу платёж, завтра прекращаю договор с продюсером и передаю всё юристу.",clue:null},
       {from:"a.petrova@quietcity.media",to:"k.volkov@quietcity.media",time:"2 октября · 17:21",subject:"источник",body:"Прошу ещё раз: не публикуй настоящее имя Артёма. Документов достаточно и без этого.",clue:null},
-      {from:"p.chernov@studio-cherdak.local",to:"k.volkov@quietcity.media",time:"2 октября · 16:42",subject:"экспорт и студия",body:"После финального экспорта я оставлю master_final_7 в общей папке. Если будешь сидеть допоздна — боковая дверь работает по обычным бейджам.",clue:null}
+      {from:"p.chernov@studio-cherdak.local",to:"k.volkov@quietcity.media",time:"2 октября · 16:42",subject:"экспорт и студия",body:"После финального экспорта я оставлю master_final_7 в общей папке. Если будешь сидеть допоздна — боковая дверь работает по обычным бейджам.",clue:null},
+      {from:"billing@podcastcloud.local",to:"k.volkov@quietcity.media",time:"1 октября · 10:11",subject:"оплата тарифа Pro",body:"Оплата за октябрь получена. Следующее списание — 1 ноября. Спасибо, что остаётесь с PodcastCloud.",clue:null},
+      {from:"admin@studio-cherdak.local",to:"k.volkov@quietcity.media",time:"2 октября · 12:06",subject:"клининг сегодня",body:"Напоминаем: плановый вечерний клининг третьего этажа начнётся после 22:00. Если задержитесь, предупредите администратора.",clue:null}
     ];    var phonePhotos=[
       {title:"IMG_4418",time:"02.10.2026 · 19:52",img:CASE_IMG.studio,caption:"Фото Кирилла перед записью. В дальнем углу видна полка с наградами.",meta:"Снято на Pixel 8 · Studio Cherdak",clue:"weapon"},
       {title:"IMG_4397",time:"02.10.2026 · 18:41",img:CASE_IMG.studio2,caption:"Снимок аппаратной и монтажного места перед финальной записью.",meta:"Снято на Pixel 8 · Studio Cherdak",clue:null},
@@ -706,14 +722,24 @@
 
       payment:{path:"evidence",icon:"📄",name:"payment_fragment.pdf",meta:"PDF · сохранено 1 октября",kind:"PDF",body:"Фрагмент платёжного документа:\nНазначение: «редакторские консультации»\nСумма: 180 000 ₽\nПолучатель скрыт в обрезанной копии.\nКонтрагент по цепочке связан с Prism Communications.",clue:"leak"},
       release_notes:{path:"evidence",icon:"📝",name:"release_notes.txt",meta:"TXT · изменён 2 октября",kind:"TXT",body:"«Если подтвердится внутренняя утечка — выпуск переносить не буду. После записи поговорить с М. и затем отправить пакет юристу»."},
-      mail_export:{path:"evidence",icon:"✉️",name:"mail_export_29-09.eml",meta:"EML · локальная копия",kind:"EML",body:"Сохранённая Кириллом копия письма:\nОт: d.karpov@prism.local\nКому: m.orlova@quietcity.media\nТема: акт / октябрь\n\n«180 после того, как материал окончательно ляжет на стол и не выйдет. Назначение платежа оставляем “редакторские консультации”».",clue:"leak"}
+      mail_export:{path:"evidence",icon:"✉️",name:"mail_export_29-09.eml",meta:"EML · локальная копия",kind:"EML",body:"Сохранённая Кириллом копия письма:\nОт: d.karpov@prism.local\nКому: m.orlova@quietcity.media\nТема: акт / октябрь\n\n«180 после того, как материал окончательно ляжет на стол и не выйдет. Назначение платежа оставляем “редакторские консультации”».",clue:"leak"},
+      caption_draft:{path:"desktop",icon:"📝",name:"caption_draft.txt",meta:"TXT · черновик публикации",kind:"TXT",body:"«Новый выпуск получился тяжёлым, но важным. Спасибо всем, кто помогал проверять документы». Черновик подписи к публикации, без времени размещения."},
+      coffee_order:{path:"desktop",icon:"☕",name:"coffee_order.pdf",meta:"PDF · заказ для команды",kind:"PDF",body:"Заказ на 2 октября: американо ×2, капучино ×2, чай ×1, круассан ×3. Доставка в студию — 18:10. Оплачено корпоративной картой."},
+      guest_release:{path:"docs",icon:"📄",name:"guest_release_form.docx",meta:"DOCX · шаблон согласия",kind:"DOCX",body:"Стандартное согласие гостя подкаста на запись голоса и обработку материалов. Пустой шаблон, сохранён в общей папке проекта."},
+      equipment_list:{path:"docs",icon:"📊",name:"equipment_list.xlsx",meta:"XLSX · инвентаризация",kind:"XLSX",body:"Микрофоны — 3; стойки — 4; наушники — 5; рекордер — 1; кабели XLR — 8. Последняя инвентаризация: 16 сентября 2026."},
+      episode23_notes:{path:"podcast",icon:"📝",name:"episode23_notes.txt",meta:"TXT · прошлый выпуск",kind:"TXT",body:"Заметки к выпуску №23: поправить шум на 12:44, укоротить вступление, заменить музыкальную подложку после рекламы."},
+      ad_read:{path:"podcast",icon:"📣",name:"ad_read_october.docx",meta:"DOCX · рекламная вставка",kind:"DOCX",body:"Текст рекламной интеграции на октябрь. Хронометраж 42–50 секунд. Утверждён заказчиком 30 сентября."},
+      catering_invoice:{path:"invoices",icon:"🧾",name:"coffee_catering.pdf",meta:"PDF · кофе и снеки",kind:"PDF",body:"Coffee Lab. Кофе и выпечка для записи 2 октября. Сумма: 3 240 ₽. Статус: оплачено."},
+      transcript_invoice:{path:"invoices",icon:"🧾",name:"transcription_service.pdf",meta:"PDF · расшифровка интервью",kind:"PDF",body:"TextFlow. Расшифровка 96 минут аудио. Сумма: 4 800 ₽. Заказ закрыт 27 сентября."},
+      font_license:{path:"downloads",icon:"📄",name:"font_license.pdf",meta:"PDF · лицензия шрифта",kind:"PDF",body:"Лицензия на коммерческое использование гарнитуры, применяемой в обложках подкаста. Загружено 22 сентября."},
+      weather_pdf:{path:"downloads",icon:"🌧️",name:"weather_02-10.pdf",meta:"PDF · прогноз погоды",kind:"PDF",body:"Новоград, 2 октября: +9…+12 °C, облачно, вечером возможен небольшой дождь. Файл скачан утром 2 октября."}
     };
     var fileFolders={
-      desktop:["todo","episode_final","cover_ep24","prism_comment"],
-      docs:["sources","lawyer_draft","source_protection"],
-      podcast:["master_final","script","raw_artem","artwork"],
-      invoices:["studio_invoice","hosting_invoice","design_invoice","service_invoice"],
-      downloads:["rail_pdf","access_rules","denis_response","registry"],
+      desktop:["todo","episode_final","cover_ep24","prism_comment","caption_draft","coffee_order"],
+      docs:["sources","lawyer_draft","source_protection","guest_release","equipment_list"],
+      podcast:["master_final","script","raw_artem","artwork","episode23_notes","ad_read"],
+      invoices:["studio_invoice","hosting_invoice","design_invoice","service_invoice","catering_invoice","transcript_invoice"],
+      downloads:["rail_pdf","access_rules","denis_response","registry","font_license","weather_pdf"],
       evidence:["payment","release_notes","mail_export"]
     };
 
@@ -783,14 +809,29 @@
       return '<div class="investigation-questions">'+qs.map(function(x,i){return '<div class="investigation-question"><span class="investigation-question__mark">'+(i+1)+'</span><b>'+x+'</b><small>рабочий вопрос</small></div>'}).join("")+'</div>'
     }
     function renderBoard(){
-      var ids=(caseState.pins||[]).filter(function(id){return casePins[id]});
-      return '<div class="case-section-title"><div><small>РАБОЧАЯ ДОСКА</small><h3>Материалы и ваши выводы</h3></div><b style="color:#b79a72">'+ids.length+' сохранено</b></div>'+
-        '<div class="case-note" style="margin-bottom:12px">На доску можно положить почти всё: переписку, обычный файл, пост, звонок или полицейский документ. Система не говорит, что важно, а что нет — решаете вы. Под каждым материалом можно записать свой вывод.</div>'+
-        renderInvestigationQuestions()+
+      var ids=(caseState.pins||[]).filter(function(id){return casePins[id]}),view=caseState.boardView||"cards";
+      var tabs='<div class="board-tabs"><button data-board-view="cards" class="'+(view==="cards"?"active":"")+'">🧷 Карточки</button><button data-board-view="timeline" class="'+(view==="timeline"?"active":"")+'">🕒 Хронология</button><button data-board-view="links" class="'+(view==="links"?"active":"")+'">🔗 Связи</button></div>';
+      var head='<div class="case-section-title"><div><small>РАБОЧАЯ ДОСКА</small><h3>Материалы и ваши выводы</h3></div><b style="color:#b79a72">'+ids.length+' сохранено</b></div>'+
+        '<div class="case-note" style="margin-bottom:12px">Система не помечает правильные улики. Вы сами решаете, что закреплять, какое время ставить материалу и какие два факта связаны между собой.</div>'+tabs;
+      if(view==="timeline"){
+        var timed=ids.filter(function(id){return caseState.pinTimes&&caseState.pinTimes[id]}).sort(function(a,b){return caseState.pinTimes[a].localeCompare(caseState.pinTimes[b])});
+        return head+'<div class="board-tool-head"><div><small>РУЧНАЯ ХРОНОЛОГИЯ</small><h3>События по времени</h3></div><span>'+timed.length+' с временем</span></div>'+
+          '<p class="board-help">Время здесь не подставляется автоматически. Сначала вы сами ставите его карточке во вкладке «Карточки», если считаете, что материал относится к конкретному моменту.</p>'+
+          (timed.length?'<div class="manual-timeline">'+timed.map(function(id){var p=casePins[id],note=(caseState.pinNotes&&caseState.pinNotes[id])||"";return '<div class="timeline-row"><time>'+caseEsc(caseState.pinTimes[id])+'</time><div><small>'+caseEsc(p.source)+'</small><b>'+caseEsc(p.title)+'</b><p>'+caseEsc(note||p.text)+'</p></div></div>'}).join("")+'</div>':'<div class="board-empty">Пока ни одной карточке не назначено время. Это нормально — вернитесь в «Карточки» и добавьте время только тем материалам, которые хотите поставить на линию событий.</div>');
+      }
+      if(view==="links"){
+        var opts=ids.map(function(id){return '<option value="'+id+'">'+caseEsc(casePins[id].title)+'</option>'}).join("");
+        var links=(caseState.links||[]).filter(function(x){return casePins[x.from]&&casePins[x.to]&&ids.indexOf(x.from)>=0&&ids.indexOf(x.to)>=0});
+        return head+'<div class="board-tool-head"><div><small>СВЯЗИ МЕЖДУ ФАКТАМИ</small><h3>Что с чем связано?</h3></div><span>'+links.length+' связей</span></div>'+
+          '<p class="board-help">Здесь тоже нет проверки правильности. Можно связать хоть два ложных следа — это ваша рабочая версия.</p>'+
+          (ids.length>=2?'<div class="link-builder"><select id="linkFrom"><option value="">Первый материал…</option>'+opts+'</select><select id="linkType"><option value="подтверждает">подтверждает</option><option value="противоречит">противоречит</option><option value="связано с">связано с</option></select><select id="linkTo"><option value="">Второй материал…</option>'+opts+'</select><button id="addBoardLink">Добавить связь</button></div>':'<div class="board-empty">Для связи нужно хотя бы два материала на доске.</div>')+
+          (links.length?'<div class="link-list">'+links.map(function(x,i){return '<div class="link-row"><div><b>'+caseEsc(casePins[x.from].title)+'</b><span>'+caseEsc(x.type)+'</span><b>'+caseEsc(casePins[x.to].title)+'</b></div><button data-remove-link="'+i+'">×</button></div>'}).join("")+'</div>':'');
+      }
+      return head+renderInvestigationQuestions()+
         '<div class="case-section-title" style="margin-top:18px"><div><small>ЗАКРЕПЛЕНО</small><h3>Ваша доска</h3></div></div>'+
-        (ids.length?'<div class="board-list">'+ids.map(function(id){var p=casePins[id],note=(caseState.pinNotes&&caseState.pinNotes[id])||"";return '<div class="board-clue"><span>🧷</span><div class="board-clue__body"><small class="board-clue__source">'+caseEsc(p.source)+'</small><b>'+caseEsc(p.title)+'</b><p>'+caseEsc(p.text)+'</p><textarea data-pin-note="'+id+'" maxlength="220" placeholder="Ваш вывод или сомнение…">'+caseEsc(note)+'</textarea><button class="board-remove" data-remove-pin="'+id+'">Убрать с доски</button></div></div>'}).join("")+'</div>':'<div class="board-empty">Пока пусто. Закрепляйте всё, что кажется подозрительным или просто полезным для хронологии.</div>');
+        (ids.length?'<div class="board-list">'+ids.map(function(id){var p=casePins[id],note=(caseState.pinNotes&&caseState.pinNotes[id])||"",time=(caseState.pinTimes&&caseState.pinTimes[id])||"";return '<div class="board-clue"><span>🧷</span><div class="board-clue__body"><small class="board-clue__source">'+caseEsc(p.source)+'</small><b>'+caseEsc(p.title)+'</b><p>'+caseEsc(p.text)+'</p><div class="board-card-tools"><label>Время для хронологии<input type="time" data-pin-time="'+id+'" value="'+caseEsc(time)+'"></label></div><textarea data-pin-note="'+id+'" maxlength="220" placeholder="Ваш вывод или сомнение…">'+caseEsc(note)+'</textarea><button class="board-remove" data-remove-pin="'+id+'">Убрать с доски</button></div></div>'}).join("")+'</div>':'<div class="board-empty">Пока пусто. Закрепляйте всё, что кажется подозрительным или просто полезным.</div>');
     }
-    function renderCaseFileDocument(){
+    function renderCaseFileDocument(){    function renderCaseFileDocument(){
       var page=Math.max(0,Math.min(3,Number(caseState.briefPage)||0));
       var pages=[
         '<div class="case-doc-head"><div><div class="case-doc-agency">ОТДЕЛ РАССЛЕДОВАНИЙ · НОВОГРАД</div><div class="case-doc-title">Уголовное дело №24/10-26</div><div class="case-doc-subtitle">ПЕРВИЧНАЯ ОПЕРАТИВНАЯ СВОДКА · 02.10.2026</div></div><div class="case-doc-stamp">КОПИЯ<br>ДЛЯ РАБОТЫ</div></div>'+
@@ -896,7 +937,7 @@
         if(open&&open.path!==path){caseState.openFile=null;open=null}
         if(open&&path==="evidence"&&!caseState.files){caseState.openFile=null;open=null}
         if(open)inside=renderFileDoc(open,caseState.openFile);
-        else if(path==="root")inside='<div class="folder-grid"><button class="folder-card file-card-button" data-filepath="desktop"><span class="folder-icon">🖥️</span><b>Desktop</b><small>4 файла</small></button><button class="folder-card file-card-button" data-filepath="docs"><span class="folder-icon">📁</span><b>Documents</b><small>3 файла + закрытая папка</small></button><button class="folder-card file-card-button" data-filepath="podcast"><span class="folder-icon">🎙️</span><b>Podcast</b><small>4 файла</small></button><button class="folder-card file-card-button" data-filepath="invoices"><span class="folder-icon">🧾</span><b>Invoices</b><small>4 файла</small></button><button class="folder-card file-card-button" data-filepath="downloads"><span class="folder-icon">⬇️</span><b>Downloads</b><small>4 файла</small></button></div>';
+        else if(path==="root")inside='<div class="folder-grid"><button class="folder-card file-card-button" data-filepath="desktop"><span class="folder-icon">🖥️</span><b>Desktop</b><small>6 файлов</small></button><button class="folder-card file-card-button" data-filepath="docs"><span class="folder-icon">📁</span><b>Documents</b><small>5 файлов + закрытая папка</small></button><button class="folder-card file-card-button" data-filepath="podcast"><span class="folder-icon">🎙️</span><b>Podcast</b><small>6 файлов</small></button><button class="folder-card file-card-button" data-filepath="invoices"><span class="folder-icon">🧾</span><b>Invoices</b><small>6 файлов</small></button><button class="folder-card file-card-button" data-filepath="downloads"><span class="folder-icon">⬇️</span><b>Downloads</b><small>6 файлов</small></button></div>';
         else if(path==="docs")inside='<div class="folder-grid">'+fileFolders.docs.map(renderFileCard).join("")+'<button class="folder-card file-card-button locked-folder" data-filepath="evidence"><span class="folder-icon">🔒</span><b>evidence_backup</b><small>закрытая папка · PIN</small></button></div>';
         else if(path==="evidence"&&!caseState.files)inside='<div class="account-login"><div class="lock-icon">🔒</div><h3>Папка evidence_backup защищена</h3><div class="account-id">/Documents/evidence_backup</div><label>4-ЗНАЧНЫЙ PIN</label><input id="filesPin" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button id="unlockFiles">Открыть</button><p class="login-note">Подсказка не показывается здесь. Используйте вкладку «Подсказки», только если застряли.</p><p id="filesError"></p></div>';
         else if(fileFolders[path])inside='<div class="folder-grid">'+fileFolders[path].map(renderFileCard).join("")+'</div>';
@@ -973,7 +1014,7 @@
       if(app==="web"){caseState.webPage="home"}
       saveCase();renderCaseApp(app)
     })});
-    q("#resetCase").addEventListener("click",function(){if(confirm("Сбросить расследование? Откроется чистая версия дела.")){caseState=Object.assign({},caseDefault,{started:true,pins:[],pinNotes:{},clues:[]});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
+    q("#resetCase").addEventListener("click",function(){if(confirm("Сбросить расследование? Откроется чистая версия дела.")){caseState=Object.assign({},caseDefault,{started:true,pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",clues:[]});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
     if(caseState.started){q("#caseIntro").classList.add("hidden");q("#caseDesk").classList.remove("hidden");renderCaseApp(caseState.app||"brief")}
 
     var movies=qa(".movie"), savedMovies=JSON.parse(localStorage.getItem("kostromaMovies")||"null");
