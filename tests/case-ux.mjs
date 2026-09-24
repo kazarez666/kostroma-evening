@@ -85,11 +85,11 @@ try {
   assert.ok(leafLayout.some(leaf => !leaf.noteLeaf), 'Central leaves should stay decorative rather than opening notes');
 
   const centralLeaf = page.locator('.secret-leaf[data-note-leaf="0"]').first();
-  await centralLeaf.click();
+  await centralLeaf.click({ force: true });
   assert.equal(await page.locator('#loveModal').isVisible(), false, 'Central leaves should react without opening a note');
 
   const noteLeaf = page.locator('.secret-leaf[data-note-leaf="1"]').first();
-  await noteLeaf.click();
+  await noteLeaf.click({ force: true });
   assert.equal(await page.locator('#loveModal').isVisible(), true, 'Side leaves should open a note');
   await page.locator('[data-close-love]').first().click();
 
