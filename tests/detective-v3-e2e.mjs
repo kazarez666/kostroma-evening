@@ -195,7 +195,8 @@ try{
   const interviewSource=page.locator('[data-open-pin-source="interview_marina_return"]');
   assert.equal(await interviewSource.count(),1);
   await interviewSource.click();
-  await textVisible('ПРОТОКОЛ ДОПРОСА');
+  assert.equal(await page.locator('.interview-rec').count(),1);
+  await textVisible('ПРОТОКОЛ · МАРИНА ОРЛОВА');
   await textVisible('Марина Орлова');
 
   await app('board');
