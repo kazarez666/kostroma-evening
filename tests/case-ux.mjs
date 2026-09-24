@@ -39,8 +39,15 @@ try {
 
   await page.locator('#startCase').click();
   await page.locator('[data-case-app="police"]').click();
-  assert.equal(await page.locator('.police-file').count(), 7);
-  assert.equal(await page.locator('.police-file__meaning').count(), 0);
+  assert.equal(await page.locator('.police-index-card').count(), 7);
+  await page.locator('[data-police-open="6"]').click();
+  assert.equal(await page.locator('.police-paper').count(), 1);
+  const sheetTop = await page.locator('.police-paper .case-doc-title').evaluate(el => el.getBoundingClientRect().top);
+  assert.ok(sheetTop > 0 && sheetTop < 300, 'Opening any police sheet should show its heading first');
+  if (process.env.CI) {
+    await page.waitForTimeout(420);
+    await page.screenshot({ path: 'test-artifacts/police-document-mobile.png' });
+  }
 
   const lastPin = page.locator('[data-pin="police_6"]');
   await lastPin.scrollIntoViewIfNeeded();
@@ -52,6 +59,7 @@ try {
     return top >= -2 && top < 30;
   });
   await page.locator('[data-case-app="police"]').click();
+  await page.locator('[data-police-open="6"]').click();
   await lastPin.scrollIntoViewIfNeeded();
   await lastPin.evaluate(el => { window.savedPinNode = el; });
   await lastPin.click();
@@ -64,6 +72,15 @@ try {
   await freshTab.goto('http://127.0.0.1:4173/index.html');
   assert.equal(await freshTab.locator('[data-tab="detective"]').count(), 0,
     'The secret navigation should remain hidden in a fresh pre-trip browser session');
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.waitForFunction(() => document.querySelectorAll('.secret-leaf').length === 30);
+  const leafLayout = await page.locator('.secret-leaf').evaluateAll(leaves => leaves.map(el => ({
+    x: el.getBoundingClientRect().x / innerWidth,
+    interactive: getComputedStyle(el).pointerEvents !== 'none',
+  })));
+  assert.ok(leafLayout.some(leaf => leaf.x > .35 && leaf.x < .65), 'Leaves should reach the middle of the interface');
+  assert.ok(leafLayout.every(leaf => !leaf.interactive), 'Decorative leaves must not block case controls');
+  if (process.env.CI) await page.screenshot({ path: 'test-artifacts/scattered-leaves-desktop.png' });
   assert.deepEqual(errors, [], 'Uncaught page errors: ' + errors.join('\n'));
   console.log('CASE_UX_OK');
 } finally {

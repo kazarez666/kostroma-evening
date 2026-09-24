@@ -89,10 +89,11 @@ try {
   // Police materials and all clue buttons.
   await page.locator('[data-case-app="police"]').click();
   await visibleText('Материалы полиции');
-  assert.equal(await page.locator('.police-file').count(), 7);
-  const evidencePhoto=page.locator('.material-photo img');
+  assert.equal(await page.locator('.police-index-card').count(), 7);
+  await page.locator('[data-police-open="6"]').click();
+  const evidencePhoto=page.locator('.police-paper__photo img');
   if(await evidencePhoto.count()) {
-    await page.waitForFunction(()=>[...document.querySelectorAll('.material-photo img')].every(img=>img.complete&&img.naturalWidth>0),null,{timeout:10000});
+    await page.waitForFunction(()=>[...document.querySelectorAll('.police-paper__photo img')].every(img=>img.complete&&img.naturalWidth>0),null,{timeout:10000});
   }
   for (let i=0;i<10;i++) {
     const pending = page.locator('[data-add-clue]:not(.added)');

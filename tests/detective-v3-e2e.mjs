@@ -111,10 +111,15 @@ try{
 
   // Every police document is equally pinnable.
   await app('police');
-  assert.equal(await page.locator('.police-file').count(),7);
-  assert.equal(await page.locator('.police-file [data-pin]').count(),7);
-  await page.locator('.police-file [data-pin]').nth(0).click();
-  await page.locator('.police-file [data-pin]').nth(5).click();
+  assert.equal(await page.locator('.police-index-card').count(),7);
+  await page.locator('[data-police-open="0"]').click();
+  assert.equal(await page.locator('.police-paper').count(),1);
+  await page.locator('[data-pin="police_0"]').click();
+  await page.locator('[data-police-next]').click();
+  assert.equal(await page.locator('.police-paper').count(),1);
+  await page.locator('[data-police-back]').click();
+  await page.locator('[data-police-open="5"]').click();
+  await page.locator('[data-pin="police_5"]').click();
 
   // Interrogations: five suspects, branching questions, evidence unlocks and repeat visits.
   await app('interview');
@@ -122,7 +127,7 @@ try{
   await page.locator('[data-interview-suspect="marina"]').click();
   await textVisible('Марина Орлова');
   assert.ok(await page.locator('[data-interview-question]').count()>=1);
-  assert.ok(await page.locator('[data-interview-question]').count()<=3,'interrogation should present at most three choices at once');
+  assert.ok(await page.locator('[data-interview-question]').count()>=3,'all currently available questions should be visible');
   assert.equal(await page.locator('[data-interview-question="return"]').count(),0,'evidence follow-up should wait for the base answer');
 
   await page.locator('[data-interview-question="evening"]').click();
@@ -150,6 +155,16 @@ try{
   // Board accepts mixed relevant/irrelevant material, notes, manual time and user-defined links.
   await app('board');
   await textVisible('Материалы и ваши выводы');
+  await page.locator('[data-board-view="questions"]').click();
+  assert.equal(await page.locator('.investigation-question').count(),6);
+  await page.locator('[data-board-answer="0"]').fill('Павел');
+  await page.locator('[data-check-board="0"]').click();
+  assert.match(await page.locator('#board-feedback-0').innerText(),/неверно/);
+  await page.locator('[data-board-answer="0"]').fill('Марина');
+  await page.locator('[data-check-board="0"]').click();
+  assert.match(await page.locator('#board-feedback-0').innerText(),/Верно/);
+  assert.equal(await page.locator('#boardQuestionProgress').innerText(),'1/6');
+  await page.locator('[data-board-view="cards"]').click();
   const before=await page.locator('.board-clue').count();
   assert.ok(before>=6);
   const note=page.locator('[data-pin-note]').first();
@@ -176,14 +191,12 @@ try{
   await page.locator('[data-remove-link]').click();
   assert.equal(await page.locator('.link-row').count(),0);
 
-  // Suspect worksheet and shared notebook persist manual player thinking without grading it.
+  // Suspect worksheet persists manual player thinking without grading it.
   await page.locator('[data-board-view="people"]').click();
   await textVisible('Люди и алиби');
   assert.equal(await page.locator('.suspect-sheet').count(),5);
   await page.locator('[data-suspect-mark="pavel"]').selectOption('solid');
   await page.locator('[data-suspect-note="pavel"]').fill('Проверить заправку и время дороги.');
-  await page.locator('#caseNotebook').fill('Рабочая версия: сначала восстановить окно 21:15–21:30.');
-  assert.match(await page.locator('#caseNotebook').inputValue(),/21:15/);
 
   // A board card can reopen the original source instead of forcing manual hunting.
   await page.locator('[data-board-view="cards"]').click();
@@ -194,6 +207,8 @@ try{
   await textVisible('Марина');
 
   await app('board');
+  await page.locator('[data-board-view="questions"]').click();
+  assert.equal(await page.locator('#boardQuestionProgress').innerText(),'1/6');
   await page.locator('[data-board-view="cards"]').click();
   const interviewSource=page.locator('[data-open-pin-source="interview_marina_return"]');
   assert.equal(await interviewSource.count(),1);
@@ -206,7 +221,6 @@ try{
   await page.locator('[data-board-view="people"]').click();
   assert.equal(await page.locator('[data-suspect-mark="pavel"]').inputValue(),'solid');
   assert.match(await page.locator('[data-suspect-note="pavel"]').inputValue(),/заправку/);
-  assert.match(await page.locator('#caseNotebook').inputValue(),/21:15/);
 
   await page.locator('[data-board-view="cards"]').click();
   await page.locator('[data-remove-pin]').first().click();
@@ -222,6 +236,16 @@ try{
   assert.equal(await page.locator('.hint-level:not(.locked)').count(),2);
   assert.equal(await page.locator('.hint-group').last().locator('.hint-level:not(.locked)').count(),0);
   await app('final');
+  await page.locator('#finalWho').selectOption({index:2});
+  for(const id of ['#finalMotive','#finalMethod','#finalEvidence']) await page.locator(id).selectOption({index:1});
+  await page.locator('#submitCase').click();
+  await page.locator('#finalFeedback').getByText('Пока неверно',{exact:false}).waitFor({state:'visible'});
+  assert.match(await page.locator('#finalFeedback').innerText(),/Ничего не сброшено/);
+  assert.equal(await page.locator('.case-solved').count(),0);
+  await page.locator('.final-back').click();
+  assert.equal(await page.locator('.board-tabs').count(),1);
+  await app('final');
+  assert.equal(await page.locator('#finalWho').inputValue(),'denis','wrong versions should remain editable after returning to evidence');
   for(const id of ['#finalWho','#finalMotive','#finalMethod','#finalEvidence']) await page.locator(id).selectOption({index:1});
   await page.locator('#submitCase').click();
   await textVisible('Вы раскрыли');
