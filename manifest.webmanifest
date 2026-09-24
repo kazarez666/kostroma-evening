@@ -1,0 +1,9 @@
+{
+  "name": "Наш уютный вечер в Костроме",
+  "short_name": "Кострома 🍂",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#efe4d6",
+  "theme_color": "#163a2a",
+  "lang": "ru"
+}
