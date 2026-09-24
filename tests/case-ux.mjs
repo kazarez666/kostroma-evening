@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 
 const browser = await chromium.launch({ headless: true });
 try {
-  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(String(error)));
   await page.goto('http://127.0.0.1:4173/index.html');
@@ -33,7 +34,7 @@ try {
   assert.match(await lastPin.innerText(), /На доске/);
   assert.equal(await page.locator('#caseProgress').innerText(), '1');
 
-  const freshTab = await page.context().newPage();
+  const freshTab = await context.newPage();
   await freshTab.goto('http://127.0.0.1:4173/index.html');
   assert.equal(await freshTab.locator('[data-tab="detective"]').count(), 0,
     'The secret navigation should remain hidden in a fresh pre-trip browser session');
