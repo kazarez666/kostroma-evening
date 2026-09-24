@@ -43,6 +43,7 @@ try {
   const reopened = await context.newPage();
   await reopened.goto('http://127.0.0.1:4173/index.html');
   assert.equal(await reopened.locator('#casePlanLaunch').isVisible(), true);
+  if (await reopened.locator('#startEvening').isVisible()) await reopened.locator('#startEvening').click();
   await reopened.locator('#casePlanLaunch').click();
   assert.equal(await reopened.locator('#caseDesk').isVisible(), true);
   assert.equal(await reopened.evaluate(() => caseState.pins.includes('profile_kirill')), true);
