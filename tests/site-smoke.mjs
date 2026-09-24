@@ -89,6 +89,10 @@ try{
     assert.ok(await desktop.locator('#'+tab).evaluate(el=>el.classList.contains('active')));
   }
   await desktop.locator('#openSecretCase').click();
+  await desktop.getByText('Дело на двоих: «Последний эфир»',{exact:false}).waitFor({state:'visible'});
+  assert.ok(await desktop.locator('#plan').evaluate(el=>el.classList.contains('active')));
+  assert.equal(await desktop.locator('#casePlanLaunch').isVisible(),true);
+  await desktop.locator('#casePlanLaunch').click();
   assert.ok(await desktop.locator('#detective').evaluate(el=>el.classList.contains('active')));
   await desktop.locator('.tab[data-tab="plan"]').click();
   assert.ok(await desktop.locator('#plan').evaluate(el=>el.classList.contains('active')));
