@@ -670,7 +670,7 @@
       };
     }
 
-    var threads={    var threads={
+    var threads={
       marina:[["20:12","Марина","Ты серьёзно собираешься оставить этот кусок в выпуске?"],["20:14","Кирилл","Не в выпуске. Сначала поговорим о том, откуда Денис знает про черновик."],["20:35","Марина","Я ушла. Завтра поговорим."],["21:06","Кирилл","Вернись на десять минут. Сегодня закончим. 21:15 в студии."],["21:07","система","Сообщение доставлено. Ответа нет."]],
       denis:[["18:44","Денис","Если вы выпускаете этот материал в таком виде — утром получите иск."],["18:47","Кирилл","Присылай комментарий. Угрозы в выпуск тоже красиво лягут."],["19:03","Денис","Ты понятия не имеешь, во что лезешь."],["20:02","Кирилл","Отлично. Тогда на этом всё."]],
       alina:[["19:32","Алина","Я перепроверила таблицу платежей. Там точно есть связка через Prism."],["19:34","Кирилл","Скинь в закрытую папку. Имя источника в эфире не будет."],["20:46","Алина","Я уехала. Автобус через 12 минут. Пожалуйста, не меняй решение насчёт источника."],["20:47","Кирилл","Не поменяю."]],
@@ -831,7 +831,7 @@
         '<div class="case-section-title" style="margin-top:18px"><div><small>ЗАКРЕПЛЕНО</small><h3>Ваша доска</h3></div></div>'+
         (ids.length?'<div class="board-list">'+ids.map(function(id){var p=casePins[id],note=(caseState.pinNotes&&caseState.pinNotes[id])||"",time=(caseState.pinTimes&&caseState.pinTimes[id])||"";return '<div class="board-clue"><span>🧷</span><div class="board-clue__body"><small class="board-clue__source">'+caseEsc(p.source)+'</small><b>'+caseEsc(p.title)+'</b><p>'+caseEsc(p.text)+'</p><div class="board-card-tools"><label>Время для хронологии<input type="time" data-pin-time="'+id+'" value="'+caseEsc(time)+'"></label></div><textarea data-pin-note="'+id+'" maxlength="220" placeholder="Ваш вывод или сомнение…">'+caseEsc(note)+'</textarea><button class="board-remove" data-remove-pin="'+id+'">Убрать с доски</button></div></div>'}).join("")+'</div>':'<div class="board-empty">Пока пусто. Закрепляйте всё, что кажется подозрительным или просто полезным.</div>');
     }
-    function renderCaseFileDocument(){    function renderCaseFileDocument(){
+    function renderCaseFileDocument(){
       var page=Math.max(0,Math.min(3,Number(caseState.briefPage)||0));
       var pages=[
         '<div class="case-doc-head"><div><div class="case-doc-agency">ОТДЕЛ РАССЛЕДОВАНИЙ · НОВОГРАД</div><div class="case-doc-title">Уголовное дело №24/10-26</div><div class="case-doc-subtitle">ПЕРВИЧНАЯ ОПЕРАТИВНАЯ СВОДКА · 02.10.2026</div></div><div class="case-doc-stamp">КОПИЯ<br>ДЛЯ РАБОТЫ</div></div>'+
