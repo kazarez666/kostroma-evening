@@ -84,6 +84,15 @@ try {
   assert.ok(leafLayout.some(leaf => leaf.noteLeaf), 'Some side leaves should contain romantic notes');
   assert.ok(leafLayout.some(leaf => !leaf.noteLeaf), 'Central leaves should stay decorative rather than opening notes');
 
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.waitForFunction(() => document.querySelectorAll('.secret-leaf').length === 20);
+  const mobileLeafStyles = await page.locator('.secret-leaf').evaluateAll(leaves => leaves.map(el => ({
+    opacity: parseFloat(getComputedStyle(el).opacity),
+    fontSize: parseFloat(getComputedStyle(el).fontSize),
+  })));
+  assert.ok(Math.max(...mobileLeafStyles.map(x => x.opacity)) <= .14, 'Mobile ambient leaves should stay visually subdued');
+  assert.ok(Math.max(...mobileLeafStyles.map(x => x.fontSize)) <= 18.1, 'Mobile ambient leaves should remain compact');
+
   const centralLeaf = page.locator('.secret-leaf[data-note-leaf="0"]').first();
   await centralLeaf.click({ force: true });
   assert.equal(await page.locator('#loveModal').isVisible(), false, 'Central leaves should react without opening a note');
