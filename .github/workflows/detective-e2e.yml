@@ -45,3 +45,10 @@ jobs:
         run: node tests/trip-day-resume.mjs
       - name: Verify spoiler-safe case navigation and reading
         run: node tests/case-ux.mjs
+      - name: Save reveal screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reveal-mobile
+          path: test-artifacts/*.png
+          if-no-files-found: ignore
