@@ -1,0 +1,44 @@
+import { chromium } from 'playwright';
+import assert from 'node:assert/strict';
+
+const browser = await chromium.launch({ headless: true });
+try {
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  const errors = [];
+  page.on('pageerror', error => errors.push(String(error)));
+  await page.goto('http://127.0.0.1:4173/index.html');
+  if (await page.locator('#startEvening').isVisible()) await page.locator('#startEvening').click();
+
+  assert.equal(await page.locator('[data-tab="detective"]').count(), 0);
+  await page.locator('#openSecretCase').click();
+  await page.locator('.mobile-nav [data-tab="detective"]').waitFor();
+  assert.equal(await page.locator('.tabs [data-tab="detective"]').count(), 1);
+  await page.locator('.mobile-nav [data-tab="food"]').click();
+  await page.locator('.mobile-nav [data-tab="detective"]').click();
+  assert.equal(await page.locator('#detective').evaluate(el => el.classList.contains('active')), true);
+
+  await page.locator('#startCase').click();
+  await page.locator('[data-case-app="police"]').click();
+  assert.equal(await page.locator('.police-file').count(), 7);
+  assert.equal(await page.locator('.police-file__meaning').count(), 0);
+
+  const lastPin = page.locator('[data-pin="police_6"]');
+  await lastPin.scrollIntoViewIfNeeded();
+  const top = await page.locator('#caseApps').evaluate(el => el.getBoundingClientRect().top);
+  assert.ok(top >= -2 && top < 80, 'Case navigation should stay available while reading long documents');
+  await lastPin.evaluate(el => { window.savedPinNode = el; });
+  await lastPin.click();
+  assert.equal(await page.evaluate(() => document.querySelector('[data-pin="police_6"]') === window.savedPinNode), true,
+    'Pinning must not recreate the document being read');
+  assert.match(await lastPin.innerText(), /На доске/);
+  assert.equal(await page.locator('#caseProgress').innerText(), '1');
+
+  const freshTab = await page.context().newPage();
+  await freshTab.goto('http://127.0.0.1:4173/index.html');
+  assert.equal(await freshTab.locator('[data-tab="detective"]').count(), 0,
+    'The secret navigation should remain hidden in a fresh pre-trip browser session');
+  assert.deepEqual(errors, [], 'Uncaught page errors: ' + errors.join('\n'));
+  console.log('CASE_UX_OK');
+} finally {
+  await browser.close();
+}
