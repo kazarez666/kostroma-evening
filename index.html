@@ -759,7 +759,7 @@
     }
     var caseSchema="case24-polish-v7";
     if(localStorage.getItem("case24Schema")!==caseSchema){localStorage.removeItem("case24State");localStorage.setItem("case24Schema",caseSchema)}
-    var caseDefault={started:false,mail:false,files:false,clues:[],pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",boardAnswers:{},suspectMarks:{},suspectNotes:{},caseNotebook:"",interrogation:{active:null,asked:{},visits:{}},hint:0,solved:false,app:"brief",device:"hub",filePath:"root",openFile:null,webPage:"home",briefPage:0,policePage:null};
+    var caseDefault={started:false,mail:false,files:false,clues:[],pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",boardAnswers:{},suspectMarks:{},suspectNotes:{},caseNotebook:"",finalDraft:{},interrogation:{active:null,asked:{},visits:{}},hint:0,solved:false,app:"brief",device:"hub",filePath:"root",openFile:null,webPage:"home",briefPage:0,policePage:null};
     var caseState=Object.assign({},caseDefault,JSON.parse(localStorage.getItem("case24State")||"{}"));
     function saveCase(){localStorage.setItem("case24State",JSON.stringify(caseState))}
     var caseSoundEnabled=localStorage.getItem("case24Sound")==="1",caseAudio=null;
@@ -1360,7 +1360,10 @@
       if(app==="devices"&&caseState.device==="laptop_mail"&&!caseState.mail&&q("#unlockMail")){q("#unlockMail").onclick=function(){var v=q("#mailPass").value.trim().toLowerCase();if(v===atob("ZmliaTIwMTk=")||v===atob("cGhvZWJlMjAxOQ==")){caseState.mail=true;saveCase();showToast("✉️ Почта Кирилла открыта");renderCaseApp("devices")}else q("#mailError").textContent="Пароль не подошёл."};q("#mailPass").onkeydown=function(e){if(e.key==="Enter")q("#unlockMail").click()}}
       if(app==="devices"&&caseState.device==="laptop_files"&&caseState.filePath==="evidence"&&!caseState.files&&q("#unlockFiles")){q("#unlockFiles").onclick=function(){if(q("#filesPin").value.trim()===atob("MDcxMQ==")){caseState.files=true;saveCase();showToast("🗂️ Папка открыта");renderCaseApp("devices")}else q("#filesError").textContent="PIN не подошёл."};q("#filesPin").onkeydown=function(e){if(e.key==="Enter")q("#unlockFiles").click()}}
       if(app==="hints")qa("[data-next-hint]",q("#caseScreen")).forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-next-hint"),group=caseHintGroups.find(function(g){return g.id===id});if(!group)return;ensureCaseHints();caseState.hints[id]=Math.min(group.items.length,(Number(caseState.hints[id])||0)+1);saveCase();renderCaseApp("hints")}});
-      if(app==="final"&&!caseState.solved&&q("#submitCase"))q("#submitCase").onclick=submitCaseVersion;
+      if(app==="final"&&!caseState.solved&&q("#submitCase")){
+        ["finalWho","finalMotive","finalMethod","finalEvidence"].forEach(function(id){var el=q("#"+id);el.value=(caseState.finalDraft&&caseState.finalDraft[id])||"";el.onchange=function(){caseState.finalDraft=caseState.finalDraft||{};caseState.finalDraft[id]=el.value;saveCase()}});
+        q("#submitCase").onclick=submitCaseVersion;
+      }
     }
 
     async function caseHash(str){var buf=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(str));return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,"0")}).join("")}
@@ -1382,7 +1385,7 @@
       saveCase();renderCaseApp(app);
       q("#caseDesk").scrollIntoView({behavior:"smooth",block:"start"})
     })});
-    q("#resetCase").addEventListener("click",function(){if(confirm("Сбросить расследование? Откроется чистая версия дела.")){caseState=Object.assign({},caseDefault,{started:true,pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",boardAnswers:{},suspectMarks:{},suspectNotes:{},caseNotebook:"",interrogation:{active:null,asked:{},visits:{}},clues:[],hint:0,hints:{devices:0,timeline:0,motive:0},policePage:null});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
+    q("#resetCase").addEventListener("click",function(){if(confirm("Сбросить расследование? Откроется чистая версия дела.")){caseState=Object.assign({},caseDefault,{started:true,pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",boardAnswers:{},suspectMarks:{},suspectNotes:{},caseNotebook:"",finalDraft:{},interrogation:{active:null,asked:{},visits:{}},clues:[],hint:0,hints:{devices:0,timeline:0,motive:0},policePage:null});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
     if(caseState.started){q("#caseIntro").classList.add("hidden");q("#caseDesk").classList.remove("hidden");renderCaseApp(caseState.app||"brief")}
 
     var movies=qa(".movie"), savedMovies=JSON.parse(localStorage.getItem("kostromaMovies")||"null");
