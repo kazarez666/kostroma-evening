@@ -241,6 +241,10 @@ try{
   await page.locator('#submitCase').click();
   assert.match(await page.locator('#finalFeedback').innerText(),/Ничего не сброшено/);
   assert.equal(await page.locator('.case-solved').count(),0);
+  await page.locator('.final-back').click();
+  assert.equal(await page.locator('.board-tabs').count(),1);
+  await app('final');
+  assert.equal(await page.locator('#finalWho').inputValue(),'denis','wrong versions should remain editable after returning to evidence');
   for(const id of ['#finalWho','#finalMotive','#finalMethod','#finalEvidence']) await page.locator(id).selectOption({index:1});
   await page.locator('#submitCase').click();
   await textVisible('Вы раскрыли');
