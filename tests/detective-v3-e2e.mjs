@@ -155,6 +155,7 @@ try{
   // Board accepts mixed relevant/irrelevant material, notes, manual time and user-defined links.
   await app('board');
   await textVisible('Материалы и ваши выводы');
+  await page.locator('[data-board-view="questions"]').click();
   assert.equal(await page.locator('.investigation-question').count(),6);
   await page.locator('[data-board-answer="0"]').fill('Павел');
   await page.locator('[data-check-board="0"]').click();
@@ -163,6 +164,7 @@ try{
   await page.locator('[data-check-board="0"]').click();
   assert.match(await page.locator('#board-feedback-0').innerText(),/Верно/);
   assert.equal(await page.locator('#boardQuestionProgress').innerText(),'1/6');
+  await page.locator('[data-board-view="cards"]').click();
   const before=await page.locator('.board-clue').count();
   assert.ok(before>=6);
   const note=page.locator('[data-pin-note]').first();
@@ -205,8 +207,9 @@ try{
   await textVisible('Марина');
 
   await app('board');
-  await page.locator('[data-board-view="cards"]').click();
+  await page.locator('[data-board-view="questions"]').click();
   assert.equal(await page.locator('#boardQuestionProgress').innerText(),'1/6');
+  await page.locator('[data-board-view="cards"]').click();
   const interviewSource=page.locator('[data-open-pin-source="interview_marina_return"]');
   assert.equal(await interviewSource.count(),1);
   await interviewSource.click();
