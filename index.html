@@ -790,7 +790,7 @@
         '<div class="case-section-title" style="margin-top:18px"><div><small>ЗАКРЕПЛЕНО</small><h3>Ваша доска</h3></div></div>'+
         (ids.length?'<div class="board-list">'+ids.map(function(id){var p=casePins[id],note=(caseState.pinNotes&&caseState.pinNotes[id])||"";return '<div class="board-clue"><span>🧷</span><div class="board-clue__body"><small class="board-clue__source">'+caseEsc(p.source)+'</small><b>'+caseEsc(p.title)+'</b><p>'+caseEsc(p.text)+'</p><textarea data-pin-note="'+id+'" maxlength="220" placeholder="Ваш вывод или сомнение…">'+caseEsc(note)+'</textarea><button class="board-remove" data-remove-pin="'+id+'">Убрать с доски</button></div></div>'}).join("")+'</div>':'<div class="board-empty">Пока пусто. Закрепляйте всё, что кажется подозрительным или просто полезным для хронологии.</div>');
     }
-    function renderCaseFileDocument(){    function renderCaseFileDocument(){
+    function renderCaseFileDocument(){
       var page=Math.max(0,Math.min(3,Number(caseState.briefPage)||0));
       var pages=[
         '<div class="case-doc-head"><div><div class="case-doc-agency">ОТДЕЛ РАССЛЕДОВАНИЙ · НОВОГРАД</div><div class="case-doc-title">Уголовное дело №24/10-26</div><div class="case-doc-subtitle">ПЕРВИЧНАЯ ОПЕРАТИВНАЯ СВОДКА · 02.10.2026</div></div><div class="case-doc-stamp">КОПИЯ<br>ДЛЯ РАБОТЫ</div></div>'+
@@ -847,7 +847,7 @@
       s.innerHTML=out;caseProgress();bindPins();bindCaseScreen(app);
     }
 
-    function renderDevices(){    function renderDevices(){
+    function renderDevices(){
       if(caseState.device==="hub")return '<div class="case-section-title"><div><small>FORENSIC IMAGES</small><h3>Устройства Кирилла Волкова</h3></div></div><div class="source-grid">'+
         '<button class="source-card" data-device="phone" style="text-align:left;color:inherit"><div class="source-card__icon">📱</div><h4>Pixel 8 · телефон Кирилла</h4><p>Сообщения, звонки, заметки, фотографии.</p></button>'+
         '<button class="source-card" data-device="laptop" style="text-align:left;color:inherit"><div class="source-card__icon">💻</div><h4>ThinkPad · ноутбук Кирилла</h4><p>Почтовый клиент, браузер и локальная файловая система.</p></button></div>';
@@ -918,7 +918,7 @@
       }
       return '<div class="case-section-title"><div><small>PUBLIC WEB SNAPSHOT</small><h3>Открытый веб</h3></div></div><div class="web-home"><div class="web-searchbar"><input id="caseWebQuery" placeholder="Имя, компания, подкаст, место…"><button id="caseWebSearch">Найти</button></div><div class="profile-shortcuts">'+Object.keys(people).map(function(id){return '<button data-profile="'+id+'">'+people[id].name+'</button>'}).join("")+'</div><div id="caseWebResults"><p>Можно открыть профиль человека или искать по словам: «первый выпуск», «Prism», «студия», «электричка».</p></div></div>';
     }
-    function searchWeb(raw){    function searchWeb(raw){
+    function searchWeb(raw){
       var box=q("#caseWebResults");if(!box)return;var words=(raw||"").toLowerCase().trim().split(/\s+/).filter(Boolean);var found=webPages.filter(function(p){var hay=(p.title+" "+p.url+" "+(p.keywords||"")+" "+(p.text||"")).toLowerCase();return words.length&&words.some(function(w){return hay.indexOf(w)>=0})});
       box.innerHTML=found.length?found.map(function(p){return '<div class="browser-result"><a data-webpage="'+(p.profile?p.profile:p.id)+'">'+p.title+'</a><small>'+p.url+'</small><p>'+(p.text||("Публичный профиль "+p.title))+'</p>'+(p.profile?pinButton("profile_"+p.profile):pinButton("web_"+p.id))+'</div>'}).join(""):'<p>Ничего не найдено. Попробуйте имя или более общее слово.</p>';bindWebLinks();bindPins()
     }
