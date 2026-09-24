@@ -100,7 +100,7 @@ try {
   const noteLeaf = page.locator('.secret-leaf[data-note-leaf="1"]').first();
   await noteLeaf.click({ force: true });
   assert.equal(await page.locator('#loveModal').isVisible(), true, 'Side leaves should open a note');
-  await page.locator('[data-close-love]').first().click();
+  await page.locator('.love-again[data-close-love]').click();
 
   if (process.env.CI) await page.screenshot({ path: 'test-artifacts/scattered-leaves-desktop.png' });
   assert.deepEqual(errors, [], 'Uncaught page errors: ' + errors.join('\n'));
