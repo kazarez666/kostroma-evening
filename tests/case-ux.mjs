@@ -77,9 +77,22 @@ try {
   const leafLayout = await page.locator('.secret-leaf').evaluateAll(leaves => leaves.map(el => ({
     x: el.getBoundingClientRect().x / innerWidth,
     interactive: getComputedStyle(el).pointerEvents !== 'none',
+    noteLeaf: el.dataset.noteLeaf === '1',
   })));
   assert.ok(leafLayout.some(leaf => leaf.x > .35 && leaf.x < .65), 'Leaves should reach the middle of the interface');
-  assert.ok(leafLayout.every(leaf => !leaf.interactive), 'Decorative leaves must not block case controls');
+  assert.ok(leafLayout.every(leaf => leaf.interactive), 'Every scattered leaf should react to a click');
+  assert.ok(leafLayout.some(leaf => leaf.noteLeaf), 'Some side leaves should contain romantic notes');
+  assert.ok(leafLayout.some(leaf => !leaf.noteLeaf), 'Central leaves should stay decorative rather than opening notes');
+
+  const centralLeaf = page.locator('.secret-leaf[data-note-leaf="0"]').first();
+  await centralLeaf.click();
+  assert.equal(await page.locator('#loveModal').isVisible(), false, 'Central leaves should react without opening a note');
+
+  const noteLeaf = page.locator('.secret-leaf[data-note-leaf="1"]').first();
+  await noteLeaf.click();
+  assert.equal(await page.locator('#loveModal').isVisible(), true, 'Side leaves should open a note');
+  await page.locator('[data-close-love]').first().click();
+
   if (process.env.CI) await page.screenshot({ path: 'test-artifacts/scattered-leaves-desktop.png' });
   assert.deepEqual(errors, [], 'Uncaught page errors: ' + errors.join('\n'));
   console.log('CASE_UX_OK');
