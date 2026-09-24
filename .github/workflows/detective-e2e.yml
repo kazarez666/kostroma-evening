@@ -10,6 +10,7 @@ on:
       - "tests/trip-day-resume.mjs"
       - ".github/workflows/detective-e2e.yml"
   workflow_dispatch:
+  pull_request:
 
 jobs:
   test:
