@@ -42,7 +42,7 @@ try {
   await page.locator('[data-case-app="devices"]').click();
   await page.locator('[data-device="laptop"]').click();
   await page.locator('[data-device="laptop_files"]').click();
-  await page.locator('[data-filepath="desktop"]').click();
+  await page.locator('.file-main [data-filepath="desktop"]').click();
   const file = page.locator('[data-open-file]').first();
   assert.match(await file.innerText(), /не открывали/i);
   const fileId = await file.getAttribute('data-open-file');
