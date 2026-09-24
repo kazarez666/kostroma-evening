@@ -32,6 +32,7 @@ try {
 
   if (await page.locator('#startEvening').isVisible()) await page.locator('#startEvening').click();
   await page.locator('#openSecretCase').click();
+  await page.locator('#caseRevealContinue').click();
   await page.locator('#casePlanLaunch').waitFor({ state: 'visible' });
   await page.locator('#casePlanLaunch').click();
   await page.locator('#startCase').click();

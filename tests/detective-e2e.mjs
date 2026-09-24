@@ -21,6 +21,7 @@ try {
   // Secret case must not appear as a normal top/mobile tab.
   assert.equal(await page.locator('[data-tab="detective"]').count(), 0, 'Detective should not be a normal navigation tab');
   await page.locator('#openSecretCase').click();
+  await page.locator('#caseRevealContinue').click();
   await visibleText('Дело на двоих: «Последний эфир»');
   await page.locator('#casePlanLaunch').click();
   await visibleText('Последний эфир');
@@ -117,9 +118,9 @@ try {
   await visibleText('Вопросы расследования');
   assert.ok((await page.locator('.board-clue').count()) >= 5, 'Too few saved evidence cards');
 
-  // Hints open sequentially.
+  // Hints open within the selected theme.
   await page.locator('[data-case-app="hints"]').click();
-  await page.locator('#nextHint').click();
+  await page.locator('[data-next-hint="devices"]').click();
   assert.ok((await page.locator('.hint-level:not(.locked)').count()) >= 1);
 
   // Final answer path.
