@@ -13,6 +13,7 @@ try{
   await page.goto('http://127.0.0.1:4173/index.html',{waitUntil:'domcontentloaded'});
   if(await page.locator('#startEvening').isVisible().catch(()=>false)) await page.locator('#startEvening').click();
   await page.locator('#openSecretCase').click();
+  await page.locator('#caseRevealContinue').click();
   await page.getByText('Дело на двоих: «Последний эфир»',{exact:false}).waitFor({state:'visible'});
   await page.locator('#casePlanLaunch').click();
   await page.locator('#startCase').click();
@@ -213,8 +214,13 @@ try{
 
   // Optional hints and the complete final-answer flow still work.
   await app('hints');
-  await page.locator('#nextHint').click();
-  assert.ok(await page.locator('.hint-level:not(.locked)').count()>=1);
+  assert.equal(await page.locator('.hint-level:not(.locked)').count(),0);
+  assert.equal(await page.locator('.hint-level.locked').first().innerText().then(t=>t.includes('Закрыта')),true);
+  await page.locator('[data-next-hint="devices"]').click();
+  assert.equal(await page.locator('.hint-level:not(.locked)').count(),1);
+  await page.locator('[data-next-hint="timeline"]').click();
+  assert.equal(await page.locator('.hint-level:not(.locked)').count(),2);
+  assert.equal(await page.locator('.hint-group').last().locator('.hint-level:not(.locked)').count(),0);
   await app('final');
   for(const id of ['#finalWho','#finalMotive','#finalMethod','#finalEvidence']) await page.locator(id).selectOption({index:1});
   await page.locator('#submitCase').click();
