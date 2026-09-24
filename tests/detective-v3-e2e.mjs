@@ -239,6 +239,7 @@ try{
   await page.locator('#finalWho').selectOption({index:2});
   for(const id of ['#finalMotive','#finalMethod','#finalEvidence']) await page.locator(id).selectOption({index:1});
   await page.locator('#submitCase').click();
+  await page.locator('#finalFeedback').getByText('Пока неверно',{exact:false}).waitFor({state:'visible'});
   assert.match(await page.locator('#finalFeedback').innerText(),/Ничего не сброшено/);
   assert.equal(await page.locator('.case-solved').count(),0);
   await page.locator('.final-back').click();
