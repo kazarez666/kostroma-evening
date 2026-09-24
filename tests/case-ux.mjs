@@ -17,6 +17,10 @@ try {
   await page.locator('.mobile-nav [data-tab="food"]').click();
   await page.locator('.mobile-nav [data-tab="detective"]').click();
   assert.equal(await page.locator('#detective').evaluate(el => el.classList.contains('active')), true);
+  await page.waitForFunction(() => {
+    const top = document.querySelector('#detective').getBoundingClientRect().top;
+    return top >= -2 && top < 30;
+  });
 
   await page.locator('#startCase').click();
   await page.locator('[data-case-app="police"]').click();
@@ -27,6 +31,13 @@ try {
   await lastPin.scrollIntoViewIfNeeded();
   const top = await page.locator('#caseApps').evaluate(el => el.getBoundingClientRect().top);
   assert.ok(top >= -2 && top < 80, 'Case navigation should stay available while reading long documents');
+  await page.locator('[data-case-app="brief"]').click();
+  await page.waitForFunction(() => {
+    const top = document.querySelector('#caseDesk').getBoundingClientRect().top;
+    return top >= -2 && top < 30;
+  });
+  await page.locator('[data-case-app="police"]').click();
+  await lastPin.scrollIntoViewIfNeeded();
   await lastPin.evaluate(el => { window.savedPinNode = el; });
   await lastPin.click();
   assert.equal(await page.evaluate(() => document.querySelector('[data-pin="police_6"]') === window.savedPinNode), true,
