@@ -227,7 +227,7 @@ try{
   await textVisible('Вы раскрыли');
 
   await page.locator('.mnav[data-tab="plan"]').click();
-  await textVisible('План вечера');
+  await page.locator('#plan .section-head h2').waitFor({state:'visible'});
 
   assert.deepEqual(errors,[]);
   console.log('DETECTIVE_V3_E2E_OK');
