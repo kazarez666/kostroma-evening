@@ -10,6 +10,7 @@ on:
       - "tests/trip-day-resume.mjs"
       - "tests/case-ux.mjs"
       - "tests/desktop-case-ux.mjs"
+      - "tests/offline-shell.mjs"
       - "sw.js"
       - "manifest.webmanifest"
       - ".github/workflows/detective-e2e.yml"
@@ -30,6 +31,8 @@ jobs:
           npm init -y
           npm install playwright@1.55.0
           npx playwright install --with-deps chromium
+      - name: Verify offline shell
+        run: node tests/offline-shell.mjs
       - name: Start local site
         run: |
           python3 -m http.server 4173 >/tmp/kostroma-http.log 2>&1 &
