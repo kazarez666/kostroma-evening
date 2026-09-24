@@ -44,7 +44,10 @@ try {
   assert.equal(await page.locator('.police-paper').count(), 1);
   const sheetTop = await page.locator('.police-paper .case-doc-title').evaluate(el => el.getBoundingClientRect().top);
   assert.ok(sheetTop > 0 && sheetTop < 300, 'Opening any police sheet should show its heading first');
-  if (process.env.CI) await page.screenshot({ path: 'test-artifacts/police-document-mobile.png' });
+  if (process.env.CI) {
+    await page.waitForTimeout(420);
+    await page.screenshot({ path: 'test-artifacts/police-document-mobile.png' });
+  }
 
   const lastPin = page.locator('[data-pin="police_6"]');
   await lastPin.scrollIntoViewIfNeeded();
