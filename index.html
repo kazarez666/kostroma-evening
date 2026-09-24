@@ -57,7 +57,7 @@
     .talk-card{border-radius:26px;padding:28px;color:white;background:linear-gradient(145deg,#173a2a,#5a3e30);box-shadow:var(--shadow)}.talk-top{display:flex;justify-content:space-between;gap:12px;align-items:center}.badge{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.1);font-size:12px;font-weight:800}.count{font-size:12px;opacity:.62}.question{font-size:clamp(23px,4vw,36px);font-weight:800;line-height:1.22;letter-spacing:-.025em;min-height:150px;display:flex;align-items:center}.all{margin-top:14px;background:rgba(255,253,248,.85);border:1px solid var(--line);border-radius:18px;padding:18px}.all li{margin:0 0 10px;line-height:1.45}
 
     .fondue-recommend{width:100%;margin:10px 0 2px;border:1px dashed rgba(91,61,47,.25);background:rgba(255,255,255,.48);color:var(--brown);padding:10px 12px;border-radius:13px;font-weight:850;transition:.18s ease}.fondue-recommend:hover{background:#fff;transform:translateY(-1px)}
-    .secret-leaves{position:fixed;inset:0;pointer-events:none;z-index:24;overflow:hidden}.secret-leaf{position:absolute;pointer-events:auto;display:grid;place-items:center;width:calc(var(--size,22px) + 10px);height:calc(var(--size,22px) + 10px);padding:0;border:0;border-radius:50%;background:transparent;color:inherit;font-size:var(--size,22px);line-height:1;filter:drop-shadow(0 5px 8px rgba(74,48,28,.13));opacity:var(--opacity,.3);animation:leafFloatRandom var(--dur,8s) ease-in-out infinite;animation-delay:var(--delay,0s);transform-origin:center;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.secret-leaf:focus-visible{outline:2px solid rgba(117,83,53,.55);outline-offset:2px}.secret-leaf.rustle{animation:leafRustle .62s ease both}@keyframes leafFloatRandom{0%,100%{transform:translate3d(0,0,0) rotate(var(--r0,-8deg))}50%{transform:translate3d(var(--sway,7px),var(--bob,13px),0) rotate(var(--r1,8deg))}}@keyframes leafRustle{0%{transform:rotate(var(--r0,-5deg)) scale(1)}28%{transform:rotate(-24deg) scale(1.15)}58%{transform:rotate(24deg) scale(.96)}100%{transform:rotate(var(--r1,7deg)) scale(1)}}.leaf-spark{position:fixed;z-index:80;pointer-events:none;font-size:15px;animation:leafSpark .8s ease-out forwards}@keyframes leafSpark{0%{opacity:0;transform:scale(.45)}20%{opacity:.9}100%{opacity:0;transform:translate(var(--sx,18px),-38px) rotate(var(--sr,30deg)) scale(.9)}}
+    .secret-leaves{position:fixed;inset:0;pointer-events:none;z-index:24;overflow:hidden}.secret-leaf{position:absolute;pointer-events:none;display:grid;place-items:center;width:calc(var(--size,22px) + 10px);height:calc(var(--size,22px) + 10px);padding:0;border:0;border-radius:50%;background:transparent;color:inherit;font-size:var(--size,22px);line-height:1;filter:drop-shadow(0 5px 8px rgba(74,48,28,.13));opacity:var(--opacity,.3);animation:leafFloatRandom var(--dur,8s) ease-in-out infinite;animation-delay:var(--delay,0s);transform-origin:center;user-select:none}.secret-leaf.rustle{animation:leafRustle .62s ease both}@keyframes leafFloatRandom{0%,100%{transform:translate3d(0,0,0) rotate(var(--r0,-8deg))}50%{transform:translate3d(var(--sway,7px),var(--bob,13px),0) rotate(var(--r1,8deg))}}@keyframes leafRustle{0%{transform:rotate(var(--r0,-5deg)) scale(1)}28%{transform:rotate(-24deg) scale(1.15)}58%{transform:rotate(24deg) scale(.96)}100%{transform:rotate(var(--r1,7deg)) scale(1)}}.leaf-spark{position:fixed;z-index:80;pointer-events:none;font-size:15px;animation:leafSpark .8s ease-out forwards}@keyframes leafSpark{0%{opacity:0;transform:scale(.45)}20%{opacity:.9}100%{opacity:0;transform:translate(var(--sx,18px),-38px) rotate(var(--sr,30deg)) scale(.9)}}
         .love-modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px}.love-backdrop{position:absolute;inset:0;background:rgba(24,20,16,.56);backdrop-filter:blur(7px)}.love-note{position:relative;z-index:1;width:min(420px,100%);padding:32px 27px 26px;border-radius:28px;text-align:center;background:linear-gradient(145deg,#fffaf2,#efe1d2);border:1px solid rgba(255,255,255,.75);box-shadow:0 30px 90px rgba(35,25,18,.3);animation:notePop .35s cubic-bezier(.2,.9,.25,1.15)}@keyframes notePop{from{opacity:0;transform:scale(.86) translateY(12px)}to{opacity:1;transform:none}}.love-note small{font-size:10px;letter-spacing:.14em;color:var(--brown2);font-weight:900}.love-note h3{font-size:31px;margin:7px 0 12px;letter-spacing:-.04em}.love-note p{font-family:Georgia,serif;font-size:20px;line-height:1.55;color:#4b3b31;margin:0 0 19px}.love-heart{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;background:var(--forest);color:#f5d8cf;font-size:22px;box-shadow:0 12px 30px rgba(23,59,43,.18)}.love-close{position:absolute;right:13px;top:11px;border:0;background:transparent;color:#7f6b5d;font-size:29px;line-height:1}.love-again{border:0;border-radius:999px;background:var(--forest);color:white;padding:11px 16px;font-weight:850}.heart-layer{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}.burst-heart{position:absolute;font-size:20px;animation:heartFly 1.25s ease-out forwards}@keyframes heartFly{0%{opacity:0;transform:translateY(8px) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-150px) rotate(var(--rot)) scale(1.15)}}.footer-heart{border:0;background:transparent;color:var(--brown2);font-size:18px;vertical-align:-1px;padding:3px 6px;transition:.2s}.footer-heart:hover{transform:scale(1.2);color:#9a3f45}
     .phase,.mini-card,.food-box,.slot,.emoji-card,.talk-card,.draw{transition:transform .2s ease,box-shadow .2s ease}.phase:hover,.food-box:hover{transform:translateY(-2px)}button:active{transform:scale(.97)}.food-choice.selected,.fondue-chip.selected{animation:tinyPop .22s ease}@keyframes tinyPop{50%{transform:scale(1.045)}}
     @media(max-width:760px){.secret-leaf{filter:drop-shadow(0 2px 4px rgba(74,48,28,.055))}.love-note{padding:28px 22px 24px}.love-note p{font-size:18px}.romance-actions{gap:6px}.romance-pill{padding:8px 9px;font-size:11px}.toast{top:10px}.sheep-peek{bottom:88px}}
@@ -696,9 +696,9 @@
       var wrap=q("#secretLeaves");wrap.innerHTML="";
       var mobile=innerWidth<760,cols=mobile?4:6,rows=mobile?5:5,count=cols*rows;
       for(var i=0;i<count;i++){
-        var b=document.createElement("button");b.type="button";b.className="secret-leaf";b.textContent=Math.random()>.48?"🍁":"🍂";
+        var b=document.createElement("span");b.className="secret-leaf";b.textContent=Math.random()>.48?"🍁":"🍂";b.setAttribute("aria-hidden","true");
         var col=i%cols,row=Math.floor(i/cols),x=(col+.18+Math.random()*.64)/cols,y=(row+.18+Math.random()*.64)/rows,center=x>.22&&x<.78&&y>.18&&y<.83,noteLeaf=col===0||col===cols-1;
-        b.dataset.noteLeaf=noteLeaf?"1":"0";b.setAttribute("aria-label",noteLeaf?"Открыть осеннюю записку":"Пошевелить осенний листик");
+        b.dataset.noteLeaf=noteLeaf?"1":"0";
         b.style.left=(x*96+2)+"vw";
         b.style.top=(y*95+2)+"vh";
         b.style.setProperty("--size",(mobile?11+Math.random()*7:16+Math.random()*17)+"px");
@@ -710,15 +710,22 @@
         b.style.setProperty("--bob",(mobile?4+Math.random()*9:7+Math.random()*22).toFixed(1)+"px");
         b.style.setProperty("--r0",(Math.random()*70-35).toFixed(1)+"deg");
         b.style.setProperty("--r1",(Math.random()*90-45).toFixed(1)+"deg");
-        b.addEventListener("click",function(ev){
-          ev.stopPropagation();var leaf=ev.currentTarget,r=leaf.getBoundingClientRect();
-          leaf.classList.remove("rustle");void leaf.offsetWidth;leaf.classList.add("rustle");leafSpark(r.left+r.width/2,r.top+r.height/2);
-          setTimeout(function(){if(leaf.isConnected)leaf.classList.remove("rustle")},650);
-          if(leaf.dataset.noteLeaf==="1")openLove(ev);
-        });
         wrap.appendChild(b)
       }
     }
+    function activateAmbientLeaf(leaf,ev){
+      var r=leaf.getBoundingClientRect();
+      leaf.classList.remove("rustle");void leaf.offsetWidth;leaf.classList.add("rustle");leafSpark(r.left+r.width/2,r.top+r.height/2);
+      setTimeout(function(){if(leaf.isConnected)leaf.classList.remove("rustle")},650);
+      if(leaf.dataset.noteLeaf==="1")openLove(ev);
+    }
+    document.addEventListener("click",function(ev){
+      if(ev.defaultPrevented)return;
+      if(ev.target.closest&&ev.target.closest('button,a,input,select,textarea,label,[role="button"],[contenteditable="true"],.love-modal,.coupon-modal,.moment-modal,.case-reveal'))return;
+      var x=ev.clientX,y=ev.clientY;if(typeof x!=="number"||typeof y!=="number")return;
+      var leaf=qa(".secret-leaf").find(function(el){var r=el.getBoundingClientRect();return x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom});
+      if(leaf)activateAmbientLeaf(leaf,ev);
+    });
     makeAmbientLeaves();
     var resizeLeafTimer;addEventListener("resize",function(){clearTimeout(resizeLeafTimer);resizeLeafTimer=setTimeout(makeAmbientLeaves,250)});
     q("#footerHeart").addEventListener("click",openLove);
