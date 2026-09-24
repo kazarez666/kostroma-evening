@@ -54,7 +54,7 @@
     .talk-card{border-radius:26px;padding:28px;color:white;background:linear-gradient(145deg,#173a2a,#5a3e30);box-shadow:var(--shadow)}.talk-top{display:flex;justify-content:space-between;gap:12px;align-items:center}.badge{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.1);font-size:12px;font-weight:800}.count{font-size:12px;opacity:.62}.question{font-size:clamp(23px,4vw,36px);font-weight:800;line-height:1.22;letter-spacing:-.025em;min-height:150px;display:flex;align-items:center}.all{margin-top:14px;background:rgba(255,253,248,.85);border:1px solid var(--line);border-radius:18px;padding:18px}.all li{margin:0 0 10px;line-height:1.45}
 
     .fondue-recommend{width:100%;margin:10px 0 2px;border:1px dashed rgba(91,61,47,.25);background:rgba(255,255,255,.48);color:var(--brown);padding:10px 12px;border-radius:13px;font-weight:850;transition:.18s ease}.fondue-recommend:hover{background:#fff;transform:translateY(-1px)}
-    .secret-leaves{position:fixed;inset:0;pointer-events:none;z-index:24;overflow:hidden}.secret-leaf{position:absolute;pointer-events:auto;border:0;background:transparent;font-size:var(--size,22px);filter:drop-shadow(0 5px 8px rgba(74,48,28,.13));opacity:var(--opacity,.48);animation:leafFloatRandom var(--dur,8s) ease-in-out infinite;animation-delay:var(--delay,0s);cursor:pointer;transform-origin:center;transition:opacity .2s ease,filter .2s ease}.secret-leaf:hover{opacity:.92;filter:drop-shadow(0 7px 10px rgba(74,48,28,.2))}.secret-leaf.rustle{animation:leafRustle .62s ease both}@keyframes leafFloatRandom{0%,100%{transform:translate3d(0,0,0) rotate(var(--r0,-8deg))}50%{transform:translate3d(var(--sway,7px),var(--bob,13px),0) rotate(var(--r1,8deg))}}@keyframes leafRustle{0%{transform:rotate(var(--r0,-5deg)) scale(1)}28%{transform:rotate(-24deg) scale(1.15)}58%{transform:rotate(24deg) scale(.96)}100%{transform:rotate(var(--r1,7deg)) scale(1)}}.leaf-spark{position:fixed;z-index:80;pointer-events:none;font-size:15px;animation:leafSpark .8s ease-out forwards}@keyframes leafSpark{0%{opacity:0;transform:scale(.45)}20%{opacity:.9}100%{opacity:0;transform:translate(var(--sx,18px),-38px) rotate(var(--sr,30deg)) scale(.9)}}
+    .secret-leaves{position:fixed;inset:0;pointer-events:none;z-index:24;overflow:hidden}.secret-leaf{position:absolute;pointer-events:none;border:0;background:transparent;font-size:var(--size,22px);filter:drop-shadow(0 5px 8px rgba(74,48,28,.13));opacity:var(--opacity,.3);animation:leafFloatRandom var(--dur,8s) ease-in-out infinite;animation-delay:var(--delay,0s);transform-origin:center}@keyframes leafFloatRandom{0%,100%{transform:translate3d(0,0,0) rotate(var(--r0,-8deg))}50%{transform:translate3d(var(--sway,7px),var(--bob,13px),0) rotate(var(--r1,8deg))}}.leaf-spark{position:fixed;z-index:80;pointer-events:none;font-size:15px;animation:leafSpark .8s ease-out forwards}@keyframes leafSpark{0%{opacity:0;transform:scale(.45)}20%{opacity:.9}100%{opacity:0;transform:translate(var(--sx,18px),-38px) rotate(var(--sr,30deg)) scale(.9)}}
         .love-modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px}.love-backdrop{position:absolute;inset:0;background:rgba(24,20,16,.56);backdrop-filter:blur(7px)}.love-note{position:relative;z-index:1;width:min(420px,100%);padding:32px 27px 26px;border-radius:28px;text-align:center;background:linear-gradient(145deg,#fffaf2,#efe1d2);border:1px solid rgba(255,255,255,.75);box-shadow:0 30px 90px rgba(35,25,18,.3);animation:notePop .35s cubic-bezier(.2,.9,.25,1.15)}@keyframes notePop{from{opacity:0;transform:scale(.86) translateY(12px)}to{opacity:1;transform:none}}.love-note small{font-size:10px;letter-spacing:.14em;color:var(--brown2);font-weight:900}.love-note h3{font-size:31px;margin:7px 0 12px;letter-spacing:-.04em}.love-note p{font-family:Georgia,serif;font-size:20px;line-height:1.55;color:#4b3b31;margin:0 0 19px}.love-heart{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;background:var(--forest);color:#f5d8cf;font-size:22px;box-shadow:0 12px 30px rgba(23,59,43,.18)}.love-close{position:absolute;right:13px;top:11px;border:0;background:transparent;color:#7f6b5d;font-size:29px;line-height:1}.love-again{border:0;border-radius:999px;background:var(--forest);color:white;padding:11px 16px;font-weight:850}.heart-layer{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}.burst-heart{position:absolute;font-size:20px;animation:heartFly 1.25s ease-out forwards}@keyframes heartFly{0%{opacity:0;transform:translateY(8px) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-150px) rotate(var(--rot)) scale(1.15)}}.footer-heart{border:0;background:transparent;color:var(--brown2);font-size:18px;vertical-align:-1px;padding:3px 6px;transition:.2s}.footer-heart:hover{transform:scale(1.2);color:#9a3f45}
     .phase,.mini-card,.food-box,.slot,.emoji-card,.talk-card,.draw{transition:transform .2s ease,box-shadow .2s ease}.phase:hover,.food-box:hover{transform:translateY(-2px)}button:active{transform:scale(.97)}.food-choice.selected,.fondue-chip.selected{animation:tinyPop .22s ease}@keyframes tinyPop{50%{transform:scale(1.045)}}
     @media(max-width:760px){.secret-leaf{opacity:calc(var(--opacity,.48) * .88)}.love-note{padding:28px 22px 24px}.love-note p{font-size:18px}.romance-actions{gap:6px}.romance-pill{padding:8px 9px;font-size:11px}.toast{top:10px}.sheep-peek{bottom:88px}}
@@ -188,6 +188,12 @@
     .case-suspects-paper{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.case-suspect-paper{padding:11px 12px;border:1px solid #bcb2a5;background:rgba(255,255,255,.38)}.case-suspect-paper b{display:block;font-size:13px}.case-suspect-paper span{display:block;color:#6f675d;font-size:11px;margin-top:3px;line-height:1.4}
     .case-doc-foot{position:absolute;left:46px;right:46px;bottom:22px;display:flex;justify-content:space-between;gap:12px;padding-top:8px;border-top:1px solid #b9afa2;font:800 9px ui-monospace,SFMono-Regular,Menlo,monospace;color:#756c60}.case-file-controls{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:14px}.case-file-controls button{border:1px solid rgba(218,234,224,.12);background:#1b2824;color:#dce7e1;border-radius:11px;padding:9px 12px;font-weight:850}.case-file-controls button:disabled{opacity:.28;cursor:default}.case-file-pagecount{min-width:70px;text-align:center;color:#849a8f;font:800 10px ui-monospace,SFMono-Regular,Menlo,monospace}
     @media(max-width:760px){.case-paper{padding:28px 20px 58px;min-height:720px}.case-doc-head{grid-template-columns:1fr}.case-doc-stamp{justify-self:start}.case-doc-title{font-size:27px}.case-doc-grid,.scene-sheet,.case-suspects-paper{grid-template-columns:1fr}.case-doc-foot{left:20px;right:20px}.scene-photo{min-height:245px}.case-file-toolbar{align-items:flex-start;flex-direction:column}}
+
+    /* Separate evidence sheets */
+    .police-index{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.police-index-card{display:grid;grid-template-columns:44px minmax(0,1fr) 18px;gap:13px;align-items:center;width:100%;text-align:left;border:1px solid rgba(210,224,211,.14);border-radius:14px;background:linear-gradient(135deg,#1d3027,#17231f);color:#e5ece6;padding:16px;cursor:pointer;transition:transform .2s,border-color .2s}.police-index-card:hover,.police-index-card:focus-visible{transform:translateY(-2px);border-color:#bca881}.police-index-card__number{display:grid;place-items:center;width:42px;height:48px;border:1px solid #927e5b;border-radius:3px;background:#e7decd;color:#594331;font:800 17px Georgia,serif}.police-index-card small{display:block;color:#b99e77;font-size:12px;line-height:1.3}.police-index-card b{display:block;margin:4px 0;font:600 18px/1.2 Georgia,serif}.police-index-card em{color:#849b8d;font:12px ui-monospace,SFMono-Regular,Menlo,monospace;font-style:normal;overflow-wrap:anywhere}.police-index-card>span:last-child{color:#af9b79}
+    .police-reader-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;color:#a9bdac;font:800 12px ui-monospace,SFMono-Regular,Menlo,monospace}.police-reader-top .browser-back{margin:0}.police-paper{min-height:600px}.police-paper .case-doc-title{font-size:clamp(26px,4.2vw,35px);line-height:1.13}.police-paper__meta{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:18px 0;border-bottom:1px solid #baa996}.police-paper__meta small{display:block;color:#766a5e;font:800 11px ui-monospace,SFMono-Regular,Menlo,monospace}.police-paper__meta b{display:block;margin-top:4px;color:#342c25;font-size:14px;overflow-wrap:anywhere}.police-attachment{margin:20px 0;padding:17px 18px;border:1px solid #b8a893;background:rgba(255,255,255,.33)}.police-attachment__head{display:flex;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:8px;border-bottom:2px solid #65594b;color:#483b2f;font:850 11px ui-monospace,SFMono-Regular,Menlo,monospace}.police-attachment__head span{color:#8a7662}.police-entry{display:grid;grid-template-columns:84px 1fr;gap:12px;padding:11px 0;border-bottom:1px dotted #b7a995}.police-entry time{color:#893e35;font:900 14px ui-monospace,SFMono-Regular,Menlo,monospace}.police-entry span,.police-entry__note{font:16px/1.5 Georgia,serif;color:#302d29}.police-entry__note{margin:0!important;padding:9px 0;border-bottom:1px dotted #c1b6a8;white-space:pre-wrap}.police-paper__photo{max-width:390px;margin:24px auto;transform:rotate(-1deg);border:8px solid #fff;box-shadow:0 10px 22px rgba(59,42,28,.18)}.police-paper__photo img{display:block;width:100%;height:auto;max-height:270px;object-fit:cover}.police-paper__photo small{display:block;padding:7px 4px 2px;color:#625950;font-size:11px}.police-paper__pin{margin:22px 0 32px}.police-paper__pin .clue-btn{background:#263e32;color:#f0eadf;border-color:#263e32}
+    .investigation-questions{display:grid;gap:12px}.investigation-question{display:grid;grid-template-columns:32px minmax(0,1fr);align-items:start;gap:13px;padding:16px;background:#1b2b24;border:1px solid rgba(190,218,202,.15)}.investigation-question h4{margin:2px 0 12px;color:#f0eee5;font:600 17px/1.4 Georgia,serif}.investigation-question__mark{width:32px;height:32px}.investigation-question__body{min-width:0}.investigation-question input[type=text],.investigation-question select{width:100%;max-width:440px;padding:11px 12px;border:1px solid #466050;border-radius:9px;background:#101c17;color:#f0eee5;font-size:15px}.board-answer-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.board-answer-options label{display:flex;align-items:center;gap:9px;padding:10px;border:1px solid #395446;border-radius:9px;color:#d9e5dc;font-size:14px;cursor:pointer}.board-answer-options input{width:18px;height:18px;accent-color:#9fbd99}.board-answer-actions{display:flex;align-items:center;flex-wrap:wrap;gap:9px 13px;margin-top:13px}.board-answer-actions button{border:0;border-radius:9px;background:#d9c298;color:#292219;padding:10px 14px;font-size:14px;font-weight:800;cursor:pointer}.board-answer-feedback{color:#d6b8a3;font-size:14px;line-height:1.4}.board-answer-feedback.correct{color:#a9d4af}.investigation-question.done{border-color:#749779}.final-back{margin-left:10px;padding:12px 14px;font-size:13px}
+    @media(max-width:760px){.police-index{grid-template-columns:1fr}.police-paper .case-doc-head{gap:10px}.police-paper .case-doc-stamp{font-size:10px}.police-paper__meta{grid-template-columns:1fr;gap:9px}.police-attachment{padding:12px}.police-attachment__head span{display:none}.police-entry{grid-template-columns:68px 1fr;gap:9px}.police-reader-top{flex-wrap:wrap}.board-answer-options{grid-template-columns:1fr}.investigation-question{padding:13px}.case-head__right #caseSound{font-size:10px}.final-back{margin-left:0;margin-top:10px}}
 
     footer{color:var(--muted);padding:0 0 30px;font-size:13px}
     .mobile-nav{display:none}
@@ -434,6 +440,7 @@
             </div>
             <div class="case-head__right">
               <div class="case-progress"><span>Материалов на доске</span><b id="caseProgress">0</b></div>
+              <button class="case-reset" id="caseSound" type="button" aria-pressed="false">🔇 Звук выкл.</button>
               <button class="case-reset" id="resetCase" type="button">Сброс</button>
             </div>
           </header>
@@ -666,32 +673,27 @@
     function leafSpark(x,y){for(var i=0;i<3;i++){var s=document.createElement("span");s.className="leaf-spark";s.textContent=Math.random()>.5?"🍂":"🍁";s.style.left=(x+Math.random()*18-9)+"px";s.style.top=(y+Math.random()*12-6)+"px";s.style.setProperty("--sx",(Math.random()*52-26)+"px");s.style.setProperty("--sr",(Math.random()*100-50)+"deg");document.body.appendChild(s);setTimeout(function(el){el.remove()},850,s)}}
     function makeAmbientLeaves(){
       var wrap=q("#secretLeaves");wrap.innerHTML="";
-      var mobile=innerWidth<760,count=mobile?24:38;
+      var mobile=innerWidth<760,cols=mobile?4:6,rows=mobile?5:5,count=cols*rows;
       for(var i=0;i<count;i++){
-        var b=document.createElement("button");b.className="secret-leaf";b.textContent=Math.random()>.48?"🍁":"🍂";b.setAttribute("aria-label","Осенний листик");
-        var leftSide=Math.random()>.5,edge=mobile?Math.random()*7:Math.random()*9;
-        b.style.left=leftSide?edge+"vw":"auto";b.style.right=leftSide?"auto":edge+"vw";
-        b.style.top=(4+Math.random()*91)+"vh";
+        var b=document.createElement("span");b.className="secret-leaf";b.textContent=Math.random()>.48?"🍁":"🍂";b.setAttribute("aria-hidden","true");
+        var col=i%cols,row=Math.floor(i/cols),x=(col+.18+Math.random()*.64)/cols,y=(row+.18+Math.random()*.64)/rows,center=x>.22&&x<.78&&y>.18&&y<.83;
+        b.style.left=(x*96+2)+"vw";
+        b.style.top=(y*95+2)+"vh";
         b.style.setProperty("--size",(mobile?14+Math.random()*12:16+Math.random()*17)+"px");
-        b.style.setProperty("--opacity",(0.22+Math.random()*.44).toFixed(2));
+        b.style.setProperty("--opacity",(center?.13+Math.random()*.12:.23+Math.random()*.24).toFixed(2));
         b.style.setProperty("--dur",(5.5+Math.random()*7).toFixed(2)+"s");
         b.style.setProperty("--delay",(-Math.random()*8).toFixed(2)+"s");
         b.style.setProperty("--sway",(Math.random()*20-10).toFixed(1)+"px");
         b.style.setProperty("--bob",(7+Math.random()*22).toFixed(1)+"px");
         b.style.setProperty("--r0",(Math.random()*70-35).toFixed(1)+"deg");
         b.style.setProperty("--r1",(Math.random()*90-45).toFixed(1)+"deg");
-        b.addEventListener("click",function(ev){
-          ev.stopPropagation();var leaf=ev.currentTarget,r=leaf.getBoundingClientRect();
-          leaf.classList.remove("rustle");void leaf.offsetWidth;leaf.classList.add("rustle");leafSpark(r.left+r.width/2,r.top+r.height/2);
-          if(Math.random()<.22)openLove(ev);
-        });
         wrap.appendChild(b)
       }
     }
     makeAmbientLeaves();
     var resizeLeafTimer;addEventListener("resize",function(){clearTimeout(resizeLeafTimer);resizeLeafTimer=setTimeout(makeAmbientLeaves,250)});
     q("#footerHeart").addEventListener("click",openLove);
-    q("#noteCollection").addEventListener("click",function(){if(foundNotes.length)openLove(null,foundNotes[Math.floor(Math.random()*foundNotes.length)]);else openLove()});
+    q("#noteCollection").addEventListener("click",function(){openLove()});
     var resetNotesTimer;q("#noteCollection").addEventListener("pointerdown",function(){resetNotesTimer=setTimeout(function(){foundNotes=[];sessionStorage.removeItem("kostromaFoundNotes");sessionStorage.removeItem("kostromaAllNotes");updateNoteCounter();showToast("🍁 Коллекция записок сброшена")},1600)});["pointerup","pointercancel","pointerleave"].forEach(function(ev){q("#noteCollection").addEventListener(ev,function(){clearTimeout(resetNotesTimer)})});
     qa("[data-close-love]").forEach(function(x){x.addEventListener("click",function(){q("#loveModal").classList.add("hidden")})});
 
@@ -757,9 +759,16 @@
     }
     var caseSchema="case24-polish-v7";
     if(localStorage.getItem("case24Schema")!==caseSchema){localStorage.removeItem("case24State");localStorage.setItem("case24Schema",caseSchema)}
-    var caseDefault={started:false,mail:false,files:false,clues:[],pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",suspectMarks:{},suspectNotes:{},caseNotebook:"",interrogation:{active:null,asked:{},visits:{}},hint:0,solved:false,app:"brief",device:"hub",filePath:"root",openFile:null,webPage:"home",briefPage:0};
+    var caseDefault={started:false,mail:false,files:false,clues:[],pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",boardAnswers:{},suspectMarks:{},suspectNotes:{},caseNotebook:"",interrogation:{active:null,asked:{},visits:{}},hint:0,solved:false,app:"brief",device:"hub",filePath:"root",openFile:null,webPage:"home",briefPage:0,policePage:null};
     var caseState=Object.assign({},caseDefault,JSON.parse(localStorage.getItem("case24State")||"{}"));
     function saveCase(){localStorage.setItem("case24State",JSON.stringify(caseState))}
+    var caseSoundEnabled=localStorage.getItem("case24Sound")==="1",caseAudio=null;
+    function playCaseSound(kind){
+      if(!caseSoundEnabled)return;
+      try{var AudioCtor=window.AudioContext||window.webkitAudioContext;if(!AudioCtor)return;caseAudio=caseAudio||new AudioCtor();if(caseAudio.state==="suspended")caseAudio.resume();var now=caseAudio.currentTime,osc=caseAudio.createOscillator(),gain=caseAudio.createGain();osc.type=kind==="pin"?"sine":"triangle";osc.frequency.setValueAtTime(kind==="pin"?620:175,now);osc.frequency.exponentialRampToValueAtTime(kind==="pin"?410:100,now+.14);gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(kind==="pin"?.035:.02,now+.015);gain.gain.exponentialRampToValueAtTime(.0001,now+.18);osc.connect(gain);gain.connect(caseAudio.destination);osc.start(now);osc.stop(now+.19)}catch(e){}
+    }
+    function syncCaseSound(){var b=q("#caseSound");b.textContent=caseSoundEnabled?"🔊 Звук вкл.":"🔇 Звук выкл.";b.setAttribute("aria-pressed",String(caseSoundEnabled))}
+    syncCaseSound();q("#caseSound").addEventListener("click",function(){caseSoundEnabled=!caseSoundEnabled;localStorage.setItem("case24Sound",caseSoundEnabled?"1":"0");syncCaseSound();playCaseSound("pin")});
     function caseImg(src,alt){return '<img src="'+src+'" alt="'+alt+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'">'}
     function personPhoto(p,large){return '<div class="person-photo '+(large?'person-photo--large':'')+'"><div class="person-photo__fallback">'+p.initials+'</div>'+caseImg(CASE_FACE[p.id],p.name)+'</div>'}
 
@@ -809,7 +818,7 @@
     function definePin(id,title,text,source,clue,nav){casePins[id]={id:id,title:title,text:caseShort(text,420),source:source,clue:clue||null,nav:nav||null}}
     function syncHiddenClues(){var set=[];(caseState.pins||[]).forEach(function(id){var p=casePins[id];if(p&&p.clue&&set.indexOf(p.clue)<0)set.push(p.clue)});caseState.clues=set}
     function caseProgress(){var n=(caseState.pins||[]).filter(function(x){return casePins[x]}).length,el=q("#caseProgress");if(el)el.textContent=String(n)}
-    function addPin(id){if(!casePins[id])return;caseState.pins=caseState.pins||[];caseState.pinNotes=caseState.pinNotes||{};if(caseState.pins.indexOf(id)<0){caseState.pins.push(id);syncHiddenClues();saveCase();caseProgress();qa("[data-pin]",q("#caseScreen")).filter(function(b){return b.getAttribute("data-pin")===id}).forEach(function(b){b.classList.add("added");b.textContent="✓ На доске"});showToast("🧷 Материал закреплён на доске")}}
+    function addPin(id){if(!casePins[id])return;caseState.pins=caseState.pins||[];caseState.pinNotes=caseState.pinNotes||{};if(caseState.pins.indexOf(id)<0){caseState.pins.push(id);syncHiddenClues();saveCase();caseProgress();qa("[data-pin]",q("#caseScreen")).filter(function(b){return b.getAttribute("data-pin")===id}).forEach(function(b){b.classList.add("added");b.textContent="✓ На доске"});playCaseSound("pin");showToast("🧷 Материал закреплён на доске")}}
     function removePin(id){caseState.pins=(caseState.pins||[]).filter(function(x){return x!==id});if(caseState.pinNotes)delete caseState.pinNotes[id];if(caseState.pinTimes)delete caseState.pinTimes[id];caseState.links=(caseState.links||[]).filter(function(x){return x.from!==id&&x.to!==id});syncHiddenClues();saveCase();caseProgress();renderCaseApp(caseState.app)}
     function pinButton(id){if(!id||!casePins[id])return"";var added=(caseState.pins||[]).indexOf(id)>=0;return '<button class="clue-btn '+(added?'added':'')+'" data-pin="'+id+'">'+(added?'✓ На доске':'📌 На доску')+'</button>'}
     function openPinSource(id){
@@ -823,6 +832,8 @@
         caseState.app="web";caseState.webPage=nav.webPage||"home";
       }else if(nav.app==="interview"){
         ensureInterrogation();caseState.app="interview";caseState.interrogation.active=nav.suspect||null;
+      }else if(nav.app==="police"){
+        caseState.app="police";caseState.policePage=nav.policePage;
       }else{
         caseState.app=nav.app||"brief";
       }
@@ -836,10 +847,13 @@
       qa("[data-pin-note]",q("#caseScreen")).forEach(function(el){el.oninput=function(){caseState.pinNotes=caseState.pinNotes||{};caseState.pinNotes[el.getAttribute("data-pin-note")]=el.value;saveCase()}});
       qa("[data-pin-time]",q("#caseScreen")).forEach(function(el){el.onchange=function(){caseState.pinTimes=caseState.pinTimes||{};var id=el.getAttribute("data-pin-time");if(el.value)caseState.pinTimes[id]=el.value;else delete caseState.pinTimes[id];saveCase()}});
       qa("[data-board-view]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.boardView=b.getAttribute("data-board-view");saveCase();renderCaseApp("board")}});
+      function boardAnswerValue(i){var item=boardQuestions[i];return item.type==="multi"?qa('[data-board-multi="'+i+'"]:checked',q("#caseScreen")).map(function(x){return x.value}):q('[data-board-answer="'+i+'"]',q("#caseScreen")).value.trim()}
+      function boardAnswerEdit(i){caseState.boardAnswers=caseState.boardAnswers||{};caseState.boardAnswers[i]={value:boardAnswerValue(i),status:""};saveCase();var feedback=q("#board-feedback-"+i);feedback.textContent="";feedback.className="board-answer-feedback";feedback.closest(".investigation-question").classList.remove("done");q("#boardQuestionProgress").textContent=Object.values(caseState.boardAnswers).filter(function(a){return a&&a.status==="correct"}).length+"/6"}
+      qa("[data-board-answer],[data-board-multi]",q("#caseScreen")).forEach(function(el){el.addEventListener(el.type==="text"?"input":"change",function(){boardAnswerEdit(Number(el.getAttribute("data-board-answer")||el.getAttribute("data-board-multi")))})});
+      qa("[data-check-board]",q("#caseScreen")).forEach(function(b){b.onclick=function(){var i=Number(b.getAttribute("data-check-board")),value=boardAnswerValue(i),feedback=q("#board-feedback-"+i);if(!value||(Array.isArray(value)&&!value.length)){feedback.textContent="Сначала укажите ответ.";feedback.className="board-answer-feedback";return}var correct=boardAnswerMatches(i,value);caseState.boardAnswers=caseState.boardAnswers||{};caseState.boardAnswers[i]={value:value,status:correct?"correct":"incorrect"};saveCase();feedback.textContent=correct?"Верно. Этот вывод подтверждается материалами дела.":"Пока неверно. Можно ещё проверить документы и попробовать снова.";feedback.className="board-answer-feedback "+(correct?"correct":"incorrect");feedback.closest(".investigation-question").classList.toggle("done",correct);q("#boardQuestionProgress").textContent=Object.values(caseState.boardAnswers).filter(function(a){return a&&a.status==="correct"}).length+"/6"}});
       qa("[data-remove-link]",q("#caseScreen")).forEach(function(b){b.onclick=function(){var i=Number(b.getAttribute("data-remove-link"));caseState.links=(caseState.links||[]).filter(function(_,n){return n!==i});saveCase();renderCaseApp("board")}});
       qa("[data-suspect-mark]",q("#caseScreen")).forEach(function(el){el.onchange=function(){caseState.suspectMarks=caseState.suspectMarks||{};caseState.suspectMarks[el.getAttribute("data-suspect-mark")]=el.value;saveCase()}});
       qa("[data-suspect-note]",q("#caseScreen")).forEach(function(el){el.oninput=function(){caseState.suspectNotes=caseState.suspectNotes||{};caseState.suspectNotes[el.getAttribute("data-suspect-note")]=el.value;saveCase()}});
-      if(q("#caseNotebook"))q("#caseNotebook").oninput=function(){caseState.caseNotebook=q("#caseNotebook").value;saveCase()};
       if(q("#addBoardLink"))q("#addBoardLink").onclick=function(){
         var from=q("#linkFrom").value,to=q("#linkTo").value,type=q("#linkType").value;
         if(!from||!to||from===to){showToast("Выберите два разных материала");return}
@@ -966,7 +980,9 @@
         {id:"return",q:"Вы говорите, что были дома. Как объясните повторный вход в студию?",a:"Ладно. Я вернулась. Кирилл написал, что разговор нельзя откладывать. Я не хотела это рассказывать, потому что понимала, как это выглядит. Но вернулась ненадолго.",pinsAny:["police_0","police_1"],askedAny:["evening"]},
         {id:"photo",q:"Фотография в посте «Дома наконец-то» была сделана летом. Почему вы выдали её за свежую?",a:"Потому что не хотела объяснять, где была. Фото старое, да. Я поставила его позднее, чтобы никто не задавал вопросов. Это было глупо.",pinsAny:["police_6"],askedAny:["evening"]},
         {id:"money",q:"Что вы знаете о выплате за «редакторские консультации»?",a:"Денис предлагал деньги за перенос публикации и называл это консультациями. Я понимала, что это выглядит плохо. Кирилл узнал об этом, и именно из-за этого разговор стал жёстким.",pinsAny:["file_payment","file_mail_export","mail_0"],askedAny:["conflict"]},
-        {id:"last",q:"О чём вы говорили с Кириллом во время последнего разговора?",a:"Он сказал, что не будет заминать историю и утром отправит документы юристу. Я пыталась убедить его хотя бы отложить публикацию. Дальше мы оба сорвались на крик.",pinsAny:["police_2"],askedAny:["return","money"]}
+        {id:"last",q:"О чём вы говорили с Кириллом во время последнего разговора?",a:"Он сказал, что не будет заминать историю и утром отправит документы юристу. Я пыталась убедить его хотя бы отложить публикацию. Дальше мы оба сорвались на крик.",pinsAny:["police_2"],askedAny:["return","money"]},
+        {id:"gap",q:"Если вы ушли домой, где были между первым выходом и повторным входом?",a:"Ехала домой. Потом получила сообщение Кирилла, развернулась и вернулась. По минутам маршрут я сейчас не восстановлю.",pinsAny:["police_0"],askedAny:["return"]},
+        {id:"door",q:"Почему журнал фиксирует открытие боковой двери изнутри после разговора?",a:"Через неё можно выйти без пропуска, дверь открывается кнопкой. Точное время моего ухода я не записывала.",pinsAny:["police_0"],askedAny:["last"]}
       ]},
       denis:{name:"Денис Карпов",intro:"Карпов держится спокойно и отвечает коротко, как будто заранее отрепетировал каждую формулировку.",questions:[
         {id:"evening",q:"Где вы были между 20:30 и 22:00?",a:"В «Порт 12». Приехал раньше девяти, ужинал с ноутбуком, оплатил счёт перед уходом. В студию я не ездил."},
@@ -975,7 +991,9 @@
         {id:"payment",q:"Что означают 180 тысяч и фраза «материал не выйдет»?",a:"Это было предложение Марине за перенос публикации и дополнительную редакторскую работу. Я не горжусь формулировкой. Деньги не предназначались Кириллу.",pinsAny:["file_mail_export","file_payment"],askedAny:["marina"]},
         {id:"restaurant",q:"Кто может подтвердить, что вы были в ресторане весь этот период?",a:"Официант, чек, камера у барной стойки. Я несколько раз подходил к бару. Если полиция получила запись, время легко сверить.",pinsAny:["police_5"],askedAny:["evening"]},
         {id:"route",q:"От «Порт 12» до студии около получаса. Вы могли успеть туда съездить и вернуться?",a:"Двух оплат по краям вечера было бы мало, согласен. Но запись камеры между ними показывает, что я оставался в ресторане.",pinsAny:["web_port12","police_5"],askedAny:["evening"]},
-        {id:"draft",q:"Насколько подробно вы знали содержание выпуска до публикации?",a:"Полного выпуска я не видел. Получал отдельные формулировки и куски через Марину, чтобы готовить комментарий клиента. Если у меня и был лишний фрагмент — он пришёл не от Кирилла.",pinsAny:["mail_0","file_mail_export"],askedAny:["marina"]}
+        {id:"draft",q:"Насколько подробно вы знали содержание выпуска до публикации?",a:"Полного выпуска я не видел. Получал отдельные формулировки и куски через Марину, чтобы готовить комментарий клиента. Если у меня и был лишний фрагмент — он пришёл не от Кирилла.",pinsAny:["mail_0","file_mail_export"],askedAny:["marina"]},
+        {id:"camera",q:"Чем проверять ваше местонахождение именно между 21:15 и 21:30?",a:"Записью камеры у барной стойки. Чек показывает, что я был там до и после, а запись закрывает сам промежуток.",pinsAny:["police_5"],askedAny:["restaurant"]},
+        {id:"label",q:"Почему в платёжных документах использовано другое назначение?",a:"Официально это проходило как консультации. Формулировку согласовали заранее. В письме, которое вы нашли, смысл сделки записан куда прямее.",pinsAny:["file_payment","file_mail_export"],askedAny:["payment"]}
       ]},
       alina:{name:"Алина Петрова",intro:"Алина заметно нервничает, но старается отвечать подробно и несколько раз просит не втягивать источник.",questions:[
         {id:"evening",q:"Когда вы ушли из студии и куда поехали?",a:"Я написала Кириллу, когда собиралась уходить. Вышла около 20:49, дошла до остановки и вскоре села на автобус."},
@@ -984,7 +1002,9 @@
         {id:"bus",q:"Ваш автобус можно проверить независимо?",a:"Да. На остановке я сделала фото, а затем приложила транспортную карту. В автобусе есть камера — можно сверить и посадку, и время поездки.",pinsAny:["post_alina_0","police_5"],askedAny:["evening"]},
         {id:"source",q:"Вы боялись за Артёма. У вас был конфликт с Кириллом из-за источника?",a:"Я давила на него, чтобы он не называл настоящее имя. Но Кирилл согласился и даже записал это в правила выпуска. После этого спорить было не о чем.",pinsAny:["file_source_protection"],askedAny:["draft"]},
         {id:"jurist",q:"Вы слышали фразу Кирилла про юриста. О чём, по-вашему, шла речь?",a:"Я решила, что он говорил об утечке. Он был очень конкретный: если найдёт подтверждение платежа, дальше этим займётся юрист. На Артёма это вообще не было похоже.",pinsAny:["file_lawyer_draft"],askedAny:["mood"]},
-        {id:"access",q:"Кто из команды имел действующий бейдж для боковой двери?",a:"Штатная команда: Кирилл, Марина, Павел и я. У гостей временные пропуска, их надо оформлять отдельно. После девяти я своим бейджем уже не пользовалась.",pinsAny:["police_0"],askedAny:["evening"]}
+        {id:"access",q:"Кто из команды имел действующий бейдж для боковой двери?",a:"Штатная команда: Кирилл, Марина, Павел и я. У гостей временные пропуска, их надо оформлять отдельно. После девяти я своим бейджем уже не пользовалась.",pinsAny:["police_0"],askedAny:["evening"]},
+        {id:"message",q:"Вы написали, что выходите в 20:46, а дверь зафиксировала выход в 20:49. Почему?",a:"В 20:46 собирала вещи и написала Кириллу, что уже ухожу. Несколько минут спустя действительно вышла. Я говорила примерно, не утверждала, что прошла дверь в момент сообщения.",pinsAny:["police_0"],askedAny:["evening"]},
+        {id:"receipt",q:"Почему фото на остановке само по себе не доказывает, где вы были позднее?",a:"Фото показывает остановку в момент съёмки. А вот поездку уже подтверждают транспортная карта и камера внутри автобуса.",pinsAny:["post_alina_0","police_5"],askedAny:["bus"]}
       ]},
       pavel:{name:"Павел Чернов",intro:"Павел выглядит уставшим и всё время уточняет технические детали, даже когда его об этом не спрашивают.",questions:[
         {id:"evening",q:"Когда вы закончили работу в студии?",a:"Финальный экспорт был около 20:24, потом я ещё проверил дорожки и ушёл примерно без десяти девять. Аппаратную закрыл."},
@@ -993,7 +1013,9 @@
         {id:"trophy",q:"Что стояло на полке в основной комнате перед вашим уходом?",a:"Металлическая награда «Городской голос». Тяжёлая штука. Она точно была там — я видел её, когда фотографировал расстановку перед записью.",pinsAny:["photo_0","police_4"],askedAny:["evening"]},
         {id:"gas",q:"Что подтверждает, что после студии вы уехали?",a:"Платил картой на заправке в 21:18. До неё от студии минут пятнадцать-двадцать. Камеры там тоже есть.",pinsAny:["police_5"],askedAny:["evening"]},
         {id:"photo",q:"На фотографии студии до происшествия награда действительно стояла на полке?",a:"Да. Фото делалось перед записью, и награда там была. Я её не трогал — она обычно вообще стояла как декорация.",pinsAny:["photo_0"],askedAny:["evening"]},
-        {id:"wifi",q:"Телефоны сотрудников автоматически подключались к Wi‑Fi студии?",a:"Если сеть уже сохранена — да, обычно сами. Поэтому подключение телефона к нашей сети почти всегда значит, что аппарат физически был где-то внутри студии.",pinsAny:["police_1"],askedAny:["access"]}
+        {id:"wifi",q:"Телефоны сотрудников автоматически подключались к Wi‑Fi студии?",a:"Если сеть уже сохранена — да, обычно сами. Поэтому подключение телефона к нашей сети почти всегда значит, что аппарат физически был где-то внутри студии.",pinsAny:["police_1"],askedAny:["access"]},
+        {id:"exit",q:"По журналу можно определить, кто вышел через боковую дверь изнутри?",a:"Нет. Выход изнутри не требует прикладывать бейдж. Журнал отметит открытие двери, но не имя человека. Нужно смотреть и другие данные.",pinsAny:["police_0"],askedAny:["access"]},
+        {id:"work",q:"После экспорта в 20:24 вы сразу ушли?",a:"Нет. Проверил дорожки, сохранил проект и собрал технику. Из здания вышел позже — это должно быть в журнале пропусков.",pinsAny:["police_0"],askedAny:["evening"]}
       ]},
       artem:{name:"Артём Зорин",intro:"Артём отвечает осторожно и почти на каждый вопрос сначала спрашивает, попадёт ли его имя в материалы публикации.",questions:[
         {id:"evening",q:"Почему вы уехали из города именно этим вечером?",a:"Я передал Кириллу всё, что обещал, и не хотел находиться рядом перед публикацией. Электричка была в 21:03."},
@@ -1002,7 +1024,9 @@
         {id:"train",q:"Есть подтверждение, что вы действительно сели на электричку?",a:"Билет проходил через турникет. Если полиция получила данные, там должно быть точное время.",pinsAny:["police_5","web_rail"],askedAny:["evening"]},
         {id:"promise",q:"Почему вы уверены, что Кирилл не собирался раскрывать ваше имя?",a:"Он прислал мне правила по защите источника и отдельно сказал, что настоящее имя не прозвучит. После этого у меня не было причины с ним конфликтовать.",pinsAny:["file_source_protection"],askedAny:["fear"]},
         {id:"station",q:"После турникета можно было выйти и всё-таки вернуться в город?",a:"Формально можно. Но тогда я бы пропустил поезд. Билет проверили уже в вагоне, и примерно в 21:20 я был в пути — это можно сверить по контролю билета.",pinsAny:["web_rail","police_5"],askedAny:["train"]},
-        {id:"money",q:"Вы что-нибудь знали о деньгах, связанных с задержкой выпуска?",a:"Только слухи. Кирилл сказал по телефону, что проблема теперь внутри команды и касается не источника. Конкретную сумму он мне не называл.",pinsAny:["file_payment"],askedAny:["kirill"]}
+        {id:"money",q:"Вы что-нибудь знали о деньгах, связанных с задержкой выпуска?",a:"Только слухи. Кирилл сказал по телефону, что проблема теперь внутри команды и касается не источника. Конкретную сумму он мне не называл.",pinsAny:["file_payment"],askedAny:["kirill"]},
+        {id:"ticket",q:"Что точнее показывает ваше местонахождение: фото из поезда или проверка билета?",a:"Проверка билета контролёром: у неё есть время и поезд. Фото можно выложить позже, а отметку контроля я сам не проставляю.",pinsAny:["police_5"],askedAny:["train"]},
+        {id:"contact",q:"Почему Кирилл продолжал с вами работать, если вы опасались публикации?",a:"Я просил скрыть имя, а не остановить материал. Он прислал правила защиты источника, и мы договорились продолжать.",pinsAny:["file_source_protection"],askedAny:["fear"]}
       ]}
     };
     var interrogationCues={
@@ -1060,7 +1084,7 @@
       phonePhotos.forEach(function(p,i){definePin("photo_"+i,p.title,p.time+" · "+p.caption+" · "+p.meta,"Галерея Кирилла",p.clue,{app:"devices",device:"phone_photos"})});
       calls.forEach(function(x,i){definePin("call_"+i,"Звонок: "+x[1],x[0]+" · "+x[2],"Журнал звонков Кирилла",null,{app:"devices",device:"phone_calls"})});
       notes.forEach(function(n,i){definePin("note_"+i,n.title,n.text,"Заметки Кирилла",null,{app:"devices",device:"phone_notes"})});
-      policeFiles.forEach(function(d,i){definePin("police_"+i,d.title,d.what+" "+d.body+" "+d.meaning,"Материалы полиции",d.clue,{app:"police"})});
+      policeFiles.forEach(function(d,i){definePin("police_"+i,d.title,d.what+" "+d.body,"Материалы полиции",d.clue,{app:"police",policePage:i})});
       Object.keys(people).forEach(function(id){
         var p=people[id];
         definePin("profile_"+id,p.name,p.role+" · "+p.work+" · "+p.relation+(id!=="kirill"?" Алиби: "+p.alibi:""),"Публичный профиль",null,{app:"web",webPage:id});
@@ -1075,16 +1099,31 @@
     function setCaseContext(t){q("#caseContext").textContent=t||""}
     function hasClue(id){return caseState.clues.indexOf(id)>=0}
     function questionDone(ids){return ids.every(function(id){return hasClue(id)})}
+    var boardQuestions=[
+      {q:"Кто из проверяемых лиц мог находиться в студии между 21:15 и 21:30?",type:"text",placeholder:"Напишите имя",answer:"marina"},
+      {q:"Чьи алиби в этот промежуток подтверждают независимые записи?",type:"multi",options:[["denis","Денис"],["alina","Алина"],["pavel","Павел"],["artem","Артём"],["marina","Марина"]],answer:["alina","artem","denis","pavel"]},
+      {q:"Что могло заставить человека с доступом к черновику остановить выпуск именно сегодня?",type:"select",options:[["fear","Боязнь потерять работу без других обстоятельств"],["payment","Денежная договорённость и риск её раскрытия"],["source","Защита личности источника"],["argument","Ссора из-за монтажа" ]],answer:"payment"},
+      {q:"Что произошло с черновиком до публикации?",type:"select",options:[["deleted","Он был удалён"],["leaked","Его копия оказалась за пределами команды"],["published","Он уже вышел в открытый доступ"],["unknown","Его ещё не существовало"]],answer:"leaked"},
+      {q:"Какой предмет из студии мог быть использован при нападении?",type:"text",placeholder:"Назовите предмет",answer:"trophy"},
+      {q:"Какие два источника вместе уточняют последние минуты Кирилла?",type:"multi",options:[["voice","Голосовая заметка"],["watch","Данные часов"],["post","Публикация в соцсети"],["receipt","Ресторанный чек"]],answer:["voice","watch"]}
+    ];
+    function boardAnswerMatches(i,value){
+      var q=boardQuestions[i];
+      if(q.type==="multi")return Array.isArray(value)&&value.slice().sort().join("|")===q.answer.slice().sort().join("|");
+      if(q.type==="select")return value===q.answer;
+      var v=String(value||"").toLowerCase().replace(/ё/g,"е").replace(/[^а-яa-z\s]/g," ").trim().replace(/\s+/g," ");
+      if(i===0)return ["марина","марина орлова","орлова"].indexOf(v)>=0;
+      if(i===4)return /\b(trophy|award)\b/.test(v)||/награ|статуэт/.test(v);
+      return false;
+    }
     function renderInvestigationQuestions(){
-      var qs=[
-        "Кто реально мог находиться в студии между 21:15 и 21:30?",
-        "Какие алиби подтверждаются независимыми данными, а какие — только словами или публикациями?",
-        "У кого был понятный мотив остановить выпуск именно в этот вечер?",
-        "Что происходило с черновиком выпуска до 2 октября и кто имел к нему доступ?",
-        "Какой предмет из студии мог быть использован при нападении?",
-        "Какие данные лучше всего связывают последние минуты Кирилла с точным временем?"
-      ];
-      return '<div class="investigation-questions">'+qs.map(function(x,i){return '<div class="investigation-question"><span class="investigation-question__mark">'+(i+1)+'</span><b>'+x+'</b><small>рабочий вопрос</small></div>'}).join("")+'</div>'
+      var answers=caseState.boardAnswers||{};
+      return '<div class="board-tool-head"><div><small>ШЕСТЬ РАБОЧИХ ВОПРОСОВ</small><h3>Проверяем выводы</h3></div><span id="boardQuestionProgress">'+Object.values(answers).filter(function(a){return a&&a.status==="correct"}).length+'/6</span></div>'+
+        '<p class="board-help">Отвечайте после изучения улик. Ошибки ничего не сбрасывают; к любому вопросу можно вернуться.</p>'+
+        '<div class="investigation-questions">'+boardQuestions.map(function(item,i){var saved=answers[i]||{},value=saved.value||"",status=saved.status||"";
+          var field=item.type==="text"?'<input data-board-answer="'+i+'" type="text" autocomplete="off" value="'+caseEsc(value)+'" placeholder="'+item.placeholder+'" aria-label="Ответ на вопрос '+(i+1)+'">':item.type==="select"?'<select data-board-answer="'+i+'" aria-label="Ответ на вопрос '+(i+1)+'"><option value="">Выберите ответ…</option>'+item.options.map(function(opt){return '<option value="'+opt[0]+'" '+(value===opt[0]?'selected':'')+'>'+caseEsc(opt[1])+'</option>'}).join("")+'</select>':'<div class="board-answer-options">'+item.options.map(function(opt){return '<label><input type="checkbox" data-board-multi="'+i+'" value="'+opt[0]+'" '+(Array.isArray(value)&&value.includes(opt[0])?'checked':'')+'><span>'+caseEsc(opt[1])+'</span></label>'}).join("")+'</div>';
+          return '<section class="investigation-question '+(status==="correct"?'done':'')+'"><span class="investigation-question__mark">'+(i+1)+'</span><div class="investigation-question__body"><h4>'+item.q+'</h4>'+field+'<div class="board-answer-actions"><button type="button" data-check-board="'+i+'">Проверить ответ</button><span id="board-feedback-'+i+'" class="board-answer-feedback '+(status||'')+'" role="status">'+(status==="correct"?'Верно. Этот вывод подтверждается материалами дела.':status==="incorrect"?'Пока неверно. Можно ещё проверить документы и попробовать снова.':'')+'</span></div></div></section>'
+        }).join("")+'</div>';
     }
     function renderBoard(){
       var ids=(caseState.pins||[]).filter(function(id){return casePins[id]}),view=caseState.boardView||"cards";
@@ -1109,8 +1148,7 @@
         var statuses=[["","не отмечено"],["check","проверить внимательнее"],["solid","алиби выглядит крепким"],["question","под вопросом"]];
         var rows=suspectIds.map(function(id){var p=people[id],mark=(caseState.suspectMarks&&caseState.suspectMarks[id])||"",note=(caseState.suspectNotes&&caseState.suspectNotes[id])||"";return '<article class="suspect-sheet"><div class="suspect-sheet__head">'+personPhoto(p,false)+'<div><b>'+p.name+'</b><small>'+p.role+'</small></div></div><label>Ваша отметка<select data-suspect-mark="'+id+'">'+statuses.map(function(x){return '<option value="'+x[0]+'" '+(x[0]===mark?'selected':'')+'>'+x[1]+'</option>'}).join("")+'</select></label><textarea data-suspect-note="'+id+'" maxlength="260" placeholder="Что подтверждает или разрушает алиби?">'+caseEsc(note)+'</textarea><button class="board-source" data-open-pin-source="profile_'+id+'">Открыть профиль</button></article>'}).join("");
         return head+'<div class="board-tool-head"><div><small>РАБОЧИЙ ЛИСТ</small><h3>Люди и алиби</h3></div><span>всё отмечаете сами</span></div>'+
-          '<p class="board-help">Эти статусы ничего не проверяют и не влияют на финал. Это просто ваш совместный лист подозрений.</p><div class="suspect-sheets">'+rows+'</div>'+
-          '<div class="case-notebook"><small>ОБЩИЙ БЛОКНОТ</small><h3>Наша текущая версия</h3><textarea id="caseNotebook" maxlength="1200" placeholder="Например: кто мог быть в студии, что не сходится по времени, что ещё проверить…">'+caseEsc(caseState.caseNotebook||"")+'</textarea></div>';
+          '<p class="board-help">Эти статусы ничего не проверяют и не влияют на финал. Это просто ваш совместный лист подозрений.</p><div class="suspect-sheets">'+rows+'</div>';
       }
       return head+renderInvestigationQuestions()+
         '<div class="case-section-title" style="margin-top:18px"><div><small>ЗАКРЕПЛЕНО</small><h3>Ваша доска</h3></div></div>'+
@@ -1149,17 +1187,27 @@
           '<div class="case-note" style="margin-bottom:14px">Можно задавать обычные вопросы, уходить проверять документы и возвращаться позже. Чтобы задать уточняющий вопрос по найденному материалу, закрепите его на доске. Закреплять можно любые материалы: это не подсказка об их важности.</div>'+
           '<div class="interview-grid">'+suspectIds.map(function(id){var p=people[id],asked=interviewAsked(id),visits=(caseState.interrogation.visits[id]||0);return '<article class="interview-card">'+personPhoto(p,false)+'<div><small>'+p.role+'</small><h4>'+p.name+'</h4><p>допросов: '+visits+' · вопросов в протоколе: '+asked.length+'</p><span class="interview-quiet">'+caseEsc(interviewDemeanor(id))+'</span><button class="case-action" data-interview-suspect="'+id+'">'+(visits?'Продолжить допрос':'Вызвать на допрос')+'</button></div></article>'}).join("")+'</div>';
       }
-      var p=people[active],data=interrogationData[active],asked=interviewAsked(active),available=data.questions.filter(function(x){return interviewAvailable(active,x)}),unasked=available.filter(function(x){return asked.indexOf(x.id)<0}),choices=unasked.slice(0,3);
+      var p=people[active],data=interrogationData[active],asked=interviewAsked(active),available=data.questions.filter(function(x){return interviewAvailable(active,x)}),choices=available.filter(function(x){return asked.indexOf(x.id)<0});
       return '<button class="browser-back" data-interview-back>← закончить допрос</button>'+
         '<div class="interview-room"><div class="interview-rec"><span class="interview-rec__dot"></span><b>REC</b><span>ПРОТОКОЛ · '+caseEsc(data.name.toUpperCase())+'</span><em>сеанс №'+Math.max(1,caseState.interrogation.visits[active]||1)+'</em></div>'+
         '<div class="interview-person-head">'+personPhoto(p,true)+'<div><small>КОМНАТА ДЛЯ ДОПРОСОВ</small><h3>'+p.name+'</h3><p>'+data.intro+'</p><div class="interview-state">Сейчас: '+caseEsc(interviewDemeanor(active))+'</div></div></div>'+
         '<div class="interview-transcript">'+(asked.length?asked.map(function(qid,idx){var item=data.questions.find(function(x){return x.id===qid});if(!item)return"";var cue=(interrogationCues[active]&&interrogationCues[active][qid])||"";return '<div class="interview-turn"><div class="interview-q"><small>ВОПРОС '+String(idx+1).padStart(2,"0")+' · ВЫ</small><p>'+caseEsc(item.q)+'</p></div>'+(cue?'<div class="interview-cue">— '+caseEsc(cue)+'</div>':'')+'<div class="interview-a"><small>'+caseEsc(p.name.toUpperCase())+'</small><p>'+caseEsc(item.a)+'</p>'+pinButton(interviewPinId(active,item.id))+'</div></div>'}).join(""):'<div class="interview-empty">Диктофон включён. Выберите, с чего начать разговор.</div>')+'</div>'+
         '<div class="interview-questions"><div class="interview-question-head"><div><small>СЛЕДУЮЩИЙ ШАГ</small><b>'+(choices.length?'Выберите вопрос':'Сейчас новых вопросов нет')+'</b></div><span>'+asked.length+' в протоколе</span></div>'+
         (choices.length?'<div class="interview-question-list">'+choices.map(function(item){return '<button data-interview-question="'+item.id+'"><span>'+(item.pinsAny?'УТОЧНИТЬ':'СПРОСИТЬ')+'</span>'+caseEsc(item.q)+'</button>'}).join("")+'</div>':'<p class="interview-done">Можно закончить допрос, поискать новые материалы и вернуться позже.</p>')+
+        '<p class="interview-done">Другие уточнения могут появиться после знакомства с документами. Важные факты доступны и без дополнительных вопросов.</p>'+
         '</div></div>';
     }
 
-function renderCaseApp(app){
+    function renderPoliceMaterials(){
+      var page=Number(caseState.policePage);
+      if(caseState.policePage===null||!Number.isInteger(page)||page<0||page>=policeFiles.length){
+        return '<div class="case-section-title"><div><small>ПРИЛОЖЕНИЯ К ДЕЛУ №24</small><h3>Материалы полиции</h3></div></div><p class="board-help">Семь самостоятельных документов. Откройте каждый лист, сопоставьте записи и при желании закрепите его на доске.</p><div class="police-index">'+policeFiles.map(function(d,i){return '<button type="button" class="police-index-card" data-police-open="'+i+'"><span class="police-index-card__number">'+String(i+1).padStart(2,"0")+'</span><span><small>'+caseEsc(d.kind)+'</small><b>'+caseEsc(d.title)+'</b><em>'+caseEsc(d.file)+'</em></span><span aria-hidden="true">↗</span></button>'}).join("")+'</div>';
+      }
+      var d=policeFiles[page];
+      var rows=d.body.split("\n").map(function(line){var m=line.match(/^(\d{2}:\d{2}(?::\d{2})?)(?:\s*·\s*(.*))?$/);return m?'<div class="police-entry"><time>'+caseEsc(m[1])+'</time><span>'+caseEsc(m[2]||"Отметка времени записи")+'</span></div>':'<p class="police-entry__note">'+caseEsc(line)+'</p>'}).join("");
+      return '<div class="case-file-shell"><div class="police-reader-top"><button type="button" class="browser-back" data-police-back>← К списку документов</button><span>ЛИСТ '+(page+1)+' / '+policeFiles.length+'</span></div><article class="case-paper police-paper"><div class="case-doc-head"><div><div class="case-doc-agency">ОТДЕЛ РАССЛЕДОВАНИЙ · НОВОГРАД</div><h3 class="case-doc-title">'+caseEsc(d.title)+'</h3><div class="case-doc-subtitle">ПРИЛОЖЕНИЕ №'+(page+1)+' · '+caseEsc(d.kind.toUpperCase())+'</div></div><div class="case-doc-stamp">КОПИЯ<br>ДЛЯ ДЕЛА</div></div><div class="police-paper__meta"><div><small>ИМЯ ФАЙЛА</small><b>'+caseEsc(d.file)+'</b></div><div><small>ИСТОЧНИК</small><b>'+caseEsc(d.kind)+'</b></div></div><div class="case-doc-section"><h4>Как получены данные</h4><p>'+caseEsc(d.what)+'</p></div><div class="police-attachment"><div class="police-attachment__head"><b>ПРИЛОЖЕННАЯ ЗАПИСЬ</b><span>ИСХОДНЫЕ ДАННЫЕ</span></div>'+rows+'</div>'+(d.img?'<div class="police-paper__photo">'+caseImg(d.img,d.title)+'<small>ИЗОБРАЖЕНИЕ, ПРИЛОЖЕННОЕ К ВЫГРУЗКЕ</small></div>':'')+'<div class="police-paper__pin">'+pinButton("police_"+page)+'</div><div class="case-doc-foot"><span>ДЕЛО №24/10-26 · КОПИЯ</span><span>ПРИЛ. '+(page+1)+' / '+policeFiles.length+'</span></div></article><div class="case-file-controls"><button data-police-prev '+(page===0?'disabled':'')+'>← Предыдущий</button><span class="case-file-pagecount">'+(page+1)+' / '+policeFiles.length+'</span><button data-police-next '+(page===policeFiles.length-1?'disabled':'')+'>Следующий →</button></div></div>';
+    }
+    function renderCaseApp(app){
       caseState.app=app;saveCase();qa(".case-app").forEach(function(b){b.classList.toggle("active",b.getAttribute("data-case-app")===app)});
       var s=q("#caseScreen"),out="";
       if(app==="brief"){
@@ -1179,9 +1227,7 @@ function renderCaseApp(app){
         out=renderWeb(caseState.webPage||"home");
       }else if(app==="police"){
         setCaseContext("Приложение к материалам осмотра и цифровой экспертизы");
-        out='<div class="case-section-title"><div><small>7 ДОКУМЕНТОВ</small><h3>Материалы полиции</h3></div></div>'+
-        '<div class="police-intro"><b>Приложения к делу:</b> документы описывают источники и исходные данные. Сопоставляйте их самостоятельно. Любой материал можно закрепить на доске.</div>'+
-        policeFiles.map(function(d,i){return '<article class="police-file"><div class="police-file__top"><b>'+d.title+'</b><span>'+d.kind+'</span></div><div class="police-file__explain"><b>Источник данных:</b> '+d.what+'</div>'+(d.img?'<div class="material-photo">'+caseImg(d.img,d.title)+'</div>':'')+'<pre style="margin-top:10px">'+d.body+'</pre>'+pinButton("police_"+i)+'</article>'}).join("");
+        out=renderPoliceMaterials();
       }else if(app==="board"){
         setCaseContext("Ваша рабочая доска");
         out=renderBoard();
@@ -1279,18 +1325,24 @@ function renderCaseApp(app){
 
     function renderFinal(){
       if(caseState.solved)return '<div class="case-solved"><small>ДЕЛО ЗАКРЫТО</small><h3>Вы раскрыли «Последний эфир»</h3><div class="solution-line"><b>Убийца:</b> Марина Орлова.</div><div class="solution-line"><b>Мотив:</b> Кирилл обнаружил платную утечку черновика и собирался прекратить договор с Мариной и передать материалы юристу.</div><div class="solution-line"><b>Что произошло:</b> после ухода Марина получила сообщение Кирилла, вернулась через боковую дверь перед 21:15 и во время конфликта нанесла смертельный удар тяжёлой металлической наградой со студийной полки.</div><div class="solution-line"><b>Цифровая цепочка:</b> M-14 в 21:11 → marina-iphone в Wi‑Fi в 21:12 → запись разговора в 21:21 → последние данные часов в 21:23. Публичный пост «из дома» использовал старое фото.</div><p class="case-footnote">Денис действительно участвовал в схеме с утечкой и давил на Кирилла, но проверяемые следы удерживают его вдали от студии в момент убийства.</p></div>';
-      return '<div class="case-section-title"><div><small>ФИНАЛЬНАЯ ВЕРСИЯ</small><h3>Кого вы обвиняете?</h3></div></div><div class="final-form"><p>Проверьте, что ваша версия объясняет и мотив, и физическое присутствие, и последние минуты Кирилла.</p>'+
+      return '<div class="case-section-title"><div><small>ФИНАЛЬНАЯ ВЕРСИЯ</small><h3>Кого вы обвиняете?</h3></div></div><div class="final-form"><p>Проверьте, что ваша версия объясняет мотив, присутствие и последние минуты Кирилла. Ошибочный ответ не завершает игру: вы сможете вернуться к уликам и попробовать снова.</p>'+
       '<label>Убийца</label><select id="finalWho"><option value="">— выбрать —</option><option value="marina">Марина Орлова</option><option value="denis">Денис Карпов</option><option value="alina">Алина Петрова</option><option value="pavel">Павел Чернов</option><option value="artem">Артём Зорин</option></select>'+
       '<label>Главный мотив</label><select id="finalMotive"><option value="">— выбрать —</option><option value="leak">Скрыть платную утечку и избежать разоблачения</option><option value="lawsuit">Защитить клиента PR-агентства</option><option value="revenge">Личная месть</option><option value="source">Скрыть личность источника</option></select>'+
       '<label>Орудие</label><select id="finalMethod"><option value="">— выбрать —</option><option value="trophy">Тяжёлая металлическая награда со студийной полки</option><option value="poison">Яд в кофе</option><option value="cable">Кабель из аппаратной</option><option value="fall">Инсценированное падение</option></select>'+
       '<label>Какая связка лучше всего подтверждает присутствие?</label><select id="finalEvidence"><option value="">— выбрать —</option><option value="wifi_voice">Wi‑Fi телефона + голосовая запись 21:21</option><option value="access_story">Бейдж M-14 + старое фото-алиби</option><option value="photo_email">Фото ресторана + письмо Дениса</option><option value="threat_receipt">Угроза судом + ресторанный чек</option></select>'+
-      '<button class="final-submit" id="submitCase">Проверить версию</button><div class="final-feedback hidden" id="finalFeedback"></div></div>';
+      '<button class="final-submit" id="submitCase">Проверить версию</button><button class="board-source final-back" data-open-app="board">Вернуться к уликам</button><div class="final-feedback hidden" id="finalFeedback" role="status" aria-live="polite"></div></div>';
     }
 
     function bindCaseScreen(app){
       if(app==="brief"){
         if(q("#casePrevPage"))q("#casePrevPage").onclick=function(){caseState.briefPage=Math.max(0,(Number(caseState.briefPage)||0)-1);saveCase();renderCaseApp("brief")};
         if(q("#caseNextPage"))q("#caseNextPage").onclick=function(){caseState.briefPage=Math.min(3,(Number(caseState.briefPage)||0)+1);saveCase();renderCaseApp("brief")};
+      }
+      if(app==="police"){
+        qa("[data-police-open]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.policePage=Number(b.getAttribute("data-police-open"));saveCase();playCaseSound("paper");renderCaseApp("police")}});
+        if(q("[data-police-back]"))q("[data-police-back]").onclick=function(){caseState.policePage=null;saveCase();renderCaseApp("police")};
+        if(q("[data-police-prev]"))q("[data-police-prev]").onclick=function(){caseState.policePage=Math.max(0,caseState.policePage-1);saveCase();playCaseSound("paper");renderCaseApp("police")};
+        if(q("[data-police-next]"))q("[data-police-next]").onclick=function(){caseState.policePage=Math.min(policeFiles.length-1,caseState.policePage+1);saveCase();playCaseSound("paper");renderCaseApp("police")};
       }
       if(app==="interview"){
         qa("[data-interview-suspect]",q("#caseScreen")).forEach(function(b){b.onclick=function(){ensureInterrogation();var id=b.getAttribute("data-interview-suspect");caseState.interrogation.active=id;caseState.interrogation.visits[id]=(caseState.interrogation.visits[id]||0)+1;saveCase();renderCaseApp("interview")}});
@@ -1317,7 +1369,7 @@ function renderCaseApp(app){
       if(!who||!m||!method||!e){fb.textContent="Заполните все четыре пункта версии.";fb.classList.remove("hidden");return}
       var h=await caseHash([who,m,method,e].join("|")),ok=["d3b46805f65a17841896aab7fbfa3268e8fcab732c28ca731e8ea7516fd78e52","c8add48ff3ca3d0df84f094cd18b09c2e452b92538dd5c3eced207060afa0dd5"].indexOf(h)>=0;
       if(ok){caseState.solved=true;saveCase();var done=checks.find(function(x){return x.getAttribute("data-check")==="15"});if(done&&!done.checked){done.checked=true;saved["15"]=true;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()}leafStorm(32);showToast("🔎 Дело раскрыто");renderCaseApp("final")}
-      else{fb.textContent="Версия пока не объясняет все цифровые следы. Сверьте присутствие в студии, время и мотив.";fb.classList.remove("hidden")}
+      else{fb.textContent="Пока неверно. Ничего не сброшено — проверьте время, присутствие и мотив, затем попробуйте снова. При необходимости откройте подсказку по нужной теме.";fb.classList.remove("hidden")}
     }
     function startCaseDesk(){caseState.started=true;caseState.app="brief";caseState.briefPage=0;saveCase();q("#caseIntro").classList.add("hidden");q("#caseDesk").classList.remove("hidden");renderCaseApp("brief");var started=checks.find(function(x){return x.getAttribute("data-check")==="12"});if(started&&!started.checked){started.checked=true;saved["12"]=true;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()}}
     q("#startCase").addEventListener("click",startCaseDesk);
@@ -1326,10 +1378,11 @@ function renderCaseApp(app){
       if(app==="devices"){caseState.device="hub";caseState.filePath="root";caseState.openFile=null}
       if(app==="web"){caseState.webPage="home"}
       if(app==="interview"){ensureInterrogation();caseState.interrogation.active=null}
+      if(app==="police")caseState.policePage=null;
       saveCase();renderCaseApp(app);
       q("#caseDesk").scrollIntoView({behavior:"smooth",block:"start"})
     })});
-    q("#resetCase").addEventListener("click",function(){if(confirm("Сбросить расследование? Откроется чистая версия дела.")){caseState=Object.assign({},caseDefault,{started:true,pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",suspectMarks:{},suspectNotes:{},caseNotebook:"",interrogation:{active:null,asked:{},visits:{}},clues:[],hint:0,hints:{devices:0,timeline:0,motive:0}});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
+    q("#resetCase").addEventListener("click",function(){if(confirm("Сбросить расследование? Откроется чистая версия дела.")){caseState=Object.assign({},caseDefault,{started:true,pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",boardAnswers:{},suspectMarks:{},suspectNotes:{},caseNotebook:"",interrogation:{active:null,asked:{},visits:{}},clues:[],hint:0,hints:{devices:0,timeline:0,motive:0},policePage:null});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
     if(caseState.started){q("#caseIntro").classList.add("hidden");q("#caseDesk").classList.remove("hidden");renderCaseApp(caseState.app||"brief")}
 
     var movies=qa(".movie"), savedMovies=JSON.parse(localStorage.getItem("kostromaMovies")||"null");
