@@ -1127,9 +1127,10 @@
     }
     function renderBoard(){
       var ids=(caseState.pins||[]).filter(function(id){return casePins[id]}),view=caseState.boardView||"cards";
-      var tabs='<div class="board-tabs"><button data-board-view="cards" class="'+(view==="cards"?"active":"")+'">🧷 Карточки</button><button data-board-view="timeline" class="'+(view==="timeline"?"active":"")+'">🕒 Хронология</button><button data-board-view="links" class="'+(view==="links"?"active":"")+'">🔗 Связи</button><button data-board-view="people" class="'+(view==="people"?"active":"")+'">👤 Люди</button></div>';
+      var tabs='<div class="board-tabs"><button data-board-view="questions" class="'+(view==="questions"?"active":"")+'">✓ Вопросы</button><button data-board-view="cards" class="'+(view==="cards"?"active":"")+'">🧷 Карточки</button><button data-board-view="timeline" class="'+(view==="timeline"?"active":"")+'">🕒 Хронология</button><button data-board-view="links" class="'+(view==="links"?"active":"")+'">🔗 Связи</button><button data-board-view="people" class="'+(view==="people"?"active":"")+'">👤 Люди</button></div>';
       var head='<div class="case-section-title"><div><small>РАБОЧАЯ ДОСКА</small><h3>Материалы и ваши выводы</h3></div><b style="color:#b79a72">'+ids.length+' сохранено</b></div>'+
         '<div class="case-note" style="margin-bottom:12px">Система не помечает правильные улики. Вы сами решаете, что закреплять, какое время ставить материалу, кому доверять и какие факты связывать.</div>'+tabs;
+      if(view==="questions")return head+renderInvestigationQuestions();
       if(view==="timeline"){
         var timed=ids.filter(function(id){return caseState.pinTimes&&caseState.pinTimes[id]}).sort(function(a,b){return caseState.pinTimes[a].localeCompare(caseState.pinTimes[b])});
         return head+'<div class="board-tool-head"><div><small>РУЧНАЯ ХРОНОЛОГИЯ</small><h3>События по времени</h3></div><span>'+timed.length+' с временем</span></div>'+
@@ -1150,8 +1151,7 @@
         return head+'<div class="board-tool-head"><div><small>РАБОЧИЙ ЛИСТ</small><h3>Люди и алиби</h3></div><span>всё отмечаете сами</span></div>'+
           '<p class="board-help">Эти статусы ничего не проверяют и не влияют на финал. Это просто ваш совместный лист подозрений.</p><div class="suspect-sheets">'+rows+'</div>';
       }
-      return head+renderInvestigationQuestions()+
-        '<div class="case-section-title" style="margin-top:18px"><div><small>ЗАКРЕПЛЕНО</small><h3>Ваша доска</h3></div></div>'+
+      return head+'<div class="case-section-title" style="margin-top:18px"><div><small>ЗАКРЕПЛЕНО</small><h3>Ваша доска</h3></div></div>'+
         (ids.length?'<div class="board-list">'+ids.map(function(id){var p=casePins[id],note=(caseState.pinNotes&&caseState.pinNotes[id])||"",time=(caseState.pinTimes&&caseState.pinTimes[id])||"";return '<div class="board-clue"><span>🧷</span><div class="board-clue__body"><small class="board-clue__source">'+caseEsc(p.source)+'</small><b>'+caseEsc(p.title)+'</b><p>'+caseEsc(p.text)+'</p><div class="board-card-tools"><label>Время для хронологии<input type="time" data-pin-time="'+id+'" value="'+caseEsc(time)+'"></label></div><textarea data-pin-note="'+id+'" maxlength="220" placeholder="Ваш вывод или сомнение…">'+caseEsc(note)+'</textarea><div class="board-card-actions">'+(p.nav?'<button class="board-source" data-open-pin-source="'+id+'">Открыть источник</button>':'')+'<button class="board-remove" data-remove-pin="'+id+'">Убрать</button></div></div></div>'}).join("")+'</div>':'<div class="board-empty">Пока пусто. Закрепляйте всё, что кажется подозрительным или просто полезным.</div>');
     }
 
