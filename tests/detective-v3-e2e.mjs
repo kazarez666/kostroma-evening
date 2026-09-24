@@ -113,6 +113,36 @@ try{
   await page.locator('.police-file [data-pin]').nth(0).click();
   await page.locator('.police-file [data-pin]').nth(5).click();
 
+  // Interrogations: five suspects, branching questions, evidence unlocks and repeat visits.
+  await app('interview');
+  assert.equal(await page.locator('.interview-card').count(),5);
+  await page.locator('[data-interview-suspect="marina"]').click();
+  await textVisible('Марина Орлова');
+  assert.ok(await page.locator('[data-interview-question]').count()>=3);
+  assert.equal(await page.locator('[data-interview-question="return"]').count(),0,'evidence follow-up should wait for the base answer');
+
+  await page.locator('[data-interview-question="evening"]').click();
+  assert.ok(await page.locator('.interview-turn').count()>=1);
+  assert.equal(await page.locator('[data-interview-question="return"]').count(),1,'access evidence should unlock a return-to-studio follow-up');
+
+  await page.locator('[data-interview-question="conflict"]').click();
+  assert.equal(await page.locator('[data-interview-question="money"]').count(),1,'payment evidence should unlock a money follow-up');
+  await page.locator('[data-interview-question="return"]').click();
+  await page.locator('[data-interview-question="money"]').click();
+  assert.ok(await page.locator('.interview-turn').count()>=4);
+  assert.equal(await page.locator('.interview-a [data-pin]').count(),await page.locator('.interview-turn').count(),'every interrogation answer should be pinnable');
+  await page.locator('[data-pin="interview_marina_return"]').click();
+
+  await page.locator('[data-interview-back]').click();
+  await page.locator('[data-interview-suspect="marina"]').click();
+  assert.ok(await page.locator('.interview-turn').count()>=4,'repeat interrogation should retain the protocol');
+  await page.locator('[data-interview-back]').click();
+
+  await page.locator('[data-interview-suspect="pavel"]').click();
+  await page.locator('[data-interview-question="evening"]').click();
+  assert.ok(await page.locator('.interview-turn').count()>=1);
+  await page.locator('[data-interview-back]').click();
+
   // Board accepts mixed relevant/irrelevant material, notes, manual time and user-defined links.
   await app('board');
   await textVisible('Материалы и ваши выводы');
@@ -158,6 +188,14 @@ try{
   await sourceButton.click();
   await textVisible('Pixel 8 · Сообщения');
   await textVisible('Марина');
+
+  await app('board');
+  await page.locator('[data-board-view="cards"]').click();
+  const interviewSource=page.locator('[data-open-pin-source="interview_marina_return"]');
+  assert.equal(await interviewSource.count(),1);
+  await interviewSource.click();
+  await textVisible('ПРОТОКОЛ ДОПРОСА');
+  await textVisible('Марина Орлова');
 
   await app('board');
   await page.locator('[data-board-view="people"]').click();
