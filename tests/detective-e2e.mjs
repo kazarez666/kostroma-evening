@@ -21,6 +21,8 @@ try {
   // Secret case must not appear as a normal top/mobile tab.
   assert.equal(await page.locator('[data-tab="detective"]').count(), 0, 'Detective should not be a normal navigation tab');
   await page.locator('#openSecretCase').click();
+  await visibleText('Дело на двоих: «Последний эфир»');
+  await page.locator('#casePlanLaunch').click();
   await visibleText('Последний эфир');
   await page.locator('#startCase').click();
 
