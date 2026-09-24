@@ -511,8 +511,8 @@
     function showTab(id){
       qa(".panel").forEach(function(x){x.classList.toggle("active",x.id===id)})
       qa("[data-tab]").forEach(function(x){x.classList.toggle("active",x.getAttribute("data-tab")===id)})
-      if(id==="detective")q("#detective").scrollIntoView({behavior:"smooth",block:"start"});
-      else window.scrollTo({top:0,behavior:"smooth"})
+      if(id==="detective")q("#detective").scrollIntoView({behavior:"instant",block:"start"});
+      else window.scrollTo({top:0,behavior:"instant"})
     }
     qa("[data-tab]").forEach(function(b){b.addEventListener("click",function(){showTab(b.getAttribute("data-tab"))})});qa("[data-open]").forEach(function(b){b.addEventListener("click",function(){showTab(b.getAttribute("data-open"))})});
     var caseToday=new Date(),caseTripDay=caseToday.getFullYear()===2026&&caseToday.getMonth()===9&&caseToday.getDate()===2;
