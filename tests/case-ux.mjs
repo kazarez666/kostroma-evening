@@ -1,5 +1,6 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
+import { mkdirSync } from 'node:fs';
 
 const browser = await chromium.launch({ headless: true });
 try {
@@ -12,6 +13,20 @@ try {
 
   assert.equal(await page.locator('[data-tab="detective"]').count(), 0);
   await page.locator('#openSecretCase').click();
+  assert.equal(await page.locator('#caseReveal').isVisible(), true);
+  assert.equal(await page.evaluate(() => !!document.elementFromPoint(innerWidth / 2, innerHeight / 2)?.closest('#caseReveal')), true,
+    'The reveal should fill the screen instead of scrolling past it');
+  if (process.env.CI) mkdirSync('test-artifacts', { recursive: true });
+  if (process.env.CI) await page.screenshot({ path: 'test-artifacts/reveal-opening-mobile.png' });
+  await page.locator('#caseRevealContinue').waitFor({ state: 'visible' });
+  if (process.env.CI) await page.screenshot({ path: 'test-artifacts/reveal-ready-mobile.png' });
+  await page.locator('#caseRevealContinue').click();
+  assert.equal(await page.locator('#caseReveal').isVisible(), false);
+  await page.waitForFunction(() => {
+    const r = document.querySelector('#planPhaseFour').getBoundingClientRect();
+    return r.top < innerHeight / 2 && r.bottom > innerHeight / 2;
+  });
+  if (process.env.CI) await page.screenshot({ path: 'test-artifacts/revealed-plan-mobile.png' });
   await page.locator('.mobile-nav [data-tab="detective"]').waitFor();
   assert.equal(await page.locator('.tabs [data-tab="detective"]').count(), 1);
   await page.locator('.mobile-nav [data-tab="food"]').click();
