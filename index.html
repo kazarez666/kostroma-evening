@@ -1333,16 +1333,17 @@
       '<button class="final-submit" id="submitCase">Проверить версию</button><button class="board-source final-back" data-open-app="board">Вернуться к уликам</button><div class="final-feedback hidden" id="finalFeedback" role="status" aria-live="polite"></div></div>';
     }
 
+    function scrollToCaseContent(){var screen=q("#caseScreen"),nav=q("#caseApps");window.scrollTo({top:window.scrollY+screen.getBoundingClientRect().top-nav.offsetHeight,behavior:"instant"})}
     function bindCaseScreen(app){
       if(app==="brief"){
         if(q("#casePrevPage"))q("#casePrevPage").onclick=function(){caseState.briefPage=Math.max(0,(Number(caseState.briefPage)||0)-1);saveCase();renderCaseApp("brief")};
         if(q("#caseNextPage"))q("#caseNextPage").onclick=function(){caseState.briefPage=Math.min(3,(Number(caseState.briefPage)||0)+1);saveCase();renderCaseApp("brief")};
       }
       if(app==="police"){
-        qa("[data-police-open]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.policePage=Number(b.getAttribute("data-police-open"));saveCase();playCaseSound("paper");renderCaseApp("police")}});
-        if(q("[data-police-back]"))q("[data-police-back]").onclick=function(){caseState.policePage=null;saveCase();renderCaseApp("police")};
-        if(q("[data-police-prev]"))q("[data-police-prev]").onclick=function(){caseState.policePage=Math.max(0,caseState.policePage-1);saveCase();playCaseSound("paper");renderCaseApp("police")};
-        if(q("[data-police-next]"))q("[data-police-next]").onclick=function(){caseState.policePage=Math.min(policeFiles.length-1,caseState.policePage+1);saveCase();playCaseSound("paper");renderCaseApp("police")};
+        qa("[data-police-open]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.policePage=Number(b.getAttribute("data-police-open"));saveCase();playCaseSound("paper");renderCaseApp("police");scrollToCaseContent()}});
+        if(q("[data-police-back]"))q("[data-police-back]").onclick=function(){caseState.policePage=null;saveCase();renderCaseApp("police");scrollToCaseContent()};
+        if(q("[data-police-prev]"))q("[data-police-prev]").onclick=function(){caseState.policePage=Math.max(0,caseState.policePage-1);saveCase();playCaseSound("paper");renderCaseApp("police");scrollToCaseContent()};
+        if(q("[data-police-next]"))q("[data-police-next]").onclick=function(){caseState.policePage=Math.min(policeFiles.length-1,caseState.policePage+1);saveCase();playCaseSound("paper");renderCaseApp("police");scrollToCaseContent()};
       }
       if(app==="interview"){
         qa("[data-interview-suspect]",q("#caseScreen")).forEach(function(b){b.onclick=function(){ensureInterrogation();var id=b.getAttribute("data-interview-suspect");caseState.interrogation.active=id;caseState.interrogation.visits[id]=(caseState.interrogation.visits[id]||0)+1;saveCase();renderCaseApp("interview")}});
