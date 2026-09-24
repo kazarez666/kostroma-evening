@@ -482,7 +482,8 @@
     function showTab(id){
       qa(".panel").forEach(function(x){x.classList.toggle("active",x.id===id)})
       qa("[data-tab]").forEach(function(x){x.classList.toggle("active",x.getAttribute("data-tab")===id)})
-      window.scrollTo({top:0,behavior:"smooth"})
+      if(id==="detective")q("#detective").scrollIntoView({behavior:"smooth",block:"start"});
+      else window.scrollTo({top:0,behavior:"smooth"})
     }
     qa("[data-tab]").forEach(function(b){b.addEventListener("click",function(){showTab(b.getAttribute("data-tab"))})});qa("[data-open]").forEach(function(b){b.addEventListener("click",function(){showTab(b.getAttribute("data-open"))})});
     var caseToday=new Date(),caseTripDay=caseToday.getFullYear()===2026&&caseToday.getMonth()===9&&caseToday.getDate()===2;
@@ -1252,7 +1253,8 @@ function renderCaseApp(app){
       if(app==="devices"){caseState.device="hub";caseState.filePath="root";caseState.openFile=null}
       if(app==="web"){caseState.webPage="home"}
       if(app==="interview"){ensureInterrogation();caseState.interrogation.active=null}
-      saveCase();renderCaseApp(app)
+      saveCase();renderCaseApp(app);
+      q("#caseDesk").scrollIntoView({behavior:"smooth",block:"start"})
     })});
     q("#resetCase").addEventListener("click",function(){if(confirm("Сбросить расследование? Откроется чистая версия дела.")){caseState=Object.assign({},caseDefault,{started:true,pins:[],pinNotes:{},pinTimes:{},links:[],boardView:"cards",suspectMarks:{},suspectNotes:{},caseNotebook:"",interrogation:{active:null,asked:{},visits:{}},clues:[]});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
     if(caseState.started){q("#caseIntro").classList.add("hidden");q("#caseDesk").classList.remove("hidden");renderCaseApp(caseState.app||"brief")}
