@@ -44,7 +44,7 @@ try{
   for(const path of ['desktop','podcast','invoices','downloads','docs']){
     await page.locator('[data-filepath="'+path+'"]').first().click();
     const ids=await page.locator('[data-open-file]').evaluateAll(els=>els.map(x=>x.dataset.openFile));
-    assert.ok(ids.length>=3,path+' has too few openable files');
+    assert.ok(ids.length>=5,path+' has too few openable files');
     for(const id of ids){
       await page.locator('[data-open-file="'+id+'"]').click();
       assert.equal(await page.locator('.file-viewer').count(),1);
@@ -113,7 +113,7 @@ try{
   await page.locator('.police-file [data-pin]').nth(0).click();
   await page.locator('.police-file [data-pin]').nth(5).click();
 
-  // Board accepts mixed relevant/irrelevant material, custom notes, and removal.
+  // Board accepts mixed relevant/irrelevant material, notes, manual time and user-defined links.
   await app('board');
   await textVisible('Материалы и ваши выводы');
   const before=await page.locator('.board-clue').count();
@@ -121,6 +121,28 @@ try{
   const note=page.locator('[data-pin-note]').first();
   await note.fill('Проверить время и алиби.');
   assert.match(await note.inputValue(),/алиби/);
+
+  const timeInputs=page.locator('[data-pin-time]');
+  assert.ok(await timeInputs.count()>=2);
+  await timeInputs.nth(0).fill('21:11');
+  await timeInputs.nth(1).fill('21:23');
+  await page.locator('[data-board-view="timeline"]').click();
+  await textVisible('События по времени');
+  assert.equal(await page.locator('.timeline-row').count(),2);
+  const times=await page.locator('.timeline-row time').allTextContents();
+  assert.deepEqual(times,['21:11','21:23']);
+
+  await page.locator('[data-board-view="links"]').click();
+  await textVisible('Что с чем связано?');
+  await page.locator('#linkFrom').selectOption({index:1});
+  await page.locator('#linkType').selectOption('подтверждает');
+  await page.locator('#linkTo').selectOption({index:2});
+  await page.locator('#addBoardLink').click();
+  assert.equal(await page.locator('.link-row').count(),1);
+  await page.locator('[data-remove-link]').click();
+  assert.equal(await page.locator('.link-row').count(),0);
+
+  await page.locator('[data-board-view="cards"]').click();
   await page.locator('[data-remove-pin]').first().click();
   assert.equal(await page.locator('.board-clue').count(),before-1);
 
