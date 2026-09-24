@@ -118,7 +118,8 @@ try{
   assert.equal(await page.locator('.interview-card').count(),5);
   await page.locator('[data-interview-suspect="marina"]').click();
   await textVisible('Марина Орлова');
-  assert.ok(await page.locator('[data-interview-question]').count()>=3);
+  assert.ok(await page.locator('[data-interview-question]').count()>=1);
+  assert.ok(await page.locator('[data-interview-question]').count()<=3,'interrogation should present at most three choices at once');
   assert.equal(await page.locator('[data-interview-question="return"]').count(),0,'evidence follow-up should wait for the base answer');
 
   await page.locator('[data-interview-question="evening"]').click();
