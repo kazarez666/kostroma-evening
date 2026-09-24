@@ -108,6 +108,9 @@
     .hint-policy{padding:12px 13px;border-radius:12px;background:#14201c;border-left:3px solid #708e7d;color:#8ea39a;font-size:12px;line-height:1.5;margin-bottom:13px}
 
     .file-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}.file-toolbar button{border:1px solid rgba(190,218,202,.1);background:#16211e;color:#9eb1a7;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:800}.file-breadcrumb{color:#71877c;font:750 10px ui-monospace,SFMono-Regular,Menlo,monospace;margin-left:auto}.file-side button[data-filepath]{cursor:pointer}.file-side button.active{background:#263932!important;color:#edf4ef!important}.file-card-button{width:100%;text-align:left;cursor:pointer}.file-empty{padding:30px;text-align:center;color:#6d8177;border:1px dashed rgba(190,218,202,.1);border-radius:13px}
+    .file-viewer{max-width:700px;margin:auto;border:1px solid rgba(190,218,202,.1);border-radius:16px;background:#121c19;padding:18px}.file-viewer__top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}.file-viewer__top button{border:1px solid rgba(190,218,202,.1);background:#1b2924;color:#a9bbb1;border-radius:9px;padding:7px 9px;font-size:10px}.file-viewer__top span{color:#6f867a;font:800 9px ui-monospace,SFMono-Regular,Menlo,monospace}.file-viewer__icon{font-size:38px}.file-viewer h3{margin:6px 0 3px!important}.file-viewer__meta{margin:0 0 14px!important;color:#6f867a!important;font-size:10px!important}.file-viewer__body{white-space:pre-wrap;margin:0;padding:14px;border-radius:12px;background:#0e1715;border:1px solid rgba(190,218,202,.07);color:#aebeb5;font:11px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace}
+    .board-clue{grid-template-columns:34px minmax(0,1fr)!important}.board-clue__source{display:block;color:#6f877b;font:800 9px ui-monospace,SFMono-Regular,Menlo,monospace;margin-bottom:3px}.board-clue textarea{width:100%;min-height:58px;margin-top:9px;resize:vertical;border:1px solid rgba(190,218,202,.09);border-radius:9px;background:#101a17;color:#d6e1db;padding:9px;font:11px/1.45 inherit;outline:0}.board-clue textarea:focus{border-color:rgba(193,216,203,.22)}.board-remove{margin-top:7px;border:0;background:transparent;color:#71867b;padding:3px 0;font-size:10px;text-decoration:underline;cursor:pointer}
+
     .investigation-questions{display:grid;gap:9px;margin-bottom:16px}.investigation-question{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:11px 12px;border-radius:12px;background:#18241f;border:1px solid rgba(190,218,202,.08)}.investigation-question__mark{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:#24342e;color:#789184;font-weight:900}.investigation-question.done .investigation-question__mark{background:#6e907d;color:#102018}.investigation-question b{color:#dce7e1;font-size:12px}.investigation-question small{color:#647b70;font-size:9px}.investigation-question.done small{color:#87a594}
     .evidence-pair{margin-top:5px;color:#82988d;font-size:10px}.material-photo{height:180px;border-radius:12px;overflow:hidden;margin:10px 0;background:#202b27}.material-photo img{width:100%;height:100%;object-fit:cover;display:block}.material-photo span{display:block;padding:7px 9px;color:#70867a;font-size:9px}.case-source-badge{display:inline-flex;margin-top:7px;padding:4px 6px;border-radius:6px;background:#26332f;color:#8da399;font-size:9px;font-weight:800}
 
@@ -374,7 +377,7 @@
               <p class="case-context" id="caseContext">Сводка дела</p>
             </div>
             <div class="case-head__right">
-              <div class="case-progress"><span>Улики на доске</span><b id="caseProgress">0/8</b></div>
+              <div class="case-progress"><span>Материалов на доске</span><b id="caseProgress">0</b></div>
               <button class="case-reset" id="resetCase" type="button">Сброс</button>
             </div>
           </header>
@@ -590,9 +593,9 @@
 
     var caseNow=new Date(),caseTripDay=caseNow.getFullYear()===2026&&caseNow.getMonth()===9&&caseNow.getDate()===2;
     if(caseTripDay&&!sessionStorage.getItem("case24TripFresh")){localStorage.removeItem("case24State");sessionStorage.setItem("case24TripFresh","1")}
-    var caseSchema="case24-polish-v2";
+    var caseSchema="case24-polish-v3";
     if(localStorage.getItem("case24Schema")!==caseSchema){localStorage.removeItem("case24State");localStorage.setItem("case24Schema",caseSchema)}
-    var caseDefault={started:false,mail:false,files:false,clues:[],hint:0,solved:false,app:"brief",device:"hub",filePath:"root",webPage:"home",briefPage:0};
+    var caseDefault={started:false,mail:false,files:false,clues:[],pins:[],pinNotes:{},hint:0,solved:false,app:"brief",device:"hub",filePath:"root",openFile:null,webPage:"home",briefPage:0};
     var caseState=Object.assign({},caseDefault,JSON.parse(localStorage.getItem("case24State")||"{}"));
     function saveCase(){localStorage.setItem("case24State",JSON.stringify(caseState))}
     function caseImg(src,alt){return '<img src="'+src+'" alt="'+alt+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'">'}
@@ -638,10 +641,20 @@
       voice:{title:"Запись в 21:21",text:"Автосохранённая голосовая заметка начинается словами Кирилла: «Марин, я не собираюсь делать вид, что этих денег не было…»"},
       time:{title:"Последние данные часов",text:"Последняя валидная запись пульса Кирилла — 21:23."}
     };
-    function caseProgress(){var n=caseState.clues.filter(function(x){return caseClues[x]}).length;q("#caseProgress").textContent=n+"/8"}
-    function addClue(id){if(!caseClues[id])return;if(caseState.clues.indexOf(id)<0){caseState.clues.push(id);saveCase();caseProgress();showToast("🧷 Вывод сохранён на доску")}renderCaseApp(caseState.app)}
-    function clueButton(id){if(!id)return"";var added=caseState.clues.indexOf(id)>=0;return '<button class="clue-btn '+(added?'added':'')+'" data-add-clue="'+id+'">'+(added?'✓ Вывод сохранён':'📌 Сохранить вывод на доску')+'</button>'}
-    function bindClues(){qa("[data-add-clue]",q("#caseScreen")).forEach(function(b){b.onclick=function(){addClue(b.getAttribute("data-add-clue"))}})}
+    function caseEsc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(ch){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]})}
+    function caseShort(v,n){v=String(v||"").replace(/\s+/g," ").trim();return v.length>(n||360)?v.slice(0,(n||360)-1)+"…":v}
+    var casePins={};
+    function definePin(id,title,text,source,clue){casePins[id]={id:id,title:title,text:caseShort(text,420),source:source,clue:clue||null}}
+    function syncHiddenClues(){var set=[];(caseState.pins||[]).forEach(function(id){var p=casePins[id];if(p&&p.clue&&set.indexOf(p.clue)<0)set.push(p.clue)});caseState.clues=set}
+    function caseProgress(){var n=(caseState.pins||[]).filter(function(x){return casePins[x]}).length,el=q("#caseProgress");if(el)el.textContent=String(n)}
+    function addPin(id){if(!casePins[id])return;caseState.pins=caseState.pins||[];caseState.pinNotes=caseState.pinNotes||{};if(caseState.pins.indexOf(id)<0){caseState.pins.push(id);syncHiddenClues();saveCase();caseProgress();showToast("🧷 Материал закреплён на доске")}renderCaseApp(caseState.app)}
+    function removePin(id){caseState.pins=(caseState.pins||[]).filter(function(x){return x!==id});if(caseState.pinNotes)delete caseState.pinNotes[id];syncHiddenClues();saveCase();caseProgress();renderCaseApp(caseState.app)}
+    function pinButton(id){if(!id||!casePins[id])return"";var added=(caseState.pins||[]).indexOf(id)>=0;return '<button class="clue-btn '+(added?'added':'')+'" data-pin="'+id+'">'+(added?'✓ На доске':'📌 На доску')+'</button>'}
+    function bindPins(){
+      qa("[data-pin]",q("#caseScreen")).forEach(function(b){b.onclick=function(){addPin(b.getAttribute("data-pin"))}});
+      qa("[data-remove-pin]",q("#caseScreen")).forEach(function(b){b.onclick=function(){removePin(b.getAttribute("data-remove-pin"))}});
+      qa("[data-pin-note]",q("#caseScreen")).forEach(function(el){el.oninput=function(){caseState.pinNotes=caseState.pinNotes||{};caseState.pinNotes[el.getAttribute("data-pin-note")]=el.value;saveCase()}});
+    }
 
     var threads={
       marina:[["20:12","Марина","Ты серьёзно собираешься оставить этот кусок в выпуске?"],["20:14","Кирилл","Не в выпуске. Сначала поговорим о том, откуда Денис знает про черновик."],["20:35","Марина","Я ушла. Завтра поговорим."],["21:06","Кирилл","Вернись на десять минут. Сегодня закончим. 21:15 в студии."],["21:07","система","Сообщение доставлено. Ответа нет."]],
@@ -652,11 +665,10 @@
     };
     var mails=[
       {from:"m.orlova@quietcity.media",to:"k.volkov@quietcity.media",time:"28 сентября · 23:14",subject:"удалить после чтения",body:"Я поговорила с Денисом. Он видел только ту версию, которую я отправила. Если мы ещё на несколько дней двинем выпуск, всё можно закрыть без скандала.",clue:"leak"},
-      {from:"d.karpov@prism.local",to:"m.orlova@quietcity.media",time:"29 сентября · 09:06",subject:"акт / октябрь",body:"180 после того, как материал окончательно ляжет на стол и не выйдет. Назначение платежа оставляем «редакторские консультации».",clue:"leak"},
       {from:"k.volkov@quietcity.media",to:"law@northmail.local",time:"2 октября · 18:03",subject:"внутренняя утечка",body:"Похоже, черновик сливает кто-то из команды. Если сегодня подтвержу платёж, завтра прекращаю договор с продюсером и передаю всё юристу.",clue:null},
-      {from:"a.petrova@quietcity.media",to:"k.volkov@quietcity.media",time:"2 октября · 17:21",subject:"источник",body:"Прошу ещё раз: не публикуй настоящее имя Артёма. Документов достаточно и без этого.",clue:null}
-    ];
-    var phonePhotos=[
+      {from:"a.petrova@quietcity.media",to:"k.volkov@quietcity.media",time:"2 октября · 17:21",subject:"источник",body:"Прошу ещё раз: не публикуй настоящее имя Артёма. Документов достаточно и без этого.",clue:null},
+      {from:"p.chernov@studio-cherdak.local",to:"k.volkov@quietcity.media",time:"2 октября · 16:42",subject:"экспорт и студия",body:"После финального экспорта я оставлю master_final_7 в общей папке. Если будешь сидеть допоздна — боковая дверь работает по обычным бейджам.",clue:null}
+    ];    var phonePhotos=[
       {title:"IMG_4418",time:"02.10.2026 · 19:52",img:CASE_IMG.studio,caption:"Фото Кирилла перед записью. В дальнем углу видна полка с наградами.",meta:"Снято на Pixel 8 · Studio Cherdak",clue:"weapon"},
       {title:"IMG_4397",time:"02.10.2026 · 18:41",img:CASE_IMG.studio2,caption:"Снимок аппаратной и монтажного места перед финальной записью.",meta:"Снято на Pixel 8 · Studio Cherdak",clue:null},
       {title:"alina_bus_2104",time:"02.10.2026 · 21:04",img:CASE_IMG.bus,caption:"Фото Алины с остановки «Театральная».",meta:"GPS: Театральная",clue:null},
@@ -666,6 +678,44 @@
     ];
     var calls=[["20:09","Марина Орлова","исходящий · 02:13"],["20:41","неизвестный номер","+7 ••• •• 41 · пропущенный"],["20:55","Артём Зорин","входящий · 00:38"],["21:09","Марина Орлова","исходящий · без ответа"]];
     var notes=[{title:"Выпуск 24",text:"Проверить акт Prism. Уточнить у юриста про внутреннюю утечку. Не публиковать имя А.З."},{title:"Пароли",text:"Когда-нибудь я перестану использовать одно и то же. Но не сегодня."},{title:"Встречи",text:"21:15 — коротко с М. Потом закрыть студию."}];
+
+    var caseFiles={
+      todo:{path:"desktop",icon:"📝",name:"TODO_02-10.txt",meta:"текстовый файл · изменён 20:58",kind:"TXT",body:"— дописать вводку\n— проверить акт Prism\n— позвонить юристу\n— 21:15: коротко поговорить с М.\n— после разговора закрыть студию"},
+      episode_final:{path:"desktop",icon:"🎧",name:"episode24_final.wav",meta:"аудио · 48:12 · экспорт 20:24",kind:"WAV",body:"Финальный экспорт выпуска №24.\nДлительность: 48:12\nСоздан: 02.10.2026 20:24\nКомментарий проекта: «не публиковать до подтверждения юридической части».\nАудиодорожка открывается только как технический предпросмотр."},
+      cover_ep24:{path:"desktop",icon:"🖼️",name:"cover_ep24.png",meta:"PNG · 2400×2400",kind:"PNG",body:"Обложка выпуска №24.\nНазвание проекта: «Тихий город»\nПодзаголовок макета: «Куда исчезают деньги Северной линии?»\nПоследнее изменение: 30.09.2026."},
+      prism_comment:{path:"desktop",icon:"📎",name:"Prism_comment.docx",meta:"документ · 2 страницы",kind:"DOCX",body:"Официальный комментарий Prism Communications:\n«Компания и её клиенты отрицают любые непрозрачные выплаты. Материал Кирилла Волкова содержит неверные интерпретации и может стать предметом судебного разбирательства».\nКонтакт: Денис Карпов."},
+
+      sources:{path:"docs",icon:"📊",name:"episode24_sources.xlsx",meta:"таблица · 27 строк",kind:"XLSX",body:"Фрагмент таблицы проверки источников:\n1. Реестр контрактов — подтверждено.\n2. Интервью А.З. — подтверждено документами, имя не публиковать.\n3. Связка подрядчик → Prism — подтверждено частично.\n4. Платёж 180 000 — проверить назначение и получателя.\n5. Комментарий Prism — получен."},
+      lawyer_draft:{path:"docs",icon:"📄",name:"lawyer_draft.docx",meta:"черновик · изменён 18:07",kind:"DOCX",body:"Черновик Кирилла юристу:\n«Есть признаки внутренней утечки черновика до публикации. Сегодня хочу получить подтверждение по платежу и понять, через чей доступ ушла версия. После записи пришлю документы и окончательное решение по договору с продюсером»."},
+      source_protection:{path:"docs",icon:"📄",name:"source_protection.txt",meta:"текстовый файл",kind:"TXT",body:"Правила для выпуска №24:\n— настоящее имя А.З. не звучит в эфире;\n— голос в сыром интервью не публиковать без обработки;\n— документы можно цитировать без персональных данных;\n— резервную копию держать отдельно."},
+
+      master_final:{path:"podcast",icon:"🎵",name:"master_final_7.wav",meta:"аудио · финальный монтаж",kind:"WAV",body:"Проект: Quiet City / Episode 24\nВерсия: master_final_7\nЭкспорт: 20:23\nАвтор монтажа: Павел Чернов\nСтатус: готов к публикации после подтверждения ведущего."},
+      script:{path:"podcast",icon:"📝",name:"episode24_script.docx",meta:"сценарий · 11 страниц",kind:"DOCX",body:"План выпуска:\n00:00 — вводка\n04:30 — история группы «Северная линия»\n16:10 — цепочка подрядчиков\n29:40 — комментарий Prism\n37:20 — документы источника\n45:00 — выводы и обещание продолжения."},
+      raw_artem:{path:"podcast",icon:"🎙️",name:"raw_interview_artem.wav",meta:"сырой звук · 31:04",kind:"WAV",body:"Текстовый фрагмент расшифровки:\nА.З.: «Я отдал документы, потому что платежи выглядели как обычные консультации, но суммы не совпадали с работой. Моё имя не называйте — я на это не соглашался»."},
+      artwork:{path:"podcast",icon:"🖼️",name:"artwork_final.png",meta:"PNG · финальная обложка",kind:"PNG",body:"Финальная версия обложки для публикации.\nСохранена 01.10.2026 в 23:08.\nСодержимое изображения не несёт дополнительной информации по делу."},
+
+      studio_invoice:{path:"invoices",icon:"🧾",name:"studio_september.pdf",meta:"PDF · аренда студии",kind:"PDF",body:"Studio Cherdak\nАренда студии за сентябрь 2026\nСумма: 42 000 ₽\nСтатус: оплачено 30.09.2026\nПлательщик: Quiet City Media."},
+      hosting_invoice:{path:"invoices",icon:"🧾",name:"hosting_october.pdf",meta:"PDF · хостинг",kind:"PDF",body:"PodcastCloud\nТариф Pro / октябрь 2026\nСумма: 9 900 ₽\nАвтопродление: включено\nСтатус: оплачено."},
+      design_invoice:{path:"invoices",icon:"🧾",name:"freelance_design.pdf",meta:"PDF · дизайн",kind:"PDF",body:"Исполнитель: ИП Семёнова Е.В.\nУслуга: дизайн обложки выпуска №24\nСумма: 12 000 ₽\nДата: 28.09.2026\nСтатус: оплачено."},
+      service_invoice:{path:"invoices",icon:"🧾",name:"equipment_service.pdf",meta:"PDF · обслуживание",kind:"PDF",body:"AudioFix Service\nДиагностика рекордера и двух микрофонов\nСумма: 8 500 ₽\nРаботы завершены: 19.09.2026."},
+
+      rail_pdf:{path:"downloads",icon:"📄",name:"rail_02-10.pdf",meta:"PDF · расписание",kind:"PDF",body:"Поезд 6412\nЦентральная — 21:03\nЛесная — 21:24\nПосадка через турникеты, закрытие доступа за 2 минуты до отправления."},
+      access_rules:{path:"downloads",icon:"📄",name:"studio_access_rules.pdf",meta:"PDF · правила студии",kind:"PDF",body:"Studio Cherdak — правила доступа:\nПосле 21:00 главный вход закрыт.\nСотрудники с действующим персональным бейджем используют боковую дверь.\nКаждый проход фиксируется системой контроля доступа."},
+      denis_response:{path:"downloads",icon:"📄",name:"denis_response.docx",meta:"DOCX · комментарий PR",kind:"DOCX",body:"Комментарий Дениса Карпова:\n«Мы считаем будущий выпуск недостоверным. Если он будет опубликован без правок, наши юристы отреагируют немедленно».\nПолучено Кириллом 2 октября."},
+      registry:{path:"downloads",icon:"📄",name:"northline_registry.pdf",meta:"PDF · выписка из реестра",kind:"PDF",body:"Группа «Северная линия».\nПубличная выписка по связанным подрядчикам.\nВ списке упоминается компания, которая ранее пользовалась услугами Prism Communications.\nДокумент сам по себе не указывает на конкретного сотрудника Quiet City."},
+
+      payment:{path:"evidence",icon:"📄",name:"payment_fragment.pdf",meta:"PDF · сохранено 1 октября",kind:"PDF",body:"Фрагмент платёжного документа:\nНазначение: «редакторские консультации»\nСумма: 180 000 ₽\nПолучатель скрыт в обрезанной копии.\nКонтрагент по цепочке связан с Prism Communications.",clue:"leak"},
+      release_notes:{path:"evidence",icon:"📝",name:"release_notes.txt",meta:"TXT · изменён 2 октября",kind:"TXT",body:"«Если подтвердится внутренняя утечка — выпуск переносить не буду. После записи поговорить с М. и затем отправить пакет юристу»."},
+      mail_export:{path:"evidence",icon:"✉️",name:"mail_export_29-09.eml",meta:"EML · локальная копия",kind:"EML",body:"Сохранённая Кириллом копия письма:\nОт: d.karpov@prism.local\nКому: m.orlova@quietcity.media\nТема: акт / октябрь\n\n«180 после того, как материал окончательно ляжет на стол и не выйдет. Назначение платежа оставляем “редакторские консультации”».",clue:"leak"}
+    };
+    var fileFolders={
+      desktop:["todo","episode_final","cover_ep24","prism_comment"],
+      docs:["sources","lawyer_draft","source_protection"],
+      podcast:["master_final","script","raw_artem","artwork"],
+      invoices:["studio_invoice","hosting_invoice","design_invoice","service_invoice"],
+      downloads:["rail_pdf","access_rules","denis_response","registry"],
+      evidence:["payment","release_notes","mail_export"]
+    };
 
     var policeFiles=[
       {title:"Журнал входов и выходов из студии",file:"access_log_02-10.csv",kind:"электронная система дверей",what:"Когда сотрудник прикладывает личный пропуск к двери, система автоматически записывает номер пропуска, время и действие — вход или выход.",body:"20:32 · M-14 · главный выход\n20:49 · A-08 · главный выход\n20:52 · P-02 · главный выход\n21:11 · M-14 · боковой вход\n21:27 · боковая дверь открыта изнутри",meaning:"Номер M-14 закреплён за Мариной Орловой. По этому журналу она сначала ушла, а затем в 21:11 снова вошла в студию через служебную дверь.",clue:"access"},
@@ -704,21 +754,43 @@
       {id:"artem",title:"Артём Зорин",profile:"artem",url:"social.local/a.zorin",keywords:"артем зорин источник"}
     ];
 
+    (function buildCasePinCatalog(){
+      var threadNames={marina:"Марина Орлова",denis:"Денис Карпов",alina:"Алина Петрова",pavel:"Павел Чернов",artem:"Артём Зорин"};
+      Object.keys(threads).forEach(function(k){definePin("thread_"+k,"Переписка: "+threadNames[k],threads[k].map(function(m){return m[0]+" "+m[1]+": "+m[2]}).join(" / "),"Сообщения Кирилла",k==="marina"?"meeting":null)});
+      mails.forEach(function(m,i){definePin("mail_"+i,m.subject,m.from+" → "+m.to+" · "+m.time+" · "+m.body,"Почта Кирилла",m.clue)});
+      phonePhotos.forEach(function(p,i){definePin("photo_"+i,p.title,p.time+" · "+p.caption+" · "+p.meta,"Галерея Кирилла",p.clue)});
+      calls.forEach(function(x,i){definePin("call_"+i,"Звонок: "+x[1],x[0]+" · "+x[2],"Журнал звонков Кирилла",null)});
+      notes.forEach(function(n,i){definePin("note_"+i,n.title,n.text,"Заметки Кирилла",null)});
+      policeFiles.forEach(function(d,i){definePin("police_"+i,d.title,d.what+" "+d.body+" "+d.meaning,"Материалы полиции",d.clue)});
+      Object.keys(people).forEach(function(id){var p=people[id];definePin("profile_"+id,p.name,p.role+" · "+p.work+" · "+p.relation+(id!=="kirill"?" Алиби: "+p.alibi:""),"Публичный профиль",null);p.posts.forEach(function(post,i){definePin("post_"+id+"_"+i,"Пост: "+p.name,post.time+" · "+post.text,"Открытый веб",null)})});
+      webPages.forEach(function(p){if(!p.profile)definePin("web_"+p.id,p.title,p.text,"Открытый веб",null)});
+      Object.keys(caseFiles).forEach(function(id){var d=caseFiles[id];definePin("file_"+id,d.name,d.body,"Файлы Кирилла · "+d.path,d.clue)});
+      syncHiddenClues();saveCase();
+    })();
+
     function setCaseContext(t){q("#caseContext").textContent=t||""}
     function hasClue(id){return caseState.clues.indexOf(id)>=0}
     function questionDone(ids){return ids.every(function(id){return hasClue(id)})}
     function renderInvestigationQuestions(){
       var qs=[
-        {ids:["meeting"],text:"Кого Кирилл сам попросил вернуться в студию незадолго до смерти?"},
-        {ids:["access","wifi"],text:"Кто физически вернулся в студию после 21:10 и чем это подтверждается?"},
-        {ids:["fake_story"],text:"Есть ли среди публичных постов алиби, которое нельзя считать надёжным?"},
-        {ids:["leak"],text:"Кому публикация выпуска могла причинить прямой финансовый или личный ущерб?"},
-        {ids:["weapon"],text:"Какой предмет исчез из студии и подходит под характер травмы?"},
-        {ids:["voice","time"],text:"Что происходило в последние минуты жизни Кирилла?"}
+        "Кто реально мог находиться в студии между 21:15 и 21:30?",
+        "Какие алиби подтверждаются независимыми данными, а какие — только словами или публикациями?",
+        "У кого был понятный мотив остановить выпуск именно в этот вечер?",
+        "Что происходило с черновиком выпуска до 2 октября и кто имел к нему доступ?",
+        "Какой предмет из студии мог быть использован при нападении?",
+        "Какие данные лучше всего связывают последние минуты Кирилла с точным временем?"
       ];
-      return '<div class="investigation-questions">'+qs.map(function(x,i){var done=questionDone(x.ids);return '<div class="investigation-question '+(done?'done':'')+'"><span class="investigation-question__mark">'+(done?'✓':(i+1))+'</span><b>'+x.text+'</b><small>'+(done?'есть подтверждение':'ещё проверить')+'</small></div>'}).join("")+'</div>'
+      return '<div class="investigation-questions">'+qs.map(function(x,i){return '<div class="investigation-question"><span class="investigation-question__mark">'+(i+1)+'</span><b>'+x+'</b><small>рабочий вопрос</small></div>'}).join("")+'</div>'
     }
-    function renderCaseFileDocument(){
+    function renderBoard(){
+      var ids=(caseState.pins||[]).filter(function(id){return casePins[id]});
+      return '<div class="case-section-title"><div><small>РАБОЧАЯ ДОСКА</small><h3>Материалы и ваши выводы</h3></div><b style="color:#b79a72">'+ids.length+' сохранено</b></div>'+
+        '<div class="case-note" style="margin-bottom:12px">На доску можно положить почти всё: переписку, обычный файл, пост, звонок или полицейский документ. Система не говорит, что важно, а что нет — решаете вы. Под каждым материалом можно записать свой вывод.</div>'+
+        renderInvestigationQuestions()+
+        '<div class="case-section-title" style="margin-top:18px"><div><small>ЗАКРЕПЛЕНО</small><h3>Ваша доска</h3></div></div>'+
+        (ids.length?'<div class="board-list">'+ids.map(function(id){var p=casePins[id],note=(caseState.pinNotes&&caseState.pinNotes[id])||"";return '<div class="board-clue"><span>🧷</span><div class="board-clue__body"><small class="board-clue__source">'+caseEsc(p.source)+'</small><b>'+caseEsc(p.title)+'</b><p>'+caseEsc(p.text)+'</p><textarea data-pin-note="'+id+'" maxlength="220" placeholder="Ваш вывод или сомнение…">'+caseEsc(note)+'</textarea><button class="board-remove" data-remove-pin="'+id+'">Убрать с доски</button></div></div>'}).join("")+'</div>':'<div class="board-empty">Пока пусто. Закрепляйте всё, что кажется подозрительным или просто полезным для хронологии.</div>');
+    }
+    function renderCaseFileDocument(){    function renderCaseFileDocument(){
       var page=Math.max(0,Math.min(3,Number(caseState.briefPage)||0));
       var pages=[
         '<div class="case-doc-head"><div><div class="case-doc-agency">ОТДЕЛ РАССЛЕДОВАНИЙ · НОВОГРАД</div><div class="case-doc-title">Уголовное дело №24/10-26</div><div class="case-doc-subtitle">ПЕРВИЧНАЯ ОПЕРАТИВНАЯ СВОДКА · 02.10.2026</div></div><div class="case-doc-stamp">КОПИЯ<br>ДЛЯ РАБОТЫ</div></div>'+
@@ -753,23 +825,18 @@
         out=renderDevices();
       }else if(app==="people"){
         setCaseContext("Потерпевший и пять человек из круга дела");
-        out='<div class="case-section-title"><div><small>ДОСЬЕ</small><h3>Люди</h3></div></div><div class="people-grid">'+Object.keys(people).map(function(id){var p=people[id];return '<div class="case-card person-v2">'+personPhoto(p,false)+'<div><small class="'+(id==="kirill"?'victim-badge':'')+'">'+(id==="kirill"?'ПОТЕРПЕВШИЙ':'БЕЙДЖ '+p.badge)+'</small><h4>'+p.name+', '+p.age+'</h4><div class="person-tags"><span>'+p.role+'</span><span>'+p.work+'</span></div><p>'+p.relation+'</p>'+(id!=="kirill"?'<p><b style="color:#dbe7e0">Алиби:</b> '+p.alibi+'</p>':'')+'<div class="source-actions"><button class="case-action" data-profile="'+id+'">Открыть публичный профиль</button></div></div></div>'}).join("")+'</div>';
+        out='<div class="case-section-title"><div><small>ДОСЬЕ</small><h3>Люди</h3></div></div><div class="people-grid">'+Object.keys(people).map(function(id){var p=people[id];return '<div class="case-card person-v2">'+personPhoto(p,false)+'<div><small class="'+(id==="kirill"?'victim-badge':'')+'">'+(id==="kirill"?'ПОТЕРПЕВШИЙ':'БЕЙДЖ '+p.badge)+'</small><h4>'+p.name+', '+p.age+'</h4><div class="person-tags"><span>'+p.role+'</span><span>'+p.work+'</span></div><p>'+p.relation+'</p>'+(id!=="kirill"?'<p><b style="color:#dbe7e0">Алиби:</b> '+p.alibi+'</p>':'')+'<div class="source-actions"><button class="case-action" data-profile="'+id+'">Открыть публичный профиль</button>'+pinButton("profile_"+id)+'</div></div></div>'}).join("")+'</div>';
       }else if(app==="web"){
         setCaseContext("Копия открытого интернета на момент расследования");
         out=renderWeb(caseState.webPage||"home");
       }else if(app==="police"){
         setCaseContext("Приложение к материалам осмотра и цифровой экспертизы");
         out='<div class="case-section-title"><div><small>7 ДОКУМЕНТОВ</small><h3>Материалы полиции</h3></div></div>'+
-        '<div class="police-intro"><b>Что это вообще такое:</b> здесь лежат не «загадочные компьютерные файлы», а обычные приложения к делу — журналы дверей, данные роутера, восстановленная запись, часы и протокол осмотра. Каждый документ ниже сначала объясняется человеческим языком.</div>'+
-        policeFiles.map(function(d){return '<article class="police-file"><div class="police-file__top"><b>'+d.title+'</b><span>'+d.kind+'</span></div><div class="police-file__explain"><b>Что это:</b> '+d.what+'</div>'+(d.img?'<div class="material-photo">'+caseImg(d.img,d.title)+'</div>':'')+'<pre style="margin-top:10px">'+d.body+'</pre><div class="police-file__meaning"><b>Как это читать:</b> '+d.meaning+'</div>'+clueButton(d.clue)+'</article>'}).join("");
+        '<div class="police-intro"><b>Что это вообще такое:</b> здесь лежат обычные приложения к делу — журналы дверей, данные роутера, восстановленная запись, часы и протокол осмотра. Их можно закреплять на доске точно так же, как любые другие материалы.</div>'+
+        policeFiles.map(function(d,i){return '<article class="police-file"><div class="police-file__top"><b>'+d.title+'</b><span>'+d.kind+'</span></div><div class="police-file__explain"><b>Что это:</b> '+d.what+'</div>'+(d.img?'<div class="material-photo">'+caseImg(d.img,d.title)+'</div>':'')+'<pre style="margin-top:10px">'+d.body+'</pre><div class="police-file__meaning"><b>Как это читать:</b> '+d.meaning+'</div>'+pinButton("police_"+i)+'</article>'}).join("");
       }else if(app==="board"){
         setCaseContext("Ваша рабочая доска");
-        var valid=caseState.clues.filter(function(id){return caseClues[id]});
-        out='<div class="case-section-title"><div><small>РАБОЧАЯ ДОСКА</small><h3>Вопросы расследования</h3></div><b style="color:#b79a72">'+valid.length+'/8 улик</b></div>'+
-        '<div class="case-note" style="margin-bottom:12px">Не нужно читать всё подряд и надеяться на озарение. Проверьте шесть вопросов ниже. Хороший вывод должен подтверждаться минимум двумя независимыми источниками, если такие источники есть.</div>'+
-        renderInvestigationQuestions()+
-        '<div class="case-section-title" style="margin-top:18px"><div><small>СОХРАНЁННЫЕ ВЫВОДЫ</small><h3>Улики</h3></div></div>'+
-        (valid.length?'<div class="board-list">'+valid.map(function(id){var c=caseClues[id];return '<div class="board-clue"><span>🧷</span><div><b>'+c.title+'</b><p>'+c.text+'</p></div></div>'}).join("")+'</div>':'<div class="board-empty">Пока пусто. Сохраняйте выводы из сообщений, почты, фото и материалов полиции.</div>');
+        out=renderBoard();
       }else if(app==="hints"){
         setCaseContext("Не обязательны для прохождения");
         out='<div class="case-section-title"><div><small>ЕСЛИ ЗАСТРЯЛИ</small><h3>Подсказки</h3></div></div><div class="hint-box"><div class="hint-policy">Все прямые игровые подсказки находятся только здесь. Открывайте по одной и возвращайтесь к расследованию.</div>'+caseHints.map(function(h,i){return '<div class="hint-level '+(i<caseState.hint?'':'locked')+'"><b>Подсказка '+(i+1)+'</b><p>'+h+'</p></div>'}).join("")+'<div class="hint-actions">'+(caseState.hint<caseHints.length?'<button id="nextHint">Открыть следующую подсказку</button>':'<span>Все подсказки открыты.</span>')+'</div></div>';
@@ -777,10 +844,10 @@
         setCaseContext("Финальная версия");
         out=renderFinal();
       }
-      s.innerHTML=out;caseProgress();bindClues();bindCaseScreen(app);
+      s.innerHTML=out;caseProgress();bindPins();bindCaseScreen(app);
     }
 
-    function renderDevices(){
+    function renderDevices(){    function renderDevices(){
       if(caseState.device==="hub")return '<div class="case-section-title"><div><small>FORENSIC IMAGES</small><h3>Устройства Кирилла Волкова</h3></div></div><div class="source-grid">'+
         '<button class="source-card" data-device="phone" style="text-align:left;color:inherit"><div class="source-card__icon">📱</div><h4>Pixel 8 · телефон Кирилла</h4><p>Сообщения, звонки, заметки, фотографии.</p></button>'+
         '<button class="source-card" data-device="laptop" style="text-align:left;color:inherit"><div class="source-card__icon">💻</div><h4>ThinkPad · ноутбук Кирилла</h4><p>Почтовый клиент, браузер и локальная файловая система.</p></button></div>';
@@ -799,10 +866,10 @@
     function deviceFrame(title,serial,inside){return '<button class="device-back" data-device="hub">← к устройствам</button>'+ownerStrip()+'<div class="device-shell"><div class="device-bar"><b>'+title+'</b><span>'+serial+'</span></div><div class="device-content">'+inside+'</div></div>'}
     function renderPhone(view){
       if(view==="home")return deviceFrame("Pixel 8 · forensic backup","QC-PX8-104",'<div class="app-grid"><button class="device-app" data-device="phone_messages"><span>💬</span><b>Сообщения</b><small>5 диалогов</small></button><button class="device-app" data-device="phone_photos"><span>▧</span><b>Галерея</b><small>6 файлов дела</small></button><button class="device-app" data-device="phone_calls"><span>☎️</span><b>Звонки</b><small>последние вызовы</small></button><button class="device-app" data-device="phone_notes"><span>📝</span><b>Заметки</b><small>3 заметки</small></button></div>');
-      if(view==="messages"){var active=window.caseThread||"marina",names={marina:"Марина",denis:"Денис",alina:"Алина",pavel:"Павел",artem:"Артём"};return deviceFrame("Pixel 8 · Сообщения","резервная копия",'<div class="thread-list"><div class="thread-tabs">'+Object.keys(threads).map(function(k){return '<button class="thread-btn '+(k===active?'active':'')+'" data-thread="'+k+'">'+names[k]+'</button>'}).join("")+'</div><div class="thread-pane">'+threads[active].map(function(m){var me=m[1]==="Кирилл";return '<div class="msg '+(me?'me':'')+'"><time>'+m[0]+' · '+m[1]+'</time>'+m[2]+'</div>'}).join("")+(active==="marina"?clueButton("meeting"):"")+'</div></div>')}
-      if(view==="photos")return deviceFrame("Pixel 8 · Галерея","экспорт медиа",'<div class="photo-grid-v2">'+phonePhotos.map(function(p){return '<article class="photo-item"><div class="photo-real">'+caseImg(p.img,p.title)+'<span>'+p.time+'</span></div><h4>'+p.title+'</h4><p>'+p.caption+'</p><p class="photo-source">'+p.meta+'</p><span class="case-source-badge">ИСТОЧНИК: галерея Кирилла</span>'+clueButton(p.clue)+'</article>'}).join("")+'</div>');
-      if(view==="calls")return deviceFrame("Pixel 8 · Вызовы","журнал звонков",'<div class="call-list">'+calls.map(function(c){return '<div class="call-item"><div><b>'+c[1]+'</b><span>'+c[2]+'</span></div><span>'+c[0]+'</span></div>'}).join("")+'</div>');
-      if(view==="notes")return deviceFrame("Pixel 8 · Заметки","локальные записи",notes.map(function(n){return '<div class="note-item"><b>'+n.title+'</b><p>'+n.text+'</p></div>'}).join(""));
+      if(view==="messages"){var active=window.caseThread||"marina",names={marina:"Марина",denis:"Денис",alina:"Алина",pavel:"Павел",artem:"Артём"};return deviceFrame("Pixel 8 · Сообщения","резервная копия",'<div class="thread-list"><div class="thread-tabs">'+Object.keys(threads).map(function(k){return '<button class="thread-btn '+(k===active?'active':'')+'" data-thread="'+k+'">'+names[k]+'</button>'}).join("")+'</div><div class="thread-pane">'+threads[active].map(function(m){var me=m[1]==="Кирилл";return '<div class="msg '+(me?'me':'')+'"><time>'+m[0]+' · '+m[1]+'</time>'+m[2]+'</div>'}).join("")+'<span class="case-source-badge">ИСТОЧНИК: сообщения Кирилла</span>'+pinButton("thread_"+active)+'</div></div>')}
+      if(view==="photos")return deviceFrame("Pixel 8 · Галерея","экспорт медиа",'<div class="photo-grid-v2">'+phonePhotos.map(function(p,i){return '<article class="photo-item"><div class="photo-real">'+caseImg(p.img,p.title)+'<span>'+p.time+'</span></div><h4>'+p.title+'</h4><p>'+p.caption+'</p><p class="photo-source">'+p.meta+'</p><span class="case-source-badge">ИСТОЧНИК: галерея Кирилла</span>'+pinButton("photo_"+i)+'</article>'}).join("")+'</div>');
+      if(view==="calls")return deviceFrame("Pixel 8 · Вызовы","журнал звонков",'<div class="call-list">'+calls.map(function(c,i){return '<div class="call-item"><div><b>'+c[1]+'</b><span>'+c[2]+'</span>'+pinButton("call_"+i)+'</div><span>'+c[0]+'</span></div>'}).join("")+'</div>');
+      if(view==="notes")return deviceFrame("Pixel 8 · Заметки","локальные записи",notes.map(function(n,i){return '<div class="note-item"><b>'+n.title+'</b><p>'+n.text+'</p>'+pinButton("note_"+i)+'</div>'}).join(""));
     }
     function fileSidebar(active){
       var items=[["root","⌂ Домой"],["desktop","🖥️ Рабочий стол"],["docs","📁 Документы"],["podcast","🎙️ Podcast"],["invoices","🧾 Invoices"],["downloads","⬇️ Downloads"]];
@@ -812,25 +879,28 @@
       var labels={root:"/Users/kvolkov",desktop:"/Users/kvolkov/Desktop",docs:"/Users/kvolkov/Documents",podcast:"/Users/kvolkov/Podcast",invoices:"/Users/kvolkov/Invoices",downloads:"/Users/kvolkov/Downloads",evidence:"/Users/kvolkov/Documents/evidence_backup"};
       return '<div class="file-toolbar"><button data-device="laptop">← Ноутбук</button>'+(path!=="root"?'<button data-filepath="'+(path==="evidence"?"docs":"root")+'">← Назад</button>':'')+'<span class="file-breadcrumb">'+labels[path]+'</span></div>'
     }
+    function renderFileCard(id){var d=caseFiles[id];return '<button class="folder-card file-card-button" data-open-file="'+id+'"><span class="folder-icon">'+d.icon+'</span><b>'+d.name+'</b><small>'+d.meta+'</small></button>'}
+    function renderFileDoc(d,id){return '<div class="file-viewer"><div class="file-viewer__top"><button data-close-file>← К файлам</button><span>'+d.kind+'</span></div><div class="file-viewer__icon">'+d.icon+'</div><h3>'+d.name+'</h3><p class="file-viewer__meta">'+d.meta+'</p><pre class="file-viewer__body">'+caseEsc(d.body)+'</pre><span class="case-source-badge">ИСТОЧНИК: локальный файл Кирилла</span>'+pinButton("file_"+id)+'</div>'}
     function renderLaptop(view){
       if(view==="home")return deviceFrame("ThinkPad · образ диска","QC-TP-221",'<div class="app-grid"><button class="device-app" data-device="laptop_mail"><span>✉️</span><b>Почта</b><small>Quiet City Mail</small></button><button class="device-app" data-device="laptop_browser"><span>🌐</span><b>Браузер</b><small>история и закладки</small></button><button class="device-app" data-device="laptop_files"><span>🗂️</span><b>Файлы</b><small>/Users/kvolkov</small></button></div>');
       if(view==="mail"){
         if(!caseState.mail)return deviceFrame("ThinkPad · Почта","Quiet City Mail",'<div class="account-login">'+ownerStrip()+'<label>УЧЁТНАЯ ЗАПИСЬ</label><div class="account-id">k.volkov@quietcity.media</div><label>ПАРОЛЬ</label><input id="mailPass" type="password" autocomplete="off" placeholder="••••••••"><button id="unlockMail">Войти</button><p class="login-note">Сеанс почтового клиента истёк. Требуется пароль владельца. Если застряли — подсказки находятся только в отдельной вкладке «Подсказки».</p><p id="mailError"></p></div>');
-        return deviceFrame("ThinkPad · Почта","k.volkov@quietcity.media",mails.map(function(m){return '<article class="mail-item"><div class="mail-head"><b>'+m.from+'</b><span>'+m.time+'</span></div><p class="mail-subject">'+m.subject+'</p><p>'+m.body+'</p><span class="case-source-badge">ИСТОЧНИК: почта Кирилла</span>'+clueButton(m.clue)+'</article>'}).join(""));
+        return deviceFrame("ThinkPad · Почта","k.volkov@quietcity.media",mails.map(function(m,i){return '<article class="mail-item"><div class="mail-head"><b>'+m.from+'</b><span>'+m.time+'</span></div><p class="mail-subject">'+m.subject+'</p><p>'+m.body+'</p><span class="case-source-badge">ИСТОЧНИК: почта Кирилла</span>'+pinButton("mail_"+i)+'</article>'}).join(""));
       }
-      if(view==="browser")return deviceFrame("ThinkPad · Браузер","история и закладки",'<div class="case-card"><small>НЕДАВНИЕ СТРАНИЦЫ</small><h4>История браузера Кирилла</h4><div class="browser-result"><a data-open-web="archive">quietcity.local/archive</a><small>2 октября · 18:26</small><p>Архив выпусков «Тихого города»</p></div><div class="browser-result"><a data-open-web="prism">prism.local/team</a><small>2 октября · 18:19</small><p>Команда PR-агентства Prism</p></div><div class="browser-result"><a data-open-web="studio">studio-cherdak.local/access</a><small>1 октября · 22:11</small><p>Правила доступа в студию</p></div><div class="browser-result"><a data-open-web="rail">rail.local/0210</a><small>1 октября · 19:04</small><p>Расписание электричек</p></div></div>');
+      if(view==="browser"){
+        var ids=["archive","prism","studio","rail"];
+        return deviceFrame("ThinkPad · Браузер","история и закладки",'<div class="case-card"><small>НЕДАВНИЕ СТРАНИЦЫ</small><h4>История браузера Кирилла</h4>'+ids.map(function(id){var p=webPages.find(function(x){return x.id===id});return '<div class="browser-result"><a data-open-web="'+id+'">'+p.url+'</a><small>'+({archive:"2 октября · 18:26",prism:"2 октября · 18:19",studio:"1 октября · 22:11",rail:"1 октября · 19:04"}[id])+'</small><p>'+p.title+'</p>'+pinButton("web_"+id)+'</div>'}).join("")+'</div>');
+      }
       if(view==="files"){
-        var path=caseState.filePath||"root",inside="";
-        if(path==="root")inside='<div class="folder-grid"><button class="folder-card file-card-button" data-filepath="desktop"><span class="folder-icon">🖥️</span><b>Desktop</b><small>4 объекта</small></button><button class="folder-card file-card-button" data-filepath="docs"><span class="folder-icon">📁</span><b>Documents</b><small>14 объектов</small></button><button class="folder-card file-card-button" data-filepath="podcast"><span class="folder-icon">🎙️</span><b>Podcast</b><small>37 объектов</small></button><button class="folder-card file-card-button" data-filepath="invoices"><span class="folder-icon">🧾</span><b>Invoices</b><small>8 объектов</small></button><button class="folder-card file-card-button" data-filepath="downloads"><span class="folder-icon">⬇️</span><b>Downloads</b><small>29 объектов</small></button></div>';
-        if(path==="desktop")inside='<div class="folder-grid"><div class="folder-card"><span class="folder-icon">📝</span><b>TODO_02-10.txt</b><small>«дописать вводку / проверить акт Prism / позвонить юристу»</small></div><div class="folder-card"><span class="folder-icon">🎧</span><b>episode24_final.wav</b><small>аудиофайл · 48 мин</small></div><div class="folder-card"><span class="folder-icon">🖼️</span><b>cover_ep24.png</b><small>обложка выпуска</small></div><div class="folder-card"><span class="folder-icon">📎</span><b>Prism_comment.docx</b><small>официальный комментарий Дениса</small></div></div>';
-        if(path==="docs")inside='<div class="folder-grid"><div class="folder-card"><span class="folder-icon">📊</span><b>episode24_sources.xlsx</b><small>таблица источников и проверок</small></div><div class="folder-card"><span class="folder-icon">📄</span><b>lawyer_draft.docx</b><small>черновик письма юристу</small></div><button class="folder-card file-card-button locked-folder" data-filepath="evidence"><span class="folder-icon">🔒</span><b>evidence_backup</b><small>закрытая папка · PIN</small></button><div class="folder-card"><span class="folder-icon">📄</span><b>source_protection.txt</b><small>заметка о защите личности источника</small></div></div>';
-        if(path==="podcast")inside='<div class="folder-grid"><div class="folder-card"><span class="folder-icon">🎵</span><b>master_final_7.wav</b><small>финальный монтаж</small></div><div class="folder-card"><span class="folder-icon">📝</span><b>episode24_script.docx</b><small>сценарий выпуска</small></div><div class="folder-card"><span class="folder-icon">🎙️</span><b>raw_interview_artem.wav</b><small>интервью источника</small></div><div class="folder-card"><span class="folder-icon">🖼️</span><b>artwork_final.png</b><small>обложка подкаста</small></div></div>';
-        if(path==="invoices")inside='<div class="folder-grid"><div class="folder-card"><span class="folder-icon">🧾</span><b>studio_september.pdf</b><small>аренда студии</small></div><div class="folder-card"><span class="folder-icon">🧾</span><b>hosting_october.pdf</b><small>хостинг подкаста</small></div><div class="folder-card"><span class="folder-icon">🧾</span><b>freelance_design.pdf</b><small>дизайн обложки</small></div><div class="folder-card"><span class="folder-icon">🧾</span><b>equipment_service.pdf</b><small>обслуживание оборудования</small></div></div>';
-        if(path==="downloads")inside='<div class="folder-grid"><div class="folder-card"><span class="folder-icon">📄</span><b>rail_02-10.pdf</b><small>расписание электричек</small></div><div class="folder-card"><span class="folder-icon">📄</span><b>studio_access_rules.pdf</b><small>правила прохода после 21:00</small></div><div class="folder-card"><span class="folder-icon">📄</span><b>denis_response.docx</b><small>комментарий PR‑агентства</small></div><div class="folder-card"><span class="folder-icon">📄</span><b>northline_registry.pdf</b><small>выписка по компании</small></div></div>';
-        if(path==="evidence"){
-          if(!caseState.files)inside='<div class="account-login"><div class="lock-icon">🔒</div><h3>Папка evidence_backup защищена</h3><div class="account-id">/Documents/evidence_backup</div><label>4-ЗНАЧНЫЙ PIN</label><input id="filesPin" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button id="unlockFiles">Открыть</button><p class="login-note">Подсказка не показывается здесь. Используйте вкладку «Подсказки», только если застряли.</p><p id="filesError"></p></div>';
-          else inside='<div class="file-item"><div class="file-head"><b>payment_fragment.pdf</b><span>1 октября</span></div><p>Фрагмент документа: «редакторские консультации — 180 000 ₽». Контрагент связан с Prism Communications.</p><span class="case-source-badge">ИСТОЧНИК: закрытая папка Кирилла</span>'+clueButton("leak")+'</div><div class="file-item"><div class="file-head"><b>release_notes.txt</b><span>2 октября</span></div><p>«Если подтвердится внутренняя утечка — выпуск переносить не буду. После записи поговорить с М.»</p></div>';
-        }
+        var path=caseState.filePath||"root",inside="",open=caseState.openFile&&caseFiles[caseState.openFile]?caseFiles[caseState.openFile]:null;
+        if(open&&open.path!==path){caseState.openFile=null;open=null}
+        if(open&&path==="evidence"&&!caseState.files){caseState.openFile=null;open=null}
+        if(open)inside=renderFileDoc(open,caseState.openFile);
+        else if(path==="root")inside='<div class="folder-grid"><button class="folder-card file-card-button" data-filepath="desktop"><span class="folder-icon">🖥️</span><b>Desktop</b><small>4 файла</small></button><button class="folder-card file-card-button" data-filepath="docs"><span class="folder-icon">📁</span><b>Documents</b><small>3 файла + закрытая папка</small></button><button class="folder-card file-card-button" data-filepath="podcast"><span class="folder-icon">🎙️</span><b>Podcast</b><small>4 файла</small></button><button class="folder-card file-card-button" data-filepath="invoices"><span class="folder-icon">🧾</span><b>Invoices</b><small>4 файла</small></button><button class="folder-card file-card-button" data-filepath="downloads"><span class="folder-icon">⬇️</span><b>Downloads</b><small>4 файла</small></button></div>';
+        else if(path==="docs")inside='<div class="folder-grid">'+fileFolders.docs.map(renderFileCard).join("")+'<button class="folder-card file-card-button locked-folder" data-filepath="evidence"><span class="folder-icon">🔒</span><b>evidence_backup</b><small>закрытая папка · PIN</small></button></div>';
+        else if(path==="evidence"&&!caseState.files)inside='<div class="account-login"><div class="lock-icon">🔒</div><h3>Папка evidence_backup защищена</h3><div class="account-id">/Documents/evidence_backup</div><label>4-ЗНАЧНЫЙ PIN</label><input id="filesPin" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button id="unlockFiles">Открыть</button><p class="login-note">Подсказка не показывается здесь. Используйте вкладку «Подсказки», только если застряли.</p><p id="filesError"></p></div>';
+        else if(fileFolders[path])inside='<div class="folder-grid">'+fileFolders[path].map(renderFileCard).join("")+'</div>';
+        else inside='<div class="file-empty">Папка пуста.</div>';
         return deviceFrame("ThinkPad · Файлы",path,fileToolbar(path)+'<div class="file-browser">'+fileSidebar(path)+'<div class="file-main">'+inside+'</div></div>');
       }
     }
@@ -838,19 +908,19 @@
     function renderProfile(id){
       var p=people[id];if(!p)return renderWeb("home");
       var friendNames=p.friends.map(function(fid){return people[fid].name});
-      return '<button class="browser-back" data-web-home>← к поиску</button><div class="profile-page"><div class="profile-cover"></div><div class="profile-main"><div class="profile-top">'+personPhoto(p,true)+'<div><div class="profile-handle">'+p.handle+'</div><h3>'+p.name+'</h3><div class="person-tags"><span>'+p.role+'</span><span>'+p.city+'</span></div></div></div><div class="profile-facts"><div class="profile-fact"><small>Дата рождения</small><b>'+p.birthday+'</b></div><div class="profile-fact"><small>Работа</small><b>'+p.work+'</b></div><div class="profile-fact"><small>Связь с делом</small><b>'+p.relation+'</b></div><div class="profile-fact"><small>Статус</small><b>'+p.status+'</b></div></div><p>'+p.bio+'</p><small style="color:#687d73;font-weight:800">КОНТАКТЫ / ДРУЗЬЯ</small><div class="friend-row">'+friendNames.map(function(n,i){return '<button class="friend-chip" data-profile="'+p.friends[i]+'">'+n+'</button>'}).join("")+'</div><div class="social-feed">'+p.posts.map(function(post){return '<article class="feed-post"><time>'+post.time+'</time><p>'+post.text+'</p>'+(post.image?'<div class="feed-image">'+caseImg(post.image,post.text)+'<div class="feed-image__caption">публичная фотография</div></div>':'')+clueButton(post.clue)+'</article>'}).join("")+'</div></div></div>';
+      return '<button class="browser-back" data-web-home>← к поиску</button><div class="profile-page"><div class="profile-cover"></div><div class="profile-main"><div class="profile-top">'+personPhoto(p,true)+'<div><div class="profile-handle">'+p.handle+'</div><h3>'+p.name+'</h3><div class="person-tags"><span>'+p.role+'</span><span>'+p.city+'</span></div>'+pinButton("profile_"+id)+'</div></div><div class="profile-facts"><div class="profile-fact"><small>Дата рождения</small><b>'+p.birthday+'</b></div><div class="profile-fact"><small>Работа</small><b>'+p.work+'</b></div><div class="profile-fact"><small>Связь с делом</small><b>'+p.relation+'</b></div><div class="profile-fact"><small>Статус</small><b>'+p.status+'</b></div></div><p>'+p.bio+'</p><small style="color:#687d73;font-weight:800">КОНТАКТЫ / ДРУЗЬЯ</small><div class="friend-row">'+friendNames.map(function(n,i){return '<button class="friend-chip" data-profile="'+p.friends[i]+'">'+n+'</button>'}).join("")+'</div><div class="social-feed">'+p.posts.map(function(post,i){return '<article class="feed-post"><time>'+post.time+'</time><p>'+post.text+'</p>'+(post.image?'<div class="feed-image">'+caseImg(post.image,post.text)+'<div class="feed-image__caption">публичная фотография</div></div>':'')+pinButton("post_"+id+"_"+i)+'</article>'}).join("")+'</div></div></div>';
     }
     function renderWeb(page){
       if(page&&people[page])return renderProfile(page);
       if(page!=="home"){
         var p=webPages.find(function(x){return x.id===page});if(p&&p.profile)return renderProfile(p.profile);
-        if(p)return '<button class="browser-back" data-web-home>← к поиску</button><div class="browser-page"><div class="browser-url">'+p.url+'</div><h3>'+p.title+'</h3><article>'+p.text+'</article></div>';
+        if(p)return '<button class="browser-back" data-web-home>← к поиску</button><div class="browser-page"><div class="browser-url">'+p.url+'</div><h3>'+p.title+'</h3><article>'+p.text+'</article>'+pinButton("web_"+p.id)+'</div>';
       }
       return '<div class="case-section-title"><div><small>PUBLIC WEB SNAPSHOT</small><h3>Открытый веб</h3></div></div><div class="web-home"><div class="web-searchbar"><input id="caseWebQuery" placeholder="Имя, компания, подкаст, место…"><button id="caseWebSearch">Найти</button></div><div class="profile-shortcuts">'+Object.keys(people).map(function(id){return '<button data-profile="'+id+'">'+people[id].name+'</button>'}).join("")+'</div><div id="caseWebResults"><p>Можно открыть профиль человека или искать по словам: «первый выпуск», «Prism», «студия», «электричка».</p></div></div>';
     }
-    function searchWeb(raw){
+    function searchWeb(raw){    function searchWeb(raw){
       var box=q("#caseWebResults");if(!box)return;var words=(raw||"").toLowerCase().trim().split(/\s+/).filter(Boolean);var found=webPages.filter(function(p){var hay=(p.title+" "+p.url+" "+(p.keywords||"")+" "+(p.text||"")).toLowerCase();return words.length&&words.some(function(w){return hay.indexOf(w)>=0})});
-      box.innerHTML=found.length?found.map(function(p){return '<div class="browser-result"><a data-webpage="'+(p.profile?p.profile:p.id)+'">'+p.title+'</a><small>'+p.url+'</small><p>'+(p.text||("Публичный профиль "+p.title))+'</p></div>'}).join(""):'<p>Ничего не найдено. Попробуйте имя или более общее слово.</p>';bindWebLinks()
+      box.innerHTML=found.length?found.map(function(p){return '<div class="browser-result"><a data-webpage="'+(p.profile?p.profile:p.id)+'">'+p.title+'</a><small>'+p.url+'</small><p>'+(p.text||("Публичный профиль "+p.title))+'</p>'+(p.profile?pinButton("profile_"+p.profile):pinButton("web_"+p.id))+'</div>'}).join(""):'<p>Ничего не найдено. Попробуйте имя или более общее слово.</p>';bindWebLinks();bindPins()
     }
     function bindWebLinks(){
       qa("[data-profile]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.app="web";caseState.webPage=b.getAttribute("data-profile");saveCase();renderCaseApp("web")}});
@@ -875,7 +945,7 @@
       }
       qa("[data-open-app]",q("#caseScreen")).forEach(function(b){b.onclick=function(){renderCaseApp(b.getAttribute("data-open-app"))}});
       qa("[data-device]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.app="devices";caseState.device=b.getAttribute("data-device");saveCase();renderCaseApp("devices")}});
-      qa("[data-filepath]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.filePath=b.getAttribute("data-filepath");saveCase();renderCaseApp("devices")}});
+      qa("[data-filepath]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.filePath=b.getAttribute("data-filepath");caseState.openFile=null;saveCase();renderCaseApp("devices")}});qa("[data-open-file]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.openFile=b.getAttribute("data-open-file");saveCase();renderCaseApp("devices")}});qa("[data-close-file]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.openFile=null;saveCase();renderCaseApp("devices")}});
       bindWebLinks();
       qa("[data-open-web]",q("#caseScreen")).forEach(function(b){b.onclick=function(){caseState.app="web";caseState.webPage=b.getAttribute("data-open-web");saveCase();renderCaseApp("web")}});
       if(q("#caseWebSearch"))q("#caseWebSearch").onclick=function(){searchWeb(q("#caseWebQuery").value)};
@@ -899,11 +969,11 @@
     q("#startCase").addEventListener("click",startCaseDesk);
     qa(".case-app").forEach(function(b){b.addEventListener("click",function(){
       var app=b.getAttribute("data-case-app");
-      if(app==="devices"){caseState.device="hub";caseState.filePath="root"}
+      if(app==="devices"){caseState.device="hub";caseState.filePath="root";caseState.openFile=null}
       if(app==="web"){caseState.webPage="home"}
       saveCase();renderCaseApp(app)
     })});
-    q("#resetCase").addEventListener("click",function(){if(confirm("Сбросить расследование? Откроется чистая версия дела.")){caseState=Object.assign({},caseDefault,{started:true});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
+    q("#resetCase").addEventListener("click",function(){if(confirm("Сбросить расследование? Откроется чистая версия дела.")){caseState=Object.assign({},caseDefault,{started:true,pins:[],pinNotes:{},clues:[]});saveCase();window.caseThread="marina";renderCaseApp("brief");showToast("↺ Дело сброшено")}});
     if(caseState.started){q("#caseIntro").classList.add("hidden");q("#caseDesk").classList.remove("hidden");renderCaseApp(caseState.app||"brief")}
 
     var movies=qa(".movie"), savedMovies=JSON.parse(localStorage.getItem("kostromaMovies")||"null");
