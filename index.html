@@ -676,7 +676,7 @@
       var mobile=innerWidth<760,cols=mobile?4:6,rows=mobile?5:5,count=cols*rows;
       for(var i=0;i<count;i++){
         var b=document.createElement("button");b.type="button";b.className="secret-leaf";b.textContent=Math.random()>.48?"🍁":"🍂";
-        var col=i%cols,row=Math.floor(i/cols),x=(col+.18+Math.random()*.64)/cols,y=(row+.18+Math.random()*.64)/rows,center=x>.22&&x<.78&&y>.18&&y<.83,noteLeaf=x<.18||x>.82;
+        var col=i%cols,row=Math.floor(i/cols),x=(col+.18+Math.random()*.64)/cols,y=(row+.18+Math.random()*.64)/rows,center=x>.22&&x<.78&&y>.18&&y<.83,noteLeaf=col===0||col===cols-1;
         b.dataset.noteLeaf=noteLeaf?"1":"0";b.setAttribute("aria-label",noteLeaf?"Открыть осеннюю записку":"Пошевелить осенний листик");
         b.style.left=(x*96+2)+"vw";
         b.style.top=(y*95+2)+"vh";
