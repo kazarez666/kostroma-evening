@@ -34,21 +34,21 @@ try {
 
   await page.locator('[data-case-app="police"]').click();
   const firstDoc = page.locator('[data-police-open="0"]');
-  assert.match(await firstDoc.innerText(), /не открывали/);
+  assert.match(await firstDoc.innerText(), /не открывали/i);
   await firstDoc.click();
   await page.locator('[data-police-back]').click();
-  assert.match(await page.locator('[data-police-open="0"]').innerText(), /просмотрено/);
+  assert.match(await page.locator('[data-police-open="0"]').innerText(), /просмотрено/i);
 
   await page.locator('[data-case-app="devices"]').click();
   await page.locator('[data-device="laptop"]').click();
   await page.locator('[data-device="laptop_files"]').click();
   await page.locator('[data-filepath="desktop"]').click();
   const file = page.locator('[data-open-file]').first();
-  assert.match(await file.innerText(), /не открывали/);
+  assert.match(await file.innerText(), /не открывали/i);
   const fileId = await file.getAttribute('data-open-file');
   await file.click();
   await page.locator('[data-close-file]').click();
-  assert.match(await page.locator('[data-open-file="'+fileId+'"]').innerText(), /просмотрено/);
+  assert.match(await page.locator('[data-open-file="'+fileId+'"]').innerText(), /просмотрено/i);
 
   await page.reload();
   if (await page.locator('#startEvening').isVisible()) await page.locator('#startEvening').click();
