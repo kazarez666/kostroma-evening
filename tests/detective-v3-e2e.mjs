@@ -142,6 +142,29 @@ try{
   await page.locator('[data-remove-link]').click();
   assert.equal(await page.locator('.link-row').count(),0);
 
+  // Suspect worksheet and shared notebook persist manual player thinking without grading it.
+  await page.locator('[data-board-view="people"]').click();
+  await textVisible('Люди и алиби');
+  assert.equal(await page.locator('.suspect-sheet').count(),5);
+  await page.locator('[data-suspect-mark="pavel"]').selectOption('solid');
+  await page.locator('[data-suspect-note="pavel"]').fill('Проверить заправку и время дороги.');
+  await page.locator('#caseNotebook').fill('Рабочая версия: сначала восстановить окно 21:15–21:30.');
+  assert.match(await page.locator('#caseNotebook').inputValue(),/21:15/);
+
+  // A board card can reopen the original source instead of forcing manual hunting.
+  await page.locator('[data-board-view="cards"]').click();
+  const sourceButton=page.locator('[data-open-pin-source="thread_marina"]');
+  assert.equal(await sourceButton.count(),1);
+  await sourceButton.click();
+  await textVisible('Pixel 8 · Сообщения');
+  await textVisible('Марина');
+
+  await app('board');
+  await page.locator('[data-board-view="people"]').click();
+  assert.equal(await page.locator('[data-suspect-mark="pavel"]').inputValue(),'solid');
+  assert.match(await page.locator('[data-suspect-note="pavel"]').inputValue(),/заправку/);
+  assert.match(await page.locator('#caseNotebook').inputValue(),/21:15/);
+
   await page.locator('[data-board-view="cards"]').click();
   await page.locator('[data-remove-pin]').first().click();
   assert.equal(await page.locator('.board-clue').count(),before-1);
