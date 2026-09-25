@@ -90,6 +90,7 @@ try{
     await desktop.locator('.tab[data-tab="'+tab+'"]').click();
     assert.ok(await desktop.locator('#'+tab).evaluate(el=>el.classList.contains('active')));
   }
+  await desktop.locator('#secretOwnerTrigger').click();
   await desktop.locator('#openSecretCase').click();
   await desktop.locator('#caseRevealContinue').click();
   await desktop.getByText('Дело на двоих: «Последний эфир»',{exact:false}).waitFor({state:'visible'});

@@ -223,6 +223,13 @@
 
 
     .case-secret-launch{margin:10px 0 18px;padding:20px;border-radius:24px;border:1px solid rgba(99,68,49,.16);background:linear-gradient(145deg,#173b2b,#5f4534);color:#fff;display:grid;grid-template-columns:54px 1fr auto;gap:15px;align-items:center;box-shadow:0 18px 45px rgba(48,32,22,.13)}
+    .case-secret-launch.owner-hidden{display:none}
+    .case-secret-launch.owner-armed{animation:secretLauncherIn .42s cubic-bezier(.2,.85,.25,1)}
+    .secret-owner-trigger{display:block;width:11px;height:11px;margin:0 3px 5px auto;padding:0;border:0;background:transparent;opacity:.09;cursor:default;position:relative;border-radius:50%}
+    .secret-owner-trigger:after{content:"";position:absolute;inset:4px;border-radius:50%;background:currentColor;color:var(--muted)}
+    .secret-owner-trigger:hover,.secret-owner-trigger:focus-visible{opacity:.22;outline:none}
+    .secret-owner-trigger.is-hidden{display:none}
+    @keyframes secretLauncherIn{from{opacity:0;transform:translateY(7px) scale(.985)}to{opacity:1;transform:none}}
     .case-secret-launch__icon{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;background:rgba(255,255,255,.10);font-size:24px}
     .case-secret-launch__copy{display:grid;gap:3px}.case-secret-launch__copy small{font-size:9px;letter-spacing:.14em;color:rgba(255,255,255,.55);font-weight:900}.case-secret-launch__copy b{font-size:18px}.case-secret-launch__copy span{font-size:12px;line-height:1.45;color:rgba(255,255,255,.68)}
     .case-secret-launch__button{border:1px solid rgba(255,255,255,.14);background:#f8ecdb;color:#173b2b;border-radius:999px;padding:11px 15px;font-weight:900;cursor:pointer}
@@ -627,7 +634,8 @@
   </main>
 
   <footer class="shell">
-    <div class="case-secret-launch" id="caseSecretLaunch">
+    <button class="secret-owner-trigger" id="secretOwnerTrigger" type="button" aria-label="Дополнительное действие"></button>
+    <div class="case-secret-launch owner-hidden" id="caseSecretLaunch">
       <div class="case-secret-launch__icon" id="caseSecretIcon">🔐</div>
       <div class="case-secret-launch__copy">
         <small id="caseSecretEyebrow">СЕКРЕТНЫЙ СЮРПРИЗ</small>
@@ -665,6 +673,7 @@
     qa("[data-tab]").forEach(function(b){b.addEventListener("click",function(){showTab(b.getAttribute("data-tab"))})});qa("[data-open]").forEach(function(b){b.addEventListener("click",function(){showTab(b.getAttribute("data-open"))})});
     var caseToday=new Date(),caseTripDay=caseToday.getFullYear()===2026&&caseToday.getMonth()===9&&caseToday.getDate()===2;
     var secretPlanRevealed=sessionStorage.getItem("kostromaSecretPlanRevealed")==="1" || (caseTripDay&&localStorage.getItem("kostromaSecretPlanRevealedOnTripDay")==="1");
+    var secretLauncherArmed=sessionStorage.getItem("kostromaSecretLauncherArmed")==="1";
     function openDetectiveCase(){
       sessionStorage.setItem("kostromaSecretCaseOpened","1");
       if(typeof caseState!=="undefined"&&!caseState.started){caseState.app="brief";caseState.briefPage=0;saveCase()}
@@ -682,6 +691,19 @@
       });
       q(".mobile-nav").classList.add("case-unlocked");
     }
+    function syncSecretLauncher(animate){
+      var launch=q("#caseSecretLaunch"),trigger=q("#secretOwnerTrigger"),show=secretLauncherArmed||secretPlanRevealed;
+      launch.classList.toggle("owner-hidden",!show);
+      trigger.classList.toggle("is-hidden",show);
+      if(show&&animate){launch.classList.remove("owner-armed");void launch.offsetWidth;launch.classList.add("owner-armed")}
+      else launch.classList.remove("owner-armed");
+    }
+    q("#secretOwnerTrigger").addEventListener("click",function(){
+      if(secretPlanRevealed)return;
+      secretLauncherArmed=true;
+      sessionStorage.setItem("kostromaSecretLauncherArmed","1");
+      syncSecretLauncher(true);
+    });
     function applySecretPlanMode(revealed){
       secretPlanRevealed=!!revealed;
       if(revealed){
@@ -706,6 +728,7 @@
       q("#caseSecretTitle").textContent=revealed?"«Последний эфир»":"Тут спрятано кое-что ещё";
       q("#caseSecretText").textContent=revealed?"План уже обновлён. Теперь можно открыть материалы дела.":"Необязательно открывать сразу. Лучше оставить на момент, когда захочется чего-то нового.";
       q("#openSecretCase").textContent=revealed?"Открыть дело №24 🔎":"Открыть сюрприз 🍁";
+      syncSecretLauncher(false);
       if(typeof renderPlanNow==="function")renderPlanNow();
     }
     var revealInProgress=false;
@@ -745,6 +768,7 @@
         });
         localStorage.setItem("kostromaChecks",JSON.stringify(saved));
         sessionStorage.setItem("kostromaSecretPlanRevealed","1");
+        secretLauncherArmed=true;sessionStorage.setItem("kostromaSecretLauncherArmed","1");
         if(caseTripDay)localStorage.setItem("kostromaSecretPlanRevealedOnTripDay","1");
         applySecretPlanMode(true);
         progress();
@@ -759,6 +783,7 @@
         },reduced?30:430)
       },reduced?60:1120)
     }
+    syncSecretLauncher(false);
     q("#openSecretCase").addEventListener("click",revealSecretPlan);
     q("#caseRevealContinue").addEventListener("click",finishSecretReveal);
     q("#caseReveal").addEventListener("keydown",function(e){

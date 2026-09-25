@@ -11,6 +11,7 @@ on:
       - "tests/laptop-1366.mjs"
       - "tests/shopping-list.mjs"
       - "tests/today-prep.mjs"
+      - "tests/secret-trigger.mjs"
       - "tests/trip-day-resume.mjs"
       - "tests/case-ux.mjs"
       - "tests/desktop-case-ux.mjs"
@@ -60,6 +61,8 @@ jobs:
         run: node tests/shopping-list.mjs
       - name: Verify Today dashboard and pre-trip checklist
         run: node tests/today-prep.mjs
+      - name: Verify hidden owner trigger
+        run: node tests/secret-trigger.mjs
       - name: Run detective browser test
         run: node tests/detective-v3-e2e.mjs
       - name: Verify trip-day progress survives reopening

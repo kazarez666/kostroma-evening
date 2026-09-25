@@ -11,6 +11,7 @@ try {
   await context.setOffline(true);
   await page.reload();
   if (await page.locator('#startEvening').isVisible()) await page.locator('#startEvening').click();
+  await page.locator('#secretOwnerTrigger').click();
   await page.locator('#openSecretCase').click();
   await page.locator('#caseRevealContinue').click();
   await page.locator('#casePlanLaunch').click();
