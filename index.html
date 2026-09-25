@@ -225,9 +225,8 @@
     .case-secret-launch{margin:10px 0 18px;padding:20px;border-radius:24px;border:1px solid rgba(99,68,49,.16);background:linear-gradient(145deg,#173b2b,#5f4534);color:#fff;display:grid;grid-template-columns:54px 1fr auto;gap:15px;align-items:center;box-shadow:0 18px 45px rgba(48,32,22,.13)}
     .case-secret-launch.owner-hidden{display:none}
     .case-secret-launch.owner-armed{animation:secretLauncherIn .42s cubic-bezier(.2,.85,.25,1)}
-    .secret-owner-trigger{display:block;width:11px;height:11px;margin:0 3px 5px auto;padding:0;border:0;background:transparent;opacity:.09;cursor:default;position:relative;border-radius:50%}
-    .secret-owner-trigger:after{content:"";position:absolute;inset:4px;border-radius:50%;background:currentColor;color:var(--muted)}
-    .secret-owner-trigger:hover,.secret-owner-trigger:focus-visible{opacity:.22;outline:none}
+    .secret-owner-trigger{display:grid;place-items:center;width:18px;height:18px;margin:0 3px 4px auto;padding:0;border:0;background:transparent;color:#8b6f53;font-size:14px;line-height:1;opacity:.34;cursor:default;border-radius:50%;filter:saturate(.72)}
+    .secret-owner-trigger:hover,.secret-owner-trigger:focus-visible{opacity:.62;transform:rotate(-7deg) scale(1.04);outline:none}
     .secret-owner-trigger.is-hidden{display:none}
     @keyframes secretLauncherIn{from{opacity:0;transform:translateY(7px) scale(.985)}to{opacity:1;transform:none}}
     .case-secret-launch__icon{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;background:rgba(255,255,255,.10);font-size:24px}
@@ -634,7 +633,7 @@
   </main>
 
   <footer class="shell">
-    <button class="secret-owner-trigger" id="secretOwnerTrigger" type="button" aria-label="Дополнительное действие"></button>
+    <button class="secret-owner-trigger" id="secretOwnerTrigger" type="button" aria-label="Дополнительное действие">🍂</button>
     <div class="case-secret-launch owner-hidden" id="caseSecretLaunch">
       <div class="case-secret-launch__icon" id="caseSecretIcon">🔐</div>
       <div class="case-secret-launch__copy">
