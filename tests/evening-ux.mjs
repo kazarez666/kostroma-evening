@@ -62,10 +62,12 @@ try {
   assert.equal(await page.evaluate(() => document.body.classList.contains('focus-mode')), false);
 
   // Central background leaves stay quiet on desktop.
-  const centerOpacities = await page.locator('.secret-leaf[data-note-leaf="0"]').evaluateAll(items =>
-    items.map(el => parseFloat(getComputedStyle(el).opacity))
+  const centerOpacities = await page.locator('.secret-leaf').evaluateAll(items =>
+    items.map(el => ({ x: (el.getBoundingClientRect().left + el.getBoundingClientRect().width / 2) / innerWidth, opacity: parseFloat(getComputedStyle(el).opacity) }))
+      .filter(item => item.x > .35 && item.x < .65)
+      .map(item => item.opacity)
   );
-  assert.ok(Math.max(...centerOpacities) <= .07, 'Central ambient leaves should remain background-level');
+  assert.ok(centerOpacities.length > 0 && Math.max(...centerOpacities) <= .07, 'Central ambient leaves should remain background-level');
 
   assert.deepEqual(errors, [], 'Uncaught page errors: '+errors.join('\n'));
   console.log('EVENING_UX_OK');
