@@ -12,6 +12,7 @@ try {
   if (await page.locator('#startEvening').isVisible()) await page.locator('#startEvening').click();
 
   assert.equal(await page.locator('[data-tab="detective"]').count(), 0);
+  await page.locator('#secretOwnerTrigger').click();
   await page.locator('#openSecretCase').click();
   assert.equal(await page.locator('#caseReveal').isVisible(), true);
   assert.equal(await page.evaluate(() => !!document.elementFromPoint(innerWidth / 2, innerHeight / 2)?.closest('#caseReveal')), true,
