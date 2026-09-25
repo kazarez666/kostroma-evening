@@ -85,6 +85,12 @@
     .shopping-head{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:12px}.shopping-head small{font-size:9px;letter-spacing:.13em;font-weight:900;color:var(--brown2)}.shopping-head h3{margin:3px 0 0;font-size:21px}.shopping-count{font-size:12px;color:var(--muted);font-weight:850}
     .shopping-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.shopping-item{display:flex;align-items:center;gap:9px;padding:10px 11px;border-radius:14px;background:rgba(255,255,255,.62);border:1px solid rgba(76,54,39,.08);cursor:pointer}.shopping-item input{accent-color:var(--forest);width:17px;height:17px}.shopping-item.done span{text-decoration:line-through;opacity:.48}
     .shopping-note{margin:10px 0 0;color:var(--muted);font-size:12px;line-height:1.45}
+    .shopping-add{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin:0 0 12px}.shopping-add input{min-width:0;border:1px solid var(--line);background:rgba(255,255,255,.78);border-radius:13px;padding:11px 12px;color:var(--ink)}.shopping-add button{border:0;border-radius:13px;background:var(--forest);color:#fff;padding:11px 15px;font-weight:900}
+    .shopping-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}.shopping-toolbar button{border:1px solid var(--line);background:rgba(255,255,255,.65);color:var(--brown);padding:9px 11px;border-radius:12px;font-weight:850}.shopping-toolbar button.active{background:var(--forest);color:#fff;border-color:var(--forest)}
+    .shopping-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;align-items:stretch}.shopping-row.is-hidden{display:none}.shopping-row .shopping-item{min-width:0}.shopping-item__remove{border:0;background:rgba(120,74,52,.08);color:#8c5e49;border-radius:12px;min-width:38px;font-weight:900}.shopping-item__remove:hover{background:rgba(120,74,52,.14)}
+    .shopping-store-exit{display:none;border:0;background:var(--forest);color:#fff;border-radius:12px;padding:10px 13px;font-weight:900}
+    body.shopping-mode{overflow:hidden}body.shopping-mode .shopping-card{position:fixed;inset:0;z-index:260;margin:0;border:0;border-radius:0;padding:max(18px,env(safe-area-inset-top)) max(18px,calc((100vw - 760px)/2)) max(22px,env(safe-area-inset-bottom));overflow:auto;background:linear-gradient(180deg,#f7efe5,#fffaf2)}body.shopping-mode .shopping-store-exit{display:inline-flex}body.shopping-mode .shopping-list{grid-template-columns:1fr;gap:10px}body.shopping-mode .shopping-row{min-height:54px}body.shopping-mode .shopping-item{padding:14px 15px;font-size:17px;background:rgba(255,255,255,.84)}body.shopping-mode .shopping-item input{width:22px;height:22px}body.shopping-mode .shopping-item__remove{min-width:48px;font-size:16px}
+    body.shopping-mode .shopping-head{position:sticky;top:0;z-index:2;padding:8px 0 10px;background:linear-gradient(180deg,#f7efe5 75%,rgba(247,239,229,0))}
     .draw.is-drawing{box-shadow:0 22px 58px rgba(36,28,22,.2)}.draw.is-drawing .big{animation:reelSpin .55s ease-in-out infinite}.result.is-spinning{opacity:.72;transform:scale(.97)}.result.is-winner{animation:winnerPop .62s cubic-bezier(.2,.9,.25,1.12);font-size:24px}.slot.draw-candidate{transform:translateY(-2px);border-color:rgba(194,138,87,.55);box-shadow:0 12px 28px rgba(95,61,38,.12)}
     @keyframes reelSpin{50%{transform:rotate(-7deg) scale(1.09)}}@keyframes winnerPop{0%{transform:scale(.88);opacity:.45}60%{transform:scale(1.07)}100%{transform:none;opacity:1}}
     .focus-help{display:none;position:fixed;left:24px;bottom:20px;z-index:230;padding:9px 12px;border-radius:999px;background:rgba(20,44,33,.9);color:rgba(255,255,255,.78);font-size:12px;font-weight:800;box-shadow:0 12px 36px rgba(0,0,0,.14)}
@@ -117,7 +123,7 @@
     .secret-leaves{position:fixed;inset:0;pointer-events:none;z-index:24;overflow:hidden}.secret-leaf{position:absolute;pointer-events:none;display:grid;place-items:center;width:calc(var(--size,22px) + 10px);height:calc(var(--size,22px) + 10px);padding:0;border:0;border-radius:50%;background:transparent;color:inherit;font-size:var(--size,22px);line-height:1;filter:drop-shadow(0 5px 8px rgba(74,48,28,.13));opacity:var(--opacity,.3);animation:leafFloatRandom var(--dur,8s) ease-in-out infinite;animation-delay:var(--delay,0s);transform-origin:center;user-select:none}.secret-leaf.rustle{animation:leafRustle .62s ease both}@keyframes leafFloatRandom{0%,100%{transform:translate3d(0,0,0) rotate(var(--r0,-8deg))}50%{transform:translate3d(var(--sway,7px),var(--bob,13px),0) rotate(var(--r1,8deg))}}@keyframes leafRustle{0%{transform:rotate(var(--r0,-5deg)) scale(1)}28%{transform:rotate(-24deg) scale(1.15)}58%{transform:rotate(24deg) scale(.96)}100%{transform:rotate(var(--r1,7deg)) scale(1)}}.leaf-spark{position:fixed;z-index:80;pointer-events:none;font-size:15px;animation:leafSpark .8s ease-out forwards}@keyframes leafSpark{0%{opacity:0;transform:scale(.45)}20%{opacity:.9}100%{opacity:0;transform:translate(var(--sx,18px),-38px) rotate(var(--sr,30deg)) scale(.9)}}
         .love-modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px}.love-backdrop{position:absolute;inset:0;background:rgba(24,20,16,.56);backdrop-filter:blur(7px)}.love-note{position:relative;z-index:1;width:min(420px,100%);padding:32px 27px 26px;border-radius:28px;text-align:center;background:linear-gradient(145deg,#fffaf2,#efe1d2);border:1px solid rgba(255,255,255,.75);box-shadow:0 30px 90px rgba(35,25,18,.3);animation:notePop .35s cubic-bezier(.2,.9,.25,1.15)}@keyframes notePop{from{opacity:0;transform:scale(.86) translateY(12px)}to{opacity:1;transform:none}}.love-note small{font-size:10px;letter-spacing:.14em;color:var(--brown2);font-weight:900}.love-note h3{font-size:31px;margin:7px 0 12px;letter-spacing:-.04em}.love-note p{font-family:Georgia,serif;font-size:20px;line-height:1.55;color:#4b3b31;margin:0 0 19px}.love-heart{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;background:var(--forest);color:#f5d8cf;font-size:22px;box-shadow:0 12px 30px rgba(23,59,43,.18)}.love-close{position:absolute;right:13px;top:11px;border:0;background:transparent;color:#7f6b5d;font-size:29px;line-height:1}.love-again{border:0;border-radius:999px;background:var(--forest);color:white;padding:11px 16px;font-weight:850}.heart-layer{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}.burst-heart{position:absolute;font-size:20px;animation:heartFly 1.25s ease-out forwards}@keyframes heartFly{0%{opacity:0;transform:translateY(8px) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-150px) rotate(var(--rot)) scale(1.15)}}.footer-heart{border:0;background:transparent;color:var(--brown2);font-size:18px;vertical-align:-1px;padding:3px 6px;transition:.2s}.footer-heart:hover{transform:scale(1.2);color:#9a3f45}
     .phase,.mini-card,.food-box,.slot,.emoji-card,.talk-card,.draw{transition:transform .2s ease,box-shadow .2s ease}.phase:hover,.food-box:hover{transform:translateY(-2px)}button:active{transform:scale(.97)}.food-choice.selected,.fondue-chip.selected{animation:tinyPop .22s ease}@keyframes tinyPop{50%{transform:scale(1.045)}}
-    @media(max-width:760px){body.activity-mode .hero-card{padding:11px 12px;border-radius:18px}body.activity-mode .topline .status{display:none}body.activity-mode .romance-actions{display:none}.plan-now{grid-template-columns:42px 1fr;gap:10px;padding:13px}.plan-now__icon{width:38px;height:38px}.plan-now__next{padding:10px 0 0;border-left:0;border-top:1px solid var(--line)}.plan-now__icon--next{align-self:start;margin-top:9px}.plan-now__actions{grid-column:1/-1;width:100%}.plan-now__toggle,.plan-now__action{width:100%}.shopping-list{grid-template-columns:1fr}.shopping-head{align-items:flex-start}.focus-launch{display:none}.secret-leaf{filter:drop-shadow(0 2px 4px rgba(74,48,28,.055))}.love-note{padding:28px 22px 24px}.love-note p{font-size:18px}.romance-actions{gap:6px}.romance-pill{padding:8px 9px;font-size:11px}.toast{top:10px}.sheep-peek{bottom:88px}}
+    @media(max-width:760px){body.activity-mode .hero-card{padding:11px 12px;border-radius:18px}body.activity-mode .topline .status{display:none}body.activity-mode .romance-actions{display:none}.plan-now{grid-template-columns:42px 1fr;gap:10px;padding:13px}.plan-now__icon{width:38px;height:38px}.plan-now__next{padding:10px 0 0;border-left:0;border-top:1px solid var(--line)}.plan-now__icon--next{align-self:start;margin-top:9px}.plan-now__actions{grid-column:1/-1;width:100%}.plan-now__toggle,.plan-now__action{width:100%}.shopping-list{grid-template-columns:1fr}.shopping-head{align-items:flex-start}.shopping-add{grid-template-columns:1fr}.shopping-add button{width:100%}.shopping-toolbar{display:grid;grid-template-columns:1fr 1fr}.shopping-toolbar button{width:100%}.focus-launch{display:none}.secret-leaf{filter:drop-shadow(0 2px 4px rgba(74,48,28,.055))}.love-note{padding:28px 22px 24px}.love-note p{font-size:18px}.romance-actions{gap:6px}.romance-pill{padding:8px 9px;font-size:11px}.toast{top:10px}.sheep-peek{bottom:88px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.secret-leaf,.falling-leaf,.leaf-storm-item{display:none}}
     body.viewing-case .secret-leaf{opacity:calc(var(--opacity,.3) * .38)}
 
@@ -501,9 +507,11 @@
         </article>
       </div>
       <article class="shopping-card" id="shoppingCard">
-        <div class="shopping-head"><div><small>СПИСОК ПОКУПОК</small><h3>Что взять для вечера</h3></div><span class="shopping-count" id="shoppingCount">0 / 4 собрано</span></div>
+        <div class="shopping-head"><div><small>СПИСОК ПОКУПОК</small><h3>Что взять для вечера</h3></div><div><span class="shopping-count" id="shoppingCount">0 / 4 собрано</span><button class="shopping-store-exit" id="shoppingStoreExit" type="button">← Выйти</button></div></div>
+        <div class="shopping-add"><input id="shoppingCustomInput" maxlength="80" placeholder="Например: вода 2 л, салфетки, свечи…"><button id="shoppingAdd" type="button">+ Добавить</button></div>
+        <div class="shopping-toolbar"><button id="shoppingStoreMode" type="button">🛒 Режим магазина</button><button id="shoppingHideDone" type="button">Скрыть купленное</button></div>
         <div class="shopping-list" id="shoppingList"></div>
-        <p class="shopping-note" id="shoppingNote">База уже здесь. Выбранные продукты для фондю добавятся автоматически.</p>
+        <p class="shopping-note" id="shoppingNote">База уже здесь. Свои позиции можно добавить заранее, а в магазине отмечать по ходу.</p>
       </article>
       <article class="choco-card"><div class="choco-icon">🍫</div><div><small>ШОКОЛАД ДЛЯ ФОНДЮ</small><h3>Milka можно — но есть вариант получше</h3><p><b>Milka без начинки подойдёт</b>, если любите сладкий молочный шоколад. Для более гладкой и менее приторной смеси: <b>150 г молочного + 50 г тёмного шоколада 50–60% + около 50 мл сливок 20–33%</b>.</p><p class="note">Шоколад со сливками лучше растопить отдельно до гладкости, а свечку использовать для поддержания тепла. Так меньше шанс перегреть шоколад.</p></div></article>
     </section>
@@ -620,6 +628,7 @@
     function qa(s,r){return Array.from((r||document).querySelectorAll(s))}
     function showTab(id){
       closeFocusMode();
+      document.body.classList.remove("shopping-mode");
       qa(".panel").forEach(function(x){x.classList.toggle("active",x.id===id)})
       qa("[data-tab]").forEach(function(x){x.classList.toggle("active",x.getAttribute("data-tab")===id)})
       document.body.classList.toggle("viewing-case",id==="detective");
@@ -773,19 +782,48 @@
     function pickDinner(name,icon,custom){dinner={name:name,icon:icon||"🍽️",custom:!!custom};localStorage.setItem("kostromaDinner",JSON.stringify(dinner));renderDinner();showToast(icon+" Выбрано на ужин: "+name);leafStorm(9)}
     dinnerButtons.forEach(function(b){b.addEventListener("click",function(){pickDinner(b.getAttribute("data-dinner"),b.getAttribute("data-icon"),false)})});q("#saveCustomDinner").addEventListener("click",function(){var v=q("#customDinner").value.trim();if(v)pickDinner(v,"🍽️",true)});q("#customDinner").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();q("#saveCustomDinner").click()}});renderDinner();
     var fondueButtons=qa(".fondue-chip"),fondue=JSON.parse(localStorage.getItem("kostromaFondue")||"[]");
-    var shoppingDone=JSON.parse(localStorage.getItem("kostromaShoppingDone")||"{}"),baseShopping=["Молоко","Шоколад","Сливки","Напитки"];
+    var shoppingDone=JSON.parse(localStorage.getItem("kostromaShoppingDone")||"{}"),
+        shoppingCustom=JSON.parse(localStorage.getItem("kostromaShoppingCustom")||"[]"),
+        shoppingHideDone=localStorage.getItem("kostromaShoppingHideDone")==="1",
+        baseShopping=["Молоко","Шоколад","Сливки","Напитки"];
+    function shoppingItems(){
+      return baseShopping.concat(fondue,shoppingCustom).filter(function(item,i,arr){
+        var key=String(item).trim().toLocaleLowerCase("ru-RU");
+        return key&&arr.findIndex(function(x){return String(x).trim().toLocaleLowerCase("ru-RU")===key})===i
+      });
+    }
     function renderShopping(){
-      var items=baseShopping.concat(fondue).filter(function(item,i,arr){return arr.indexOf(item)===i}),wrap=q("#shoppingList"),done=0;wrap.innerHTML="";
+      var items=shoppingItems(),wrap=q("#shoppingList"),done=0;wrap.innerHTML="";
       items.forEach(function(item){
+        var isCustom=shoppingCustom.indexOf(item)>=0,row=document.createElement("div");row.className="shopping-row"+(shoppingHideDone&&shoppingDone[item]?" is-hidden":"");
         var label=document.createElement("label");label.className="shopping-item"+(shoppingDone[item]?" done":"");
         var input=document.createElement("input");input.type="checkbox";input.checked=!!shoppingDone[item];input.setAttribute("data-shopping-item",item);
-        var span=document.createElement("span");span.textContent=item;label.appendChild(input);label.appendChild(span);wrap.appendChild(label);
+        var span=document.createElement("span");span.textContent=item;label.appendChild(input);label.appendChild(span);row.appendChild(label);
         if(input.checked)done++;
         input.addEventListener("change",function(){shoppingDone[item]=input.checked;localStorage.setItem("kostromaShoppingDone",JSON.stringify(shoppingDone));renderShopping()});
+        if(isCustom){
+          var del=document.createElement("button");del.type="button";del.className="shopping-item__remove";del.textContent="×";del.setAttribute("aria-label","Удалить "+item);
+          del.addEventListener("click",function(){shoppingCustom=shoppingCustom.filter(function(x){return x!==item});delete shoppingDone[item];localStorage.setItem("kostromaShoppingCustom",JSON.stringify(shoppingCustom));localStorage.setItem("kostromaShoppingDone",JSON.stringify(shoppingDone));renderShopping()});row.appendChild(del)
+        }
+        wrap.appendChild(row)
       });
-      q("#shoppingCount").textContent=done+" / "+items.length+" собрано";
-      q("#shoppingNote").textContent=fondue.length?"Выбранные продукты для фондю уже добавлены. Отмечайте то, что положили в корзину.":"База уже здесь. Выбранные продукты для фондю добавятся автоматически.";
+      q("#shoppingCount").textContent=done+" / "+items.length+" куплено · осталось "+Math.max(0,items.length-done);
+      q("#shoppingHideDone").classList.toggle("active",shoppingHideDone);q("#shoppingHideDone").textContent=shoppingHideDone?"Показать купленное":"Скрыть купленное";
+      q("#shoppingNote").textContent=shoppingCustom.length||fondue.length?"Список сохраняется на этом устройстве. Автоматические продукты и ваши позиции можно отмечать прямо в магазине.":"База уже здесь. Свои позиции можно добавить заранее, а в магазине отмечать по ходу.";
     }
+    function addShoppingCustom(){
+      var input=q("#shoppingCustomInput"),value=input.value.trim();if(!value)return;
+      var exists=shoppingItems().some(function(x){return x.toLocaleLowerCase("ru-RU")===value.toLocaleLowerCase("ru-RU")});
+      if(exists){showToast("🛒 Уже есть в списке");input.select();return}
+      shoppingCustom.push(value);localStorage.setItem("kostromaShoppingCustom",JSON.stringify(shoppingCustom));input.value="";renderShopping();showToast("🛒 Добавлено: "+value)
+    }
+    q("#shoppingAdd").addEventListener("click",addShoppingCustom);
+    q("#shoppingCustomInput").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();addShoppingCustom()}});
+    q("#shoppingHideDone").addEventListener("click",function(){shoppingHideDone=!shoppingHideDone;localStorage.setItem("kostromaShoppingHideDone",shoppingHideDone?"1":"0");renderShopping()});
+    function closeShoppingMode(){document.body.classList.remove("shopping-mode")}
+    q("#shoppingStoreMode").addEventListener("click",function(){document.body.classList.add("shopping-mode");q("#shoppingStoreExit").focus({preventScroll:true})});
+    q("#shoppingStoreExit").addEventListener("click",closeShoppingMode);
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&document.body.classList.contains("shopping-mode"))closeShoppingMode()});
     function syncFondueMore(){q(".fondue-options").classList.toggle("show-all",fondueExpanded);q("#toggleFondueMore").textContent=fondueExpanded?"Скрыть дополнительные продукты":"Ещё продукты · 16"}
     q("#toggleFondueMore").addEventListener("click",function(){fondueExpanded=!fondueExpanded;syncFondueMore()});syncFondueMore();
     function renderFondue(){var wasFull=sessionStorage.getItem("kostromaFondueFull")==="1";fondue=fondue.filter(function(n){return fondueButtons.some(function(b){return b.getAttribute("data-ing")===n})}).slice(0,8);q("#fondueCount").textContent=fondue.length;fondueButtons.forEach(function(b){var s=fondue.indexOf(b.getAttribute("data-ing"))>=0;b.classList.toggle("selected",s);b.disabled=!s&&fondue.length>=8});q("#fonduePicked").textContent=fondue.length?fondue.map(function(n){var b=fondueButtons.find(function(x){return x.getAttribute("data-ing")===n});return (b?b.getAttribute("data-icon"):"•")+" "+n}).join(" · "):"Выберите продукты — здесь появится ваш набор.";localStorage.setItem("kostromaFondue",JSON.stringify(fondue));renderShopping();if(fondue.length===8&&!wasFull){sessionStorage.setItem("kostromaFondueFull","1");showToast("🍫 Идеальный набор для фондю готов");leafStorm(18)}if(fondue.length<8)sessionStorage.removeItem("kostromaFondueFull")}
