@@ -49,6 +49,7 @@ try {
   await page.locator('#importCaseFile').setInputFiles({
     name: 'delo-24-sohranenie.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(backup)),
   });
+  await page.waitForFunction(() => document.querySelector('#caseBackupStatus').textContent.includes('восстановлено'));
   assert.match(await page.locator('#caseBackupStatus').innerText(), /восстановлено/);
   assert.equal(await page.locator('[data-pin-note="police_0"]').inputValue(), 'Проверить вместе по часам');
   assert.equal(await page.locator('[data-pin-time="police_0"]').inputValue(), '21:11');
