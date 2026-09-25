@@ -17,8 +17,25 @@ try {
   assert.equal(await page.locator('#todayCard').isVisible(), true);
   assert.match(await page.locator('#todayLead').innerText(), /поезд|Костром|вечер/i);
   assert.match(await page.locator('#todayPrep').innerText(), /осталось 7/);
-  assert.match(await page.locator('#todayShopping').innerText(), /осталось 4/);
+  assert.match(await page.locator('#todayShopping').innerText(), /осталось 7/);
   assert.match(await page.locator('#todayDinner').innerText(), /не выбран/i);
+
+  // Surprise purchases stay out of the normal packing list.
+  assert.equal(await page.locator('[data-prep-item="Овечка «Мила»"]').count(), 0);
+  assert.equal(await page.locator('#ownerPrepModal').isVisible(), false);
+
+  // A deliberate long press on the footer heart opens the private owner-only packing list.
+  const heart = page.locator('#footerHeart');
+  await heart.dispatchEvent('pointerdown', { pointerType: 'touch' });
+  await page.waitForTimeout(1200);
+  await heart.dispatchEvent('pointerup', { pointerType: 'touch' });
+  assert.equal(await page.locator('#ownerPrepModal').isVisible(), true);
+  assert.equal(await page.locator('[data-owner-prep-item="Овечка «Мила»"]').count(), 1);
+  assert.equal(await page.locator('[data-owner-prep-item="Тёмно-зелёные футболки"]').count(), 1);
+  assert.equal(await page.locator('[data-owner-prep-item="Фондюшница"]').count(), 1);
+  assert.equal(await page.locator('[data-owner-prep-item="50 искусственных кленовых листьев"]').count(), 1);
+  await page.locator('[data-owner-prep-item="Овечка «Мила»"]').check();
+  await page.locator('[data-close-owner-prep]').last().click();
 
   // Open prep from Today and add a custom neutral item.
   await page.locator('#todayPrepOpen').click();
@@ -41,6 +58,11 @@ try {
   // State survives reload.
   await page.reload({ waitUntil: 'domcontentloaded' });
   if (await page.locator('#startEvening').isVisible().catch(()=>false)) await page.locator('#startEvening').click();
+  await page.locator('#footerHeart').dispatchEvent('pointerdown', { pointerType: 'touch' });
+  await page.waitForTimeout(1200);
+  await page.locator('#footerHeart').dispatchEvent('pointerup', { pointerType: 'touch' });
+  assert.equal(await page.locator('[data-owner-prep-item="Овечка «Мила»"]').isChecked(), true);
+  await page.locator('[data-close-owner-prep]').last().click();
   await page.locator('#todayPrepOpen').click();
   assert.equal(await page.locator('[data-prep-item="Документы"]').isChecked(), true);
   assert.equal(await page.locator('[data-prep-item="Зонт"]').isChecked(), true);
@@ -62,7 +84,7 @@ try {
   assert.equal(await page.locator('#food').evaluate(el => el.classList.contains('active')), true);
   await page.locator('[data-shopping-item="Молоко"]').check();
   await page.locator('.mnav[data-tab="plan"]').click();
-  assert.match(await page.locator('#todayShopping').innerText(), /осталось 3/);
+  assert.match(await page.locator('#todayShopping').innerText(), /осталось 6/);
 
   // Current evening stage is live, not a hardcoded label.
   for (const id of ['1','2','3','4']) {

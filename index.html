@@ -96,6 +96,7 @@
     .today-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.today-stat{min-width:0;border:1px solid rgba(76,54,39,.09);border-radius:15px;background:rgba(255,255,255,.64);padding:11px 12px;text-align:left;color:var(--ink)}button.today-stat{cursor:pointer}.today-stat>span{display:block;color:var(--muted);font-size:10px;font-weight:850;margin-bottom:4px}.today-stat>b{display:block;font-size:14px;line-height:1.25;overflow-wrap:anywhere}.today-stat>small{display:block;margin-top:4px;color:var(--brown2);font-size:9px;font-weight:800}.today-stat--stage{background:rgba(225,236,226,.72)}
     .prep-card{margin:0 0 16px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,253,248,.8);box-shadow:var(--shadow-soft);overflow:hidden}.prep-head{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:14px 16px}.prep-title{display:flex;align-items:center;gap:11px;min-width:0}.prep-title>span{font-size:22px}.prep-title small{display:block;font-size:9px;letter-spacing:.12em;font-weight:900;color:var(--brown2)}.prep-title b{display:block;margin-top:2px;font-size:16px}.prep-head__right{display:flex;align-items:center;gap:8px}.prep-count{font-size:11px;color:var(--muted);font-weight:850;white-space:nowrap}.prep-toggle{border:1px solid var(--line);background:rgba(255,255,255,.7);color:var(--brown);padding:8px 10px;border-radius:11px;font-weight:850}.prep-body{padding:0 16px 16px;border-top:1px solid rgba(76,54,39,.07)}.prep-card.is-collapsed .prep-body{display:none}.prep-add{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin:14px 0 10px}.prep-add input{min-width:0;border:1px solid var(--line);background:#fff;border-radius:13px;padding:11px 12px;color:var(--ink)}.prep-add button{border:0;border-radius:13px;background:var(--forest);color:#fff;padding:11px 15px;font-weight:900}.prep-toolbar{display:flex;gap:8px;margin-bottom:10px}.prep-toolbar button{border:1px solid var(--line);background:rgba(255,255,255,.65);color:var(--brown);padding:8px 10px;border-radius:11px;font-weight:850}.prep-toolbar button.active{background:var(--forest);color:#fff;border-color:var(--forest)}
     .prep-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.prep-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px}.prep-row.is-hidden{display:none}.prep-item{display:flex;align-items:center;gap:9px;min-width:0;padding:10px 11px;border-radius:14px;background:rgba(255,255,255,.72);border:1px solid rgba(76,54,39,.08);cursor:pointer}.prep-item input{width:17px;height:17px;accent-color:var(--forest)}.prep-item.done span{text-decoration:line-through;opacity:.46}.prep-remove{border:0;border-radius:12px;background:rgba(120,74,52,.08);color:#8c5e49;min-width:38px;font-weight:900}.prep-note{margin:10px 0 0;color:var(--muted);font-size:11px;line-height:1.45}
+    .owner-prep-modal{position:fixed;inset:0;z-index:245;display:grid;place-items:center;padding:18px}.owner-prep-card{position:relative;z-index:1;width:min(520px,100%);max-height:min(720px,88vh);overflow:auto;padding:24px;border-radius:26px;background:linear-gradient(145deg,#fffaf2,#eee2d4);border:1px solid rgba(255,255,255,.8);box-shadow:0 30px 90px rgba(35,25,18,.34)}.owner-prep-card small{font-size:9px;letter-spacing:.14em;color:var(--brown2);font-weight:900}.owner-prep-card h3{margin:5px 0 6px;font-size:25px}.owner-prep-card>p{margin:0 0 15px;color:var(--muted);font-size:12px;line-height:1.5}.owner-prep-list{display:grid;gap:8px}.owner-prep-item{display:flex;align-items:center;gap:10px;padding:11px 12px;border:1px solid rgba(76,54,39,.09);border-radius:14px;background:rgba(255,255,255,.72);cursor:pointer}.owner-prep-item input{width:18px;height:18px;accent-color:var(--forest)}.owner-prep-item.done span{text-decoration:line-through;opacity:.48}.owner-prep-count{display:block;margin-top:13px;color:var(--brown2);font-size:11px;font-weight:850}
     .draw.is-drawing{box-shadow:0 22px 58px rgba(36,28,22,.2)}.draw.is-drawing .big{animation:reelSpin .55s ease-in-out infinite}.result.is-spinning{opacity:.72;transform:scale(.97)}.result.is-winner{animation:winnerPop .62s cubic-bezier(.2,.9,.25,1.12);font-size:24px}.slot.draw-candidate{transform:translateY(-2px);border-color:rgba(194,138,87,.55);box-shadow:0 12px 28px rgba(95,61,38,.12)}
     @keyframes reelSpin{50%{transform:rotate(-7deg) scale(1.09)}}@keyframes winnerPop{0%{transform:scale(.88);opacity:.45}60%{transform:scale(1.07)}100%{transform:none;opacity:1}}
     .focus-help{display:none;position:fixed;left:24px;bottom:20px;z-index:230;padding:9px 12px;border-radius:999px;background:rgba(20,44,33,.9);color:rgba(255,255,255,.78);font-size:12px;font-weight:800;box-shadow:0 12px 36px rgba(0,0,0,.14)}
@@ -320,6 +321,17 @@
       <button class="love-again" data-close-love type="button">Спрятать обратно 🍁</button>
     </div>
   </div>
+  <div class="owner-prep-modal hidden" id="ownerPrepModal" role="dialog" aria-modal="true" aria-labelledby="ownerPrepTitle">
+    <div class="love-backdrop" data-close-owner-prep></div>
+    <div class="owner-prep-card">
+      <button class="love-close" data-close-owner-prep aria-label="Закрыть">×</button>
+      <small>ТОЛЬКО ДЛЯ ТЕБЯ</small>
+      <h3 id="ownerPrepTitle">Не забыть сюрпризы</h3>
+      <p>Скрытый список того, что уже куплено или заказано для вечера и должно приехать с тобой.</p>
+      <div class="owner-prep-list" id="ownerPrepList"></div>
+      <span class="owner-prep-count" id="ownerPrepCount"></span>
+    </div>
+  </div>
   <div class="heart-layer" id="heartLayer" aria-hidden="true"></div>
   <div class="final-banner" id="finalBanner"><b>Вечер удался ❤️</b><span>Теперь просто отдыхайте и будьте рядом.</span></div>
   <div class="toast" id="toast" aria-live="polite"></div>
@@ -425,14 +437,14 @@
           <div class="prep-add"><input id="prepCustomInput" maxlength="80" placeholder="Добавить своё: зонт, лекарства, книгу…"><button id="prepAdd" type="button">+ Добавить</button></div>
           <div class="prep-toolbar"><button id="prepHideDone" type="button">Скрыть собранное</button></div>
           <div class="prep-list" id="prepList"></div>
-          <p class="prep-note">Базовый список специально нейтральный и не раскрывает сюрпризы. Свои пункты сохраняются только на этом устройстве.</p>
+          <p class="prep-note">Здесь только обычные вещи в дорогу. Свои пункты сохраняются только на этом устройстве.</p>
         </div>
       </article>
       <div class="flow" id="planFlow">
         <article class="phase p1" data-plan-phase="1"><div class="icon">🏠</div><div><p class="time">17:00–19:00</p><h3>Приехали и выдохнули</h3><div class="checklist">
           <label class="check"><input type="checkbox" data-check="1"><span class="box"></span><span><b>Заселиться</b> и немного отдохнуть после дороги.</span></label>
           <label class="check"><input type="checkbox" data-check="2"><span class="box"></span><span><b>Небольшая прогулка</b> по центру без туристического марафона.</span></label>
-          <label class="check"><input type="checkbox" data-check="3"><span class="box"></span><span><b>Магазин:</b> молоко, шоколад, сливки, фрукты, маршмеллоу, печенье/вафли и напитки.</span></label>
+          <label class="check"><input type="checkbox" data-check="3"><span class="box"></span><span><b>Магазин:</b> молоко, шоколад, сливки, фрукты, маршмеллоу, печенье/вафли, напитки и закуски.</span></label>
           <label class="check"><input type="checkbox" data-check="4"><span class="box"></span><span><b>Выбрать и заказать ужин</b> во вкладке «Еда» примерно к 19:15–19:30.</span></label>
         </div></div></article>
         <article class="phase p2" data-plan-phase="2"><div class="icon">🕯️</div><div><p class="time">≈ 19:00</p><h3>Включаем уют</h3><div class="checklist">
@@ -844,7 +856,7 @@
     var prepDone=JSON.parse(localStorage.getItem("kostromaPrepDone")||"{}"),
         prepCustom=JSON.parse(localStorage.getItem("kostromaPrepCustom")||"[]"),
         prepHideDone=localStorage.getItem("kostromaPrepHideDone")==="1",
-        basePrep=["Документы","Ноутбук","Зарядка для ноутбука","Телефон и зарядка","Пауэрбанк","Вещи на ночь","Средства гигиены"];
+        basePrep=["Документы","Телефон и зарядка","Ноутбук","Зарядка для ноутбука","Пауэрбанк","Вещи на 2 ночи","Средства гигиены"];
     function prepItems(){
       return basePrep.concat(prepCustom).filter(function(item,i,arr){
         var key=String(item).trim().toLocaleLowerCase("ru-RU");
@@ -899,7 +911,7 @@
     var shoppingDone=JSON.parse(localStorage.getItem("kostromaShoppingDone")||"{}"),
         shoppingCustom=JSON.parse(localStorage.getItem("kostromaShoppingCustom")||"[]"),
         shoppingHideDone=localStorage.getItem("kostromaShoppingHideDone")==="1",
-        baseShopping=["Молоко","Шоколад","Сливки","Напитки"];
+        baseShopping=["Молоко","Шоколад","Сливки","Маршмеллоу","Печенье / вафли","Напитки","Закуски"];
     function shoppingItems(){
       return baseShopping.concat(fondue,shoppingCustom).filter(function(item,i,arr){
         var key=String(item).trim().toLocaleLowerCase("ru-RU");
@@ -1012,7 +1024,26 @@
     });
     makeAmbientLeaves();
     var resizeLeafTimer;addEventListener("resize",function(){clearTimeout(resizeLeafTimer);resizeLeafTimer=setTimeout(makeAmbientLeaves,250)});
-    q("#footerHeart").addEventListener("click",openLove);
+    var ownerPrepDone=JSON.parse(localStorage.getItem("kostromaOwnerPrepDone")||"{}"),
+        ownerPrepItems=["Овечка «Мила»","Тёмно-зелёные футболки","Коричневые штаны","Бежевые носки","Фондюшница","Какао-бомбочки","Свечи Cinnabon / эспрессо / ваниль","Каминчик / проектор","50 искусственных кленовых листьев"];
+    function renderOwnerPrep(){
+      var wrap=q("#ownerPrepList"),done=0;wrap.innerHTML="";
+      ownerPrepItems.forEach(function(item){
+        var label=document.createElement("label");label.className="owner-prep-item"+(ownerPrepDone[item]?" done":"");
+        var input=document.createElement("input");input.type="checkbox";input.checked=!!ownerPrepDone[item];input.setAttribute("data-owner-prep-item",item);
+        var span=document.createElement("span");span.textContent=item;label.appendChild(input);label.appendChild(span);wrap.appendChild(label);
+        if(input.checked)done++;
+        input.addEventListener("change",function(){ownerPrepDone[item]=input.checked;localStorage.setItem("kostromaOwnerPrepDone",JSON.stringify(ownerPrepDone));renderOwnerPrep()})
+      });
+      q("#ownerPrepCount").textContent=done+" / "+ownerPrepItems.length+" уже в сумке";
+    }
+    function openOwnerPrep(){renderOwnerPrep();q("#ownerPrepModal").classList.remove("hidden")}
+    qa("[data-close-owner-prep]").forEach(function(x){x.addEventListener("click",function(){q("#ownerPrepModal").classList.add("hidden")})});
+    var ownerHeartTimer,ownerHeartOpened=false;
+    q("#footerHeart").addEventListener("pointerdown",function(){ownerHeartOpened=false;ownerHeartTimer=setTimeout(function(){ownerHeartOpened=true;openOwnerPrep()},1100)});
+    ["pointerup","pointercancel","pointerleave"].forEach(function(ev){q("#footerHeart").addEventListener(ev,function(){clearTimeout(ownerHeartTimer)})});
+    q("#footerHeart").addEventListener("click",function(ev){if(ownerHeartOpened){ev.preventDefault();ownerHeartOpened=false;return}openLove(ev)});
+
     q("#noteCollection").addEventListener("click",function(){openLove()});
     var resetNotesTimer;q("#noteCollection").addEventListener("pointerdown",function(){resetNotesTimer=setTimeout(function(){foundNotes=[];sessionStorage.removeItem("kostromaFoundNotes");sessionStorage.removeItem("kostromaAllNotes");updateNoteCounter();showToast("🍁 Коллекция записок сброшена")},1600)});["pointerup","pointercancel","pointerleave"].forEach(function(ev){q("#noteCollection").addEventListener(ev,function(){clearTimeout(resetNotesTimer)})});
     qa("[data-close-love]").forEach(function(x){x.addEventListener("click",function(){q("#loveModal").classList.add("hidden")})});
