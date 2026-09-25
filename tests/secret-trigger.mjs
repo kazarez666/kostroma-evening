@@ -14,11 +14,12 @@ try {
   assert.equal(await page.locator('#caseSecretLaunch').isVisible(), false);
   assert.equal(await page.locator('#secretOwnerTrigger').isVisible(), true);
 
-  // Owner trigger should be genuinely tiny and visually inconspicuous.
+  // Owner trigger should look like a tiny decorative leaf: findable for the owner, subtle to everyone else.
+  assert.equal((await page.locator('#secretOwnerTrigger').innerText()).trim(), '🍂');
   const box = await page.locator('#secretOwnerTrigger').boundingBox();
-  assert.ok(box && box.width <= 12 && box.height <= 12, 'Owner trigger must remain tiny');
+  assert.ok(box && box.width <= 20 && box.height <= 20, 'Owner leaf must stay tiny');
   const opacity = await page.locator('#secretOwnerTrigger').evaluate(el => parseFloat(getComputedStyle(el).opacity));
-  assert.ok(opacity <= .12, 'Owner trigger must remain visually subtle');
+  assert.ok(opacity <= .36, 'Owner leaf must remain visually subtle');
 
   // First owner action only arms the visible surprise card; it does not reveal the detective.
   await page.locator('#secretOwnerTrigger').click();
