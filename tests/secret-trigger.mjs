@@ -14,12 +14,15 @@ try {
   assert.equal(await page.locator('#caseSecretLaunch').isVisible(), false);
   assert.equal(await page.locator('#secretOwnerTrigger').isVisible(), true);
 
-  // Owner trigger should look like a tiny decorative leaf: findable for the owner, subtle to everyone else.
+  // The existing footer leaf before “Кострома” is the owner trigger; there is no separate secret button above it.
   assert.equal((await page.locator('#secretOwnerTrigger').innerText()).trim(), '🍂');
+  assert.equal(await page.locator('#secretOwnerTrigger').evaluate(el => el.parentElement?.classList.contains('footer-copy')), true);
+  const footerText = (await page.locator('.footer-copy').innerText()).replace(/\s+/g,' ').trim();
+  assert.match(footerText, /^🍂\s*Кострома • 2 октября • один очень уютный вечер/);
   const box = await page.locator('#secretOwnerTrigger').boundingBox();
-  assert.ok(box && box.width <= 20 && box.height <= 20, 'Owner leaf must stay tiny');
+  assert.ok(box && box.width <= 20 && box.height <= 20, 'Footer owner leaf must stay tiny');
   const opacity = await page.locator('#secretOwnerTrigger').evaluate(el => parseFloat(getComputedStyle(el).opacity));
-  assert.ok(opacity <= .36, 'Owner leaf must remain visually subtle');
+  assert.ok(opacity <= .75, 'Footer owner leaf should blend into the footer copy');
 
   // First owner action only arms the visible surprise card; it does not reveal the detective.
   await page.locator('#secretOwnerTrigger').click();
