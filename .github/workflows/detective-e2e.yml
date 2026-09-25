@@ -10,6 +10,7 @@ on:
       - "tests/evening-ux.mjs"
       - "tests/laptop-1366.mjs"
       - "tests/shopping-list.mjs"
+      - "tests/today-prep.mjs"
       - "tests/trip-day-resume.mjs"
       - "tests/case-ux.mjs"
       - "tests/desktop-case-ux.mjs"
@@ -57,6 +58,8 @@ jobs:
         run: node tests/laptop-1366.mjs
       - name: Verify editable shopping list
         run: node tests/shopping-list.mjs
+      - name: Verify Today dashboard and pre-trip checklist
+        run: node tests/today-prep.mjs
       - name: Run detective browser test
         run: node tests/detective-v3-e2e.mjs
       - name: Verify trip-day progress survives reopening
