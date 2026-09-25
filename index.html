@@ -41,6 +41,37 @@
     .track{height:7px;background:rgba(255,255,255,.14);border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#d5b07f,#f1dfc7);transition:.25s;border-radius:99px}
     .tabs{position:sticky;top:10px;z-index:30;display:flex;gap:8px;padding:7px;margin:4px auto 24px;border:1px solid var(--line);border-radius:18px;background:rgba(255,250,243,.86);backdrop-filter:blur(18px);box-shadow:0 8px 24px rgba(60,42,30,.08)}
     .tab{flex:1;border:0;background:transparent;color:var(--muted);padding:12px 10px;border-radius:13px;font-weight:800}.tab.active{color:white;background:var(--forest);box-shadow:0 8px 18px rgba(23,59,43,.2)}
+    body.activity-mode .hero{padding:8px 0 4px}
+    body.activity-mode .hero-card{padding:14px 18px;border-radius:22px;box-shadow:0 12px 34px rgba(46,35,26,.13)}
+    body.activity-mode .hero-main,body.activity-mode .moods,body.activity-mode .progress{display:none}
+    body.activity-mode .romance-actions{margin-top:8px}
+    body.activity-mode .tabs{margin-bottom:12px}
+    body.activity-mode .secret-leaf{opacity:calc(var(--opacity,.2) * .55)}
+    .plan-now{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) auto;gap:14px;align-items:stretch;margin:0 0 16px;padding:16px;border:1px solid rgba(76,54,39,.1);border-radius:22px;background:linear-gradient(135deg,rgba(255,253,248,.92),rgba(229,238,229,.82));box-shadow:0 10px 28px rgba(62,43,29,.06)}
+    .plan-now__item{display:grid;align-content:center;gap:3px;min-width:0}.plan-now__item small{font-size:9px;letter-spacing:.13em;font-weight:900;color:var(--brown2)}.plan-now__item b{font-size:17px;line-height:1.2}.plan-now__item span{font-size:12px;color:var(--muted)}.plan-now__next{padding-left:14px;border-left:1px solid var(--line)}.plan-now__toggle{align-self:center;white-space:nowrap}
+    #plan.plan-details-collapsed #planFlow{display:none}
+    #plan.plan-details-collapsed #reset{display:none}
+    #plan.plan-details-collapsed .section-head{margin-bottom:12px}
+    .choice-more{width:100%;margin-top:9px;border:1px dashed rgba(91,61,47,.22);background:rgba(255,255,255,.42);color:var(--brown);padding:9px 12px;border-radius:12px;font-weight:850}
+    .dinner-options:not(.show-all) .food-choice:nth-child(n+7){display:none}.dinner-options:not(.show-all) .food-choice:nth-child(n+7).selected{display:grid}
+    .fondue-options:not(.show-all) .fondue-chip:nth-child(n+13){display:none}.fondue-options:not(.show-all) .fondue-chip:nth-child(n+13).selected{display:inline-flex}
+    .shopping-reminder{margin:11px 0 0;padding:10px 12px;border-radius:13px;background:rgba(91,61,47,.07);color:#66584d;font-size:12px;line-height:1.45}
+    .focus-launch{white-space:nowrap}
+    .focus-exit{display:none;position:fixed;right:24px;top:20px;z-index:230;border:1px solid rgba(255,255,255,.18);background:rgba(20,44,33,.92);color:#fff;border-radius:999px;padding:10px 14px;font-weight:900;box-shadow:0 12px 36px rgba(0,0,0,.18)}
+    body.focus-mode{overflow:hidden}
+    body.focus-mode .hero,body.focus-mode .tabs,body.focus-mode .mobile-nav,body.focus-mode footer{visibility:hidden}
+    body.focus-mode .secret-leaf,body.focus-mode .falling-leaf{display:none!important}
+    body.focus-mode .focus-exit{display:block}
+    body.focus-mode main.shell{width:auto;max-width:none;margin:0;padding:0}
+    body.focus-mode .panel{display:none!important}
+    body.focus-mode .panel.focus-target{display:block!important;position:fixed;inset:0;z-index:220;overflow:auto;padding:44px max(34px,calc((100vw - 1120px)/2)) 38px;background:radial-gradient(circle at 12% 0%,rgba(54,96,67,.14),transparent 30%),linear-gradient(180deg,#f1e6d9,#fbf5ed)}
+    body.focus-mode .panel.focus-target .section-head{margin:0 76px 22px 0}
+    body.focus-mode #emoji.focus-target .emoji-card,body.focus-mode #talk.focus-target .talk-card{min-height:62vh;display:flex;flex-direction:column;justify-content:center}
+    body.focus-mode #emoji.focus-target .emoji-line{font-size:clamp(72px,10vw,130px);min-height:190px}
+    body.focus-mode #emoji.focus-target .answer{font-size:30px}
+    body.focus-mode #talk.focus-target .question{font-size:clamp(34px,4.5vw,58px);min-height:260px}
+    body.focus-mode #movies.focus-target .movie-grid{min-height:66vh;align-items:stretch}
+    body.focus-mode #movies.focus-target .draw{min-height:420px}
     main{padding-bottom:90px}.panel{display:none}.panel.active{display:block;animation:fade .25s ease}@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:24px 2px 18px}.section-head h2{margin:0 0 8px;font-size:clamp(30px,5vw,46px);letter-spacing:-.04em}.section-head p{margin:0;color:var(--muted);line-height:1.55}
     .soft{border:1px solid var(--line);background:rgba(255,253,248,.78);color:var(--brown);padding:10px 12px;border-radius:12px;font-weight:800}
@@ -60,7 +91,7 @@
     .secret-leaves{position:fixed;inset:0;pointer-events:none;z-index:24;overflow:hidden}.secret-leaf{position:absolute;pointer-events:none;display:grid;place-items:center;width:calc(var(--size,22px) + 10px);height:calc(var(--size,22px) + 10px);padding:0;border:0;border-radius:50%;background:transparent;color:inherit;font-size:var(--size,22px);line-height:1;filter:drop-shadow(0 5px 8px rgba(74,48,28,.13));opacity:var(--opacity,.3);animation:leafFloatRandom var(--dur,8s) ease-in-out infinite;animation-delay:var(--delay,0s);transform-origin:center;user-select:none}.secret-leaf.rustle{animation:leafRustle .62s ease both}@keyframes leafFloatRandom{0%,100%{transform:translate3d(0,0,0) rotate(var(--r0,-8deg))}50%{transform:translate3d(var(--sway,7px),var(--bob,13px),0) rotate(var(--r1,8deg))}}@keyframes leafRustle{0%{transform:rotate(var(--r0,-5deg)) scale(1)}28%{transform:rotate(-24deg) scale(1.15)}58%{transform:rotate(24deg) scale(.96)}100%{transform:rotate(var(--r1,7deg)) scale(1)}}.leaf-spark{position:fixed;z-index:80;pointer-events:none;font-size:15px;animation:leafSpark .8s ease-out forwards}@keyframes leafSpark{0%{opacity:0;transform:scale(.45)}20%{opacity:.9}100%{opacity:0;transform:translate(var(--sx,18px),-38px) rotate(var(--sr,30deg)) scale(.9)}}
         .love-modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px}.love-backdrop{position:absolute;inset:0;background:rgba(24,20,16,.56);backdrop-filter:blur(7px)}.love-note{position:relative;z-index:1;width:min(420px,100%);padding:32px 27px 26px;border-radius:28px;text-align:center;background:linear-gradient(145deg,#fffaf2,#efe1d2);border:1px solid rgba(255,255,255,.75);box-shadow:0 30px 90px rgba(35,25,18,.3);animation:notePop .35s cubic-bezier(.2,.9,.25,1.15)}@keyframes notePop{from{opacity:0;transform:scale(.86) translateY(12px)}to{opacity:1;transform:none}}.love-note small{font-size:10px;letter-spacing:.14em;color:var(--brown2);font-weight:900}.love-note h3{font-size:31px;margin:7px 0 12px;letter-spacing:-.04em}.love-note p{font-family:Georgia,serif;font-size:20px;line-height:1.55;color:#4b3b31;margin:0 0 19px}.love-heart{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;background:var(--forest);color:#f5d8cf;font-size:22px;box-shadow:0 12px 30px rgba(23,59,43,.18)}.love-close{position:absolute;right:13px;top:11px;border:0;background:transparent;color:#7f6b5d;font-size:29px;line-height:1}.love-again{border:0;border-radius:999px;background:var(--forest);color:white;padding:11px 16px;font-weight:850}.heart-layer{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}.burst-heart{position:absolute;font-size:20px;animation:heartFly 1.25s ease-out forwards}@keyframes heartFly{0%{opacity:0;transform:translateY(8px) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-150px) rotate(var(--rot)) scale(1.15)}}.footer-heart{border:0;background:transparent;color:var(--brown2);font-size:18px;vertical-align:-1px;padding:3px 6px;transition:.2s}.footer-heart:hover{transform:scale(1.2);color:#9a3f45}
     .phase,.mini-card,.food-box,.slot,.emoji-card,.talk-card,.draw{transition:transform .2s ease,box-shadow .2s ease}.phase:hover,.food-box:hover{transform:translateY(-2px)}button:active{transform:scale(.97)}.food-choice.selected,.fondue-chip.selected{animation:tinyPop .22s ease}@keyframes tinyPop{50%{transform:scale(1.045)}}
-    @media(max-width:760px){.secret-leaf{filter:drop-shadow(0 2px 4px rgba(74,48,28,.055))}.love-note{padding:28px 22px 24px}.love-note p{font-size:18px}.romance-actions{gap:6px}.romance-pill{padding:8px 9px;font-size:11px}.toast{top:10px}.sheep-peek{bottom:88px}}
+    @media(max-width:760px){body.activity-mode .hero-card{padding:11px 12px;border-radius:18px}body.activity-mode .topline .status{display:none}body.activity-mode .romance-actions{display:none}.plan-now{grid-template-columns:1fr;gap:10px;padding:13px}.plan-now__next{padding:10px 0 0;border-left:0;border-top:1px solid var(--line)}.plan-now__toggle{width:100%}.focus-launch{display:none}.secret-leaf{filter:drop-shadow(0 2px 4px rgba(74,48,28,.055))}.love-note{padding:28px 22px 24px}.love-note p{font-size:18px}.romance-actions{gap:6px}.romance-pill{padding:8px 9px;font-size:11px}.toast{top:10px}.sheep-peek{bottom:88px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.secret-leaf,.falling-leaf,.leaf-storm-item{display:none}}
     body.viewing-case .secret-leaf{opacity:calc(var(--opacity,.3) * .38)}
 
@@ -326,32 +357,37 @@
     <section class="panel active" id="plan">
       <div class="section-head"><div><h2>Как пройдёт вечер</h2><p>Мягкий маршрут, а не расписание по минутам.</p></div><button class="soft" id="reset">Сбросить галочки</button></div>
       <div class="plan-shift-banner hidden" id="planShiftBanner"><span>🔓</span><div><small>ПЛАН ВЕЧЕРА ОБНОВЛЁН</small><b>Появилась ещё одна часть вечера</b></div></div>
+      <div class="plan-now" id="planNow">
+        <div class="plan-now__item"><small>СЕЙЧАС</small><b id="planNowTitle">Приехали и выдохнули</b><span id="planNowTime">17:00–19:00</span></div>
+        <div class="plan-now__item plan-now__next"><small>ПОТОМ</small><b id="planNextTitle">Включаем уют</b><span>Без гонки по расписанию</span></div>
+        <button class="soft plan-now__toggle" id="togglePlanDetails" type="button">Показать весь план</button>
+      </div>
       <div class="flow" id="planFlow">
-        <article class="phase p1"><div class="icon">🏠</div><div><p class="time">17:00–19:00</p><h3>Приехали и выдохнули</h3><div class="checklist">
+        <article class="phase p1" data-plan-phase="1"><div class="icon">🏠</div><div><p class="time">17:00–19:00</p><h3>Приехали и выдохнули</h3><div class="checklist">
           <label class="check"><input type="checkbox" data-check="1"><span class="box"></span><span><b>Заселиться</b> и немного отдохнуть после дороги.</span></label>
           <label class="check"><input type="checkbox" data-check="2"><span class="box"></span><span><b>Небольшая прогулка</b> по центру без туристического марафона.</span></label>
-          <label class="check"><input type="checkbox" data-check="3"><span class="box"></span><span><b>Магазин:</b> молоко, фрукты, маршмеллоу, печенье/вафли, напитки.</span></label>
+          <label class="check"><input type="checkbox" data-check="3"><span class="box"></span><span><b>Магазин:</b> молоко, шоколад, сливки, фрукты, маршмеллоу, печенье/вафли и напитки.</span></label>
           <label class="check"><input type="checkbox" data-check="4"><span class="box"></span><span><b>Выбрать и заказать ужин</b> во вкладке «Еда» примерно к 19:15–19:30.</span></label>
         </div></div></article>
-        <article class="phase p2"><div class="icon">🕯️</div><div><p class="time">≈ 19:00</p><h3>Включаем уют</h3><div class="checklist">
+        <article class="phase p2" data-plan-phase="2"><div class="icon">🕯️</div><div><p class="time">≈ 19:00</p><h3>Включаем уют</h3><div class="checklist">
           <label class="check"><input type="checkbox" data-check="5"><span class="box"></span><span><b>Переодеться</b> — дома ждёт маленький сюрприз ✨</span></label>
           <label class="check"><input type="checkbox" data-check="6"><span class="box"></span><span>Включить <b>камин, проектор и ваш плейлист</b>.</span></label>
           <label class="check"><input type="checkbox" data-check="7"><span class="box"></span><span><b>Зажечь свечи</b> и оставить только тёплый мягкий свет.</span></label>
           <label class="check"><input type="checkbox" data-check="19"><span class="box"></span><span><b>Разбросать кленовые листья</b> и добавить немного осени в квартиру 🍁</span></label>
           <label class="check"><input type="checkbox" data-check="8"><span class="box"></span><span><b>Подготовить еду и напитки</b> к вечеру.</span></label>
         </div></div></article>
-        <article class="phase p3"><div class="icon" id="dinnerPlanIcon">🍽️</div><div><p class="time">19:30–20:15</p><h3>Сначала нормально поесть</h3><div class="checklist">
+        <article class="phase p3" data-plan-phase="3"><div class="icon" id="dinnerPlanIcon">🍽️</div><div><p class="time">19:30–20:15</p><h3>Сначала нормально поесть</h3><div class="checklist">
           <label class="check"><input type="checkbox" data-check="9"><span class="box"></span><span>Спокойно поужинать: <b id="dinnerPlanName">сначала выберите ужин во вкладке «Еда»</b>. Фондю пока не трогать — это десерт.</span></label>
           <label class="check"><input type="checkbox" data-check="10"><span class="box"></span><span>Подарить <b>маленький сюрприз</b> — просто между делом.</span></label>
         </div></div></article>
-        <article class="phase p4" id="planPhaseFour"><div class="icon" id="planP4Icon">🍫</div><div><p class="time" id="planP4Time">после ужина</p><h3 id="planP4Title">Вкусности, игры и творчество</h3><div class="checklist">
+        <article class="phase p4" data-plan-phase="4" id="planPhaseFour"><div class="icon" id="planP4Icon">🍫</div><div><p class="time" id="planP4Time">после ужина</p><h3 id="planP4Title">Вкусности, игры и творчество</h3><div class="checklist">
           <label class="check"><input type="checkbox" data-check="11"><span class="box"></span><span id="planTask11"><b>Фондю + слепая дегустация</b> — выбирать самые вкусные сочетания.</span></label>
           <label class="check"><input type="checkbox" data-check="12"><span class="box"></span><span id="planTask12"><b>Один рисунок на двоих</b> — каждый делает свою половину.</span></label>
           <label class="check"><input type="checkbox" data-check="13"><span class="box"></span><span id="planTask13"><b>Сделать фотки</b> — несколько красивых и несколько максимально дурацких.</span></label>
           <label class="check"><input type="checkbox" data-check="14"><span class="box"></span><span id="planTask14"><b>Фильм по эмодзи + разговорные игры</b> по настроению.</span></label>
           <label class="check"><input type="checkbox" data-check="15"><span class="box"></span><span id="planTask15"><b>Выбрать, что хочется дальше</b> — ещё поиграть, порисовать или просто валяться и болтать.</span></label>
         </div><button class="case-plan-cta hidden" id="casePlanLaunch" type="button">🔎 Открыть дело №24</button></div></article>
-        <article class="phase p5" id="planPhaseFive"><div class="icon">🎞️</div><div><p class="time" id="planP5Time">финал вечера</p><h3 id="planP5Title">Какао, жеребьёвка и кино</h3><div class="checklist">
+        <article class="phase p5" data-plan-phase="5" id="planPhaseFive"><div class="icon">🎞️</div><div><p class="time" id="planP5Time">финал вечера</p><h3 id="planP5Title">Какао, жеребьёвка и кино</h3><div class="checklist">
           <label class="check"><input type="checkbox" data-check="16"><span class="box"></span><span>Сделать <b>какао-бомбочки с маршмеллоу</b>.</span></label>
           <label class="check"><input type="checkbox" data-check="17"><span class="box"></span><span>Зарандомить один из <b>6 фильмов</b>.</span></label>
           <label class="check"><input type="checkbox" data-check="18"><span class="box"></span><span><b>Дальше никакой программы.</b> Плед, проектор и обниматься.</span></label>
@@ -391,6 +427,7 @@
             <button class="food-choice" data-dinner="Салаты / боулы" data-icon="🥬"><span>🥬</span><b>Салаты / боулы</b><small>лёгкий ужин</small></button>
             <button class="food-choice" data-dinner="Картошка и закуски" data-icon="🍟"><span>🍟</span><b>Закуски</b><small>фри / наггетсы / сыр</small></button>
           </div>
+          <button class="choice-more" id="toggleDinnerMore" type="button">Ещё варианты ужина · 12</button>
           <div class="custom-food"><label for="customDinner">СВОЙ ВАРИАНТ</label><div><input id="customDinner" maxlength="40" placeholder="Например: том-ям и рис"><button class="soft" id="saveCustomDinner">Выбрать</button></div></div>
           <div class="chosen"><span id="chosenDinnerIcon">🍽️</span><div><small>НА УЖИН ВЫБРАНО</small><b id="chosenDinnerName">пока ничего</b></div></div>
         </article>
@@ -430,7 +467,9 @@
             <button class="fondue-chip" data-ing="Рисовые хлебцы" data-icon="🍘">🍘 Рисовые хлебцы</button>
             <button class="fondue-chip" data-ing="Сыр мягкий" data-icon="🧀">🧀 Мягкий сыр</button>
           </div>
+          <button class="choice-more" id="toggleFondueMore" type="button">Ещё продукты · 16</button>
           <div class="fondue-picked" id="fonduePicked">Выберите продукты — здесь появится ваш набор.</div>
+          <p class="shopping-reminder">Для шоколадной смеси не забудьте сам шоколад и сливки — они уже добавлены в список покупок в плане вечера.</p>
         </article>
       </div>
       <article class="choco-card"><div class="choco-icon">🍫</div><div><small>ШОКОЛАД ДЛЯ ФОНДЮ</small><h3>Milka можно — но есть вариант получше</h3><p><b>Milka без начинки подойдёт</b>, если любите сладкий молочный шоколад. Для более гладкой и менее приторной смеси: <b>150 г молочного + 50 г тёмного шоколада 50–60% + около 50 мл сливок 20–33%</b>.</p><p class="note">Шоколад со сливками лучше растопить отдельно до гладкости, а свечку использовать для поддержания тепла. Так меньше шанс перегреть шоколад.</p></div></article>
@@ -492,7 +531,7 @@
     </section>
 
     <section class="panel" id="movies">
-      <div class="section-head"><div><h2>Какой фильм смотрим?</h2><p>Два фильма Сони + четыре ваших. Поля сохраняются на устройстве.</p></div></div>
+      <div class="section-head"><div><h2>Какой фильм смотрим?</h2><p>Два фильма Сони + четыре ваших. Поля сохраняются на устройстве.</p></div><button class="soft focus-launch" data-focus="movies" type="button">⛶ Большой режим</button></div>
       <div class="movie-grid">
         <div class="slots">
           <label class="slot sonya"><span class="owner">Соня · 1</span><input class="movie" placeholder="Вписать фильм Сони"></label>
@@ -507,13 +546,13 @@
     </section>
 
     <section class="panel" id="emoji">
-      <div class="section-head"><div><h2>Фильм по эмодзи</h2><p>Одна загадка за раз. Сначала отвечаете вслух, потом открываете.</p></div></div>
+      <div class="section-head"><div><h2>Фильм по эмодзи</h2><p>Одна загадка за раз. Сначала отвечаете вслух, потом открываете.</p></div><button class="soft focus-launch" data-focus="emoji" type="button">⛶ Большой режим</button></div>
       <div class="emoji-card"><div class="emoji-line" id="emojiLine"></div><div class="answer hidden" id="emojiAnswer"></div><div class="actions"><button class="primary" id="reveal">Показать ответ</button><button class="ghost" id="nextEmoji">Следующая →</button><button class="ghost" id="shuffle">↻ Перемешать</button></div></div>
       <div class="counter"><span id="emojiIndex">1</span> / <span id="emojiTotal">20</span></div>
     </section>
 
     <section class="panel" id="talk">
-      <div class="section-head"><div><h2>Шесть режимов разговора</h2><p>Выберите настроение и доставайте вопросы по одному.</p></div></div>
+      <div class="section-head"><div><h2>Шесть режимов разговора</h2><p>Выберите настроение и доставайте вопросы по одному.</p></div><button class="soft focus-launch" data-focus="talk" type="button">⛶ Большой режим</button></div>
       <div class="gamechips" id="gamechips"></div>
       <div class="talk-card"><div class="talk-top"><span class="badge" id="talkLabel"></span><span class="count" id="talkCount">20 вопросов</span></div><div class="question" id="talkQuestion">Нажмите «Следующий вопрос» — и начинаем.</div><div class="actions"><button class="primary" id="nextQuestion">🎲 Следующий вопрос</button><button class="ghost" id="showAll">Показать все 20</button></div></div>
       <div class="all hidden" id="allQuestions"></div>
@@ -540,14 +579,17 @@
     <button class="mnav" data-tab="emoji"><span>🎭</span>Эмодзи</button>
     <button class="mnav" data-tab="talk"><span>☕</span>Поболтать</button>
   </nav>
+  <button class="focus-exit" id="focusExit" type="button">× Выйти из большого режима</button>
 
   <script>
     function q(s,r){return (r||document).querySelector(s)}
     function qa(s,r){return Array.from((r||document).querySelectorAll(s))}
     function showTab(id){
+      closeFocusMode();
       qa(".panel").forEach(function(x){x.classList.toggle("active",x.id===id)})
       qa("[data-tab]").forEach(function(x){x.classList.toggle("active",x.getAttribute("data-tab")===id)})
       document.body.classList.toggle("viewing-case",id==="detective");
+      document.body.classList.toggle("activity-mode",["food","movies","emoji","talk"].indexOf(id)>=0);
       if(id==="detective")q("#detective").scrollIntoView({behavior:"instant",block:"start"});
       else window.scrollTo({top:0,behavior:"instant"})
     }
@@ -592,6 +634,7 @@
       q("#caseSecretTitle").textContent=revealed?"«Последний эфир»":"Тут спрятано кое-что ещё";
       q("#caseSecretText").textContent=revealed?"План уже обновлён. Теперь можно открыть материалы дела.":"Необязательно открывать сразу. Лучше оставить на момент, когда захочется чего-то нового.";
       q("#openSecretCase").textContent=revealed?"Открыть дело №24 🔎":"Открыть сюрприз 🍁";
+      if(typeof renderPlanNow==="function")renderPlanNow();
     }
     var revealInProgress=false;
     function finishSecretReveal(){
@@ -655,16 +698,30 @@
     q("#casePlanLaunch").addEventListener("click",openDetectiveCase);
 
     var checks=qa("[data-check]"), saved=JSON.parse(localStorage.getItem("kostromaChecks")||"{}");
-    function progress(){var done=checks.filter(function(x){return x.checked}).length,p=Math.round(done/checks.length*100);q("#progressBar").style.width=p+"%";q("#progressText").textContent=p===100?"Вечер удался ❤️":p+"%";var gift=checks.find(function(x){return x.getAttribute("data-check")==="10"});if(gift)q("#sheepPeek").classList.toggle("hidden",!gift.checked);if(p===100&&!sessionStorage.getItem("kostromaFinale")){sessionStorage.setItem("kostromaFinale","1");setTimeout(function(){leafStorm(34);showFinalBanner()},150)}}
+    function renderPlanNow(){
+      var phases=qa("[data-plan-phase]",q("#planFlow")),current=phases.find(function(p){return qa("[data-check]",p).some(function(c){return !c.checked})}),idx=current?phases.indexOf(current):-1;
+      if(!current){q("#planNowTitle").textContent="Вечер удался ❤️";q("#planNowTime").textContent="дальше — просто отдыхать";q("#planNextTitle").textContent="Никакой программы";return}
+      q("#planNowTitle").textContent=q("h3",current).textContent;q("#planNowTime").textContent=q(".time",current).textContent;
+      var next=phases[idx+1];q("#planNextTitle").textContent=next?q("h3",next).textContent:"Дальше — никакой программы";
+    }
+    function progress(){var done=checks.filter(function(x){return x.checked}).length,p=Math.round(done/checks.length*100),label=p===100?"Вечер удался ❤️":p===0?"не спешим":p<35?"только начинаем":p<70?"вечер идёт":"почти всё попробовали";q("#progressBar").style.width=p+"%";q("#progressText").textContent=label;renderPlanNow();var gift=checks.find(function(x){return x.getAttribute("data-check")==="10"});if(gift)q("#sheepPeek").classList.toggle("hidden",!gift.checked);if(p===100&&!sessionStorage.getItem("kostromaFinale")){sessionStorage.setItem("kostromaFinale","1");setTimeout(function(){leafStorm(34);showFinalBanner()},150)}}
     checks.forEach(function(c){c.checked=!!saved[c.getAttribute("data-check")];c.addEventListener("change",function(){saved[c.getAttribute("data-check")]=c.checked;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()})});progress();
     q("#reset").addEventListener("click",function(){saved={};localStorage.removeItem("kostromaChecks");checks.forEach(function(c){c.checked=false});progress()})
+    var planExpanded=sessionStorage.getItem("kostromaPlanExpanded")==="1";
+    function syncPlanDetails(){q("#plan").classList.toggle("plan-details-collapsed",!planExpanded);q("#togglePlanDetails").textContent=planExpanded?"Свернуть подробности":"Показать весь план"}
+    q("#togglePlanDetails").addEventListener("click",function(){planExpanded=!planExpanded;sessionStorage.setItem("kostromaPlanExpanded",planExpanded?"1":"0");syncPlanDetails()});syncPlanDetails();
     applySecretPlanMode(secretPlanRevealed);
 
     var dinnerButtons=qa(".food-choice"),dinner=JSON.parse(localStorage.getItem("kostromaDinner")||"null")||{name:"",icon:"🍽️",custom:false};
+    var dinnerExpanded=false,fondueExpanded=false;
+    function syncDinnerMore(){q(".dinner-options").classList.toggle("show-all",dinnerExpanded);q("#toggleDinnerMore").textContent=dinnerExpanded?"Скрыть дополнительные варианты":"Ещё варианты ужина · 12"}
+    q("#toggleDinnerMore").addEventListener("click",function(){dinnerExpanded=!dinnerExpanded;syncDinnerMore()});syncDinnerMore();
     function renderDinner(){dinnerButtons.forEach(function(b){b.classList.toggle("selected",!dinner.custom&&b.getAttribute("data-dinner")===dinner.name)});var icon=dinner.icon||"🍽️",name=dinner.name||"пока ничего";q("#chosenDinnerIcon").textContent=icon;q("#chosenDinnerName").textContent=name;q("#dinnerPlanIcon").textContent=icon;q("#dinnerPlanName").textContent=dinner.name||"сначала выберите ужин во вкладке «Еда»";q("#miniDinnerIcon").textContent=icon;q("#miniDinnerText").textContent=dinner.name?"Выбрано: "+dinner.name+".":"Пока не выбрано — откройте вкладку «Еда»."}
     function pickDinner(name,icon,custom){dinner={name:name,icon:icon||"🍽️",custom:!!custom};localStorage.setItem("kostromaDinner",JSON.stringify(dinner));renderDinner();showToast(icon+" Выбрано на ужин: "+name);leafStorm(9)}
     dinnerButtons.forEach(function(b){b.addEventListener("click",function(){pickDinner(b.getAttribute("data-dinner"),b.getAttribute("data-icon"),false)})});q("#saveCustomDinner").addEventListener("click",function(){var v=q("#customDinner").value.trim();if(v)pickDinner(v,"🍽️",true)});q("#customDinner").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();q("#saveCustomDinner").click()}});renderDinner();
     var fondueButtons=qa(".fondue-chip"),fondue=JSON.parse(localStorage.getItem("kostromaFondue")||"[]");
+    function syncFondueMore(){q(".fondue-options").classList.toggle("show-all",fondueExpanded);q("#toggleFondueMore").textContent=fondueExpanded?"Скрыть дополнительные продукты":"Ещё продукты · 16"}
+    q("#toggleFondueMore").addEventListener("click",function(){fondueExpanded=!fondueExpanded;syncFondueMore()});syncFondueMore();
     function renderFondue(){var wasFull=sessionStorage.getItem("kostromaFondueFull")==="1";fondue=fondue.filter(function(n){return fondueButtons.some(function(b){return b.getAttribute("data-ing")===n})}).slice(0,8);q("#fondueCount").textContent=fondue.length;fondueButtons.forEach(function(b){var s=fondue.indexOf(b.getAttribute("data-ing"))>=0;b.classList.toggle("selected",s);b.disabled=!s&&fondue.length>=8});q("#fonduePicked").textContent=fondue.length?fondue.map(function(n){var b=fondueButtons.find(function(x){return x.getAttribute("data-ing")===n});return (b?b.getAttribute("data-icon"):"•")+" "+n}).join(" · "):"Выберите продукты — здесь появится ваш набор.";localStorage.setItem("kostromaFondue",JSON.stringify(fondue));if(fondue.length===8&&!wasFull){sessionStorage.setItem("kostromaFondueFull","1");showToast("🍫 Идеальный набор для фондю готов");leafStorm(18)}if(fondue.length<8)sessionStorage.removeItem("kostromaFondueFull")}
     fondueButtons.forEach(function(b){b.addEventListener("click",function(){var n=b.getAttribute("data-ing"),i=fondue.indexOf(n);if(i>=0)fondue.splice(i,1);else if(fondue.length<8)fondue.push(n);renderFondue()})});q("#fondueRecommend").addEventListener("click",function(){fondue=["Клубника","Банан","Груша","Ананас","Маршмеллоу","Вафли","Претцели","Малина"];renderFondue()});renderFondue();
 
@@ -711,9 +768,9 @@
         b.style.left=(x*96+2)+"vw";
         b.style.top=(y*95+2)+"vh";
         b.style.setProperty("--size",(mobile?11+Math.random()*7:16+Math.random()*17)+"px");
-        var leafOpacity=mobile?(center?.035+Math.random()*.035:.075+Math.random()*.055):(center?.08+Math.random()*.08:.16+Math.random()*.18);
+        var leafOpacity=mobile?(center?.025+Math.random()*.025:.065+Math.random()*.045):(center?.025+Math.random()*.04:.10+Math.random()*.09);
         b.style.setProperty("--opacity",leafOpacity.toFixed(3));
-        b.style.setProperty("--dur",(mobile?8+Math.random()*7:5.5+Math.random()*7).toFixed(2)+"s");
+        b.style.setProperty("--dur",(mobile?10+Math.random()*8:9+Math.random()*8).toFixed(2)+"s");
         b.style.setProperty("--delay",(-Math.random()*8).toFixed(2)+"s");
         b.style.setProperty("--sway",(mobile?Math.random()*10-5:Math.random()*20-10).toFixed(1)+"px");
         b.style.setProperty("--bob",(mobile?4+Math.random()*9:7+Math.random()*22).toFixed(1)+"px");
@@ -1532,6 +1589,15 @@
     q("#reveal").addEventListener("click",function(){revealed=!revealed;renderEmoji()})
     q("#nextEmoji").addEventListener("click",function(){ei=(ei+1)%emoji.length;revealed=false;renderEmoji()})
     q("#shuffle").addEventListener("click",function(){emoji.sort(function(){return Math.random()-.5});ei=0;revealed=false;renderEmoji()});renderEmoji()
+
+    function openFocusMode(id){
+      var panel=q("#"+id);if(!panel)return;
+      qa(".panel").forEach(function(p){p.classList.remove("focus-target")});panel.classList.add("focus-target");document.body.classList.add("focus-mode");q("#focusExit").focus({preventScroll:true})
+    }
+    function closeFocusMode(){document.body.classList.remove("focus-mode");qa(".focus-target").forEach(function(p){p.classList.remove("focus-target")})}
+    qa("[data-focus]").forEach(function(b){b.addEventListener("click",function(){openFocusMode(b.getAttribute("data-focus"))})});
+    q("#focusExit").addEventListener("click",closeFocusMode);
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&document.body.classList.contains("focus-mode"))closeFocusMode()});
 
     var games={
       "Деньги, но с условием":[
