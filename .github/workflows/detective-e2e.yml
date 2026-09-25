@@ -11,8 +11,11 @@ on:
       - "tests/case-ux.mjs"
       - "tests/desktop-case-ux.mjs"
       - "tests/offline-shell.mjs"
+      - "tests/offline-play.mjs"
+      - "tests/case-backup-and-update.mjs"
       - "sw.js"
       - "manifest.webmanifest"
+      - "assets/case/**"
       - ".github/workflows/detective-e2e.yml"
   workflow_dispatch:
   pull_request:
@@ -53,6 +56,10 @@ jobs:
         run: node tests/case-ux.mjs
       - name: Verify laptop detective workspace
         run: node tests/desktop-case-ux.mjs
+      - name: Verify backup, document reading and mid-case update
+        run: node tests/case-backup-and-update.mjs
+      - name: Verify actual offline case play
+        run: node tests/offline-play.mjs
       - name: Save reveal screenshots
         if: always()
         uses: actions/upload-artifact@v4
