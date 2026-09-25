@@ -644,6 +644,7 @@
       overlay.classList.remove("is-open");
       document.body.classList.remove("case-reveal-active");
       revealInProgress=false;
+      planExpanded=true;sessionStorage.setItem("kostromaPlanExpanded","1");syncPlanDetails();
       q("#planPhaseFour").classList.add("plan-highlight");
       if(!matchMedia("(prefers-reduced-motion: reduce)").matches)leafStorm(26);
       requestAnimationFrame(function(){
