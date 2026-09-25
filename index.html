@@ -225,9 +225,9 @@
     .case-secret-launch{margin:10px 0 18px;padding:20px;border-radius:24px;border:1px solid rgba(99,68,49,.16);background:linear-gradient(145deg,#173b2b,#5f4534);color:#fff;display:grid;grid-template-columns:54px 1fr auto;gap:15px;align-items:center;box-shadow:0 18px 45px rgba(48,32,22,.13)}
     .case-secret-launch.owner-hidden{display:none}
     .case-secret-launch.owner-armed{animation:secretLauncherIn .42s cubic-bezier(.2,.85,.25,1)}
-    .secret-owner-trigger{display:grid;place-items:center;width:18px;height:18px;margin:0 3px 4px auto;padding:0;border:0;background:transparent;color:#8b6f53;font-size:14px;line-height:1;opacity:.34;cursor:default;border-radius:50%;filter:saturate(.72)}
-    .secret-owner-trigger:hover,.secret-owner-trigger:focus-visible{opacity:.62;transform:rotate(-7deg) scale(1.04);outline:none}
-    .secret-owner-trigger.is-hidden{display:none}
+    .secret-owner-trigger{display:inline-grid;place-items:center;width:18px;height:18px;margin:0 2px 0 0;padding:0;border:0;background:transparent;color:inherit;font-size:14px;line-height:1;opacity:.72;cursor:default;border-radius:50%;vertical-align:-2px;filter:saturate(.82)}
+    .secret-owner-trigger:hover,.secret-owner-trigger:focus-visible{opacity:1;transform:rotate(-7deg) scale(1.04);outline:none}
+    .secret-owner-trigger.is-hidden{visibility:hidden}
     @keyframes secretLauncherIn{from{opacity:0;transform:translateY(7px) scale(.985)}to{opacity:1;transform:none}}
     .case-secret-launch__icon{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;background:rgba(255,255,255,.10);font-size:24px}
     .case-secret-launch__copy{display:grid;gap:3px}.case-secret-launch__copy small{font-size:9px;letter-spacing:.14em;color:rgba(255,255,255,.55);font-weight:900}.case-secret-launch__copy b{font-size:18px}.case-secret-launch__copy span{font-size:12px;line-height:1.45;color:rgba(255,255,255,.68)}
@@ -633,7 +633,6 @@
   </main>
 
   <footer class="shell">
-    <button class="secret-owner-trigger" id="secretOwnerTrigger" type="button" aria-label="Дополнительное действие">🍂</button>
     <div class="case-secret-launch owner-hidden" id="caseSecretLaunch">
       <div class="case-secret-launch__icon" id="caseSecretIcon">🔐</div>
       <div class="case-secret-launch__copy">
@@ -643,7 +642,7 @@
       </div>
       <button class="case-secret-launch__button" id="openSecretCase" type="button">Открыть сюрприз 🍁</button>
     </div>
-    <div class="footer-copy">🍂 Кострома • 2 октября • один очень уютный вечер <button class="footer-heart" id="footerHeart" aria-label="Секретное сердечко">♡</button></div>
+    <div class="footer-copy"><button class="secret-owner-trigger" id="secretOwnerTrigger" type="button" aria-label="Дополнительное действие">🍂</button>Кострома • 2 октября • один очень уютный вечер <button class="footer-heart" id="footerHeart" aria-label="Секретное сердечко">♡</button></div>
   </footer>
 
   <nav class="mobile-nav">
