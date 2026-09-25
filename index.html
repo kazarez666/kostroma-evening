@@ -615,7 +615,10 @@
     }
     function applySecretPlanMode(revealed){
       secretPlanRevealed=!!revealed;
-      if(revealed)unlockCaseNavigation();
+      if(revealed){
+        unlockCaseNavigation();
+        if(typeof planExpanded!=="undefined"){planExpanded=true;sessionStorage.setItem("kostromaPlanExpanded","1");syncPlanDetails()}
+      }
       q("#planP4Icon").textContent=revealed?"🔎":"🍫";
       q("#planP4Time").textContent=revealed?"≈ 20:30–22:15 · без таймера":"после ужина";
       q("#planP4Title").textContent=revealed?"Дело на двоих: «Последний эфир»":"Вкусности, игры и творчество";
