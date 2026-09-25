@@ -7,6 +7,7 @@ on:
       - "tests/detective-e2e.mjs"
       - "tests/detective-v3-e2e.mjs"
       - "tests/site-smoke.mjs"
+      - "tests/evening-ux.mjs"
       - "tests/trip-day-resume.mjs"
       - "tests/case-ux.mjs"
       - "tests/desktop-case-ux.mjs"
@@ -48,6 +49,8 @@ jobs:
           exit 1
       - name: Run full site smoke test
         run: node tests/site-smoke.mjs
+      - name: Verify calm evening experience
+        run: node tests/evening-ux.mjs
       - name: Run detective browser test
         run: node tests/detective-v3-e2e.mjs
       - name: Verify trip-day progress survives reopening
