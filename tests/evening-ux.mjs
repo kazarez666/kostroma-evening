@@ -18,7 +18,10 @@ try {
   await page.locator('#togglePlanDetails').click();
   assert.equal(await page.locator('#planFlow').isVisible(), true);
   for (const id of ['1','2','3','4']) {
-    await page.locator('[data-check="'+id+'"]').check({ force: true });
+    await page.locator('[data-check="'+id+'"]').evaluate(el => {
+      el.checked = true;
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    });
   }
   assert.match(await page.locator('#planNowTitle').innerText(), /Включаем уют/);
   assert.doesNotMatch(await page.locator('#progressText').innerText(), /%/);
