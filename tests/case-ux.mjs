@@ -44,6 +44,12 @@ try {
   assert.equal(await page.locator('.police-paper').count(), 1);
   const sheetTop = await page.locator('.police-paper .case-doc-title').evaluate(el => el.getBoundingClientRect().top);
   assert.ok(sheetTop > 0 && sheetTop < 300, 'Opening any police sheet should show its heading first');
+  const paperColors = await page.locator('.police-paper').evaluate(el => ({
+    title: getComputedStyle(el.querySelector('.case-doc-title')).color,
+    entry: getComputedStyle(el.querySelector('.police-entry__note')).color,
+  }));
+  assert.equal(paperColors.title, 'rgb(39, 35, 29)', 'Paper headings must stay dark and legible');
+  assert.equal(paperColors.entry, 'rgb(48, 45, 41)', 'Evidence lines must stay dark and legible');
   if (process.env.CI) {
     await page.waitForTimeout(420);
     await page.screenshot({ path: 'test-artifacts/police-document-mobile.png' });
