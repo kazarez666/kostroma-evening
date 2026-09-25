@@ -12,6 +12,7 @@ const app=async id=>page.locator('[data-case-app="'+id+'"]').click();
 try{
   await page.goto('http://127.0.0.1:4173/index.html',{waitUntil:'domcontentloaded'});
   if(await page.locator('#startEvening').isVisible().catch(()=>false)) await page.locator('#startEvening').click();
+  await page.locator('#secretOwnerTrigger').click();
   await page.locator('#openSecretCase').click();
   await page.locator('#caseRevealContinue').click();
   await page.getByText('Дело на двоих: «Последний эфир»',{exact:false}).waitFor({state:'visible'});
