@@ -91,6 +91,11 @@
     .shopping-store-exit{display:none;border:0;background:var(--forest);color:#fff;border-radius:12px;padding:10px 13px;font-weight:900}
     body.shopping-mode{overflow:hidden}body.shopping-mode .shopping-card{position:fixed;inset:0;z-index:260;margin:0;border:0;border-radius:0;padding:max(18px,env(safe-area-inset-top)) max(18px,calc((100vw - 760px)/2)) max(22px,env(safe-area-inset-bottom));overflow:auto;background:linear-gradient(180deg,#f7efe5,#fffaf2)}body.shopping-mode .shopping-store-exit{display:inline-flex}body.shopping-mode .shopping-list{grid-template-columns:1fr;gap:10px}body.shopping-mode .shopping-row{min-height:54px}body.shopping-mode .shopping-item{padding:14px 15px;font-size:17px;background:rgba(255,255,255,.84)}body.shopping-mode .shopping-item input{width:22px;height:22px}body.shopping-mode .shopping-item__remove{min-width:48px;font-size:16px}
     body.shopping-mode .shopping-head{position:sticky;top:0;z-index:2;padding:8px 0 10px;background:linear-gradient(180deg,#f7efe5 75%,rgba(247,239,229,0))}
+    .today-card{margin:0 0 14px;padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(135deg,rgba(255,253,248,.96),rgba(238,230,217,.82));box-shadow:var(--shadow-soft)}
+    .today-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:13px}.today-head small{font-size:9px;letter-spacing:.14em;font-weight:900;color:var(--brown2)}.today-head h3{margin:3px 0 4px;font-size:22px}.today-head p{margin:0;color:var(--muted);font-size:12px}.today-date{white-space:nowrap;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.65);color:var(--brown2);font-size:11px;font-weight:900}
+    .today-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.today-stat{min-width:0;border:1px solid rgba(76,54,39,.09);border-radius:15px;background:rgba(255,255,255,.64);padding:11px 12px;text-align:left;color:var(--ink)}button.today-stat{cursor:pointer}.today-stat>span{display:block;color:var(--muted);font-size:10px;font-weight:850;margin-bottom:4px}.today-stat>b{display:block;font-size:14px;line-height:1.25;overflow-wrap:anywhere}.today-stat>small{display:block;margin-top:4px;color:var(--brown2);font-size:9px;font-weight:800}.today-stat--stage{background:rgba(225,236,226,.72)}
+    .prep-card{margin:0 0 16px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,253,248,.8);box-shadow:var(--shadow-soft);overflow:hidden}.prep-head{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:14px 16px}.prep-title{display:flex;align-items:center;gap:11px;min-width:0}.prep-title>span{font-size:22px}.prep-title small{display:block;font-size:9px;letter-spacing:.12em;font-weight:900;color:var(--brown2)}.prep-title b{display:block;margin-top:2px;font-size:16px}.prep-head__right{display:flex;align-items:center;gap:8px}.prep-count{font-size:11px;color:var(--muted);font-weight:850;white-space:nowrap}.prep-toggle{border:1px solid var(--line);background:rgba(255,255,255,.7);color:var(--brown);padding:8px 10px;border-radius:11px;font-weight:850}.prep-body{padding:0 16px 16px;border-top:1px solid rgba(76,54,39,.07)}.prep-card.is-collapsed .prep-body{display:none}.prep-add{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin:14px 0 10px}.prep-add input{min-width:0;border:1px solid var(--line);background:#fff;border-radius:13px;padding:11px 12px;color:var(--ink)}.prep-add button{border:0;border-radius:13px;background:var(--forest);color:#fff;padding:11px 15px;font-weight:900}.prep-toolbar{display:flex;gap:8px;margin-bottom:10px}.prep-toolbar button{border:1px solid var(--line);background:rgba(255,255,255,.65);color:var(--brown);padding:8px 10px;border-radius:11px;font-weight:850}.prep-toolbar button.active{background:var(--forest);color:#fff;border-color:var(--forest)}
+    .prep-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.prep-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px}.prep-row.is-hidden{display:none}.prep-item{display:flex;align-items:center;gap:9px;min-width:0;padding:10px 11px;border-radius:14px;background:rgba(255,255,255,.72);border:1px solid rgba(76,54,39,.08);cursor:pointer}.prep-item input{width:17px;height:17px;accent-color:var(--forest)}.prep-item.done span{text-decoration:line-through;opacity:.46}.prep-remove{border:0;border-radius:12px;background:rgba(120,74,52,.08);color:#8c5e49;min-width:38px;font-weight:900}.prep-note{margin:10px 0 0;color:var(--muted);font-size:11px;line-height:1.45}
     .draw.is-drawing{box-shadow:0 22px 58px rgba(36,28,22,.2)}.draw.is-drawing .big{animation:reelSpin .55s ease-in-out infinite}.result.is-spinning{opacity:.72;transform:scale(.97)}.result.is-winner{animation:winnerPop .62s cubic-bezier(.2,.9,.25,1.12);font-size:24px}.slot.draw-candidate{transform:translateY(-2px);border-color:rgba(194,138,87,.55);box-shadow:0 12px 28px rgba(95,61,38,.12)}
     @keyframes reelSpin{50%{transform:rotate(-7deg) scale(1.09)}}@keyframes winnerPop{0%{transform:scale(.88);opacity:.45}60%{transform:scale(1.07)}100%{transform:none;opacity:1}}
     .focus-help{display:none;position:fixed;left:24px;bottom:20px;z-index:230;padding:9px 12px;border-radius:999px;background:rgba(20,44,33,.9);color:rgba(255,255,255,.78);font-size:12px;font-weight:800;box-shadow:0 12px 36px rgba(0,0,0,.14)}
@@ -123,7 +128,7 @@
     .secret-leaves{position:fixed;inset:0;pointer-events:none;z-index:24;overflow:hidden}.secret-leaf{position:absolute;pointer-events:none;display:grid;place-items:center;width:calc(var(--size,22px) + 10px);height:calc(var(--size,22px) + 10px);padding:0;border:0;border-radius:50%;background:transparent;color:inherit;font-size:var(--size,22px);line-height:1;filter:drop-shadow(0 5px 8px rgba(74,48,28,.13));opacity:var(--opacity,.3);animation:leafFloatRandom var(--dur,8s) ease-in-out infinite;animation-delay:var(--delay,0s);transform-origin:center;user-select:none}.secret-leaf.rustle{animation:leafRustle .62s ease both}@keyframes leafFloatRandom{0%,100%{transform:translate3d(0,0,0) rotate(var(--r0,-8deg))}50%{transform:translate3d(var(--sway,7px),var(--bob,13px),0) rotate(var(--r1,8deg))}}@keyframes leafRustle{0%{transform:rotate(var(--r0,-5deg)) scale(1)}28%{transform:rotate(-24deg) scale(1.15)}58%{transform:rotate(24deg) scale(.96)}100%{transform:rotate(var(--r1,7deg)) scale(1)}}.leaf-spark{position:fixed;z-index:80;pointer-events:none;font-size:15px;animation:leafSpark .8s ease-out forwards}@keyframes leafSpark{0%{opacity:0;transform:scale(.45)}20%{opacity:.9}100%{opacity:0;transform:translate(var(--sx,18px),-38px) rotate(var(--sr,30deg)) scale(.9)}}
         .love-modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px}.love-backdrop{position:absolute;inset:0;background:rgba(24,20,16,.56);backdrop-filter:blur(7px)}.love-note{position:relative;z-index:1;width:min(420px,100%);padding:32px 27px 26px;border-radius:28px;text-align:center;background:linear-gradient(145deg,#fffaf2,#efe1d2);border:1px solid rgba(255,255,255,.75);box-shadow:0 30px 90px rgba(35,25,18,.3);animation:notePop .35s cubic-bezier(.2,.9,.25,1.15)}@keyframes notePop{from{opacity:0;transform:scale(.86) translateY(12px)}to{opacity:1;transform:none}}.love-note small{font-size:10px;letter-spacing:.14em;color:var(--brown2);font-weight:900}.love-note h3{font-size:31px;margin:7px 0 12px;letter-spacing:-.04em}.love-note p{font-family:Georgia,serif;font-size:20px;line-height:1.55;color:#4b3b31;margin:0 0 19px}.love-heart{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;background:var(--forest);color:#f5d8cf;font-size:22px;box-shadow:0 12px 30px rgba(23,59,43,.18)}.love-close{position:absolute;right:13px;top:11px;border:0;background:transparent;color:#7f6b5d;font-size:29px;line-height:1}.love-again{border:0;border-radius:999px;background:var(--forest);color:white;padding:11px 16px;font-weight:850}.heart-layer{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}.burst-heart{position:absolute;font-size:20px;animation:heartFly 1.25s ease-out forwards}@keyframes heartFly{0%{opacity:0;transform:translateY(8px) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-150px) rotate(var(--rot)) scale(1.15)}}.footer-heart{border:0;background:transparent;color:var(--brown2);font-size:18px;vertical-align:-1px;padding:3px 6px;transition:.2s}.footer-heart:hover{transform:scale(1.2);color:#9a3f45}
     .phase,.mini-card,.food-box,.slot,.emoji-card,.talk-card,.draw{transition:transform .2s ease,box-shadow .2s ease}.phase:hover,.food-box:hover{transform:translateY(-2px)}button:active{transform:scale(.97)}.food-choice.selected,.fondue-chip.selected{animation:tinyPop .22s ease}@keyframes tinyPop{50%{transform:scale(1.045)}}
-    @media(max-width:760px){body.activity-mode .hero-card{padding:11px 12px;border-radius:18px}body.activity-mode .topline .status{display:none}body.activity-mode .romance-actions{display:none}.plan-now{grid-template-columns:42px 1fr;gap:10px;padding:13px}.plan-now__icon{width:38px;height:38px}.plan-now__next{padding:10px 0 0;border-left:0;border-top:1px solid var(--line)}.plan-now__icon--next{align-self:start;margin-top:9px}.plan-now__actions{grid-column:1/-1;width:100%}.plan-now__toggle,.plan-now__action{width:100%}.shopping-list{grid-template-columns:1fr}.shopping-head{align-items:flex-start}.shopping-add{grid-template-columns:1fr}.shopping-add button{width:100%}.shopping-toolbar{display:grid;grid-template-columns:1fr 1fr}.shopping-toolbar button{width:100%}.focus-launch{display:none}.secret-leaf{filter:drop-shadow(0 2px 4px rgba(74,48,28,.055))}.love-note{padding:28px 22px 24px}.love-note p{font-size:18px}.romance-actions{gap:6px}.romance-pill{padding:8px 9px;font-size:11px}.toast{top:10px}.sheep-peek{bottom:88px}}
+    @media(max-width:760px){body.activity-mode .hero-card{padding:11px 12px;border-radius:18px}body.activity-mode .topline .status{display:none}body.activity-mode .romance-actions{display:none}.plan-now{grid-template-columns:42px 1fr;gap:10px;padding:13px}.plan-now__icon{width:38px;height:38px}.plan-now__next{padding:10px 0 0;border-left:0;border-top:1px solid var(--line)}.plan-now__icon--next{align-self:start;margin-top:9px}.plan-now__actions{grid-column:1/-1;width:100%}.plan-now__toggle,.plan-now__action{width:100%}.shopping-list{grid-template-columns:1fr}.shopping-head{align-items:flex-start}.shopping-add{grid-template-columns:1fr}.shopping-add button{width:100%}.shopping-toolbar{display:grid;grid-template-columns:1fr 1fr}.shopping-toolbar button{width:100%}.today-head{display:grid;gap:8px}.today-date{justify-self:start}.today-grid{grid-template-columns:1fr 1fr}.today-stat{min-height:76px}.prep-head{align-items:flex-start}.prep-head__right{display:grid;justify-items:end}.prep-list{grid-template-columns:1fr}.prep-add{grid-template-columns:1fr}.prep-add button{width:100%}.focus-launch{display:none}.secret-leaf{filter:drop-shadow(0 2px 4px rgba(74,48,28,.055))}.love-note{padding:28px 22px 24px}.love-note p{font-size:18px}.romance-actions{gap:6px}.romance-pill{padding:8px 9px;font-size:11px}.toast{top:10px}.sheep-peek{bottom:88px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.secret-leaf,.falling-leaf,.leaf-storm-item{display:none}}
     body.viewing-case .secret-leaf{opacity:calc(var(--opacity,.3) * .38)}
 
@@ -389,6 +394,15 @@
     <section class="panel active" id="plan">
       <div class="section-head"><div><h2>Как пройдёт вечер</h2><p>Мягкий маршрут, а не расписание по минутам.</p></div><button class="soft" id="reset">Сбросить галочки</button></div>
       <div class="plan-shift-banner hidden" id="planShiftBanner"><span>🔓</span><div><small>ПЛАН ВЕЧЕРА ОБНОВЛЁН</small><b>Появилась ещё одна часть вечера</b></div></div>
+      <section class="today-card" id="todayCard">
+        <div class="today-head"><div><small>СЕГОДНЯ</small><h3>Всё важное перед глазами</h3><p id="todayLead">Подготовка к поездке без лишней суеты.</p></div><span class="today-date" id="todayDate">2 октября</span></div>
+        <div class="today-grid">
+          <button class="today-stat" id="todayShoppingOpen" type="button"><span>🛒 ПОКУПКИ</span><b id="todayShopping">считаем…</b><small>открыть список</small></button>
+          <button class="today-stat" id="todayPrepOpen" type="button"><span>🎒 СБОРЫ</span><b id="todayPrep">считаем…</b><small>проверить перед выходом</small></button>
+          <button class="today-stat" id="todayDinnerOpen" type="button"><span>🍽️ УЖИН</span><b id="todayDinner">не выбран</b><small>изменить выбор</small></button>
+          <div class="today-stat today-stat--stage"><span>🍂 ЭТАП ВЕЧЕРА</span><b id="todayStage">Приехали и выдохнули</b><small>обновляется по плану</small></div>
+        </div>
+      </section>
       <div class="plan-now" id="planNow">
         <div class="plan-now__icon" id="planNowIcon" aria-hidden="true">🏠</div>
         <div class="plan-now__item"><small>СЕЙЧАС</small><b id="planNowTitle">Приехали и выдохнули</b><span id="planNowTime">17:00–19:00</span></div>
@@ -396,6 +410,18 @@
         <div class="plan-now__item plan-now__next"><small>ПОТОМ</small><b id="planNextTitle">Включаем уют</b><span>Без гонки по расписанию</span></div>
         <div class="plan-now__actions"><button class="soft plan-now__action" id="planNowAction" type="button">Открыть еду и покупки</button><button class="soft plan-now__toggle" id="togglePlanDetails" type="button">Показать весь план</button></div>
       </div>
+      <article class="prep-card is-collapsed" id="prepCard">
+        <div class="prep-head">
+          <div class="prep-title"><span>🎒</span><div><small>ПЕРЕД ВЫХОДОМ</small><b>Проверить, что всё с собой</b></div></div>
+          <div class="prep-head__right"><span class="prep-count" id="prepCount">0 / 7 собрано</span><button class="prep-toggle" id="prepToggle" type="button">Открыть</button></div>
+        </div>
+        <div class="prep-body" id="prepBody">
+          <div class="prep-add"><input id="prepCustomInput" maxlength="80" placeholder="Добавить своё: зонт, лекарства, книгу…"><button id="prepAdd" type="button">+ Добавить</button></div>
+          <div class="prep-toolbar"><button id="prepHideDone" type="button">Скрыть собранное</button></div>
+          <div class="prep-list" id="prepList"></div>
+          <p class="prep-note">Базовый список специально нейтральный и не раскрывает сюрпризы. Свои пункты сохраняются только на этом устройстве.</p>
+        </div>
+      </article>
       <div class="flow" id="planFlow">
         <article class="phase p1" data-plan-phase="1"><div class="icon">🏠</div><div><p class="time">17:00–19:00</p><h3>Приехали и выдохнули</h3><div class="checklist">
           <label class="check"><input type="checkbox" data-check="1"><span class="box"></span><span><b>Заселиться</b> и немного отдохнуть после дороги.</span></label>
@@ -745,6 +771,24 @@
     q("#casePlanLaunch").addEventListener("click",openDetectiveCase);
 
     var checks=qa("[data-check]"), saved=JSON.parse(localStorage.getItem("kostromaChecks")||"{}");
+    function tripCountdownText(){
+      var now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate()),target=new Date(2026,9,2),days=Math.round((target-today)/86400000);
+      if(days>1)return "До поездки "+days+" "+(days%10===1&&days%100!==11?"день":days%10>=2&&days%10<=4&&(days%100<10||days%100>=20)?"дня":"дней");
+      if(days===1)return "Поездка уже завтра";
+      if(days===0)return "Сегодня тот самый день 🍂";
+      return "Наш костромской вечер";
+    }
+    function renderToday(){
+      var phases=qa("[data-plan-phase]",q("#planFlow")),current=phases.find(function(p){return qa("[data-check]",p).some(function(c){return !c.checked})});
+      var shop=Array.isArray(baseShopping)&&typeof shoppingItems==="function"?shoppingItems():[],shopDoneCount=shop.filter(function(x){return shoppingDone&&shoppingDone[x]}).length;
+      var prep=Array.isArray(basePrep)&&typeof prepItems==="function"?prepItems():[],prepDoneCount=prep.filter(function(x){return prepDone&&prepDone[x]}).length;
+      q("#todayLead").textContent=tripCountdownText();
+      q("#todayDate").textContent=new Intl.DateTimeFormat("ru-RU",{day:"numeric",month:"long"}).format(new Date());
+      q("#todayShopping").textContent=shop.length?(shop.length-shopDoneCount?("осталось "+(shop.length-shopDoneCount)):"всё куплено"):"список готовится";
+      q("#todayPrep").textContent=prep.length?(prep.length-prepDoneCount?("осталось "+(prep.length-prepDoneCount)):"всё собрано"):"список готовится";
+      q("#todayDinner").textContent=dinner&&dinner.name?dinner.name:"не выбран";
+      q("#todayStage").textContent=current?q("h3",current).textContent:"Никакой программы";
+    }
     function planActionFor(idx){
       if(idx===0)return {tab:"food",label:"Открыть еду и покупки"};
       if(idx===1)return {tab:"plan",label:"Показать подробности"};
@@ -756,10 +800,10 @@
     function renderPlanNow(){
       var phases=qa("[data-plan-phase]",q("#planFlow")),current=phases.find(function(p){return qa("[data-check]",p).some(function(c){return !c.checked})}),idx=current?phases.indexOf(current):-1;
       var action=q("#planNowAction");
-      if(!current){q("#planNowIcon").textContent="❤️";q("#planNowTitle").textContent="Вечер удался ❤️";q("#planNowTime").textContent="дальше — просто отдыхать";q("#planNextIcon").textContent="🛋️";q("#planNextTitle").textContent="Никакой программы";action.classList.add("hidden");return}
+      if(!current){q("#planNowIcon").textContent="❤️";q("#planNowTitle").textContent="Вечер удался ❤️";q("#planNowTime").textContent="дальше — просто отдыхать";q("#planNextIcon").textContent="🛋️";q("#planNextTitle").textContent="Никакой программы";action.classList.add("hidden");renderToday();return}
       q("#planNowIcon").textContent=q(".icon",current).textContent;q("#planNowTitle").textContent=q("h3",current).textContent;q("#planNowTime").textContent=q(".time",current).textContent;
       var next=phases[idx+1];q("#planNextIcon").textContent=next?q(".icon",next).textContent:"🛋️";q("#planNextTitle").textContent=next?q("h3",next).textContent:"Дальше — никакой программы";
-      var cfg=planActionFor(idx);action.classList.toggle("hidden",!cfg);if(cfg){action.dataset.target=cfg.tab;action.textContent=cfg.label}
+      var cfg=planActionFor(idx);action.classList.toggle("hidden",!cfg);if(cfg){action.dataset.target=cfg.tab;action.textContent=cfg.label}renderToday()
     }
     function progress(){var done=checks.filter(function(x){return x.checked}).length,p=Math.round(done/checks.length*100),label=p===100?"Вечер удался ❤️":p===0?"не спешим":p<35?"только начинаем":p<70?"вечер идёт":"почти всё попробовали";q("#progressBar").style.width=p+"%";q("#progressText").textContent=label;renderPlanNow();var gift=checks.find(function(x){return x.getAttribute("data-check")==="10"});if(gift)q("#sheepPeek").classList.toggle("hidden",!gift.checked);if(p===100&&!sessionStorage.getItem("kostromaFinale")){sessionStorage.setItem("kostromaFinale","1");setTimeout(function(){leafStorm(34);showFinalBanner()},150)}}
     checks.forEach(function(c){c.checked=!!saved[c.getAttribute("data-check")];c.addEventListener("change",function(){saved[c.getAttribute("data-check")]=c.checked;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()})});progress();
@@ -774,11 +818,58 @@
     });
     applySecretPlanMode(secretPlanRevealed);
 
+    var prepDone=JSON.parse(localStorage.getItem("kostromaPrepDone")||"{}"),
+        prepCustom=JSON.parse(localStorage.getItem("kostromaPrepCustom")||"[]"),
+        prepHideDone=localStorage.getItem("kostromaPrepHideDone")==="1",
+        basePrep=["Документы","Ноутбук","Зарядка для ноутбука","Телефон и зарядка","Пауэрбанк","Вещи на ночь","Средства гигиены"];
+    function prepItems(){
+      return basePrep.concat(prepCustom).filter(function(item,i,arr){
+        var key=String(item).trim().toLocaleLowerCase("ru-RU");
+        return key&&arr.findIndex(function(x){return String(x).trim().toLocaleLowerCase("ru-RU")===key})===i
+      });
+    }
+    function renderPrep(){
+      var items=prepItems(),wrap=q("#prepList"),done=0;wrap.innerHTML="";
+      items.forEach(function(item){
+        var isCustom=prepCustom.indexOf(item)>=0,row=document.createElement("div");row.className="prep-row"+(prepHideDone&&prepDone[item]?" is-hidden":"");
+        var label=document.createElement("label");label.className="prep-item"+(prepDone[item]?" done":"");
+        var input=document.createElement("input");input.type="checkbox";input.checked=!!prepDone[item];input.setAttribute("data-prep-item",item);
+        var span=document.createElement("span");span.textContent=item;label.appendChild(input);label.appendChild(span);row.appendChild(label);
+        if(input.checked)done++;
+        input.addEventListener("change",function(){prepDone[item]=input.checked;localStorage.setItem("kostromaPrepDone",JSON.stringify(prepDone));renderPrep()});
+        if(isCustom){
+          var del=document.createElement("button");del.type="button";del.className="prep-remove";del.textContent="×";del.setAttribute("aria-label","Удалить из сборов "+item);
+          del.addEventListener("click",function(){prepCustom=prepCustom.filter(function(x){return x!==item});delete prepDone[item];localStorage.setItem("kostromaPrepCustom",JSON.stringify(prepCustom));localStorage.setItem("kostromaPrepDone",JSON.stringify(prepDone));renderPrep()});row.appendChild(del)
+        }
+        wrap.appendChild(row)
+      });
+      q("#prepCount").textContent=done+" / "+items.length+" собрано · осталось "+Math.max(0,items.length-done);
+      q("#prepHideDone").classList.toggle("active",prepHideDone);q("#prepHideDone").textContent=prepHideDone?"Показать собранное":"Скрыть собранное";
+      renderToday()
+    }
+    function setPrepExpanded(open){
+      q("#prepCard").classList.toggle("is-collapsed",!open);q("#prepToggle").textContent=open?"Свернуть":"Открыть";
+      if(open)q("#prepCustomInput").focus({preventScroll:true})
+    }
+    function addPrepCustom(){
+      var input=q("#prepCustomInput"),value=input.value.trim();if(!value)return;
+      var exists=prepItems().some(function(x){return x.toLocaleLowerCase("ru-RU")===value.toLocaleLowerCase("ru-RU")});
+      if(exists){showToast("🎒 Уже есть в сборах");input.select();return}
+      prepCustom.push(value);localStorage.setItem("kostromaPrepCustom",JSON.stringify(prepCustom));input.value="";renderPrep();showToast("🎒 Добавлено: "+value)
+    }
+    q("#prepToggle").addEventListener("click",function(){setPrepExpanded(q("#prepCard").classList.contains("is-collapsed"))});
+    q("#prepAdd").addEventListener("click",addPrepCustom);q("#prepCustomInput").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();addPrepCustom()}});
+    q("#prepHideDone").addEventListener("click",function(){prepHideDone=!prepHideDone;localStorage.setItem("kostromaPrepHideDone",prepHideDone?"1":"0");renderPrep()});
+    q("#todayPrepOpen").addEventListener("click",function(){setPrepExpanded(true);q("#prepCard").scrollIntoView({behavior:"smooth",block:"center"})});
+    q("#todayShoppingOpen").addEventListener("click",function(){showTab("food");setTimeout(function(){q("#shoppingCard").scrollIntoView({behavior:"smooth",block:"start"})},0)});
+    q("#todayDinnerOpen").addEventListener("click",function(){showTab("food");setTimeout(function(){q(".dinner-box").scrollIntoView({behavior:"smooth",block:"start"})},0)});
+    renderPrep();
+
     var dinnerButtons=qa(".food-choice"),dinner=JSON.parse(localStorage.getItem("kostromaDinner")||"null")||{name:"",icon:"🍽️",custom:false};
     var dinnerExpanded=false,fondueExpanded=false;
     function syncDinnerMore(){q(".dinner-options").classList.toggle("show-all",dinnerExpanded);q("#toggleDinnerMore").textContent=dinnerExpanded?"Скрыть дополнительные варианты":"Ещё варианты ужина · 12"}
     q("#toggleDinnerMore").addEventListener("click",function(){dinnerExpanded=!dinnerExpanded;syncDinnerMore()});syncDinnerMore();
-    function renderDinner(){dinnerButtons.forEach(function(b){b.classList.toggle("selected",!dinner.custom&&b.getAttribute("data-dinner")===dinner.name)});var icon=dinner.icon||"🍽️",name=dinner.name||"пока ничего";q("#chosenDinnerIcon").textContent=icon;q("#chosenDinnerName").textContent=name;q("#dinnerPlanIcon").textContent=icon;q("#dinnerPlanName").textContent=dinner.name||"сначала выберите ужин во вкладке «Еда»";q("#miniDinnerIcon").textContent=icon;q("#miniDinnerText").textContent=dinner.name?"Выбрано: "+dinner.name+".":"Пока не выбрано — откройте вкладку «Еда»."}
+    function renderDinner(){dinnerButtons.forEach(function(b){b.classList.toggle("selected",!dinner.custom&&b.getAttribute("data-dinner")===dinner.name)});var icon=dinner.icon||"🍽️",name=dinner.name||"пока ничего";q("#chosenDinnerIcon").textContent=icon;q("#chosenDinnerName").textContent=name;q("#dinnerPlanIcon").textContent=icon;q("#dinnerPlanName").textContent=dinner.name||"сначала выберите ужин во вкладке «Еда»";q("#miniDinnerIcon").textContent=icon;q("#miniDinnerText").textContent=dinner.name?"Выбрано: "+dinner.name+".":"Пока не выбрано — откройте вкладку «Еда».";renderToday()}
     function pickDinner(name,icon,custom){dinner={name:name,icon:icon||"🍽️",custom:!!custom};localStorage.setItem("kostromaDinner",JSON.stringify(dinner));renderDinner();showToast(icon+" Выбрано на ужин: "+name);leafStorm(9)}
     dinnerButtons.forEach(function(b){b.addEventListener("click",function(){pickDinner(b.getAttribute("data-dinner"),b.getAttribute("data-icon"),false)})});q("#saveCustomDinner").addEventListener("click",function(){var v=q("#customDinner").value.trim();if(v)pickDinner(v,"🍽️",true)});q("#customDinner").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();q("#saveCustomDinner").click()}});renderDinner();
     var fondueButtons=qa(".fondue-chip"),fondue=JSON.parse(localStorage.getItem("kostromaFondue")||"[]");
@@ -809,7 +900,7 @@
       });
       q("#shoppingCount").textContent=done+" / "+items.length+" куплено · осталось "+Math.max(0,items.length-done);
       q("#shoppingHideDone").classList.toggle("active",shoppingHideDone);q("#shoppingHideDone").textContent=shoppingHideDone?"Показать купленное":"Скрыть купленное";
-      q("#shoppingNote").textContent=shoppingCustom.length||fondue.length?"Список сохраняется на этом устройстве. Автоматические продукты и ваши позиции можно отмечать прямо в магазине.":"База уже здесь. Свои позиции можно добавить заранее, а в магазине отмечать по ходу.";
+      q("#shoppingNote").textContent=shoppingCustom.length||fondue.length?"Список сохраняется на этом устройстве. Автоматические продукты и ваши позиции можно отмечать прямо в магазине.":"База уже здесь. Свои позиции можно добавить заранее, а в магазине отмечать по ходу.";renderToday()
     }
     function addShoppingCustom(){
       var input=q("#shoppingCustomInput"),value=input.value.trim();if(!value)return;
