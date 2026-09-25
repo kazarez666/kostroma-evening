@@ -14,6 +14,11 @@ try {
   assert.equal(await page.locator('#planFlow').isVisible(), false);
   assert.match(await page.locator('#planNowTitle').innerText(), /Приехали и выдохнули/);
   assert.match(await page.locator('#planNextTitle').innerText(), /Включаем уют/);
+  assert.match(await page.locator('#planNowIcon').innerText(), /🏠/);
+  assert.match(await page.locator('#planNowAction').innerText(), /еду и покупки/i);
+  await page.locator('#planNowAction').click();
+  assert.equal(await page.locator('#food').evaluate(el => el.classList.contains('active')), true);
+  await page.locator('.tab[data-tab="plan"]').click();
 
   await page.locator('#togglePlanDetails').click();
   assert.equal(await page.locator('#planFlow').isVisible(), true);
@@ -45,11 +50,21 @@ try {
   assert.equal((await page.locator('#fondueCount').innerText()).trim(), '8');
   assert.ok(await page.locator('.fondue-chip.selected').count() === 8);
   assert.match(await page.locator('.shopping-reminder').innerText(), /шоколад/i);
+  assert.ok(await page.locator('[data-shopping-item="Шоколад"]').count() === 1);
+  assert.ok(await page.locator('[data-shopping-item="Клубника"]').count() === 1, 'Chosen fondue ingredient should enter shopping list');
+  await page.locator('[data-shopping-item="Шоколад"]').check();
+  assert.match(await page.locator('#shoppingCount').innerText(), /^1 \/ /);
 
   // Large mode occupies the viewport and exits cleanly.
   await page.locator('.tab[data-tab="emoji"]').click();
   await page.locator('#emoji [data-focus="emoji"]').click();
   assert.equal(await page.evaluate(() => document.body.classList.contains('focus-mode')), true);
+  assert.match(await page.locator('#focusHint').innerText(), /Пробел/);
+  const emojiBeforeKey = await page.locator('#emojiIndex').innerText();
+  await page.keyboard.press('Space');
+  assert.equal(await page.locator('#emojiAnswer').evaluate(el=>el.classList.contains('hidden')), false);
+  await page.keyboard.press('Space');
+  assert.notEqual(await page.locator('#emojiIndex').innerText(), emojiBeforeKey);
   const focusBox = await page.locator('#emoji').boundingBox();
   assert.ok(focusBox && focusBox.width > 1200 && focusBox.height >= 850);
   await page.keyboard.press('Escape');
