@@ -10,6 +10,7 @@ try {
   page.on('pageerror', error => errors.push(String(error)));
   await page.goto('http://127.0.0.1:4173/index.html');
   if (await page.locator('#startEvening').isVisible()) await page.locator('#startEvening').click();
+  await page.locator('#secretOwnerTrigger').click();
   await page.locator('#openSecretCase').click();
   await page.locator('#caseRevealContinue').click();
   await page.locator('#casePlanLaunch').click();
