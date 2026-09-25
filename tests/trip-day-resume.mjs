@@ -31,6 +31,7 @@ try {
   assert.equal(await page.locator('#casePlanLaunch').isVisible(), false);
 
   if (await page.locator('#startEvening').isVisible()) await page.locator('#startEvening').click();
+  await page.locator('#secretOwnerTrigger').click();
   await page.locator('#openSecretCase').click();
   await page.locator('#caseRevealContinue').click();
   await page.locator('#casePlanLaunch').waitFor({ state: 'visible' });
