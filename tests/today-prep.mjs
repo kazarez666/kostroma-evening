@@ -81,7 +81,7 @@ try {
 
   // Shopping stays in the Food tab instead of being duplicated on Evening.
   await page.locator('.mnav[data-tab="food"]').click();
-  await page.locator('[data-shopping-item="Молоко"]').check();
+  await page.locator('[data-shopping-item="Молоко для какао"]').check();
   assert.match(await page.locator('#shoppingCount').innerText(), /^1 \/ /);
   await page.locator('.mnav[data-tab="plan"]').click();
 

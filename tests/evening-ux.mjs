@@ -46,9 +46,9 @@ try {
   assert.equal((await page.locator('#fondueCount').innerText()).trim(), '8');
   assert.ok(await page.locator('.fondue-chip.selected').count() === 8);
   assert.match(await page.locator('.shopping-reminder').innerText(), /шоколад/i);
-  assert.ok(await page.locator('[data-shopping-item="Шоколад"]').count() === 1);
+  assert.ok(await page.locator('[data-shopping-item="Шоколад для фондю"]').count() === 1);
   assert.ok(await page.locator('[data-shopping-item="Клубника"]').count() === 1, 'Chosen fondue ingredient should enter shopping list');
-  await page.locator('[data-shopping-item="Шоколад"]').check();
+  await page.locator('[data-shopping-item="Шоколад для фондю"]').check();
   assert.match(await page.locator('#shoppingCount').innerText(), /^1 \/ /);
 
   // Large mode occupies the viewport and exits cleanly.
