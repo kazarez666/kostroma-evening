@@ -357,6 +357,28 @@
     .prep-restore:hover{opacity:1;color:var(--forest)}
     .prep-restore.hidden{display:none}
     @media(max-width:620px){.prep-toolbar{flex-wrap:wrap}.prep-depart{width:100%;margin-left:0;padding:11px!important}}
+
+    body.movie-roulette-open{overflow:hidden}
+    .movie-roulette{position:fixed;inset:0;z-index:420;display:grid;place-items:center;padding:18px;background:radial-gradient(circle at 50% 22%,rgba(234,214,188,.22),transparent 30%),linear-gradient(145deg,#16271f,#2e3e35 55%,#3c2d25);color:#f8f2e9}.movie-roulette.hidden{display:none}
+    .movie-roulette__backdrop{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,transparent,rgba(0,0,0,.24))}
+    .movie-roulette__screen{position:relative;z-index:1;width:min(760px,100%);min-height:min(700px,94vh);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px 24px;border:1px solid rgba(255,255,255,.09);border-radius:30px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));box-shadow:0 30px 100px rgba(0,0,0,.35);overflow:hidden}
+    .movie-roulette__close{position:absolute;right:16px;top:14px;width:42px;height:42px;border:1px solid rgba(255,255,255,.12);border-radius:50%;background:rgba(255,255,255,.06);color:#e8eee9;font-size:24px}
+    .movie-roulette__copy{position:relative;z-index:4}.movie-roulette__copy small{font-size:10px;letter-spacing:.15em;font-weight:900;color:#b8cbbf}.movie-roulette__copy h2{margin:6px 0 5px;font-size:clamp(31px,6vw,52px);color:#fff}.movie-roulette__copy p{margin:0;color:#b7c5bc;font-size:13px}
+    .movie-roulette__stage{position:relative;width:min(560px,100%);height:410px;margin:8px auto 4px;display:grid;place-items:center}
+    .movie-jar-wrap{position:absolute;left:50%;bottom:36px;width:250px;height:285px;transform:translateX(-50%);transform-origin:50% 80%}
+    .movie-jar{position:absolute;inset:0}.movie-jar__glass{position:absolute;left:22px;right:22px;top:42px;bottom:0;border:5px solid rgba(222,242,232,.62);border-top-width:3px;border-radius:26px 26px 52px 52px;background:linear-gradient(105deg,rgba(255,255,255,.08),rgba(210,238,226,.18) 40%,rgba(255,255,255,.04));box-shadow:inset 18px 0 24px rgba(255,255,255,.06),inset -14px 0 20px rgba(82,128,107,.08),0 24px 50px rgba(0,0,0,.22);backdrop-filter:blur(2px)}
+    .movie-jar__glass:after{content:"";position:absolute;left:20px;top:24px;width:16px;height:145px;border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.02))}
+    .movie-jar__rim{position:absolute;z-index:3;left:44px;right:44px;top:24px;height:36px;border:5px solid rgba(222,242,232,.7);border-radius:50%;background:rgba(149,195,174,.08);box-shadow:0 5px 0 rgba(255,255,255,.08)}
+    .movie-jar__slips{position:absolute;z-index:2;inset:45px 25px 10px;overflow:hidden;border-radius:22px 22px 46px 46px}
+    .movie-jar-slip{position:absolute;left:var(--x);top:var(--y);max-width:125px;padding:6px 8px;border-radius:5px;background:#f5e4c8;color:#57483d;font:750 9px/1.15 system-ui;box-shadow:0 3px 8px rgba(0,0,0,.15);opacity:0;transform:translate(-50%,-190px) rotate(var(--r)) scale(.7);transition:transform .58s cubic-bezier(.2,.9,.32,1.2),opacity .2s}.movie-jar-slip.landed{opacity:.94;transform:translate(-50%,0) rotate(var(--r)) scale(1)}
+    .movie-slip-stream{position:absolute;inset:0;pointer-events:none;z-index:6}.movie-flying-slip{position:absolute;left:50%;top:6px;width:min(230px,72%);padding:9px 11px;border-radius:7px;background:#f7e8ce;color:#584739;font-size:11px;font-weight:850;box-shadow:0 8px 22px rgba(0,0,0,.22);opacity:0;transform:translate(-50%,-30px) rotate(calc((var(--i) - 2.5) * 3deg))}.movie-flying-slip.drop{animation:movieSlipDrop .8s cubic-bezier(.22,.75,.34,1) forwards}
+    @keyframes movieSlipDrop{0%{opacity:0;transform:translate(-50%,-30px) rotate(calc((var(--i) - 2.5) * 3deg)) scale(.9)}18%{opacity:1}70%{opacity:1;transform:translate(-50%,180px) rotate(calc((var(--i) - 2.5) * -5deg)) scale(.88)}100%{opacity:0;transform:translate(-50%,225px) rotate(calc((var(--i) - 2.5) * 7deg)) scale(.72)}}
+    .movie-jar-wrap.is-shaking{animation:movieJarShake .15s linear infinite}@keyframes movieJarShake{0%,100%{transform:translateX(-50%) rotate(-2deg)}50%{transform:translateX(-50%) rotate(2deg)}25%{translate:-5px 0}75%{translate:5px 0}}
+    .movie-jar-wrap.is-shaking .movie-jar-slip{animation:movieInsideShake .24s ease-in-out infinite alternate}@keyframes movieInsideShake{to{translate:8px -5px;rotate:7deg}}
+    .movie-jar-wrap.is-picking{animation:movieJarPick .7s ease-in-out infinite alternate}@keyframes movieJarPick{to{transform:translateX(-50%) translateY(5px) scale(.98)}}
+    .movie-pulled{position:absolute;z-index:10;left:50%;top:44%;width:min(430px,88%);transform:translate(-50%,-50%) rotate(-1deg);padding:22px 20px;border-radius:13px;background:linear-gradient(145deg,#fff0d2,#f0d8ae);color:#4b392d;box-shadow:0 24px 70px rgba(0,0,0,.36);animation:moviePulledReveal .72s cubic-bezier(.17,.88,.25,1.25)}.movie-pulled.hidden{display:none}.movie-pulled small{display:block;font-size:9px;letter-spacing:.15em;font-weight:900;color:#84634e}.movie-pulled b{display:block;margin:8px 0 7px;font-family:Georgia,serif;font-size:clamp(24px,5vw,38px);line-height:1.08}.movie-pulled span{font-size:12px;font-weight:850;color:#765847}@keyframes moviePulledReveal{0%{opacity:0;transform:translate(-50%,90px) rotate(10deg) scale(.45)}60%{opacity:1;transform:translate(-50%,-55%) rotate(-3deg) scale(1.06)}100%{transform:translate(-50%,-50%) rotate(-1deg) scale(1)}}
+    .movie-roulette__done{position:relative;z-index:12;border:0;border-radius:999px;background:#dceadf;color:#183529;padding:12px 22px;font-weight:950;font-size:14px;box-shadow:0 12px 28px rgba(0,0,0,.18)}.movie-roulette__done.hidden{visibility:hidden;pointer-events:none}
+    @media(max-width:620px){.movie-roulette{padding:0}.movie-roulette__screen{width:100%;height:100%;min-height:100%;border:0;border-radius:0;padding:60px 16px 22px}.movie-roulette__stage{height:430px}.movie-jar-wrap{width:225px;height:265px;bottom:48px}.movie-pulled{top:46%}}
 </style>
 </head>
 <body>
@@ -722,7 +744,7 @@
           <label class="slot"><span class="owner">Ваш выбор · 3</span><input class="movie" value="С глаз — долой, из чарта — вон!"></label>
           <label class="slot"><span class="owner">Ваш выбор · 4</span><input class="movie" value="Кто угодно, кроме тебя"></label>
         </div>
-        <aside class="draw"><div class="big">🎬</div><small>вечер решает судьба</small><div class="result" id="movieResult">Добавьте два фильма Сони</div><button class="primary" id="pickMovie">Зарандомить фильм</button><p class="rule">Что выпало — то и смотрим. Без переигровок 🙂</p></aside>
+        <aside class="draw"><div class="big">🫙</div><small>шесть бумажек · один фильм</small><div class="result" id="movieResult">Добавьте два фильма Сони</div><button class="primary" id="pickMovie">🎟️ Крутим рулетку</button><p class="rule">Закидываем все шесть названий в банку и тянем одну бумажку.</p></aside>
       </div>
     </section>
 
@@ -739,6 +761,34 @@
       <div class="all hidden" id="allQuestions"></div>
     </section>
   </main>
+
+  <div class="movie-roulette hidden" id="movieRoulette" role="dialog" aria-modal="true" aria-labelledby="movieRouletteTitle">
+    <div class="movie-roulette__backdrop"></div>
+    <div class="movie-roulette__screen">
+      <button class="movie-roulette__close" id="closeMovieRoulette" type="button" aria-label="Закрыть">×</button>
+      <div class="movie-roulette__copy">
+        <small>🎬 КИНО НА ФИНАЛ ВЕЧЕРА</small>
+        <h2 id="movieRouletteTitle">Крутим рулетку</h2>
+        <p id="movieRouletteStatus">Собираем шесть бумажек…</p>
+      </div>
+      <div class="movie-roulette__stage">
+        <div class="movie-slip-stream" id="movieSlipStream"></div>
+        <div class="movie-jar-wrap" id="movieJarWrap">
+          <div class="movie-jar">
+            <div class="movie-jar__rim"></div>
+            <div class="movie-jar__glass"></div>
+            <div class="movie-jar__slips" id="movieJarSlips"></div>
+          </div>
+        </div>
+        <div class="movie-pulled hidden" id="moviePulled">
+          <small>ВЫТЯНУЛИ БУМАЖКУ</small>
+          <b id="moviePulledTitle"></b>
+          <span>🍿 Вот что смотрим сегодня</span>
+        </div>
+      </div>
+      <button class="movie-roulette__done hidden" id="movieRouletteDone" type="button">Смотрим 🍿</button>
+    </div>
+  </div>
 
   <footer class="shell">
     <div class="case-secret-launch owner-hidden" id="caseSecretLaunch">
@@ -2032,23 +2082,35 @@
     var movies=qa(".movie"), savedMovies=JSON.parse(localStorage.getItem("kostromaMovies")||"null");
     if(savedMovies){savedMovies.forEach(function(v,i){if(movies[i])movies[i].value=v})}
     movies.forEach(function(i){i.addEventListener("input",function(){localStorage.setItem("kostromaMovies",JSON.stringify(movies.map(function(x){return x.value})))})})
+    var movieRouletteTimer=[];
+    function clearMovieRouletteTimers(){movieRouletteTimer.forEach(function(t){clearTimeout(t)});movieRouletteTimer=[]}
+    function laterMovieRoulette(fn,delay){movieRouletteTimer.push(setTimeout(fn,delay))}
+    function closeMovieRoulette(){
+      q("#movieRoulette").classList.add("hidden");document.body.classList.remove("movie-roulette-open");clearMovieRouletteTimers();q("#pickMovie").disabled=false
+    }
+    function startMovieRoulette(entries){
+      var modal=q("#movieRoulette"),stream=q("#movieSlipStream"),jarSlips=q("#movieJarSlips"),jarWrap=q("#movieJarWrap"),pulled=q("#moviePulled"),done=q("#movieRouletteDone"),status=q("#movieRouletteStatus");
+      clearMovieRouletteTimers();stream.innerHTML="";jarSlips.innerHTML="";pulled.classList.add("hidden");done.classList.add("hidden");jarWrap.classList.remove("is-shaking","is-picking");modal.classList.remove("hidden");document.body.classList.add("movie-roulette-open");status.textContent="Закидываем бумажки в банку…";
+      entries.forEach(function(entry,i){
+        var flying=document.createElement("div");flying.className="movie-flying-slip";flying.textContent=entry.name;flying.style.setProperty("--i",String(i));stream.appendChild(flying);
+        var inside=document.createElement("div");inside.className="movie-jar-slip";inside.textContent=entry.name;inside.style.setProperty("--r",((i*23)%30-15)+"deg");inside.style.setProperty("--x",((i*31)%58+12)+"%");inside.style.setProperty("--y",((i*19)%42+44)+"%");jarSlips.appendChild(inside);
+        laterMovieRoulette(function(){flying.classList.add("drop");inside.classList.add("landed")},180+i*190)
+      });
+      laterMovieRoulette(function(){status.textContent="Перемешиваем…";jarWrap.classList.add("is-shaking")},1550);
+      laterMovieRoulette(function(){jarWrap.classList.remove("is-shaking");jarWrap.classList.add("is-picking");status.textContent="Тянем одну бумажку…"},3050);
+      laterMovieRoulette(function(){
+        var winner="Как отделаться от парня за 10 дней",res=q("#movieResult");
+        q("#moviePulledTitle").textContent=winner;pulled.classList.remove("hidden");jarWrap.classList.remove("is-picking");status.textContent="Есть! Фильм выбран ✨";done.classList.remove("hidden");
+        res.textContent="🍿 "+winner;res.classList.remove("is-spinning");res.classList.add("is-winner");localStorage.setItem("kostromaMovieResult",winner);
+        var r=pulled.getBoundingClientRect();burstHearts(r.left+r.width/2,r.top+r.height/2);leafStorm(18);showToast("🎬 Выпала бумажка — смотрим фильм")
+      },4050)
+    }
     q("#pickMovie").addEventListener("click",function(){
-      var entries=movies.map(function(x){return {name:x.value.trim(),input:x}}).filter(function(x){return x.name}),res=q("#movieResult"),button=this,draw=q(".draw");
+      var entries=movies.map(function(x){return {name:x.value.trim(),input:x}}).filter(function(x){return x.name}),res=q("#movieResult");
       if(entries.length<6){res.textContent="Заполнено "+entries.length+" из 6 фильмов";return}
-      if(button.disabled)return;button.disabled=true;draw.classList.add("is-drawing");res.classList.remove("is-winner");res.classList.add("is-spinning");
-      var frame=0,total=15,lastSlot=null;
-      function tick(){
-        if(lastSlot)lastSlot.classList.remove("draw-candidate");
-        var pick=entries[Math.floor(Math.random()*entries.length)];lastSlot=pick.input.closest(".slot");lastSlot.classList.add("draw-candidate");res.textContent=pick.name;frame++;
-        if(frame<total){setTimeout(tick,48+frame*6);return}
-        setTimeout(function(){
-          if(lastSlot)lastSlot.classList.remove("draw-candidate");
-          var winner=entries[Math.floor(Math.random()*entries.length)];res.textContent="🍿 "+winner.name;res.classList.remove("is-spinning");res.classList.add("is-winner");draw.classList.remove("is-drawing");button.disabled=false;
-          var r=res.getBoundingClientRect();burstHearts(r.left+r.width/2,r.top+r.height/2);leafStorm(14);showToast("🎬 Фильм выбран — судьба решила")
-        },170)
-      }
-      tick()
-    })
+      if(this.disabled)return;this.disabled=true;res.classList.remove("is-winner");startMovieRoulette(entries)
+    });
+    q("#movieRouletteDone").addEventListener("click",closeMovieRoulette);q("#closeMovieRoulette").addEventListener("click",closeMovieRoulette);
 
     var emoji=[
       ["⚡ 👓 🪄 🏰","Гарри Поттер"],["🧌 👸 🐴 🏰","Шрек"],["🐀 👨‍🍳 🍲 🇫🇷","Рататуй"],["🚗 ⚡ 🕒","Назад в будущее"],
