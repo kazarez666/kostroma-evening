@@ -27,6 +27,14 @@ try {
   await visibleText('Последний эфир');
   await page.locator('#startCase').click();
 
+  // A romantic Random Moment stays available inside the detective workspace.
+  assert.equal(await page.locator('.case-moment').isVisible(), true);
+  await page.locator('.case-moment').click();
+  assert.equal(await page.locator('#momentModal').isVisible(), true);
+  assert.ok((await page.locator('#momentText').innerText()).trim().length > 10);
+  await page.locator('[data-close-moment]').last().click();
+  assert.equal(await page.locator('#momentModal').isVisible(), false);
+
   // Four-page dossier.
   await visibleText('Уголовное дело №24/10-26');
   for (const expected of ['Осмотр места и тела','Известная хронология','Круг лиц и задачи расследования']) {

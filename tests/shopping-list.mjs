@@ -10,7 +10,7 @@ try {
   if (await page.locator('#startEvening').isVisible().catch(()=>false)) await page.locator('#startEvening').click();
   await page.locator('.mnav[data-tab="food"]').click();
 
-  // Shopping starts as three clear switchable modes.
+  // Shopping starts as three clear planning modes.
   assert.equal(await page.locator('[data-shopping-view]').count(), 3);
   assert.equal(await page.locator('[data-shopping-panel="friday"]').isVisible(), true);
   assert.equal(await page.locator('[data-shopping-panel="breakfast"]').isVisible(), false);
@@ -18,73 +18,90 @@ try {
   assert.match(await page.locator('#fridayShoppingPreview').innerText(), /Coca-Cola Original/);
   assert.match(await page.locator('#fridayShoppingPreview').innerText(), /Pringles/);
 
-  // Fondue choice appears in Friday preview and in the real final list.
+  // Friday plan is editable.
+  await page.locator('#fridayCustomInput').fill('Орешки');
+  await page.locator('#fridayCustomAdd').click();
+  assert.equal(await page.locator('#fridayShoppingPreview .plan-product-row').filter({ hasText: 'Орешки' }).count(), 1);
+
+  // Fondue ingredients are normal-sized Friday rows with a fondue badge.
   await page.locator('#fondueRecommend').click();
-  assert.match(await page.locator('#shoppingFonduePreview').innerText(), /Клубника/);
-  assert.equal(await page.locator('[data-shopping-item="Клубника"]').count(), 1);
+  const strawberryFriday = page.locator('#fridayShoppingPreview .plan-product-row').filter({ hasText: 'Клубника' });
+  assert.equal(await strawberryFriday.count(), 1);
+  assert.match(await strawberryFriday.innerText(), /для фондю/);
 
-  // Breakfast is a separate planning mode; options enter the final list only after selection.
+  // Breakfast has editable options and selected items flow forward.
   await page.locator('[data-shopping-view="breakfast"]').click();
-  assert.equal(await page.locator('[data-shopping-panel="breakfast"]').isVisible(), true);
-  assert.equal(await page.locator('[data-shopping-item="Яйца"]').count(), 0);
   await page.getByRole('button', { name: 'Яйца', exact: true }).click();
-  await page.getByRole('button', { name: 'Сыр', exact: true }).click();
+  await page.locator('#breakfastCustomInput').fill('Хлопья');
+  await page.locator('#breakfastCustomAdd').click();
   assert.match(await page.locator('#breakfastPicked').innerText(), /Яйца/);
-  assert.match(await page.locator('#breakfastPicked').innerText(), /Сыр/);
-  assert.equal(await page.locator('[data-shopping-item="Яйца"]').count(), 1);
+  assert.match(await page.locator('#breakfastPicked').innerText(), /Хлопья/);
+  assert.equal(await page.getByRole('button', { name: 'Хлопья', exact: true }).getAttribute('aria-pressed'), 'true');
 
-  // Final list contains only actual purchases and supports custom rows.
+  // Final list is an editable preview assembled from Friday + fondue + breakfasts.
   await page.locator('[data-shopping-view="list"]').click();
-  assert.equal(await page.locator('[data-shopping-panel="list"]').isVisible(), true);
   assert.equal(await page.locator('[data-shopping-item="Молоко для какао"]').count(), 1);
-  assert.equal(await page.locator('[data-shopping-item="Coca-Cola Original"]').count(), 1);
-  assert.equal(await page.locator('[data-shopping-item="Pringles"]').count(), 1);
+  assert.equal(await page.locator('[data-shopping-item="Клубника"]').count(), 1);
+  assert.equal(await page.locator('[data-shopping-item="Орешки"]').count(), 1);
+  assert.equal(await page.locator('[data-shopping-item="Яйца"]').count(), 1);
+  assert.equal(await page.locator('[data-shopping-item="Хлопья"]').count(), 1);
+
   await page.locator('#shoppingCustomInput').fill('Вода 2 л');
   await page.locator('#shoppingAdd').click();
   assert.equal(await page.locator('[data-shopping-item="Вода 2 л"]').count(), 1);
 
-  // Duplicate names should not create duplicate rows.
-  await page.locator('#shoppingCustomInput').fill('вода 2 л');
-  await page.locator('#shoppingAdd').click();
-  assert.equal(await page.locator('[data-shopping-item="Вода 2 л"]').count(), 1);
+  // Freeze a snapshot for the actual store trip.
+  assert.equal(await page.locator('#savedShoppingLaunch').isVisible(), false);
+  await page.locator('#saveStoreList').click();
+  assert.equal(await page.locator('#savedShoppingLaunch').isVisible(), true);
+  await page.locator('#openSavedShopping').click();
+  assert.equal(await page.locator('#storeListModal').isVisible(), true);
+  assert.equal(await page.locator('[data-store-item="Pringles"]').count(), 1);
+  assert.equal(await page.locator('[data-store-item="Клубника"]').count(), 1);
+  assert.equal(await page.locator('[data-store-item="Хлопья"]').count(), 1);
 
-  // Check state and selected breakfast survive reload.
-  await page.locator('[data-shopping-item="Вода 2 л"]').check();
+  // Tap a product after putting it into the cart: it gets crossed out and persists.
+  await page.locator('[data-store-item="Pringles"]').click();
+  assert.equal(await page.locator('[data-store-item="Pringles"]').evaluate(el => el.classList.contains('done')), true);
+  assert.match(await page.locator('#storeListProgress').innerText(), /^1 \/ /);
+  await page.locator('[data-close-store-list]').last().click();
+
+  // Editing the plan does NOT silently mutate the frozen store list.
+  await page.locator('[data-shopping-view="friday"]').click();
+  await page.locator('#fridayCustomInput').fill('Сок');
+  await page.locator('#fridayCustomAdd').click();
+  await page.locator('#openSavedShopping').click();
+  assert.equal(await page.locator('[data-store-item="Сок"]').count(), 0);
+  await page.locator('[data-close-store-list]').last().click();
+
+  // Explicitly freezing again updates the snapshot while preserving matching checked items.
+  await page.locator('[data-shopping-view="list"]').click();
+  await page.locator('#saveStoreList').click();
+  await page.locator('#openSavedShopping').click();
+  assert.equal(await page.locator('[data-store-item="Сок"]').count(), 1);
+  assert.equal(await page.locator('[data-store-item="Pringles"]').evaluate(el => el.classList.contains('done')), true);
+  await page.locator('[data-close-store-list]').last().click();
+
+  // Saved store list and custom planning choices survive reload.
   await page.reload({ waitUntil: 'domcontentloaded' });
   if (await page.locator('#startEvening').isVisible().catch(()=>false)) await page.locator('#startEvening').click();
   await page.locator('.mnav[data-tab="food"]').click();
-  assert.equal(await page.locator('[data-shopping-view="list"]').evaluate(el => el.classList.contains('active')), true);
-  assert.equal(await page.locator('[data-shopping-item="Вода 2 л"]').isChecked(), true);
-  assert.equal(await page.locator('[data-shopping-item="Яйца"]').count(), 1);
-
-  // Hide bought items and bring them back.
-  await page.locator('#shoppingHideDone').click();
-  assert.equal(await page.locator('[data-shopping-item="Вода 2 л"]').locator('..').locator('..').isVisible(), false);
-  await page.locator('#shoppingHideDone').click();
-  assert.equal(await page.locator('[data-shopping-item="Вода 2 л"]').locator('..').locator('..').isVisible(), true);
-
-  // Store mode keeps the final list full-screen.
-  await page.locator('#shoppingStoreMode').click();
-  assert.equal(await page.evaluate(() => document.body.classList.contains('shopping-mode')), true);
-  const card = await page.locator('#shoppingCard').boundingBox();
-  assert.ok(card && card.width >= 389 && card.height >= 843);
-  assert.equal(await page.locator('[data-shopping-panel="list"]').isVisible(), true);
-  const row = await page.locator('[data-shopping-item="Вода 2 л"]').locator('..').boundingBox();
-  assert.ok(row && row.height >= 50);
-  await page.locator('#shoppingStoreExit').click();
-
-  // Remove custom item; automatic Friday/fondue items remain.
-  await page.getByRole('button', { name: 'Удалить Вода 2 л' }).click();
-  assert.equal(await page.locator('[data-shopping-item="Вода 2 л"]').count(), 0);
-  assert.equal(await page.locator('[data-shopping-item="Шоколад для фондю"]').count(), 1);
-  assert.equal(await page.locator('[data-shopping-item="Клубника"]').count(), 1);
-
-  // Breakfast can be removed again from its own mode.
+  assert.equal(await page.locator('#savedShoppingLaunch').isVisible(), true);
+  assert.match(await page.locator('#fridayShoppingPreview').innerText(), /Орешки/);
   await page.locator('[data-shopping-view="breakfast"]').click();
-  assert.equal(await page.getByRole('button', { name: 'Яйца', exact: true }).getAttribute('aria-pressed'), 'true');
-  await page.getByRole('button', { name: 'Яйца', exact: true }).click();
-  await page.locator('[data-shopping-view="list"]').click();
-  assert.equal(await page.locator('[data-shopping-item="Яйца"]').count(), 0);
+  assert.match(await page.locator('#breakfastPicked').innerText(), /Хлопья/);
+  await page.locator('#openSavedShopping').click();
+  assert.equal(await page.locator('[data-store-item="Сок"]').count(), 1);
+  assert.equal(await page.locator('[data-store-item="Pringles"]').evaluate(el => el.classList.contains('done')), true);
+  await page.locator('[data-close-store-list]').last().click();
+
+  // Custom Friday and breakfast options can be removed without touching fixed items.
+  await page.locator('[data-shopping-view="friday"]').click();
+  await page.getByRole('button', { name: 'Удалить из пятницы Орешки' }).click();
+  assert.equal(await page.locator('#fridayShoppingPreview .plan-product-row').filter({ hasText: 'Орешки' }).count(), 0);
+  await page.locator('[data-shopping-view="breakfast"]').click();
+  await page.getByRole('button', { name: 'Удалить вариант завтрака Хлопья' }).click();
+  assert.doesNotMatch(await page.locator('#breakfastPicked').innerText(), /Хлопья/);
 
   assert.deepEqual(errors, [], 'Uncaught page errors: '+errors.join('\n'));
   console.log('SHOPPING_LIST_OK');
