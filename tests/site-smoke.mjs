@@ -95,7 +95,7 @@ try{
   assert.equal(await page.locator('#planNow').isVisible(),false);
   assert.equal(await page.locator('#plan > .mini').isVisible(),false);
   await page.locator('label.check').first().click();
-  assert.equal(await page.locator('[data-check="1"]').isChecked(),true);
+  assert.equal(await page.locator('[data-check="24"]').isChecked(),true);
   assert.notEqual((await page.locator('#progressText').innerText()).trim(),'не спешим');
   await page.locator('#reset').evaluate(el=>el.click());
   assert.equal((await page.locator('#progressText').innerText()).trim(),'не спешим');
