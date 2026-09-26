@@ -379,6 +379,10 @@
     .movie-pulled{position:absolute;z-index:10;left:50%;top:44%;width:min(430px,88%);transform:translate(-50%,-50%) rotate(-1deg);padding:22px 20px;border-radius:13px;background:linear-gradient(145deg,#fff0d2,#f0d8ae);color:#4b392d;box-shadow:0 24px 70px rgba(0,0,0,.36);animation:moviePulledReveal .72s cubic-bezier(.17,.88,.25,1.25)}.movie-pulled.hidden{display:none}.movie-pulled small{display:block;font-size:9px;letter-spacing:.15em;font-weight:900;color:#84634e}.movie-pulled b{display:block;margin:8px 0 7px;font-family:Georgia,serif;font-size:clamp(24px,5vw,38px);line-height:1.08}.movie-pulled span{font-size:12px;font-weight:850;color:#765847}@keyframes moviePulledReveal{0%{opacity:0;transform:translate(-50%,90px) rotate(10deg) scale(.45)}60%{opacity:1;transform:translate(-50%,-55%) rotate(-3deg) scale(1.06)}100%{transform:translate(-50%,-50%) rotate(-1deg) scale(1)}}
     .movie-roulette__done{position:relative;z-index:12;border:0;border-radius:999px;background:#dceadf;color:#183529;padding:12px 22px;font-weight:950;font-size:14px;box-shadow:0 12px 28px rgba(0,0,0,.18)}.movie-roulette__done.hidden{visibility:hidden;pointer-events:none}
     @media(max-width:620px){.movie-roulette{padding:0}.movie-roulette__screen{width:100%;height:100%;min-height:100%;border:0;border-radius:0;padding:60px 16px 22px}.movie-roulette__stage{height:430px}.movie-jar-wrap{width:225px;height:265px;bottom:48px}.movie-pulled{top:46%}}
+
+    .note-hunt-bar{position:relative;z-index:2;margin-top:18px;max-width:650px}.note-hunt-button{width:100%;display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:11px;align-items:center;text-align:left;padding:11px 13px;border:1px solid rgba(244,218,181,.26);border-radius:17px;background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(194,138,87,.11));color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.07);backdrop-filter:blur(10px)}.note-hunt-button:hover{background:linear-gradient(135deg,rgba(255,255,255,.17),rgba(194,138,87,.16));transform:translateY(-1px)}.note-hunt-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:rgba(255,255,255,.1);font-size:21px}.note-hunt-copy{display:grid;gap:2px;min-width:0}.note-hunt-copy small{font-size:9px;letter-spacing:.12em;font-weight:900;color:rgba(255,255,255,.64)}.note-hunt-copy b{font-size:14px}.note-hunt-copy strong{color:#f1d6ac;font-variant-numeric:tabular-nums}.note-hunt-hint{font-size:10px;color:rgba(255,255,255,.68);font-weight:750;text-align:right;max-width:180px;line-height:1.3}.note-hunt-bar.note-found{animation:noteFoundPulse .85s ease}@keyframes noteFoundPulse{35%{transform:scale(1.018);filter:drop-shadow(0 0 14px rgba(234,196,139,.28))}}
+    body.activity-mode .note-hunt-bar{margin-top:8px;max-width:none}.hero .romance-actions{display:none!important}
+    @media(max-width:760px){.note-hunt-bar{margin-top:13px}.note-hunt-button{grid-template-columns:36px minmax(0,1fr);padding:9px 10px;border-radius:14px}.note-hunt-icon{width:34px;height:34px;font-size:18px}.note-hunt-hint{grid-column:2;max-width:none;text-align:left;margin-top:-3px;font-size:9px}body.activity-mode .note-hunt-copy small{display:none}body.activity-mode .note-hunt-hint{display:none}body.activity-mode .note-hunt-button{grid-template-columns:30px 1fr;padding:7px 9px}body.activity-mode .note-hunt-icon{width:28px;height:28px;font-size:15px}}
 </style>
 </head>
 <body>
@@ -477,8 +481,14 @@
       </div>
       <div class="moods"><span>🍂 осенний уют</span><span>🕯️ тёплый свет</span><span>☕ какао · фондю · кино</span></div>
       <div class="progress"><div class="progress-copy"><span>План вечера</span><b id="progressText">0%</b></div><div class="track"><div class="bar" id="progressBar"></div></div></div>
+      <div class="note-hunt-bar" id="noteHuntBar">
+        <button class="note-hunt-button" id="noteCollection" type="button">
+          <span class="note-hunt-icon">🍁</span>
+          <span class="note-hunt-copy"><small>СЕКРЕТНЫЕ ЗАПИСКИ ДЛЯ СОНИ</small><b>Найдено <strong id="noteCount">0/20</strong></b></span>
+          <span class="note-hunt-hint" id="noteHuntHint">Ищи их по всему сайту →</span>
+        </button>
+      </div>
       <div class="romance-actions">
-        <button class="romance-pill" id="noteCollection" type="button">🍁 Записки <b id="noteCount">0/20</b></button>
         <button class="romance-pill" id="luckyButton" type="button">✨ Мне повезло</button>
         <button class="romance-pill" id="couponSecret" type="button">🎟️ Купон</button>
         <button class="romance-pill" id="cozyButton" type="button">🕯️ Сделать уютнее <b id="cozyLevel">0/4</b></button>
@@ -496,7 +506,7 @@
 
   <main class="shell">
     <section class="panel active" id="plan">
-      <div class="section-head"><div><h2>Наш план на вечер</h2><p>Всё по порядку — спокойно, без лишних кнопок и переходов.</p></div><button class="soft" id="reset">Сбросить галочки</button></div>
+      <div class="section-head"><div><h2>Наш план на вечер</h2><p>Ориентир по времени, а не дедлайн: цель — к полуночи уже устроиться с какао и фильмом.</p></div><button class="soft" id="reset">Сбросить галочки</button></div>
       <div class="plan-shift-banner hidden" id="planShiftBanner"><span>🔓</span><div><small>ПЛАН ВЕЧЕРА ОБНОВЛЁН</small><b>Появилась ещё одна часть вечера</b></div></div>
       <section class="today-card" id="todayCard">
         <div class="today-head"><div><small>СЕГОДНЯ</small><h3>Всё важное перед глазами</h3><p id="todayLead">Подготовка к поездке без лишней суеты.</p></div><span class="today-date" id="todayDate">2 октября</span></div>
@@ -528,34 +538,45 @@
       </article>
       <button class="prep-restore hidden" id="prepRestore" type="button">🎒 Вернуть список сборов</button>
       <div class="flow" id="planFlow">
-        <article class="phase p1" data-plan-phase="1"><div class="icon">🏠</div><div><p class="time">17:00–19:00</p><h3>Приехали и выдохнули</h3><div class="checklist">
-          <label class="check"><input type="checkbox" data-check="1"><span class="box"></span><span><b>Заселиться</b> и немного отдохнуть после дороги.</span></label>
-          <label class="check"><input type="checkbox" data-check="2"><span class="box"></span><span><b>Небольшая прогулка</b> по центру без туристического марафона.</span></label>
-          <label class="check"><input type="checkbox" data-check="3"><span class="box"></span><span><b>Магазин:</b> молоко, шоколад, сливки, фрукты, маршмеллоу, печенье/вафли, напитки и закуски.</span></label>
-          <label class="check"><input type="checkbox" data-check="4"><span class="box"></span><span><b>Выбрать и заказать ужин</b> во вкладке «Еда» примерно к 19:15–19:30.</span></label>
+        <article class="phase p1" data-plan-phase="1"><div class="icon">🏠</div><div><p class="time">19:00–19:35</p><h3>Приехали и разложились</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="1"><span class="box"></span><span><b>Зайти в квартиру и выдохнуть</b> после дороги: снять верхнюю одежду, поставить сумки, немного прийти в себя.</span></label>
+          <label class="check"><input type="checkbox" data-check="2"><span class="box"></span><span><b>Разложить только нужное на вечер</b> — одежду, фондю, свечи, декор, подарок и какао. Чемоданы полностью не разбирать.</span></label>
+          <label class="check"><input type="checkbox" data-check="3"><span class="box"></span><span><b>Убрать покупки и подготовить кухню.</b> Если что-то забыли купить — докупить только необходимое, без отдельной прогулки.</span></label>
+          <label class="check"><input type="checkbox" data-check="4"><span class="box"></span><span><b>Заказать ужин домой</b> примерно к 19:20–19:30, чтобы начать есть около 20:00.</span></label>
         </div></div></article>
-        <article class="phase p2" data-plan-phase="2"><div class="icon">🕯️</div><div><p class="time">≈ 19:00</p><h3>Включаем уют</h3><div class="checklist">
-          <label class="check"><input type="checkbox" data-check="5"><span class="box"></span><span><b>Переодеться</b> — дома ждёт маленький сюрприз ✨</span></label>
-          <label class="check"><input type="checkbox" data-check="6"><span class="box"></span><span>Включить <b>камин, проектор и ваш плейлист</b>.</span></label>
-          <label class="check"><input type="checkbox" data-check="7"><span class="box"></span><span><b>Зажечь свечи</b> и оставить только тёплый мягкий свет.</span></label>
+
+        <article class="phase p2" data-plan-phase="2"><div class="icon">🕯️</div><div><p class="time">19:35–20:00</p><h3>Включаем уют</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="5"><span class="box"></span><span><b>Переодеться</b> в ваши одинаково-уютные вещи.</span></label>
+          <label class="check"><input type="checkbox" data-check="6"><span class="box"></span><span>Включить <b>камин, проектор, Алису и ваш плейлист</b>.</span></label>
+          <label class="check"><input type="checkbox" data-check="7"><span class="box"></span><span><b>Зажечь свечи</b> и оставить тёплый мягкий свет.</span></label>
           <label class="check"><input type="checkbox" data-check="19"><span class="box"></span><span><b>Разбросать кленовые листья</b> и добавить немного осени в квартиру 🍁</span></label>
-          <label class="check"><input type="checkbox" data-check="8"><span class="box"></span><span><b>Подготовить еду и напитки</b> к вечеру.</span></label>
+          <label class="check"><input type="checkbox" data-check="8"><span class="box"></span><span><b>Поставить напитки и закуски под рукой.</b> К 20:00 больше ничего не готовим — просто начинаем вечер.</span></label>
         </div></div></article>
-        <article class="phase p3" data-plan-phase="3"><div class="icon" id="dinnerPlanIcon">🍽️</div><div><p class="time">19:30–20:15</p><h3>Сначала нормально поесть</h3><div class="checklist">
-          <label class="check"><input type="checkbox" data-check="9"><span class="box"></span><span>Спокойно поужинать: <b id="dinnerPlanName">сначала выберите ужин во вкладке «Еда»</b>. Фондю пока не трогать — это десерт.</span></label>
-          <label class="check"><input type="checkbox" data-check="10"><span class="box"></span><span>Подарить <b>маленький сюрприз</b> — просто между делом.</span></label>
+
+        <article class="phase p3" data-plan-phase="3"><div class="icon" id="dinnerPlanIcon">🍽️</div><div><p class="time">20:00–20:40</p><h3>Ужин и маленький сюрприз</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="9"><span class="box"></span><span>Спокойно поужинать: <b id="dinnerPlanName">сначала выберите ужин во вкладке «Еда»</b>. Фондю оставить на следующий этап.</span></label>
+          <label class="check"><input type="checkbox" data-check="10"><span class="box"></span><span>Подарить <b>Овечку</b> без отдельной церемонии — просто в хороший момент между делом 🐑</span></label>
         </div></div></article>
-        <article class="phase p4" data-plan-phase="4" id="planPhaseFour"><div class="icon" id="planP4Icon">🍫</div><div><p class="time" id="planP4Time">после ужина</p><h3 id="planP4Title">Вкусности, игры и творчество</h3><div class="checklist">
-          <label class="check"><input type="checkbox" data-check="11"><span class="box"></span><span id="planTask11"><b>Фондю + слепая дегустация</b> — выбирать самые вкусные сочетания.</span></label>
-          <label class="check"><input type="checkbox" data-check="12"><span class="box"></span><span id="planTask12"><b>Один рисунок на двоих</b> — каждый делает свою половину.</span></label>
-          <label class="check"><input type="checkbox" data-check="13"><span class="box"></span><span id="planTask13"><b>Сделать фотки</b> — несколько красивых и несколько максимально дурацких.</span></label>
-          <label class="check"><input type="checkbox" data-check="14"><span class="box"></span><span id="planTask14"><b>Фильм по эмодзи + разговорные игры</b> по настроению.</span></label>
-          <label class="check"><input type="checkbox" data-check="15"><span class="box"></span><span id="planTask15"><b>Выбрать, что хочется дальше</b> — ещё поиграть, порисовать или просто валяться и болтать.</span></label>
-        </div><button class="case-plan-cta hidden" id="casePlanLaunch" type="button">🔎 Открыть дело №24</button></div></article>
-        <article class="phase p5" data-plan-phase="5" id="planPhaseFive"><div class="icon">🎞️</div><div><p class="time" id="planP5Time">финал вечера</p><h3 id="planP5Title">Какао, жеребьёвка и кино</h3><div class="checklist">
-          <label class="check"><input type="checkbox" data-check="16"><span class="box"></span><span>Сделать <b>какао-бомбочки с маршмеллоу</b>.</span></label>
-          <label class="check"><input type="checkbox" data-check="17"><span class="box"></span><span>Зарандомить один из <b>6 фильмов</b>.</span></label>
-          <label class="check"><input type="checkbox" data-check="18"><span class="box"></span><span><b>Дальше никакой программы.</b> Плед, проектор и обниматься.</span></label>
+
+        <article class="phase p4" data-plan-phase="4" id="planPhaseFour"><div class="icon" id="planP4Icon">🎨</div><div><p class="time" id="planP4Time">20:40–22:15</p><h3 id="planP4Title">Фондю, свечи и творчество</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="11"><span class="box"></span><span id="planTask11"><b>Собрать фондю и устроить дегустацию.</b> Не делать отдельный «десертный час» — просто есть его по ходу этого блока.</span></label>
+          <label class="check"><input type="checkbox" data-check="12"><span class="box"></span><span id="planTask12"><b>Сделать свечи своими руками</b> — спокойно, без попытки сделать идеально.</span></label>
+          <label class="check"><input type="checkbox" data-check="13"><span class="box"></span><span id="planTask13"><b>Один рисунок на двоих</b> — каждый делает свою часть.</span></label>
+          <label class="check"><input type="checkbox" data-check="14"><span class="box"></span><span id="planTask14"><b>Поболтать, сделать несколько фоток или сыграть в эмодзи</b> — только если хочется. «Случайный момент» можно жать в любой момент.</span></label>
+          <label class="check"><input type="checkbox" data-check="15"><span class="box"></span><span id="planTask15"><b>Около 22:15 закончить этот блок.</b> Что не успели — не догоняем: важнее не устать.</span></label>
+        </div></div></article>
+
+        <article class="phase p5 hidden" data-plan-phase="5" id="planPhaseDetective"><div class="icon">🔎</div><div><p class="time">22:15–23:45</p><h3>Дело на двоих: «Последний эфир»</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="20"><span class="box"></span><span><b>Открыть дело №24</b> и спокойно прочитать официальную сводку.</span></label>
+          <label class="check"><input type="checkbox" data-check="21"><span class="box"></span><span><b>Вместе изучать</b> телефон, ноутбук, веб, допросы и материалы; версии обсуждать вслух.</span></label>
+          <label class="check"><input type="checkbox" data-check="22"><span class="box"></span><span>Использовать <b>доску и подсказки</b>, если реально застряли — цель кайфануть, а не мучиться.</span></label>
+          <label class="check"><input type="checkbox" data-check="23"><span class="box"></span><span><b>К 23:45 назвать финальную версию</b> и открыть развязку. Если расследование затянулось — лучше воспользоваться подсказкой.</span></label>
+        </div><button class="case-plan-cta" id="casePlanLaunch" type="button">🔎 Открыть дело №24</button></div></article>
+
+        <article class="phase p6" data-plan-phase="6" id="planPhaseSix"><div class="icon">🎞️</div><div><p class="time" id="planP6Time">23:45–≈02:00</p><h3 id="planP6Title">Какао, рулетка и фильм до сна</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="16"><span class="box"></span><span><b>23:45–00:00:</b> сделать какао-бомбочки и устроиться под пледом.</span></label>
+          <label class="check"><input type="checkbox" data-check="17"><span class="box"></span><span><b>Крутануть рулетку из 6 фильмов</b> и сразу включить то, что выпало.</span></label>
+          <label class="check"><input type="checkbox" data-check="18"><span class="box"></span><span><b>Около 00:00 начать фильм.</b> После него никакой программы — только как захочется вам двоим.</span></label>
         </div></div></article>
       </div>
       <div class="mini">
@@ -866,26 +887,17 @@
         unlockCaseNavigation();
         if(typeof planExpanded!=="undefined"){planExpanded=true;sessionStorage.setItem("kostromaPlanExpanded","1");syncPlanDetails()}
       }
-      q("#planP4Icon").textContent=revealed?"🔎":"🍫";
-      q("#planP4Time").textContent=revealed?"≈ 20:30–22:15 · без таймера":"после ужина";
-      q("#planP4Title").textContent=revealed?"Дело на двоих: «Последний эфир»":"Вкусности, игры и творчество";
-      q("#planTask11").innerHTML=revealed?"<b>Подготовить фондю и напитки.</b> Если хочется — ещё 10 минут на общий рисунок или пару фотографий.":"<b>Фондю + слепая дегустация</b> — выбирать самые вкусные сочетания.";
-      q("#planTask12").innerHTML=revealed?"<b>Открыть дело №24</b> и сначала спокойно прочитать официальную сводку.":"<b>Один рисунок на двоих</b> — каждый делает свою половину.";
-      q("#planTask13").innerHTML=revealed?"<b>Вместе изучать</b> телефон, ноутбук, веб, допросы и материалы; обсуждать версии вслух.":"<b>Сделать фотки</b> — несколько красивых и несколько максимально дурацких.";
-      q("#planTask14").innerHTML=revealed?"Использовать <b>доску, хронологию и подсказки</b> только если реально понадобится.":"<b>Фильм по эмодзи + разговорные игры</b> по настроению.";
-      q("#planTask15").innerHTML=revealed?"<b>Назвать убийцу</b>, объяснить мотив и открыть развязку дела.":"<b>Выбрать, что хочется дальше</b> — ещё поиграть, порисовать или просто валяться и болтать.";
-      q("#planP5Time").textContent=revealed?"после расследования":"финал вечера";
-      q("#planP5Title").textContent="Какао, жеребьёвка и кино";
-      q("#casePlanLaunch").classList.toggle("hidden",!revealed);
+      q("#planPhaseDetective").classList.toggle("hidden",!revealed);
       q("#planShiftBanner").classList.toggle("hidden",!revealed);
       q("#caseSecretLaunch").classList.toggle("revealed",revealed);
       q("#caseSecretIcon").textContent=revealed?"🔎":"🔐";
       q("#caseSecretEyebrow").textContent=revealed?"ДЕЛО №24 РАЗБЛОКИРОВАНО":"СЕКРЕТНЫЙ СЮРПРИЗ";
       q("#caseSecretTitle").textContent=revealed?"«Последний эфир»":"Тут спрятано кое-что ещё";
-      q("#caseSecretText").textContent=revealed?"План уже обновлён. Теперь можно открыть материалы дела.":"Необязательно открывать сразу. Лучше оставить на момент, когда захочется чего-то нового.";
+      q("#caseSecretText").textContent=revealed?"Между творчеством и кино появился отдельный этап расследования.":"Необязательно открывать сразу. Лучше оставить на момент, когда захочется чего-то нового.";
       q("#openSecretCase").textContent=revealed?"Открыть дело №24 🔎":"Открыть сюрприз 🍁";
       syncSecretLauncher(false);
-      if(typeof renderPlanNow==="function")renderPlanNow();
+      if(typeof progress==="function"&&typeof checks!=="undefined")progress();
+      else if(typeof renderPlanNow==="function")renderPlanNow();
     }
     var revealInProgress=false;
     function finishSecretReveal(){
@@ -896,14 +908,14 @@
       document.body.classList.remove("case-reveal-active");
       revealInProgress=false;
       planExpanded=true;sessionStorage.setItem("kostromaPlanExpanded","1");syncPlanDetails();
-      q("#planPhaseFour").classList.add("plan-highlight");
+      q("#planPhaseDetective").classList.add("plan-highlight");
       if(!matchMedia("(prefers-reduced-motion: reduce)").matches)leafStorm(26);
       requestAnimationFrame(function(){
-        q("#planPhaseFour").scrollIntoView({behavior:"smooth",block:"center"});
+        q("#planPhaseDetective").scrollIntoView({behavior:"smooth",block:"center"});
         q("#casePlanLaunch").focus({preventScroll:true});
       });
       showToast("🔓 План вечера изменился");
-      setTimeout(function(){q("#planPhaseFour").classList.remove("plan-highlight")},1600)
+      setTimeout(function(){q("#planPhaseDetective").classList.remove("plan-highlight")},1600)
     }
     function revealSecretPlan(){
       if(secretPlanRevealed){openDetectiveCase();return}
@@ -918,7 +930,7 @@
       flow.classList.remove("plan-reveal-in");
       flow.classList.add("plan-reveal-out");
       setTimeout(function(){
-        [11,12,13,14,15].forEach(function(id){
+        [20,21,22,23].forEach(function(id){
           var box=checks.find(function(x){return x.getAttribute("data-check")===String(id)});
           if(box){box.checked=false;saved[String(id)]=false}
         });
@@ -960,7 +972,7 @@
       return "Наш костромской вечер";
     }
     function renderToday(){
-      var phases=qa("[data-plan-phase]",q("#planFlow")),current=phases.find(function(p){return qa("[data-check]",p).some(function(c){return !c.checked})});
+      var phases=qa("[data-plan-phase]:not(.hidden)",q("#planFlow")),current=phases.find(function(p){return qa("[data-check]",p).some(function(c){return !c.checked})});
       var shop=Array.isArray(baseShopping)&&typeof shoppingItems==="function"?shoppingItems():[],shopDoneCount=shop.filter(function(x){return shoppingDone&&shoppingDone[x]}).length;
       var prep=Array.isArray(basePrep)&&typeof prepItems==="function"?prepItems():[],prepDoneCount=prep.filter(function(x){return prepDone&&prepDone[x]}).length;
       q("#todayLead").textContent=tripCountdownText();
@@ -970,16 +982,18 @@
       q("#todayDinner").textContent=dinner&&dinner.name?dinner.name:"не выбран";
       q("#todayStage").textContent=current?q("h3",current).textContent:"Никакой программы";
     }
-    function planActionFor(idx){
-      if(idx===0)return {tab:"food",label:"Открыть еду и покупки"};
-      if(idx===1)return {tab:"plan",label:"Показать подробности"};
-      if(idx===2)return {tab:"food",label:"Открыть выбранный ужин"};
-      if(idx===3)return secretPlanRevealed?{tab:"detective",label:"Перейти к делу"}:{tab:"emoji",label:"Открыть игры"};
-      if(idx===4)return {tab:"movies",label:"Перейти к кино"};
+    function planActionFor(phaseNo){
+      phaseNo=String(phaseNo);
+      if(phaseNo==="1")return {tab:"food",label:"Открыть еду и покупки"};
+      if(phaseNo==="2")return {tab:"plan",label:"Показать подробности"};
+      if(phaseNo==="3")return {tab:"food",label:"Открыть выбранный ужин"};
+      if(phaseNo==="4")return {tab:"talk",label:"Открыть игры и разговоры"};
+      if(phaseNo==="5")return {tab:"detective",label:"Перейти к делу"};
+      if(phaseNo==="6")return {tab:"movies",label:"Перейти к кино"};
       return null;
     }
     function renderPlanNow(){
-      var phases=qa("[data-plan-phase]",q("#planFlow")),current=phases.find(function(p){return qa("[data-check]",p).some(function(c){return !c.checked})}),idx=current?phases.indexOf(current):-1;
+      var phases=qa("[data-plan-phase]:not(.hidden)",q("#planFlow")),current=phases.find(function(p){return qa("[data-check]",p).some(function(c){return !c.checked})}),idx=current?phases.indexOf(current):-1;
       phases.forEach(function(phase){
         var phaseChecks=qa("[data-check]",phase),complete=phaseChecks.length&&phaseChecks.every(function(check){return check.checked});
         phase.classList.toggle("is-current",phase===current);
@@ -989,9 +1003,9 @@
       if(!current){q("#planNowIcon").textContent="❤️";q("#planNowTitle").textContent="Вечер удался ❤️";q("#planNowTime").textContent="дальше — просто отдыхать";q("#planNextIcon").textContent="🛋️";q("#planNextTitle").textContent="Никакой программы";action.classList.add("hidden");renderToday();return}
       q("#planNowIcon").textContent=q(".icon",current).textContent;q("#planNowTitle").textContent=q("h3",current).textContent;q("#planNowTime").textContent=q(".time",current).textContent;
       var next=phases[idx+1];q("#planNextIcon").textContent=next?q(".icon",next).textContent:"🛋️";q("#planNextTitle").textContent=next?q("h3",next).textContent:"Дальше — никакой программы";
-      var cfg=planActionFor(idx);action.classList.toggle("hidden",!cfg);if(cfg){action.dataset.target=cfg.tab;action.textContent=cfg.label}renderToday()
+      var cfg=planActionFor(current.getAttribute("data-plan-phase"));action.classList.toggle("hidden",!cfg);if(cfg){action.dataset.target=cfg.tab;action.textContent=cfg.label}renderToday()
     }
-    function progress(){var done=checks.filter(function(x){return x.checked}).length,p=Math.round(done/checks.length*100),label=p===100?"Вечер удался ❤️":p===0?"не спешим":p<35?"только начинаем":p<70?"вечер идёт":"почти всё попробовали";q("#progressBar").style.width=p+"%";q("#progressText").textContent=label;renderPlanNow();var gift=checks.find(function(x){return x.getAttribute("data-check")==="10"});if(gift)q("#sheepPeek").classList.toggle("hidden",!gift.checked);if(p===100&&!sessionStorage.getItem("kostromaFinale")){sessionStorage.setItem("kostromaFinale","1");setTimeout(function(){leafStorm(34);showFinalBanner()},150)}}
+    function progress(){var activeChecks=checks.filter(function(x){var phase=x.closest("[data-plan-phase]");return !phase||!phase.classList.contains("hidden")}),done=activeChecks.filter(function(x){return x.checked}).length,p=Math.round(done/activeChecks.length*100),label=p===100?"Вечер удался ❤️":p===0?"не спешим":p<35?"только начинаем":p<70?"вечер идёт":"почти всё попробовали";q("#progressBar").style.width=p+"%";q("#progressText").textContent=label;renderPlanNow();var gift=checks.find(function(x){return x.getAttribute("data-check")==="10"});if(gift)q("#sheepPeek").classList.toggle("hidden",!gift.checked);if(p===100&&!sessionStorage.getItem("kostromaFinale")){sessionStorage.setItem("kostromaFinale","1");setTimeout(function(){leafStorm(34);showFinalBanner()},150)}}
     checks.forEach(function(c){c.checked=!!saved[c.getAttribute("data-check")];c.addEventListener("change",function(){saved[c.getAttribute("data-check")]=c.checked;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()})});progress();
     q("#reset").addEventListener("click",function(){saved={};localStorage.removeItem("kostromaChecks");checks.forEach(function(c){c.checked=false});progress()})
     var planExpanded=sessionStorage.getItem("kostromaPlanExpanded")==="1";
@@ -1207,25 +1221,25 @@
 
     var loveNotes=[
       "Соня, я тебя очень люблю ❤️",
-      "Мне очень хорошо рядом с тобой.",
-      "С тобой даже обычный вечер становится маленьким событием.",
-      "Этот вечер я придумал просто потому, что хотел сделать тебе приятно.",
-      "Ты — мой самый любимый человек.",
-      "Спасибо за наши приколы и за то, сколько мы смеёмся вместе.",
-      "Хочу ещё очень много поездок, вечеров и маленьких приключений с тобой.",
-      "Эта записка даёт право на один поцелуй. Срок действия: прямо сейчас 😌❤️",
-      "Мне нравится, что у нас появляются свои маленькие традиции.",
-      "С тобой уютно даже просто молчать рядом.",
-      "Ты делаешь обычные дни теплее.",
-      "Я очень рад, что мы вместе.",
-      "С тобой хочется придумывать такие вечера снова и снова.",
-      "Официально: сегодня ты обязана принять неограниченное количество обнимашек.",
-      "Эта осень стала лучше, потому что ты рядом 🍂",
-      "Я люблю, когда мы вместе занимаемся какой-нибудь ерундой и нам по-настоящему весело.",
-      "Хочу сохранить этот вечер как одно маленькое хорошее воспоминание.",
-      "Если ты это читаешь — я, скорее всего, смотрю на тебя и улыбаюсь.",
-      "Ты — мой любимый человек для совместного ничего-не-делания.",
-      "Финальная записка: я тебя люблю. Всё остальное можно не усложнять ❤️"
+      "Если ты нашла эту записку — срочно улыбнись. Мне очень нравится твоя улыбка.",
+      "Эта записка даёт право на один поцелуй. Использовать желательно прямо сейчас 😌",
+      "Мне нравится, что даже из какой-нибудь ерунды мы умеем сделать свою маленькую традицию.",
+      "Спасибо за наши тупые шутки, от которых иногда смешно только нам двоим.",
+      "С тобой можно куда-то ехать, что-то придумывать, а можно просто лежать рядом — и оба варианта мне нравятся.",
+      "Официальное разрешение украсть у меня самый вкусный Pringles. Один. Ладно, два.",
+      "Я придумал этот вечер не ради идеального плана. Я просто хотел, чтобы тебе было хорошо.",
+      "Если фондю уже рядом: самый вкусный кусочек сегодня по умолчанию твой 🍫",
+      "Ты — мой любимый человек для поездок, уютных вечеров и совместного ничего-не-делания.",
+      "Мне очень нравится, когда мы вместе занимаемся какой-нибудь ерундой и внезапно получается отличный вечер.",
+      "На случай, если сегодня что-то пойдёт не по плану: мне всё равно хорошо, потому что ты рядом.",
+      "Эта записка официально назначает 30 секунд обнимашек. Отсчёт можно не вести.",
+      "Хочу ещё много таких маленьких поездок — без великой цели, просто вдвоём.",
+      "Осень объективно стала уютнее, когда в ней появилась ты 🍂",
+      "Если ты читаешь это во время детектива: есть подозрение, что ты украла моё сердце. Улики убедительные.",
+      "Мне нравится сохранять наши фотки, потому что потом смотришь — и обычный день уже кажется особенным.",
+      "С тобой уютно даже молчать. Это вообще-то довольно редкая суперспособность.",
+      "Если вечер уже подходит к концу: спасибо, что проживаешь со мной все эти придуманные мной странности ❤️",
+      "Финальная записка: никаких загадок. Я просто очень тебя люблю."
     ];
     var tripNow=new Date(),tripDay=tripNow.getFullYear()===2026&&tripNow.getMonth()===9&&tripNow.getDate()===2;
     if(tripDay&&!sessionStorage.getItem("kostromaTripFreshNotes")){sessionStorage.removeItem("kostromaFoundNotes");sessionStorage.removeItem("kostromaAllNotes");sessionStorage.setItem("kostromaTripFreshNotes","1")}
@@ -1233,9 +1247,9 @@
 
     function showToast(text){var t=q("#toast");t.textContent=text;t.classList.add("show");clearTimeout(showToast.timer);showToast.timer=setTimeout(function(){t.classList.remove("show")},2300)}
     function burstHearts(x,y){var layer=q("#heartLayer");for(var i=0;i<10;i++){var h=document.createElement("span");h.className="burst-heart";h.textContent=i%3===0?"🍁":"❤";h.style.left=(x+(Math.random()*46-23))+"px";h.style.top=(y+(Math.random()*22-11))+"px";h.style.setProperty("--dx",(Math.random()*150-75)+"px");h.style.setProperty("--rot",(Math.random()*100-50)+"deg");layer.appendChild(h);setTimeout(function(el){el.remove()},1300,h)}}
-    function updateNoteCounter(){var txt=foundNotes.length+"/"+loveNotes.length;q("#noteCount").textContent=txt;q("#noteFoundMeta").textContent="Найдено "+txt}
+    function updateNoteCounter(animate){var txt=foundNotes.length+"/"+loveNotes.length,remaining=loveNotes.length-foundNotes.length;q("#noteCount").textContent=txt;q("#noteFoundMeta").textContent="Найдено "+txt;q("#noteHuntHint").textContent=remaining?"Осталось найти "+remaining+" · ищи по всему сайту →":"Все записки найдены ❤️";if(animate){var bar=q("#noteHuntBar");bar.classList.remove("note-found");void bar.offsetWidth;bar.classList.add("note-found");setTimeout(function(){bar.classList.remove("note-found")},900)}}
     function nextUnseenNote(){var unseen=[];for(var i=0;i<loveNotes.length;i++)if(foundNotes.indexOf(i)<0)unseen.push(i);if(unseen.length)return unseen[Math.floor(Math.random()*unseen.length)];var r=Math.floor(Math.random()*loveNotes.length);while(loveNotes.length>1&&r===lastLove)r=Math.floor(Math.random()*loveNotes.length);return r}
-    function openLove(ev,forced){q("#loveTitle").textContent="Для Сони";var i=typeof forced==="number"?forced:nextUnseenNote();lastLove=i;if(foundNotes.indexOf(i)<0){foundNotes.push(i);sessionStorage.setItem("kostromaFoundNotes",JSON.stringify(foundNotes));showToast("🍁 Найдена записка "+foundNotes.length+" из "+loveNotes.length)}q("#loveText").textContent=loveNotes[i];q("#noteMeta").textContent="Записка "+(i+1)+" из "+loveNotes.length;q("#loveModal").classList.remove("hidden");updateNoteCounter();var x=innerWidth/2,y=innerHeight*.48;if(ev&&typeof ev.clientX==="number"){x=ev.clientX;y=ev.clientY}burstHearts(x,y);if(foundNotes.length===loveNotes.length&&!sessionStorage.getItem("kostromaAllNotes")){sessionStorage.setItem("kostromaAllNotes","1");setTimeout(function(){leafStorm(30);showToast("❤️ Все 20 записок найдены")},300)}}
+    function openLove(ev,forced){q("#loveTitle").textContent="Для Сони";var i=typeof forced==="number"?forced:nextUnseenNote();lastLove=i;if(foundNotes.indexOf(i)<0){foundNotes.push(i);sessionStorage.setItem("kostromaFoundNotes",JSON.stringify(foundNotes));showToast("🍁 Найдена записка "+foundNotes.length+" из "+loveNotes.length)}q("#loveText").textContent=loveNotes[i];q("#noteMeta").textContent="Записка "+(i+1)+" из "+loveNotes.length;q("#loveModal").classList.remove("hidden");updateNoteCounter(true);var x=innerWidth/2,y=innerHeight*.48;if(ev&&typeof ev.clientX==="number"){x=ev.clientX;y=ev.clientY}burstHearts(x,y);if(foundNotes.length===loveNotes.length&&!sessionStorage.getItem("kostromaAllNotes")){sessionStorage.setItem("kostromaAllNotes","1");setTimeout(function(){leafStorm(30);showToast("❤️ Все 20 записок найдены")},300)}}
     updateNoteCounter();
     function leafSpark(x,y){for(var i=0;i<3;i++){var s=document.createElement("span");s.className="leaf-spark";s.textContent=Math.random()>.5?"🍂":"🍁";s.style.left=(x+Math.random()*18-9)+"px";s.style.top=(y+Math.random()*12-6)+"px";s.style.setProperty("--sx",(Math.random()*52-26)+"px");s.style.setProperty("--sr",(Math.random()*100-50)+"deg");document.body.appendChild(s);setTimeout(function(el){el.remove()},850,s)}}
     function makeAmbientLeaves(){
@@ -1248,7 +1262,7 @@
         b.style.left=(x*96+2)+"vw";
         b.style.top=(y*95+2)+"vh";
         b.style.setProperty("--size",(mobile?11+Math.random()*7:16+Math.random()*17)+"px");
-        var leafOpacity=mobile?(noteLeaf?.065+Math.random()*.045:.02+Math.random()*.03):(noteLeaf?.10+Math.random()*.09:.025+Math.random()*.04);
+        var leafOpacity=mobile?(noteLeaf?.10+Math.random()*.055:.02+Math.random()*.03):(noteLeaf?.14+Math.random()*.10:.025+Math.random()*.04);
         b.style.setProperty("--opacity",leafOpacity.toFixed(3));
         b.style.setProperty("--dur",(mobile?10+Math.random()*8:9+Math.random()*8).toFixed(2)+"s");
         b.style.setProperty("--delay",(-Math.random()*8).toFixed(2)+"s");
@@ -1308,7 +1322,7 @@
     ["pointerup","pointercancel","pointerleave"].forEach(function(ev){q("#footerHeart").addEventListener(ev,function(){clearTimeout(ownerHeartTimer)})});
     q("#footerHeart").addEventListener("click",function(ev){if(ownerHeartOpened){ev.preventDefault();ownerHeartOpened=false;return}openLove(ev)});
 
-    q("#noteCollection").addEventListener("click",function(){openLove()});
+    q("#noteCollection").addEventListener("click",function(){showToast("🍁 На сайте спрятано 20 записок. Ищи осенние листики и другие подозрительные мелочи.")});
     var resetNotesTimer;q("#noteCollection").addEventListener("pointerdown",function(){resetNotesTimer=setTimeout(function(){foundNotes=[];sessionStorage.removeItem("kostromaFoundNotes");sessionStorage.removeItem("kostromaAllNotes");updateNoteCounter();showToast("🍁 Коллекция записок сброшена")},1600)});["pointerup","pointercancel","pointerleave"].forEach(function(ev){q("#noteCollection").addEventListener(ev,function(){clearTimeout(resetNotesTimer)})});
     qa("[data-close-love]").forEach(function(x){x.addEventListener("click",function(){q("#loveModal").classList.add("hidden")})});
 

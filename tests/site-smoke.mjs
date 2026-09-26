@@ -65,9 +65,18 @@ try{
   await page.locator('[data-close-moment]').last().click();
   assert.equal(await page.locator('#momentModal').evaluate(el=>el.classList.contains('hidden')),true);
 
-  // Evening header stays clean; romantic extras remain functional under the hood.
+  // Evening header keeps the hidden-note hunt visible while other extras stay tucked away.
   await page.locator('.mnav[data-tab="plan"]').click();
   assert.equal(await page.locator('.romance-actions').isVisible(),false);
+  assert.equal(await page.locator('#noteHuntBar').isVisible(),true);
+  assert.equal(await page.locator('#noteCount').innerText(),'0/20');
+  assert.match(await page.locator('#noteHuntHint').innerText(),/Осталось найти 20/);
+  await page.locator('#noteCollection').click();
+  assert.equal(await page.locator('#loveModal').evaluate(el=>el.classList.contains('hidden')),true);
+  await page.locator('#footerHeart').evaluate(el=>el.click());
+  assert.equal(await page.locator('#loveModal').evaluate(el=>el.classList.contains('hidden')),false);
+  assert.equal(await page.locator('#noteCount').innerText(),'1/20');
+  await page.locator('[data-close-love]').last().click();
   await page.locator('#luckyButton').evaluate(el=>el.click());
   assert.equal(await page.locator('#loveModal').evaluate(el=>el.classList.contains('hidden')),false);
   await page.locator('[data-close-love]').last().click();
@@ -97,11 +106,16 @@ try{
     await desktop.locator('.tab[data-tab="'+tab+'"]').click();
     assert.ok(await desktop.locator('#'+tab).evaluate(el=>el.classList.contains('active')));
   }
+  assert.equal(await desktop.locator('#planPhaseDetective').isVisible(),false);
+  assert.equal(await desktop.locator('#planP4Title').innerText(),'Фондю, свечи и творчество');
   await desktop.locator('#secretOwnerTrigger').click();
   await desktop.locator('#openSecretCase').click();
   await desktop.locator('#caseRevealContinue').click();
   await desktop.getByText('Дело на двоих: «Последний эфир»',{exact:false}).waitFor({state:'visible'});
   assert.ok(await desktop.locator('#plan').evaluate(el=>el.classList.contains('active')));
+  assert.equal(await desktop.locator('#planPhaseDetective').isVisible(),true);
+  assert.equal(await desktop.locator('#planP4Title').innerText(),'Фондю, свечи и творчество');
+  assert.equal(await desktop.locator('#planPhaseDetective .time').innerText(),'22:15–23:45');
   assert.equal(await desktop.locator('#casePlanLaunch').isVisible(),true);
   await desktop.locator('#casePlanLaunch').click();
   assert.ok(await desktop.locator('#detective').evaluate(el=>el.classList.contains('active')));

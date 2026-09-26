@@ -16,6 +16,12 @@ try {
   assert.equal(await page.locator('#plan > .mini').isVisible(), false);
   assert.equal(await page.locator('#prepCard').isVisible(), true);
   assert.equal(await page.locator('[data-plan-phase="1"]').evaluate(el => el.classList.contains('is-current')), true);
+  assert.equal(await page.locator('[data-plan-phase="1"] .time').innerText(), '19:00–19:35');
+  assert.equal(await page.locator('[data-plan-phase="2"] .time').innerText(), '19:35–20:00');
+  assert.equal(await page.locator('[data-plan-phase="3"] .time').innerText(), '20:00–20:40');
+  assert.equal(await page.locator('[data-plan-phase="4"] .time').innerText(), '20:40–22:15');
+  assert.equal(await page.locator('[data-plan-phase="5"]').isVisible(), false);
+  assert.equal(await page.locator('[data-plan-phase="6"] .time').innerText(), '23:45–≈02:00');
 
   for (const id of ['1','2','3','4']) {
     await page.locator('[data-check="'+id+'"]').evaluate(el => {
