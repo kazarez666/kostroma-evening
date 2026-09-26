@@ -350,6 +350,13 @@
     .section-head-actions .moment-launch{background:linear-gradient(135deg,rgba(255,253,248,.95),rgba(222,234,223,.9));border-color:rgba(35,79,58,.17);color:var(--forest)}
     .case-moment{color:#d7eadf!important;border-color:rgba(215,234,223,.18)!important;background:rgba(215,234,223,.055)!important}
     @media(max-width:620px){.section-head-actions{width:100%;display:grid;grid-template-columns:1fr 1fr}.section-head-actions .soft{width:100%}}
+
+    .prep-card.trip-left{display:none!important}
+    .prep-depart{margin-left:auto;background:var(--forest)!important;color:#fff!important;border-color:var(--forest)!important}
+    .prep-restore{display:block;margin:-4px 0 16px auto;border:0;background:transparent;color:var(--muted);font-size:10px;font-weight:800;padding:5px 7px;opacity:.7}
+    .prep-restore:hover{opacity:1;color:var(--forest)}
+    .prep-restore.hidden{display:none}
+    @media(max-width:620px){.prep-toolbar{flex-wrap:wrap}.prep-depart{width:100%;margin-left:0;padding:11px!important}}
 </style>
 </head>
 <body>
@@ -492,11 +499,12 @@
         </div>
         <div class="prep-body" id="prepBody">
           <div class="prep-add"><input id="prepCustomInput" maxlength="80" placeholder="Добавить своё: зонт, лекарства, книгу…"><button id="prepAdd" type="button">+ Добавить</button></div>
-          <div class="prep-toolbar"><button id="prepHideDone" type="button">Скрыть собранное</button></div>
+          <div class="prep-toolbar"><button id="prepHideDone" type="button">Скрыть собранное</button><button class="prep-depart" id="prepDepart" type="button">🚗 Поехали!</button></div>
           <div class="prep-list" id="prepList"></div>
           <p class="prep-note">Список разбит по категориям. Галочки и свои дополнительные пункты сохраняются только на этом устройстве.</p>
         </div>
       </article>
+      <button class="prep-restore hidden" id="prepRestore" type="button">🎒 Вернуть список сборов</button>
       <div class="flow" id="planFlow">
         <article class="phase p1" data-plan-phase="1"><div class="icon">🏠</div><div><p class="time">17:00–19:00</p><h3>Приехали и выдохнули</h3><div class="checklist">
           <label class="check"><input type="checkbox" data-check="1"><span class="box"></span><span><b>Заселиться</b> и немного отдохнуть после дороги.</span></label>
@@ -949,6 +957,7 @@
     var prepDone=JSON.parse(localStorage.getItem("kostromaPrepDone")||"{}"),
         prepCustom=JSON.parse(localStorage.getItem("kostromaPrepCustom")||"[]"),
         prepHideDone=localStorage.getItem("kostromaPrepHideDone")==="1",
+        prepDismissed=localStorage.getItem("kostromaPrepDismissed")==="1",
         prepGroups=[
           {title:"🎒 Обязательно взять",items:["Паспорта","Телефоны","Банковские карты","Ключи","Зарядки для телефонов","PowerBank","Наушники","Ноутбук","Зарядка для ноутбука","Электронная сигарета","Жидкость для электронной сигареты","Зарядка для электронной сигареты","Таблетки Сони","Какое-либо утепление на плохую погоду","Алиса","Зарядка для Алисы","Вибратор №1","Вибратор №2","Смазка","Зарядка для вибратора"]},
           {title:"🪥 Гигиена",items:["Зубные щётки","Зубная паста","Дезодорант","Духи","Шампунь / шампуни"]},
@@ -993,6 +1002,7 @@
       if(customItems.length){appendPrepHeading(wrap,"✍️ Своё",customItems);customItems.forEach(function(item){appendPrepItem(wrap,item,true)})}
       q("#prepCount").textContent=done+" / "+items.length+" собрано · осталось "+Math.max(0,items.length-done);
       q("#prepHideDone").classList.toggle("active",prepHideDone);q("#prepHideDone").textContent=prepHideDone?"Показать собранное":"Скрыть собранное";
+      q("#prepCard").classList.toggle("trip-left",prepDismissed);q("#prepRestore").classList.toggle("hidden",!prepDismissed);
       renderToday()
     }
     function setPrepExpanded(open){
@@ -1008,7 +1018,9 @@
     q("#prepToggle").addEventListener("click",function(){setPrepExpanded(q("#prepCard").classList.contains("is-collapsed"))});
     q("#prepAdd").addEventListener("click",addPrepCustom);q("#prepCustomInput").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();addPrepCustom()}});
     q("#prepHideDone").addEventListener("click",function(){prepHideDone=!prepHideDone;localStorage.setItem("kostromaPrepHideDone",prepHideDone?"1":"0");renderPrep()});
-    q("#todayPrepOpen").addEventListener("click",function(){setPrepExpanded(true);q("#prepCard").scrollIntoView({behavior:"smooth",block:"center"})});
+    q("#prepDepart").addEventListener("click",function(){prepDismissed=true;localStorage.setItem("kostromaPrepDismissed","1");setPrepExpanded(false);renderPrep();showToast("🚗 Всё, поехали! Сборы убраны с главной")});
+    q("#prepRestore").addEventListener("click",function(){prepDismissed=false;localStorage.removeItem("kostromaPrepDismissed");renderPrep();setPrepExpanded(true);q("#prepCard").scrollIntoView({behavior:"smooth",block:"center"})});
+    q("#todayPrepOpen").addEventListener("click",function(){prepDismissed=false;localStorage.removeItem("kostromaPrepDismissed");renderPrep();setPrepExpanded(true);q("#prepCard").scrollIntoView({behavior:"smooth",block:"center"})});
     q("#todayShoppingOpen").addEventListener("click",function(){showTab("food");setTimeout(function(){q("#shoppingCard").scrollIntoView({behavior:"smooth",block:"start"})},0)});
     q("#todayDinnerOpen").addEventListener("click",function(){showTab("food");setTimeout(function(){q(".dinner-box").scrollIntoView({behavior:"smooth",block:"start"})},0)});
     renderPrep();
