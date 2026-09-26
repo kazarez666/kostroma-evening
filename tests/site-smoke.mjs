@@ -73,7 +73,7 @@ try{
   assert.match(await page.locator('#noteHuntHint').innerText(),/Осталось найти 20/);
   await page.locator('#noteCollection').click();
   assert.equal(await page.locator('#loveModal').evaluate(el=>el.classList.contains('hidden')),true);
-  await page.locator('#footerHeart').click();
+  await page.locator('#footerHeart').evaluate(el=>el.click());
   assert.equal(await page.locator('#loveModal').evaluate(el=>el.classList.contains('hidden')),false);
   assert.equal(await page.locator('#noteCount').innerText(),'1/20');
   await page.locator('[data-close-love]').last().click();
