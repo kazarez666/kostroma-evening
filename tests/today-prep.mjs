@@ -16,12 +16,12 @@ try {
   // Today dashboard is compact and immediately useful.
   assert.equal(await page.locator('#todayCard').isVisible(), true);
   assert.match(await page.locator('#todayLead').innerText(), /поезд|Костром|вечер/i);
-  assert.match(await page.locator('#todayPrep').innerText(), /осталось 7/);
+  assert.match(await page.locator('#todayPrep').innerText(), /осталось 40/);
   assert.match(await page.locator('#todayShopping').innerText(), /осталось 7/);
   assert.match(await page.locator('#todayDinner').innerText(), /не выбран/i);
 
   // Surprise purchases stay out of the normal packing list.
-  assert.equal(await page.locator('[data-prep-item="Овечка «Мила»"]').count(), 0);
+  assert.equal(await page.locator('[data-prep-item="Овечка"]').count(), 0);
   assert.equal(await page.locator('#ownerPrepModal').isVisible(), false);
 
   // A deliberate long press on the footer heart opens the private owner-only packing list.
@@ -30,30 +30,31 @@ try {
   await page.waitForTimeout(1200);
   await heart.dispatchEvent('pointerup', { pointerType: 'touch' });
   assert.equal(await page.locator('#ownerPrepModal').isVisible(), true);
-  assert.equal(await page.locator('[data-owner-prep-item="Овечка «Мила»"]').count(), 1);
-  assert.equal(await page.locator('[data-owner-prep-item="Тёмно-зелёные футболки"]').count(), 1);
-  assert.equal(await page.locator('[data-owner-prep-item="Фондюшница"]').count(), 1);
-  assert.equal(await page.locator('[data-owner-prep-item="50 искусственных кленовых листьев"]').count(), 1);
-  await page.locator('[data-owner-prep-item="Овечка «Мила»"]').check();
+  assert.equal(await page.locator('[data-owner-prep-item="Овечка"]').count(), 1);
+  assert.equal(await page.locator('[data-owner-prep-item="Моя футболка"]').count(), 1);
+  assert.equal(await page.locator('[data-owner-prep-item="Фондю"]').count(), 1);
+  assert.equal(await page.locator('[data-owner-prep-item="Искусственные кленовые листья"]').count(), 1);
+  assert.match(await page.locator('#ownerPrepCount').innerText(), /Особенный вечер: 0 \/ 13/);
+  await page.locator('[data-owner-prep-item="Овечка"]').check();
   await page.locator('[data-close-owner-prep]').last().click();
 
   // Open prep from Today and add a custom neutral item.
   await page.locator('#todayPrepOpen').click();
   assert.equal(await page.locator('#prepBody').isVisible(), true);
-  assert.equal(await page.locator('[data-prep-item]').count(), 7);
-  await page.locator('#prepCustomInput').fill('Зонт');
+  assert.equal(await page.locator('[data-prep-item]').count(), 40);
+  await page.locator('#prepCustomInput').fill('Книга');
   await page.locator('#prepAdd').click();
-  assert.equal(await page.locator('[data-prep-item="Зонт"]').count(), 1);
+  assert.equal(await page.locator('[data-prep-item="Книга"]').count(), 1);
 
   // Duplicate custom items should not be added.
-  await page.locator('#prepCustomInput').fill('зонт');
+  await page.locator('#prepCustomInput').fill('книга');
   await page.locator('#prepAdd').click();
-  assert.equal(await page.locator('[data-prep-item="Зонт"]').count(), 1);
+  assert.equal(await page.locator('[data-prep-item="Книга"]').count(), 1);
 
   // Mark two things packed; dashboard must reflect the remaining count.
-  await page.locator('[data-prep-item="Документы"]').check();
-  await page.locator('[data-prep-item="Зонт"]').check();
-  assert.match(await page.locator('#todayPrep').innerText(), /осталось 6/);
+  await page.locator('[data-prep-item="Паспорта"]').check();
+  await page.locator('[data-prep-item="Книга"]').check();
+  assert.match(await page.locator('#todayPrep').innerText(), /осталось 39/);
 
   // State survives reload.
   await page.reload({ waitUntil: 'domcontentloaded' });
@@ -61,17 +62,17 @@ try {
   await page.locator('#footerHeart').dispatchEvent('pointerdown', { pointerType: 'touch' });
   await page.waitForTimeout(1200);
   await page.locator('#footerHeart').dispatchEvent('pointerup', { pointerType: 'touch' });
-  assert.equal(await page.locator('[data-owner-prep-item="Овечка «Мила»"]').isChecked(), true);
+  assert.equal(await page.locator('[data-owner-prep-item="Овечка"]').isChecked(), true);
   await page.locator('[data-close-owner-prep]').last().click();
   await page.locator('#todayPrepOpen').click();
-  assert.equal(await page.locator('[data-prep-item="Документы"]').isChecked(), true);
-  assert.equal(await page.locator('[data-prep-item="Зонт"]').isChecked(), true);
+  assert.equal(await page.locator('[data-prep-item="Паспорта"]').isChecked(), true);
+  assert.equal(await page.locator('[data-prep-item="Книга"]').isChecked(), true);
 
   // Hide packed and restore them.
   await page.locator('#prepHideDone').click();
-  assert.equal(await page.locator('[data-prep-item="Документы"]').locator('..').locator('..').isVisible(), false);
+  assert.equal(await page.locator('[data-prep-item="Паспорта"]').locator('..').locator('..').isVisible(), false);
   await page.locator('#prepHideDone').click();
-  assert.equal(await page.locator('[data-prep-item="Документы"]').locator('..').locator('..').isVisible(), true);
+  assert.equal(await page.locator('[data-prep-item="Паспорта"]').locator('..').locator('..').isVisible(), true);
 
   // Dinner choice should immediately appear in Today.
   await page.locator('.mnav[data-tab="food"]').click();
@@ -97,9 +98,10 @@ try {
 
   // Custom prep items can be removed; base items remain.
   await page.locator('#todayPrepOpen').click();
-  await page.getByRole('button', { name: 'Удалить из сборов Зонт' }).click();
-  assert.equal(await page.locator('[data-prep-item="Зонт"]').count(), 0);
-  assert.equal(await page.locator('[data-prep-item="Документы"]').count(), 1);
+  await page.getByRole('button', { name: 'Удалить из сборов Книга' }).click();
+  assert.equal(await page.locator('[data-prep-item="Книга"]').count(), 0);
+  assert.equal(await page.locator('[data-prep-item="Паспорта"]').count(), 1);
+  assert.equal(await page.locator('[data-prep-item="Зонт"]').count(), 1);
 
   assert.deepEqual(errors, [], 'Uncaught page errors: '+errors.join('\n'));
   console.log('TODAY_PREP_OK');
