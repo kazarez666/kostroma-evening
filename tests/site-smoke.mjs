@@ -30,14 +30,19 @@ try{
   assert.equal((await page.locator('#fondueCount').innerText()).trim(),'7');
   assert.equal(await page.locator('.fondue-chip:disabled').count(),0,'Options should unlock after removing one item');
 
-  // Movie lottery with all six slots.
+  // Movie roulette with all six slots and full-screen jar animation.
   await page.locator('.mnav[data-tab="movies"]').click();
   const movies=page.locator('.movie');
   await movies.nth(0).fill('Амели');
   await movies.nth(1).fill('Отпуск по обмену');
   await page.locator('#pickMovie').click();
-  await page.waitForFunction(()=>document.querySelector('#movieResult')?.textContent?.startsWith('🍿'),null,{timeout:5000});
-  assert.doesNotMatch(await page.locator('#movieResult').innerText(),/Добавьте/);
+  assert.equal(await page.locator('#movieRoulette').isVisible(), true);
+  assert.equal(await page.locator('.movie-flying-slip').count(), 6);
+  await page.waitForFunction(()=>!document.querySelector('#moviePulled')?.classList.contains('hidden'),null,{timeout:6000});
+  assert.equal(await page.locator('#moviePulledTitle').innerText(), 'Как отделаться от парня за 10 дней');
+  assert.equal(await page.locator('#movieResult').innerText(), '🍿 Как отделаться от парня за 10 дней');
+  await page.locator('#movieRouletteDone').click();
+  assert.equal(await page.locator('#movieRoulette').isVisible(), false);
 
   // Emoji game.
   await page.locator('.mnav[data-tab="emoji"]').click();

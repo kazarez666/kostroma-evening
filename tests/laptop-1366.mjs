@@ -22,16 +22,18 @@ try {
   assert.ok(firstPhase && firstPhase.x >= 0 && firstPhase.x + firstPhase.width <= 1366);
   assert.equal(await page.locator('#planNow').isVisible(), false);
 
-  // Movie draw gives a short animated state and settles cleanly.
+  // Movie draw opens the full-screen jar roulette and settles cleanly.
   await page.locator('.tab[data-tab="movies"]').click();
   const movies = page.locator('.movie');
   await movies.nth(0).fill('Амели');
   await movies.nth(1).fill('Отпуск по обмену');
   await page.locator('#pickMovie').click();
-  await page.waitForFunction(() => document.querySelector('.draw')?.classList.contains('is-drawing'));
-  await page.waitForFunction(() => document.querySelector('#movieResult')?.textContent?.startsWith('🍿'), null, { timeout: 5000 });
-  assert.equal(await page.locator('.draw').evaluate(el => el.classList.contains('is-drawing')), false);
+  assert.equal(await page.locator('#movieRoulette').isVisible(), true);
+  await page.waitForFunction(() => !document.querySelector('#moviePulled')?.classList.contains('hidden'), null, { timeout: 6000 });
+  assert.equal(await page.locator('#moviePulledTitle').innerText(), 'Как отделаться от парня за 10 дней');
   assert.equal(await page.locator('#movieResult').evaluate(el => el.classList.contains('is-winner')), true);
+  await page.locator('#movieRouletteDone').click();
+  assert.equal(await page.locator('#movieRoulette').isVisible(), false);
 
   // Fullscreen modes must fit a common 1366x768 laptop without burying core controls.
   await page.locator('.tab[data-tab="emoji"]').click();
