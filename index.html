@@ -337,6 +337,14 @@
     .shopping-view-note{margin:10px 2px 0;color:var(--muted);font-size:11px;line-height:1.45}.breakfast-picked{margin-top:10px;padding:11px 12px;border-radius:14px;background:rgba(255,255,255,.52);border:1px solid rgba(76,54,39,.08);font-size:12px;line-height:1.45;color:var(--muted)}
     body.shopping-mode .shopping-view-tabs{display:none}body.shopping-mode [data-shopping-panel]{display:none!important}body.shopping-mode [data-shopping-panel="list"]{display:block!important}
     @media(max-width:620px){.shopping-view-tabs{display:grid;grid-template-columns:1fr 1fr}.shopping-view-tab:last-child{grid-column:1/-1}.shopping-view-tab{border-radius:14px;padding:11px 9px}.shopping-preview-grid{grid-template-columns:1fr}}
+
+    .plan-add-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin:0 0 12px}.plan-add-row input{min-width:0;border:1px solid var(--line);background:#fff;border-radius:13px;padding:11px 12px;color:var(--ink)}.plan-add-row button{border:0;border-radius:13px;background:var(--forest);color:#fff;padding:11px 15px;font-weight:900}
+    .plan-product-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.plan-product-row{position:relative;display:flex;align-items:center;gap:8px;min-height:48px;padding:11px 12px;border:1px solid rgba(76,54,39,.09);border-radius:14px;background:rgba(255,255,255,.7);font-size:13px;font-weight:800}.plan-product-row>span{min-width:0;flex:1}.plan-product-badge{flex:none;padding:4px 7px;border-radius:999px;background:rgba(35,79,58,.1);color:var(--forest);font-size:9px;font-weight:900;white-space:nowrap}.plan-product-remove,.breakfast-option-remove{border:0;background:rgba(120,74,52,.09);color:#8c5e49;border-radius:999px;width:28px;height:28px;font-weight:900}.plan-product-hint{grid-column:1/-1;padding:12px;border:1px dashed rgba(76,54,39,.15);border-radius:14px;color:var(--muted);font-size:11px;line-height:1.45}
+    .breakfast-option-wrap{display:flex;align-items:center;gap:4px}.breakfast-option-wrap .breakfast-option{flex:1}.breakfast-option-remove{flex:none}
+    .shopping-finalize{margin-top:14px;padding-top:14px;border-top:1px solid rgba(76,54,39,.09);display:grid;gap:7px}.shopping-finalize__button{border:0;border-radius:14px;background:var(--forest);color:white;padding:13px 16px;font-weight:900;font-size:14px}.shopping-finalize p{margin:0;color:var(--muted);font-size:10px;line-height:1.4}
+    .saved-shopping-launch{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:14px;padding:14px 15px;border:1px solid rgba(35,79,58,.2);border-radius:16px;background:linear-gradient(135deg,rgba(231,241,231,.95),rgba(255,251,243,.94))}.saved-shopping-launch.hidden{display:none}.saved-shopping-launch div{display:grid;gap:2px}.saved-shopping-launch small{font-size:9px;letter-spacing:.12em;color:var(--forest);font-weight:900}.saved-shopping-launch b{font-size:14px}.saved-shopping-launch span{font-size:10px;color:var(--muted)}.saved-shopping-launch button{border:0;border-radius:12px;background:var(--forest);color:#fff;padding:10px 13px;font-weight:900;white-space:nowrap}
+    .store-list-modal{position:fixed;inset:0;z-index:310;display:grid;place-items:center;padding:14px}.store-list-modal.hidden{display:none}.store-list-card{position:relative;z-index:1;width:min(620px,100%);max-height:92vh;overflow:auto;padding:22px;border-radius:24px;background:linear-gradient(180deg,#fffaf2,#f1e6d9);box-shadow:0 30px 90px rgba(35,25,18,.35);border:1px solid rgba(255,255,255,.85)}.store-list-card>small{font-size:9px;letter-spacing:.13em;font-weight:900;color:var(--forest)}.store-list-card h3{margin:5px 0 5px;font-size:26px}.store-list-card>p{margin:0 38px 12px 0;color:var(--muted);font-size:12px;line-height:1.5}.store-list-progress{position:sticky;top:-22px;z-index:2;margin:0 -22px 12px;padding:11px 22px;background:rgba(255,250,242,.95);backdrop-filter:blur(8px);font-size:12px;font-weight:900;color:var(--forest);border-bottom:1px solid rgba(76,54,39,.08)}.store-list-items{display:grid;gap:8px}.store-list-item{display:grid;grid-template-columns:28px minmax(0,1fr);align-items:center;gap:10px;width:100%;text-align:left;border:1px solid rgba(76,54,39,.1);background:rgba(255,255,255,.78);border-radius:15px;padding:12px 13px;color:var(--ink)}.store-list-check{width:24px;height:24px;border:2px solid rgba(35,79,58,.35);border-radius:8px;display:grid;place-items:center;color:#fff;background:transparent;font-weight:900}.store-list-item.done{opacity:.55}.store-list-item.done b{text-decoration:line-through}.store-list-item.done .store-list-check{background:var(--forest);border-color:var(--forest)}.store-list-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+    @media(max-width:620px){.plan-product-list{grid-template-columns:1fr}.plan-add-row{grid-template-columns:1fr}.plan-add-row button{width:100%}.saved-shopping-launch{align-items:stretch;display:grid}.saved-shopping-launch button{width:100%}.store-list-modal{padding:0}.store-list-card{width:100%;height:100%;max-height:none;border-radius:0;padding:20px 16px}.store-list-progress{top:-20px;margin:0 -16px 12px;padding:11px 16px}}
 </style>
 </head>
 <body>
@@ -362,6 +370,18 @@
       <p>Скрытый чек-лист: 13 вещей для вечера, декорации и развлечения. Соня его случайно не увидит.</p>
       <div class="owner-prep-list" id="ownerPrepList"></div>
       <span class="owner-prep-count" id="ownerPrepCount"></span>
+    </div>
+  </div>
+  <div class="store-list-modal hidden" id="storeListModal" role="dialog" aria-modal="true" aria-labelledby="storeListTitle">
+    <div class="love-backdrop" data-close-store-list></div>
+    <div class="store-list-card">
+      <button class="love-close" data-close-store-list aria-label="Закрыть">×</button>
+      <small>🛒 СОХРАНЁННЫЙ СПИСОК</small>
+      <h3 id="storeListTitle">Идём по магазину</h3>
+      <p>Положили товар в корзину — нажмите на него. Он зачеркнётся, а прогресс сохранится на этом устройстве.</p>
+      <div class="store-list-progress" id="storeListProgress">0 / 0 в корзине</div>
+      <div class="store-list-items" id="storeListItems"></div>
+      <div class="store-list-actions"><button class="soft" id="resetStoreListDone" type="button">Сбросить отметки</button><button class="primary" data-close-store-list type="button">Готово</button></div>
     </div>
   </div>
   <div class="heart-layer" id="heartLayer" aria-hidden="true"></div>
@@ -583,35 +603,41 @@
         </article>
       </div>
       <article class="shopping-card" id="shoppingCard">
-        <div class="shopping-head"><div><small>ПОКУПКИ В КВАРТИРУ</small><h3>Собираем список без каши</h3></div><div><span class="shopping-count" id="shoppingCount">0 / 6 куплено</span><button class="shopping-store-exit" id="shoppingStoreExit" type="button">← Выйти</button></div></div>
+        <div class="shopping-head"><div><small>ПОКУПКИ В КВАРТИРУ</small><h3>Сначала собираем, потом идём по списку</h3></div><span class="shopping-count" id="shoppingCount">0 позиций</span></div>
         <div class="shopping-view-tabs" id="shoppingViewTabs">
           <button class="shopping-view-tab active" data-shopping-view="friday" type="button">🌙 Пятница</button>
           <button class="shopping-view-tab" data-shopping-view="breakfast" type="button">🍳 Завтраки</button>
-          <button class="shopping-view-tab" data-shopping-view="list" type="button">🛒 Итоговый список</button>
+          <button class="shopping-view-tab" data-shopping-view="list" type="button">🧾 Финальный список</button>
         </div>
 
         <section class="shopping-view-panel active" data-shopping-panel="friday">
-          <div class="shopping-view-intro"><small>УЮТНЫЙ ВЕЧЕР ПЯТНИЦЫ</small><b>То, что понадобится именно вечером</b><span>База уже добавляется в итоговый список автоматически. Продукты для макания берутся из вашего конструктора фондю выше.</span></div>
-          <div class="shopping-preview-grid" id="fridayShoppingPreview"></div>
-          <div class="shopping-fondue-preview"><small>🍫 ВАШЕ ФОНДЮ</small><div id="shoppingFonduePreview">Пока ничего не выбрано.</div></div>
-          <p class="shopping-view-note">Ужин домой выбираете отдельно — в список продуктов его не добавляем.</p>
+          <div class="shopping-view-intro"><small>УЮТНЫЙ ВЕЧЕР ПЯТНИЦЫ</small><b>Полный список продуктов на вечер</b><span>Фондю здесь не прячется отдельной мелочью: выбранные продукты показываются обычными строками с пометкой «для фондю».</span></div>
+          <div class="plan-add-row"><input id="fridayCustomInput" maxlength="80" placeholder="Добавить к пятнице: воду, орешки, соус…"><button id="fridayCustomAdd" type="button">+ Добавить</button></div>
+          <div class="plan-product-list" id="fridayShoppingPreview"></div>
+          <p class="shopping-view-note">Ужин домой выбираете отдельно — доставку в продуктовый список не добавляем.</p>
         </section>
 
         <section class="shopping-view-panel" data-shopping-panel="breakfast">
-          <div class="breakfast-picker">
-            <div class="breakfast-picker__copy"><small>ЗАВТРАКИ · СУББОТА + ВОСКРЕСЕНЬЕ</small><b>Выберите продукты на два утра</b><span>Это просто варианты. Нажали на нужное — оно появилось в итоговом списке. Передумали — нажали ещё раз.</span></div>
-            <div class="breakfast-options" id="breakfastOptions"></div>
-          </div>
+          <div class="shopping-view-intro"><small>ЗАВТРАКИ · СУББОТА + ВОСКРЕСЕНЬЕ</small><b>Соберите один набор на два утра</b><span>Нажимайте готовые варианты или добавляйте свои. Выбранные позиции автоматически попадут в финальный список.</span></div>
+          <div class="plan-add-row"><input id="breakfastCustomInput" maxlength="80" placeholder="Добавить вариант: хлопья, сосиски, авокадо…"><button id="breakfastCustomAdd" type="button">+ Добавить</button></div>
+          <div class="breakfast-options" id="breakfastOptions"></div>
           <div class="breakfast-picked" id="breakfastPicked">Пока ничего не выбрано.</div>
         </section>
 
         <section class="shopping-view-panel" data-shopping-panel="list">
-          <div class="shopping-view-intro"><small>ИТОГОВЫЙ СПИСОК</small><b>Только то, что реально покупаем</b><span>Здесь отмечаем продукты уже в магазине. Фондю и выбранные завтраки попадают сюда автоматически.</span></div>
-          <div class="shopping-add"><input id="shoppingCustomInput" maxlength="80" placeholder="Добавить своё: вода, фрукты, соус…"><button id="shoppingAdd" type="button">+ Добавить</button></div>
-          <div class="shopping-toolbar"><button id="shoppingStoreMode" type="button">🛒 Режим магазина</button><button id="shoppingHideDone" type="button">Скрыть купленное</button></div>
+          <div class="shopping-view-intro"><small>ФИНАЛЬНЫЙ СПИСОК</small><b>Проверьте всё перед сохранением</b><span>Это ещё редактируемая версия. Когда всё устраивает, зафиксируйте её — появится отдельный список, с которым удобно ходить по магазину.</span></div>
+          <div class="shopping-add"><input id="shoppingCustomInput" maxlength="80" placeholder="Добавить только в финальный список…"><button id="shoppingAdd" type="button">+ Добавить</button></div>
           <div class="shopping-list" id="shoppingList"></div>
-          <p class="shopping-note" id="shoppingNote">Ужин в пятницу — доставка отдельно. Днём в субботу и воскресенье едите вне квартиры.</p>
+          <div class="shopping-finalize">
+            <button class="shopping-finalize__button" id="saveStoreList" type="button">✅ Зафиксировать список покупок</button>
+            <p>Сохранится отдельная копия. Позже её можно зафиксировать заново, если состав изменится.</p>
+          </div>
         </section>
+
+        <div class="saved-shopping-launch hidden" id="savedShoppingLaunch">
+          <div><small>🛒 СПИСОК ДЛЯ МАГАЗИНА</small><b id="savedShoppingStatus">Список сохранён</b><span>Нажимайте на товар после того, как положили его в корзину.</span></div>
+          <button id="openSavedShopping" type="button">Открыть →</button>
+        </div>
       </article>
       <article class="choco-card"><div class="choco-icon">🍫</div><div><small>ШОКОЛАД ДЛЯ ФОНДЮ</small><h3>Milka можно — но есть вариант получше</h3><p><b>Milka без начинки подойдёт</b>, если любите сладкий молочный шоколад. Для более гладкой и менее приторной смеси: <b>150 г молочного + 50 г тёмного шоколада 50–60% + около 50 мл сливок 20–33%</b>.</p><p class="note">Шоколад со сливками лучше растопить отдельно до гладкости, а свечку использовать для поддержания тепла. Так меньше шанс перегреть шоколад.</p></div></article>
     </section>
@@ -992,11 +1018,14 @@
     var fondueButtons=qa(".fondue-chip"),fondue=JSON.parse(localStorage.getItem("kostromaFondue")||"[]");
     var shoppingDone=JSON.parse(localStorage.getItem("kostromaShoppingDone")||"{}"),
         shoppingCustom=JSON.parse(localStorage.getItem("kostromaShoppingCustom")||"[]"),
+        fridayCustom=JSON.parse(localStorage.getItem("kostromaFridayShoppingCustom")||"[]"),
         breakfastSelected=JSON.parse(localStorage.getItem("kostromaBreakfastShopping")||"[]"),
+        breakfastCustom=JSON.parse(localStorage.getItem("kostromaBreakfastCustom")||"[]"),
         shoppingView=sessionStorage.getItem("kostromaShoppingView")||"friday",
-        shoppingHideDone=localStorage.getItem("kostromaShoppingHideDone")==="1",
+        savedStoreList=JSON.parse(localStorage.getItem("kostromaSavedStoreList")||"[]"),
+        savedStoreDone=JSON.parse(localStorage.getItem("kostromaSavedStoreDone")||"{}"),
         fridayShopping=["Молоко для какао","Шоколад для фондю","Сливки для фондю","Coca-Cola Original","Pringles","Другие закуски к вечеру"],
-        breakfastOptions=["Хлеб / булочки","Яйца","Колбаса / ветчина","Сыр","Йогурт / творожок","Сливочное масло","Овощи к завтраку","Что-нибудь сладкое к чаю"],
+        breakfastBase=["Хлеб / булочки","Яйца","Колбаса / ветчина","Сыр","Йогурт / творожок","Сливочное масло","Овощи к завтраку","Что-нибудь сладкое к чаю"],
         baseShopping=fridayShopping;
     function shoppingKey(item){return String(item).trim().toLocaleLowerCase("ru-RU")}
     function uniqueShopping(items){
@@ -1005,96 +1034,105 @@
         return key&&arr.findIndex(function(x){return shoppingKey(x)===key})===i
       })
     }
-    function shoppingItems(){return uniqueShopping(fridayShopping.concat(fondue,breakfastSelected,shoppingCustom))}
-    function appendShoppingHeading(wrap,title,items){
-      var visible=items.filter(function(item){return !(shoppingHideDone&&shoppingDone[item])});
-      if(!visible.length&&items.length)return;
-      var head=document.createElement("div");head.className="shopping-group-heading";
-      var b=document.createElement("b");b.textContent=title;
-      var stat=document.createElement("span"),done=items.filter(function(item){return !!shoppingDone[item]}).length;
-      stat.textContent=done+" / "+items.length;
-      head.appendChild(b);head.appendChild(stat);wrap.appendChild(head)
-    }
-    function appendShoppingEmpty(wrap,text){
-      var empty=document.createElement("div");empty.className="shopping-group-empty";empty.textContent=text;wrap.appendChild(empty)
-    }
-    function appendShoppingItem(wrap,item,isCustom){
-      var row=document.createElement("div");row.className="shopping-row"+(shoppingHideDone&&shoppingDone[item]?" is-hidden":"");
-      var label=document.createElement("label");label.className="shopping-item"+(shoppingDone[item]?" done":"");
-      var input=document.createElement("input");input.type="checkbox";input.checked=!!shoppingDone[item];input.setAttribute("data-shopping-item",item);
-      var span=document.createElement("span");span.textContent=item;label.appendChild(input);label.appendChild(span);row.appendChild(label);
-      input.addEventListener("change",function(){shoppingDone[item]=input.checked;localStorage.setItem("kostromaShoppingDone",JSON.stringify(shoppingDone));renderShopping()});
-      if(isCustom){
-        var del=document.createElement("button");del.type="button";del.className="shopping-item__remove";del.textContent="×";del.setAttribute("aria-label","Удалить "+item);
-        del.addEventListener("click",function(){shoppingCustom=shoppingCustom.filter(function(x){return x!==item});delete shoppingDone[item];localStorage.setItem("kostromaShoppingCustom",JSON.stringify(shoppingCustom));localStorage.setItem("kostromaShoppingDone",JSON.stringify(shoppingDone));renderShopping()});row.appendChild(del)
-      }
-      wrap.appendChild(row)
-    }
+    function breakfastOptions(){return uniqueShopping(breakfastBase.concat(breakfastCustom))}
+    function fridayItems(){return uniqueShopping(fridayShopping.concat(fridayCustom,fondue))}
+    function shoppingItems(){return uniqueShopping(fridayShopping.concat(fridayCustom,fondue,breakfastSelected,shoppingCustom))}
     function syncShoppingView(){
       var valid=["friday","breakfast","list"];if(valid.indexOf(shoppingView)<0)shoppingView="friday";
       qa("[data-shopping-view]").forEach(function(btn){btn.classList.toggle("active",btn.getAttribute("data-shopping-view")===shoppingView)});
       qa("[data-shopping-panel]").forEach(function(panel){panel.classList.toggle("active",panel.getAttribute("data-shopping-panel")===shoppingView)})
     }
+    function makePlanProductRow(item,kind){
+      var row=document.createElement("div");row.className="plan-product-row";
+      var text=document.createElement("span");text.textContent=item;row.appendChild(text);
+      if(kind==="fondue"){var badge=document.createElement("small");badge.className="plan-product-badge";badge.textContent="для фондю";row.appendChild(badge)}
+      if(kind==="custom"){var del=document.createElement("button");del.type="button";del.className="plan-product-remove";del.textContent="×";del.setAttribute("aria-label","Удалить из пятницы "+item);del.addEventListener("click",function(){fridayCustom=fridayCustom.filter(function(x){return x!==item});localStorage.setItem("kostromaFridayShoppingCustom",JSON.stringify(fridayCustom));renderShopping()});row.appendChild(del)}
+      return row
+    }
     function renderFridayShoppingPreview(){
       var wrap=q("#fridayShoppingPreview");wrap.innerHTML="";
-      fridayShopping.forEach(function(item){
-        var card=document.createElement("div");card.className="shopping-preview-item";card.textContent=item;wrap.appendChild(card)
-      });
-      q("#shoppingFonduePreview").textContent=fondue.length?fondue.join(" · "):"Пока ничего не выбрано — соберите набор фондю выше.";
+      fridayShopping.forEach(function(item){wrap.appendChild(makePlanProductRow(item,"base"))});
+      fridayCustom.forEach(function(item){wrap.appendChild(makePlanProductRow(item,"custom"))});
+      fondue.forEach(function(item){wrap.appendChild(makePlanProductRow(item,"fondue"))});
+      if(!fondue.length){var hint=document.createElement("div");hint.className="plan-product-hint";hint.textContent="Продукты для макания появятся здесь после выбора в конструкторе фондю выше.";wrap.appendChild(hint)}
+    }
+    function addFridayCustom(){
+      var input=q("#fridayCustomInput"),value=input.value.trim();if(!value)return;
+      if(fridayItems().some(function(x){return shoppingKey(x)===shoppingKey(value)})){showToast("🌙 Уже есть в пятнице");input.select();return}
+      fridayCustom.push(value);localStorage.setItem("kostromaFridayShoppingCustom",JSON.stringify(fridayCustom));input.value="";renderShopping();showToast("🌙 Добавлено к пятнице: "+value)
     }
     function renderBreakfastOptions(){
-      var wrap=q("#breakfastOptions");wrap.innerHTML="";
+      var wrap=q("#breakfastOptions");wrap.innerHTML="",options=breakfastOptions();
+      breakfastSelected=uniqueShopping(breakfastSelected.filter(function(item){return options.some(function(x){return shoppingKey(x)===shoppingKey(item)})}));
       q("#breakfastPicked").textContent=breakfastSelected.length?"Выбрано: "+breakfastSelected.join(" · "):"Пока ничего не выбрано.";
-      breakfastOptions.forEach(function(item){
-        var btn=document.createElement("button");btn.type="button";btn.className="breakfast-option"+(breakfastSelected.indexOf(item)>=0?" selected":"");btn.textContent=item;
-        btn.setAttribute("aria-pressed",breakfastSelected.indexOf(item)>=0?"true":"false");
-        btn.addEventListener("click",function(){
-          var i=breakfastSelected.indexOf(item);
-          if(i>=0){breakfastSelected.splice(i,1);delete shoppingDone[item]}
-          else breakfastSelected.push(item);
-          localStorage.setItem("kostromaBreakfastShopping",JSON.stringify(breakfastSelected));
-          localStorage.setItem("kostromaShoppingDone",JSON.stringify(shoppingDone));
-          renderShopping()
-        });
-        wrap.appendChild(btn)
+      options.forEach(function(item){
+        var holder=document.createElement("div");holder.className="breakfast-option-wrap";
+        var btn=document.createElement("button");btn.type="button";btn.className="breakfast-option"+(breakfastSelected.indexOf(item)>=0?" selected":"");btn.textContent=item;btn.setAttribute("aria-pressed",breakfastSelected.indexOf(item)>=0?"true":"false");
+        btn.addEventListener("click",function(){var i=breakfastSelected.indexOf(item);if(i>=0){breakfastSelected.splice(i,1);delete shoppingDone[item]}else breakfastSelected.push(item);localStorage.setItem("kostromaBreakfastShopping",JSON.stringify(breakfastSelected));localStorage.setItem("kostromaShoppingDone",JSON.stringify(shoppingDone));renderShopping()});
+        holder.appendChild(btn);
+        if(breakfastCustom.indexOf(item)>=0){var del=document.createElement("button");del.type="button";del.className="breakfast-option-remove";del.textContent="×";del.setAttribute("aria-label","Удалить вариант завтрака "+item);del.addEventListener("click",function(){breakfastCustom=breakfastCustom.filter(function(x){return x!==item});breakfastSelected=breakfastSelected.filter(function(x){return x!==item});delete shoppingDone[item];localStorage.setItem("kostromaBreakfastCustom",JSON.stringify(breakfastCustom));localStorage.setItem("kostromaBreakfastShopping",JSON.stringify(breakfastSelected));localStorage.setItem("kostromaShoppingDone",JSON.stringify(shoppingDone));renderShopping()});holder.appendChild(del)}
+        wrap.appendChild(holder)
+      })
+    }
+    function addBreakfastCustom(){
+      var input=q("#breakfastCustomInput"),value=input.value.trim();if(!value)return;
+      if(breakfastOptions().some(function(x){return shoppingKey(x)===shoppingKey(value)})){showToast("🍳 Такой вариант уже есть");input.select();return}
+      breakfastCustom.push(value);breakfastSelected.push(value);localStorage.setItem("kostromaBreakfastCustom",JSON.stringify(breakfastCustom));localStorage.setItem("kostromaBreakfastShopping",JSON.stringify(breakfastSelected));input.value="";renderShopping();showToast("🍳 Добавлено к завтракам: "+value)
+    }
+    function appendShoppingHeading(wrap,title,items){
+      if(!items.length)return;var head=document.createElement("div");head.className="shopping-group-heading";var b=document.createElement("b");b.textContent=title;var stat=document.createElement("span");stat.textContent=items.length+" поз.";head.appendChild(b);head.appendChild(stat);wrap.appendChild(head)
+    }
+    function appendShoppingItem(wrap,item,isCustom){
+      var row=document.createElement("div");row.className="shopping-row";
+      var label=document.createElement("div");label.className="shopping-item";label.setAttribute("data-shopping-item",item);var span=document.createElement("span");span.textContent=item;label.appendChild(span);row.appendChild(label);
+      if(isCustom){var del=document.createElement("button");del.type="button";del.className="shopping-item__remove";del.textContent="×";del.setAttribute("aria-label","Удалить "+item);del.addEventListener("click",function(){shoppingCustom=shoppingCustom.filter(function(x){return x!==item});localStorage.setItem("kostromaShoppingCustom",JSON.stringify(shoppingCustom));renderShopping()});row.appendChild(del)}
+      wrap.appendChild(row)
+    }
+    function renderCurrentFinalList(){
+      var wrap=q("#shoppingList");wrap.innerHTML="";
+      var friday=uniqueShopping(fridayShopping.concat(fridayCustom,fondue)),breakfast=uniqueShopping(breakfastSelected),extras=shoppingCustom.filter(function(item){return friday.concat(breakfast).every(function(x){return shoppingKey(x)!==shoppingKey(item)})});
+      appendShoppingHeading(wrap,"🌙 Пятница",friday);friday.forEach(function(item){appendShoppingItem(wrap,item,false)});
+      appendShoppingHeading(wrap,"🍳 Завтраки",breakfast);breakfast.forEach(function(item){appendShoppingItem(wrap,item,false)});
+      if(extras.length){appendShoppingHeading(wrap,"✍️ Добавили в финальный список",extras);extras.forEach(function(item){appendShoppingItem(wrap,item,true)})}
+    }
+    function renderSavedStoreList(){
+      var launch=q("#savedShoppingLaunch"),wrap=q("#storeListItems");
+      launch.classList.toggle("hidden",!savedStoreList.length);wrap.innerHTML="";
+      var done=savedStoreList.filter(function(item){return !!savedStoreDone[item]}).length;
+      q("#savedShoppingStatus").textContent=savedStoreList.length?done+" / "+savedStoreList.length+" уже в корзине":"Список ещё не сохранён";
+      q("#storeListProgress").textContent=done+" / "+savedStoreList.length+" в корзине";
+      savedStoreList.forEach(function(item){
+        var btn=document.createElement("button");btn.type="button";btn.className="store-list-item"+(savedStoreDone[item]?" done":"");btn.setAttribute("data-store-item",item);
+        var mark=document.createElement("span");mark.className="store-list-check";mark.textContent=savedStoreDone[item]?"✓":"";
+        var text=document.createElement("b");text.textContent=item;btn.appendChild(mark);btn.appendChild(text);
+        btn.addEventListener("click",function(){savedStoreDone[item]=!savedStoreDone[item];localStorage.setItem("kostromaSavedStoreDone",JSON.stringify(savedStoreDone));renderSavedStoreList()});wrap.appendChild(btn)
       })
     }
     function renderShopping(){
-      fondue=uniqueShopping(fondue);
-      breakfastSelected=uniqueShopping(breakfastSelected.filter(function(item){return breakfastOptions.indexOf(item)>=0}));
-      shoppingCustom=uniqueShopping(shoppingCustom);
-      var items=shoppingItems(),wrap=q("#shoppingList"),done=items.filter(function(item){return !!shoppingDone[item]}).length;
-      var customOnly=shoppingCustom.filter(function(item){return fridayShopping.concat(fondue,breakfastSelected).every(function(x){return shoppingKey(x)!==shoppingKey(item)})});
-      wrap.innerHTML="";
-      appendShoppingHeading(wrap,"🌙 Пятница · уютный вечер",fridayShopping);fridayShopping.forEach(function(item){appendShoppingItem(wrap,item,false)});
-      appendShoppingHeading(wrap,"🍫 Фондю · выбранные продукты",fondue);
-      if(fondue.length)fondue.forEach(function(item){appendShoppingItem(wrap,item,false)});
-      else appendShoppingEmpty(wrap,"Выберите продукты для фондю выше — они автоматически появятся здесь.");
-      appendShoppingHeading(wrap,"🍳 Завтраки · суббота + воскресенье",breakfastSelected);
-      if(breakfastSelected.length)breakfastSelected.forEach(function(item){appendShoppingItem(wrap,item,false)});
-      else appendShoppingEmpty(wrap,"Пока ничего не выбрано. Нажмите варианты завтрака выше, когда решите.");
-      if(customOnly.length){appendShoppingHeading(wrap,"✍️ Добавили сами",customOnly);customOnly.forEach(function(item){appendShoppingItem(wrap,item,true)})}
-      q("#shoppingCount").textContent=done+" / "+items.length+" куплено · осталось "+Math.max(0,items.length-done);
-      q("#shoppingHideDone").classList.toggle("active",shoppingHideDone);q("#shoppingHideDone").textContent=shoppingHideDone?"Показать купленное":"Скрыть купленное";
-      q("#shoppingNote").textContent="Ужин в пятницу — доставка отдельно. Днём в субботу и воскресенье едите вне квартиры.";
-      renderFridayShoppingPreview();renderBreakfastOptions();syncShoppingView();renderToday()
+      fondue=uniqueShopping(fondue);fridayCustom=uniqueShopping(fridayCustom);shoppingCustom=uniqueShopping(shoppingCustom);
+      var items=shoppingItems();q("#shoppingCount").textContent=items.length+" позиций в текущем списке";
+      renderFridayShoppingPreview();renderBreakfastOptions();renderCurrentFinalList();renderSavedStoreList();syncShoppingView();renderToday()
     }
     function addShoppingCustom(){
       var input=q("#shoppingCustomInput"),value=input.value.trim();if(!value)return;
-      var exists=shoppingItems().some(function(x){return shoppingKey(x)===shoppingKey(value)});
-      if(exists){showToast("🛒 Уже есть в списке");input.select();return}
+      if(shoppingItems().some(function(x){return shoppingKey(x)===shoppingKey(value)})){showToast("🛒 Уже есть в списке");input.select();return}
       shoppingCustom.push(value);localStorage.setItem("kostromaShoppingCustom",JSON.stringify(shoppingCustom));input.value="";renderShopping();showToast("🛒 Добавлено: "+value)
     }
-    qa("[data-shopping-view]").forEach(function(btn){btn.addEventListener("click",function(){
-      shoppingView=btn.getAttribute("data-shopping-view");sessionStorage.setItem("kostromaShoppingView",shoppingView);syncShoppingView()
-    })});
-    q("#shoppingAdd").addEventListener("click",addShoppingCustom);
-    q("#shoppingCustomInput").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();addShoppingCustom()}});
-    q("#shoppingHideDone").addEventListener("click",function(){shoppingHideDone=!shoppingHideDone;localStorage.setItem("kostromaShoppingHideDone",shoppingHideDone?"1":"0");renderShopping()});
-    function closeShoppingMode(){document.body.classList.remove("shopping-mode")}
-    q("#shoppingStoreMode").addEventListener("click",function(){shoppingView="list";sessionStorage.setItem("kostromaShoppingView","list");syncShoppingView();document.body.classList.add("shopping-mode");q("#shoppingStoreExit").focus({preventScroll:true})});
-    q("#shoppingStoreExit").addEventListener("click",closeShoppingMode);
-    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&document.body.classList.contains("shopping-mode"))closeShoppingMode()});
+    function saveStoreList(){
+      var next=shoppingItems();if(!next.length){showToast("🛒 Сначала соберите список");return}
+      var preserved={};next.forEach(function(item){if(savedStoreDone[item])preserved[item]=true});savedStoreList=next.slice();savedStoreDone=preserved;
+      localStorage.setItem("kostromaSavedStoreList",JSON.stringify(savedStoreList));localStorage.setItem("kostromaSavedStoreDone",JSON.stringify(savedStoreDone));renderSavedStoreList();showToast("✅ Список для магазина зафиксирован")
+    }
+    function openStoreList(){if(!savedStoreList.length)return;q("#storeListModal").classList.remove("hidden");document.body.style.overflow="hidden"}
+    function closeStoreList(){q("#storeListModal").classList.add("hidden");document.body.style.overflow=""}
+    qa("[data-shopping-view]").forEach(function(btn){btn.addEventListener("click",function(){shoppingView=btn.getAttribute("data-shopping-view");sessionStorage.setItem("kostromaShoppingView",shoppingView);syncShoppingView()})});
+    q("#fridayCustomAdd").addEventListener("click",addFridayCustom);q("#fridayCustomInput").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();addFridayCustom()}});
+    q("#breakfastCustomAdd").addEventListener("click",addBreakfastCustom);q("#breakfastCustomInput").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();addBreakfastCustom()}});
+    q("#shoppingAdd").addEventListener("click",addShoppingCustom);q("#shoppingCustomInput").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();addShoppingCustom()}});
+    q("#saveStoreList").addEventListener("click",saveStoreList);q("#openSavedShopping").addEventListener("click",openStoreList);
+    qa("[data-close-store-list]").forEach(function(x){x.addEventListener("click",closeStoreList)});
+    q("#resetStoreListDone").addEventListener("click",function(){savedStoreDone={};localStorage.setItem("kostromaSavedStoreDone","{}");renderSavedStoreList()});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!q("#storeListModal").classList.contains("hidden"))closeStoreList()});
     function syncFondueMore(){q(".fondue-options").classList.toggle("show-all",fondueExpanded);q("#toggleFondueMore").textContent=fondueExpanded?"Скрыть дополнительные продукты":"Ещё продукты · 16"}
     q("#toggleFondueMore").addEventListener("click",function(){fondueExpanded=!fondueExpanded;syncFondueMore()});syncFondueMore();
     function renderFondue(){var wasFull=sessionStorage.getItem("kostromaFondueFull")==="1";fondue=fondue.filter(function(n){return fondueButtons.some(function(b){return b.getAttribute("data-ing")===n})}).slice(0,8);q("#fondueCount").textContent=fondue.length;fondueButtons.forEach(function(b){var s=fondue.indexOf(b.getAttribute("data-ing"))>=0;b.classList.toggle("selected",s);b.disabled=!s&&fondue.length>=8});q("#fonduePicked").textContent=fondue.length?fondue.map(function(n){var b=fondueButtons.find(function(x){return x.getAttribute("data-ing")===n});return (b?b.getAttribute("data-icon"):"•")+" "+n}).join(" · "):"Выберите продукты — здесь появится ваш набор.";localStorage.setItem("kostromaFondue",JSON.stringify(fondue));renderShopping();if(fondue.length===8&&!wasFull){sessionStorage.setItem("kostromaFondueFull","1");showToast("🍫 Идеальный набор для фондю готов");leafStorm(18)}if(fondue.length<8)sessionStorage.removeItem("kostromaFondueFull")}
