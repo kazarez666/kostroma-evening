@@ -307,7 +307,7 @@
     .mobile-nav.case-unlocked{grid-template-columns:repeat(6,minmax(0,1fr))}
   
     /* Simplified Evening tab: the page itself is the route, navigation stays in the main tabs. */
-    #plan .today-card,#plan .plan-now,#plan>.mini,#plan #reset{display:none!important}
+    .romance-actions,#plan .today-card,#plan .plan-now,#plan>.mini,#plan #reset{display:none!important}
     #plan.plan-details-collapsed #planFlow{display:grid!important}
     #plan .section-head{margin-bottom:14px}
     #plan .section-head h2{margin-bottom:6px}
@@ -320,6 +320,7 @@
     #plan .phase.is-complete .icon{filter:saturate(.65)}
     .talk-extra{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;padding:12px 14px;border:1px solid var(--line);border-radius:16px;background:rgba(255,253,248,.78)}
     .talk-extra span{color:var(--muted);font-size:12px;line-height:1.4}
+    body.focus-mode #talk .talk-extra{display:none}
     @media(max-width:760px){
       #plan .phase{padding:18px 16px;grid-template-columns:48px 1fr;gap:12px}
       #plan .phase.is-current:after{right:12px;top:11px;font-size:8px}
