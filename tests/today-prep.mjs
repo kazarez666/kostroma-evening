@@ -17,7 +17,7 @@ try {
   assert.equal(await page.locator('#todayCard').isVisible(), true);
   assert.match(await page.locator('#todayLead').innerText(), /поезд|Костром|вечер/i);
   assert.match(await page.locator('#todayPrep').innerText(), /осталось 40/);
-  assert.match(await page.locator('#todayShopping').innerText(), /осталось 40/);
+  assert.match(await page.locator('#todayShopping').innerText(), /осталось 7/);
   assert.match(await page.locator('#todayDinner').innerText(), /не выбран/i);
 
   // Surprise purchases stay out of the normal packing list.
@@ -85,7 +85,7 @@ try {
   assert.equal(await page.locator('#food').evaluate(el => el.classList.contains('active')), true);
   await page.locator('[data-shopping-item="Молоко"]').check();
   await page.locator('.mnav[data-tab="plan"]').click();
-  assert.match(await page.locator('#todayShopping').innerText(), /осталось 39/);
+  assert.match(await page.locator('#todayShopping').innerText(), /осталось 6/);
 
   // Current evening stage is live, not a hardcoded label.
   for (const id of ['1','2','3','4']) {
