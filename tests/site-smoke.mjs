@@ -55,33 +55,35 @@ try{
   assert.notEqual(await page.locator('#talkQuestion').innerText(),initial);
   await page.locator('#showAll').click();
   assert.equal(await page.locator('#allQuestions').evaluate(el=>el.classList.contains('hidden')),false);
-
-  // Romantic interactions open and close cleanly.
-  await page.locator('.mnav[data-tab="plan"]').click();
   await page.locator('#randomMoment').click();
   assert.equal(await page.locator('#momentModal').evaluate(el=>el.classList.contains('hidden')),false);
   await page.locator('[data-close-moment]').last().click();
   assert.equal(await page.locator('#momentModal').evaluate(el=>el.classList.contains('hidden')),true);
 
-  await page.locator('#luckyButton').click();
+  // Evening header stays clean; romantic extras remain functional under the hood.
+  await page.locator('.mnav[data-tab="plan"]').click();
+  assert.equal(await page.locator('.romance-actions').isVisible(),false);
+  await page.locator('#luckyButton').evaluate(el=>el.click());
   assert.equal(await page.locator('#loveModal').evaluate(el=>el.classList.contains('hidden')),false);
   await page.locator('[data-close-love]').last().click();
 
-  await page.locator('#couponSecret').click();
+  await page.locator('#couponSecret').evaluate(el=>el.click());
   assert.equal(await page.locator('#couponModal').evaluate(el=>el.classList.contains('hidden')),false);
   await page.locator('[data-close-coupon]').last().click();
 
   const cozyBefore=await page.locator('#cozyLevel').innerText();
-  await page.locator('#cozyButton').click();
+  await page.locator('#cozyButton').evaluate(el=>el.click());
   assert.notEqual(await page.locator('#cozyLevel').innerText(),cozyBefore);
 
-  // Calm plan still exposes the detailed checklist on demand.
-  assert.equal(await page.locator('#plan').evaluate(el=>el.classList.contains('plan-details-collapsed')),true);
-  await page.locator('#togglePlanDetails').click();
+  // Evening tab shows the route immediately, without duplicate navigation controls.
+  assert.equal(await page.locator('#planFlow').isVisible(),true);
+  assert.equal(await page.locator('#todayCard').isVisible(),false);
+  assert.equal(await page.locator('#planNow').isVisible(),false);
+  assert.equal(await page.locator('#plan > .mini').isVisible(),false);
   await page.locator('label.check').first().click();
   assert.equal(await page.locator('[data-check="1"]').isChecked(),true);
   assert.notEqual((await page.locator('#progressText').innerText()).trim(),'не спешим');
-  await page.locator('#reset').click();
+  await page.locator('#reset').evaluate(el=>el.click());
   assert.equal((await page.locator('#progressText').innerText()).trim(),'не спешим');
 
   // Desktop smoke: normal nav and ability to leave secret case.

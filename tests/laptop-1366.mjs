@@ -14,11 +14,13 @@ try {
   const foodTop = await page.locator('#food .section-head').evaluate(el => el.getBoundingClientRect().top);
   assert.ok(foodTop < 260, 'Food content should begin high enough on a 768px-tall laptop');
 
-  // Plan summary remains readable without horizontal overflow.
+  // Evening route remains readable without horizontal overflow.
   await page.locator('.tab[data-tab="plan"]').click();
-  const planBox = await page.locator('#planNow').boundingBox();
-  assert.ok(planBox && planBox.x >= 0 && planBox.x + planBox.width <= 1366);
-  assert.ok(planBox.height < 190, 'Plan summary should stay compact on short laptop screens');
+  const flowBox = await page.locator('#planFlow').boundingBox();
+  const firstPhase = await page.locator('[data-plan-phase="1"]').boundingBox();
+  assert.ok(flowBox && flowBox.x >= 0 && flowBox.x + flowBox.width <= 1366);
+  assert.ok(firstPhase && firstPhase.x >= 0 && firstPhase.x + firstPhase.width <= 1366);
+  assert.equal(await page.locator('#planNow').isVisible(), false);
 
   // Movie draw gives a short animated state and settles cleanly.
   await page.locator('.tab[data-tab="movies"]').click();

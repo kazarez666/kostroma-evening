@@ -9,26 +9,22 @@ try {
   await page.goto('http://127.0.0.1:4173/index.html', { waitUntil: 'domcontentloaded' });
   if (await page.locator('#startEvening').isVisible().catch(()=>false)) await page.locator('#startEvening').click();
 
-  // Plan opens in calm summary mode rather than as a task wall.
-  assert.equal(await page.locator('#plan').evaluate(el => el.classList.contains('plan-details-collapsed')), true);
-  assert.equal(await page.locator('#planFlow').isVisible(), false);
-  assert.match(await page.locator('#planNowTitle').innerText(), /Приехали и выдохнули/);
-  assert.match(await page.locator('#planNextTitle').innerText(), /Включаем уют/);
-  assert.match(await page.locator('#planNowIcon').innerText(), /🏠/);
-  assert.match(await page.locator('#planNowAction').innerText(), /еду и покупки/i);
-  await page.locator('#planNowAction').click();
-  assert.equal(await page.locator('#food').evaluate(el => el.classList.contains('active')), true);
-  await page.locator('.tab[data-tab="plan"]').click();
-
-  await page.locator('#togglePlanDetails').click();
+  // Evening tab is a clean route: no duplicate dashboard or navigation cards.
   assert.equal(await page.locator('#planFlow').isVisible(), true);
+  assert.equal(await page.locator('#todayCard').isVisible(), false);
+  assert.equal(await page.locator('#planNow').isVisible(), false);
+  assert.equal(await page.locator('#plan > .mini').isVisible(), false);
+  assert.equal(await page.locator('#prepCard').isVisible(), true);
+  assert.equal(await page.locator('[data-plan-phase="1"]').evaluate(el => el.classList.contains('is-current')), true);
+
   for (const id of ['1','2','3','4']) {
     await page.locator('[data-check="'+id+'"]').evaluate(el => {
       el.checked = true;
       el.dispatchEvent(new Event('change', { bubbles: true }));
     });
   }
-  assert.match(await page.locator('#planNowTitle').innerText(), /Включаем уют/);
+  assert.equal(await page.locator('[data-plan-phase="1"]').evaluate(el => el.classList.contains('is-complete')), true);
+  assert.equal(await page.locator('[data-plan-phase="2"]').evaluate(el => el.classList.contains('is-current')), true);
   assert.doesNotMatch(await page.locator('#progressText').innerText(), /%/);
 
   // Activity tabs compact the decorative hero on laptop.

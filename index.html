@@ -305,7 +305,29 @@
       main{padding-top:12px;padding-bottom:110px}.section-head{align-items:flex-start;flex-direction:column}.phase{grid-template-columns:46px 1fr;padding:18px 15px;gap:12px}.icon{width:44px;height:44px;font-size:21px}.mini{grid-template-columns:1fr}.food-grid{grid-template-columns:1fr}.dinner-options{grid-template-columns:repeat(2,1fr)}.custom-food>div{grid-template-columns:1fr}.movie-grid{grid-template-columns:1fr}.slots{grid-template-columns:1fr}.draw{padding:22px}.emoji-card{padding:28px 18px}.question{min-height:190px}.mobile-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));z-index:40;padding:6px;background:rgba(255,250,243,.93);backdrop-filter:blur(20px);border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 40px rgba(57,40,29,.16)}.mnav{border:0;background:transparent;color:var(--muted);padding:8px 2px;border-radius:14px;font-size:10px;font-weight:800}.mnav span{display:block;font-size:19px;margin-bottom:2px}.mnav.active{background:var(--forest);color:white}
     }
     .mobile-nav.case-unlocked{grid-template-columns:repeat(6,minmax(0,1fr))}
-  </style>
+  
+    /* Simplified Evening tab: the page itself is the route, navigation stays in the main tabs. */
+    .romance-actions,#plan .today-card,#plan .plan-now,#plan>.mini,#plan #reset{display:none!important}
+    #plan.plan-details-collapsed #planFlow{display:grid!important}
+    #plan .section-head{margin-bottom:14px}
+    #plan .section-head h2{margin-bottom:6px}
+    #plan .prep-card{margin:0 0 22px;background:rgba(255,253,248,.88)}
+    #plan .flow{gap:12px}
+    #plan .phase{position:relative;background:rgba(255,253,248,.84)!important;border:1px solid rgba(76,54,39,.10);box-shadow:0 7px 20px rgba(62,43,29,.045);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease,opacity .2s ease}
+    #plan .phase.is-current{border-color:rgba(35,79,58,.42);box-shadow:0 14px 34px rgba(35,79,58,.11);transform:translateY(-1px);background:linear-gradient(135deg,rgba(238,246,239,.97),rgba(255,250,242,.97))!important}
+    #plan .phase.is-current:after{content:"СЕЙЧАС";position:absolute;right:16px;top:14px;padding:5px 8px;border-radius:999px;background:var(--forest);color:white;font-size:9px;letter-spacing:.11em;font-weight:900}
+    #plan .phase.is-complete{opacity:.76}
+    #plan .phase.is-complete .icon{filter:saturate(.65)}
+    .talk-extra{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;padding:12px 14px;border:1px solid var(--line);border-radius:16px;background:rgba(255,253,248,.78)}
+    .talk-extra span{color:var(--muted);font-size:12px;line-height:1.4}
+    body.focus-mode #talk .talk-extra{display:none}
+    @media(max-width:760px){
+      #plan .phase{padding:18px 16px;grid-template-columns:48px 1fr;gap:12px}
+      #plan .phase.is-current:after{right:12px;top:11px;font-size:8px}
+      #plan .prep-card{margin-bottom:16px}
+      .talk-extra{display:grid}
+    }
+</style>
 </head>
 <body>
   <div class="secret-leaves" id="secretLeaves" aria-label="Осенние листики"></div>
@@ -410,7 +432,7 @@
 
   <main class="shell">
     <section class="panel active" id="plan">
-      <div class="section-head"><div><h2>Как пройдёт вечер</h2><p>Мягкий маршрут, а не расписание по минутам.</p></div><button class="soft" id="reset">Сбросить галочки</button></div>
+      <div class="section-head"><div><h2>Наш план на вечер</h2><p>Всё по порядку — спокойно, без лишних кнопок и переходов.</p></div><button class="soft" id="reset">Сбросить галочки</button></div>
       <div class="plan-shift-banner hidden" id="planShiftBanner"><span>🔓</span><div><small>ПЛАН ВЕЧЕРА ОБНОВЛЁН</small><b>Появилась ещё одна часть вечера</b></div></div>
       <section class="today-card" id="todayCard">
         <div class="today-head"><div><small>СЕГОДНЯ</small><h3>Всё важное перед глазами</h3><p id="todayLead">Подготовка к поездке без лишней суеты.</p></div><span class="today-date" id="todayDate">2 октября</span></div>
@@ -474,7 +496,7 @@
       <div class="mini">
         <button class="mini-card mini-button" data-open="food"><h3>🍫 Собрать фондю</h3><p>Выбрать до 8 продуктов и посмотреть простой вариант шоколадной смеси.</p></button>
         <button class="mini-card mini-button" data-open="food"><h3><span id="miniDinnerIcon">🍽️</span> Выбрать ужин</h3><p id="miniDinnerText">Пока не выбрано — откройте вкладку «Еда».</p></button>
-        <button class="mini-card mini-button moment-launch" id="randomMoment" type="button"><h3>✨ Случайный момент</h3><p>Маленькая штука, которую можно сделать прямо сейчас вдвоём.</p></button>
+        <button class="mini-card mini-button moment-launch" id="randomMomentLegacy" type="button" tabindex="-1"><h3>✨ Случайный момент</h3><p>Маленькая штука, которую можно сделать прямо сейчас вдвоём.</p></button>
       </div>
     </section>
 
@@ -640,6 +662,7 @@
       <div class="section-head"><div><h2>Шесть режимов разговора</h2><p>Выберите настроение и доставайте вопросы по одному.</p></div><button class="soft focus-launch" data-focus="talk" type="button">⛶ Большой режим</button></div>
       <div class="gamechips" id="gamechips"></div>
       <div class="talk-card"><div class="talk-top"><span class="badge" id="talkLabel"></span><span class="count" id="talkCount">20 вопросов</span></div><div class="question" id="talkQuestion">Нажмите «Следующий вопрос» — и начинаем.</div><div class="actions"><button class="primary" id="nextQuestion">🎲 Следующий вопрос</button><button class="ghost" id="showAll">Показать все 20</button></div></div>
+      <div class="talk-extra"><button class="soft moment-launch" id="randomMoment" type="button">✨ Случайный момент</button><span>Если вопросы надоели — маленькое действие для вас двоих.</span></div>
       <div class="all hidden" id="allQuestions"></div>
     </section>
   </main>
@@ -834,6 +857,11 @@
     }
     function renderPlanNow(){
       var phases=qa("[data-plan-phase]",q("#planFlow")),current=phases.find(function(p){return qa("[data-check]",p).some(function(c){return !c.checked})}),idx=current?phases.indexOf(current):-1;
+      phases.forEach(function(phase){
+        var phaseChecks=qa("[data-check]",phase),complete=phaseChecks.length&&phaseChecks.every(function(check){return check.checked});
+        phase.classList.toggle("is-current",phase===current);
+        phase.classList.toggle("is-complete",complete);
+      });
       var action=q("#planNowAction");
       if(!current){q("#planNowIcon").textContent="❤️";q("#planNowTitle").textContent="Вечер удался ❤️";q("#planNowTime").textContent="дальше — просто отдыхать";q("#planNextIcon").textContent="🛋️";q("#planNextTitle").textContent="Никакой программы";action.classList.add("hidden");renderToday();return}
       q("#planNowIcon").textContent=q(".icon",current).textContent;q("#planNowTitle").textContent=q("h3",current).textContent;q("#planNowTime").textContent=q(".time",current).textContent;
