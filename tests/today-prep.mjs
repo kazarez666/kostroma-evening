@@ -79,11 +79,12 @@ try {
   await page.locator('.mnav[data-tab="plan"]').click();
   assert.match(await page.locator('#dinnerPlanName').innerText(), /Пицца/);
 
-  // Shopping stays in the Food tab instead of being duplicated on Evening.
+  // Shopping stays in the Food tab and can be frozen into a dedicated store list.
   await page.locator('.mnav[data-tab="food"]').click();
   await page.locator('[data-shopping-view="list"]').click();
-  await page.locator('[data-shopping-item="Молоко для какао"]').check();
-  assert.match(await page.locator('#shoppingCount').innerText(), /^1 \/ /);
+  assert.equal(await page.locator('[data-shopping-item="Молоко для какао"]').count(), 1);
+  await page.locator('#saveStoreList').click();
+  assert.equal(await page.locator('#savedShoppingLaunch').isVisible(), true);
   await page.locator('.mnav[data-tab="plan"]').click();
 
   // Current evening stage is highlighted directly in the route.
