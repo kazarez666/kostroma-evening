@@ -19,7 +19,8 @@ try {
   assert.equal(await page.locator('#planFlow').isVisible(), true);
   assert.equal(await page.locator('#prepCard').isVisible(), true);
 
-  // Surprise purchases stay out of the normal packing list.
+  // Surprise details stay out of normal visible planning and packing.
+  assert.equal(await page.locator('#planFlow').getByText('Овечка', { exact:false }).count(), 0);
   assert.equal(await page.locator('[data-prep-item="Овечка"]').count(), 0);
   assert.equal(await page.locator('#ownerPrepModal').isVisible(), false);
 
@@ -87,8 +88,9 @@ try {
   assert.equal(await page.locator('#savedShoppingLaunch').isVisible(), true);
   await page.locator('.mnav[data-tab="plan"]').click();
 
-  // Current evening stage is highlighted directly in the route.
-  for (const id of ['1','2','3','4']) {
+  // Current evening stage is highlighted directly in the route, including the 17:00–19:00 prologue.
+  assert.equal(await page.locator('[data-plan-phase="0"]').evaluate(el => el.classList.contains('is-current')), true);
+  for (const id of ['24','25','26','27','1','2','3','4']) {
     await page.locator('[data-check="'+id+'"]').evaluate(el => {
       el.checked = true;
       el.dispatchEvent(new Event('change', { bubbles: true }));

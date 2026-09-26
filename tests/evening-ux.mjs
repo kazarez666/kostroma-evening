@@ -15,7 +15,10 @@ try {
   assert.equal(await page.locator('#planNow').isVisible(), false);
   assert.equal(await page.locator('#plan > .mini').isVisible(), false);
   assert.equal(await page.locator('#prepCard').isVisible(), true);
-  assert.equal(await page.locator('[data-plan-phase="1"]').evaluate(el => el.classList.contains('is-current')), true);
+  assert.equal(await page.locator('[data-plan-phase="0"]').evaluate(el => el.classList.contains('is-current')), true);
+  assert.equal(await page.locator('[data-plan-phase="0"] .time').innerText(), '17:00–19:00');
+  assert.match(await page.locator('[data-plan-phase="0"]').innerText(), /Костромы/);
+  assert.match(await page.locator('[data-plan-phase="0"]').innerText(), /магазин/i);
   assert.equal(await page.locator('[data-plan-phase="1"] .time').innerText(), '19:00–19:35');
   assert.equal(await page.locator('[data-plan-phase="2"] .time').innerText(), '19:35–20:00');
   assert.equal(await page.locator('[data-plan-phase="3"] .time').innerText(), '20:00–20:40');
@@ -23,6 +26,14 @@ try {
   assert.equal(await page.locator('[data-plan-phase="5"]').isVisible(), false);
   assert.equal(await page.locator('[data-plan-phase="6"] .time').innerText(), '23:45–≈02:00');
 
+  for (const id of ['24','25','26','27']) {
+    await page.locator('[data-check="'+id+'"]').evaluate(el => {
+      el.checked = true;
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+  }
+  assert.equal(await page.locator('[data-plan-phase="0"]').evaluate(el => el.classList.contains('is-complete')), true);
+  assert.equal(await page.locator('[data-plan-phase="1"]').evaluate(el => el.classList.contains('is-current')), true);
   for (const id of ['1','2','3','4']) {
     await page.locator('[data-check="'+id+'"]').evaluate(el => {
       el.checked = true;
@@ -44,7 +55,10 @@ try {
   assert.equal(await page.evaluate(() => document.body.classList.contains('activity-mode')), true);
   assert.equal(await page.locator('.hero-main').isVisible(), false);
 
-  // Food starts concise and expands on demand.
+  // Food starts concise and explicitly keeps dinner light before fondue and cocoa.
+  assert.match(await page.locator('.dinner-box .food-help').innerText(), /Ужин лучше взять небольшой/);
+  assert.match(await page.locator('.dinner-box .food-help').innerText(), /фондю, сладкое и какао/);
+  assert.match(await page.locator('#fridayShoppingPreview').innerText(), /Небольшая сладость к какао/);
   const dinnerOptions = page.locator('.food-choice');
   assert.equal(await dinnerOptions.count(), 18);
   assert.ok((await dinnerOptions.evaluateAll(items => items.filter(el => getComputedStyle(el).display !== 'none').length)) <= 6);
