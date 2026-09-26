@@ -13,12 +13,11 @@ try {
   }
   await enter();
 
-  // Today dashboard is compact and immediately useful.
-  assert.equal(await page.locator('#todayCard').isVisible(), true);
-  assert.match(await page.locator('#todayLead').innerText(), /поезд|Костром|вечер/i);
-  assert.match(await page.locator('#todayPrep').innerText(), /осталось 40/);
-  assert.match(await page.locator('#todayShopping').innerText(), /осталось 7/);
-  assert.match(await page.locator('#todayDinner').innerText(), /не выбран/i);
+  // Evening tab is intentionally simple: packing card + route, no dashboard tiles.
+  assert.equal(await page.locator('#todayCard').isVisible(), false);
+  assert.equal(await page.locator('#planNow').isVisible(), false);
+  assert.equal(await page.locator('#planFlow').isVisible(), true);
+  assert.equal(await page.locator('#prepCard').isVisible(), true);
 
   // Surprise purchases stay out of the normal packing list.
   assert.equal(await page.locator('[data-prep-item="Овечка"]').count(), 0);
@@ -38,8 +37,8 @@ try {
   await page.locator('[data-owner-prep-item="Овечка"]').check();
   await page.locator('[data-close-owner-prep]').last().click();
 
-  // Open prep from Today and add a custom neutral item.
-  await page.locator('#todayPrepOpen').click();
+  // Open packing list directly and add a custom neutral item.
+  await page.locator('#prepToggle').click();
   assert.equal(await page.locator('#prepBody').isVisible(), true);
   assert.equal(await page.locator('[data-prep-item]').count(), 40);
   await page.locator('#prepCustomInput').fill('Книга');
@@ -51,10 +50,10 @@ try {
   await page.locator('#prepAdd').click();
   assert.equal(await page.locator('[data-prep-item="Книга"]').count(), 1);
 
-  // Mark two things packed; dashboard must reflect the remaining count.
+  // Mark two things packed; the packing counter must reflect the remaining count.
   await page.locator('[data-prep-item="Паспорта"]').check();
   await page.locator('[data-prep-item="Книга"]').check();
-  assert.match(await page.locator('#todayPrep').innerText(), /осталось 39/);
+  assert.match(await page.locator('#prepCount').innerText(), /2 \/ 41 собрано.*осталось 39/);
 
   // State survives reload.
   await page.reload({ waitUntil: 'domcontentloaded' });
@@ -64,7 +63,7 @@ try {
   await page.locator('#footerHeart').dispatchEvent('pointerup', { pointerType: 'touch' });
   assert.equal(await page.locator('[data-owner-prep-item="Овечка"]').isChecked(), true);
   await page.locator('[data-close-owner-prep]').last().click();
-  await page.locator('#todayPrepOpen').click();
+  await page.locator('#prepToggle').click();
   assert.equal(await page.locator('[data-prep-item="Паспорта"]').isChecked(), true);
   assert.equal(await page.locator('[data-prep-item="Книга"]').isChecked(), true);
 
@@ -74,30 +73,29 @@ try {
   await page.locator('#prepHideDone').click();
   assert.equal(await page.locator('[data-prep-item="Паспорта"]').locator('..').locator('..').isVisible(), true);
 
-  // Dinner choice should immediately appear in Today.
+  // Dinner choice is reflected inside the route itself.
   await page.locator('.mnav[data-tab="food"]').click();
   await page.locator('.food-choice[data-dinner="Пицца"]').click();
   await page.locator('.mnav[data-tab="plan"]').click();
-  assert.match(await page.locator('#todayDinner').innerText(), /Пицца/);
+  assert.match(await page.locator('#dinnerPlanName').innerText(), /Пицца/);
 
-  // Shopping progress also flows into Today.
-  await page.locator('#todayShoppingOpen').click();
-  assert.equal(await page.locator('#food').evaluate(el => el.classList.contains('active')), true);
+  // Shopping stays in the Food tab instead of being duplicated on Evening.
+  await page.locator('.mnav[data-tab="food"]').click();
   await page.locator('[data-shopping-item="Молоко"]').check();
+  assert.match(await page.locator('#shoppingCount').innerText(), /^1 \/ /);
   await page.locator('.mnav[data-tab="plan"]').click();
-  assert.match(await page.locator('#todayShopping').innerText(), /осталось 6/);
 
-  // Current evening stage is live, not a hardcoded label.
+  // Current evening stage is highlighted directly in the route.
   for (const id of ['1','2','3','4']) {
     await page.locator('[data-check="'+id+'"]').evaluate(el => {
       el.checked = true;
       el.dispatchEvent(new Event('change', { bubbles: true }));
     });
   }
-  assert.match(await page.locator('#todayStage').innerText(), /Включаем уют/);
+  assert.equal(await page.locator('[data-plan-phase="2"]').evaluate(el => el.classList.contains('is-current')), true);
 
   // Custom prep items can be removed; base items remain.
-  await page.locator('#todayPrepOpen').click();
+  if (!(await page.locator('#prepBody').isVisible())) await page.locator('#prepToggle').click();
   await page.getByRole('button', { name: 'Удалить из сборов Книга' }).click();
   assert.equal(await page.locator('[data-prep-item="Книга"]').count(), 0);
   assert.equal(await page.locator('[data-prep-item="Паспорта"]').count(), 1);
