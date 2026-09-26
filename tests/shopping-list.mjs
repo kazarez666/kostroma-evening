@@ -10,6 +10,22 @@ try {
   if (await page.locator('#startEvening').isVisible().catch(()=>false)) await page.locator('#startEvening').click();
   await page.locator('.mnav[data-tab="food"]').click();
 
+  // Friday base is explicit and grouped.
+  assert.equal(await page.locator('[data-shopping-item="Молоко для какао"]').count(), 1);
+  assert.equal(await page.locator('[data-shopping-item="Шоколад для фондю"]').count(), 1);
+  assert.equal(await page.locator('[data-shopping-item="Сливки для фондю"]').count(), 1);
+  assert.equal(await page.locator('[data-shopping-item="Coca-Cola Original"]').count(), 1);
+  assert.equal(await page.locator('[data-shopping-item="Pringles"]').count(), 1);
+  assert.match(await page.locator('#shoppingCount').innerText(), /0 \/ 6 куплено/);
+
+  // Breakfast ideas do not count until chosen.
+  assert.equal(await page.locator('[data-shopping-item="Яйца"]').count(), 0);
+  await page.getByRole('button', { name: 'Яйца', exact: true }).click();
+  await page.getByRole('button', { name: 'Сыр', exact: true }).click();
+  assert.equal(await page.locator('[data-shopping-item="Яйца"]').count(), 1);
+  assert.equal(await page.locator('[data-shopping-item="Сыр"]').count(), 1);
+  assert.match(await page.locator('#shoppingCount').innerText(), /0 \/ 8 куплено/);
+
   // Add a custom item ahead of the trip.
   await page.locator('#shoppingCustomInput').fill('Вода 2 л');
   await page.locator('#shoppingAdd').click();
@@ -51,7 +67,16 @@ try {
   // Custom items can be removed without affecting automatic items.
   await page.getByRole('button', { name: 'Удалить Вода 2 л' }).click();
   assert.equal(await page.locator('[data-shopping-item="Вода 2 л"]').count(), 0);
-  assert.equal(await page.locator('[data-shopping-item="Шоколад"]').count(), 1);
+  assert.equal(await page.locator('[data-shopping-item="Шоколад для фондю"]').count(), 1);
+
+  // Breakfast selection survives reload and can be removed from the real list.
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  if (await page.locator('#startEvening').isVisible().catch(()=>false)) await page.locator('#startEvening').click();
+  await page.locator('.mnav[data-tab="food"]').click();
+  assert.equal(await page.locator('[data-shopping-item="Яйца"]').count(), 1);
+  assert.equal(await page.getByRole('button', { name: 'Яйца', exact: true }).getAttribute('aria-pressed'), 'true');
+  await page.getByRole('button', { name: 'Яйца', exact: true }).click();
+  assert.equal(await page.locator('[data-shopping-item="Яйца"]').count(), 0);
 
   assert.deepEqual(errors, [], 'Uncaught page errors: '+errors.join('\n'));
   console.log('SHOPPING_LIST_OK');
