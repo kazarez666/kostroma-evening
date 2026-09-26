@@ -60,18 +60,19 @@ try{
   await page.locator('[data-close-moment]').last().click();
   assert.equal(await page.locator('#momentModal').evaluate(el=>el.classList.contains('hidden')),true);
 
-  // Romantic interactions open and close cleanly.
+  // Evening header stays clean; romantic extras remain functional under the hood.
   await page.locator('.mnav[data-tab="plan"]').click();
-  await page.locator('#luckyButton').click();
+  assert.equal(await page.locator('.romance-actions').isVisible(),false);
+  await page.locator('#luckyButton').evaluate(el=>el.click());
   assert.equal(await page.locator('#loveModal').evaluate(el=>el.classList.contains('hidden')),false);
   await page.locator('[data-close-love]').last().click();
 
-  await page.locator('#couponSecret').click();
+  await page.locator('#couponSecret').evaluate(el=>el.click());
   assert.equal(await page.locator('#couponModal').evaluate(el=>el.classList.contains('hidden')),false);
   await page.locator('[data-close-coupon]').last().click();
 
   const cozyBefore=await page.locator('#cozyLevel').innerText();
-  await page.locator('#cozyButton').click();
+  await page.locator('#cozyButton').evaluate(el=>el.click());
   assert.notEqual(await page.locator('#cozyLevel').innerText(),cozyBefore);
 
   // Evening tab shows the route immediately, without duplicate navigation controls.
