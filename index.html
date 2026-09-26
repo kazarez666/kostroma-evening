@@ -538,9 +538,16 @@
       </article>
       <button class="prep-restore hidden" id="prepRestore" type="button">🎒 Вернуть список сборов</button>
       <div class="flow" id="planFlow">
-        <article class="phase p1" data-plan-phase="1"><div class="icon">🏠</div><div><p class="time">19:00–19:35</p><h3>Приехали и разложились</h3><div class="checklist">
+        <article class="phase p0" data-plan-phase="0"><div class="icon">🍂</div><div><p class="time">17:00–19:00</p><h3>Заселились, выдохнули и немного Костромы</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="24"><span class="box"></span><span><b>Около 17:00 заселиться</b>, оставить вещи и просто немного посидеть после дороги.</span></label>
+          <label class="check"><input type="checkbox" data-check="25"><span class="box"></span><span><b>Немного пройтись по центру Костромы</b> — без маршрута-марафона, просто посмотреть город и поймать настроение поездки.</span></label>
+          <label class="check"><input type="checkbox" data-check="26"><span class="box"></span><span><b>Зайти в магазин</b> по сохранённому списку: продукты на пятницу и завтраки.</span></label>
+          <label class="check"><input type="checkbox" data-check="27"><span class="box"></span><span><b>К 19:00 вернуться в квартиру.</b> После этого прогулочная часть закончена и начинается ваш домашний вечер.</span></label>
+        </div></div></article>
+
+        <article class="phase p1" data-plan-phase="1"><div class="icon">🏠</div><div><p class="time">19:00–19:35</p><h3>Вернулись домой и устраиваемся</h3><div class="checklist">
           <label class="check"><input type="checkbox" data-check="1"><span class="box"></span><span><b>Зайти в квартиру и выдохнуть</b> после дороги: снять верхнюю одежду, поставить сумки, немного прийти в себя.</span></label>
-          <label class="check"><input type="checkbox" data-check="2"><span class="box"></span><span><b>Разложить только нужное на вечер</b> — одежду, фондю, свечи, декор, подарок и какао. Чемоданы полностью не разбирать.</span></label>
+          <label class="check"><input type="checkbox" data-check="2"><span class="box"></span><span><b>Разложить только нужное на вечер</b> — одежду, фондю, свечи, декор, какао и остальные подготовленные штуки. Чемоданы полностью не разбирать.</span></label>
           <label class="check"><input type="checkbox" data-check="3"><span class="box"></span><span><b>Убрать покупки и подготовить кухню.</b> Если что-то забыли купить — докупить только необходимое, без отдельной прогулки.</span></label>
           <label class="check"><input type="checkbox" data-check="4"><span class="box"></span><span><b>Заказать ужин домой</b> примерно к 19:20–19:30, чтобы начать есть около 20:00.</span></label>
         </div></div></article>
@@ -553,9 +560,9 @@
           <label class="check"><input type="checkbox" data-check="8"><span class="box"></span><span><b>Поставить напитки и закуски под рукой.</b> К 20:00 больше ничего не готовим — просто начинаем вечер.</span></label>
         </div></div></article>
 
-        <article class="phase p3" data-plan-phase="3"><div class="icon" id="dinnerPlanIcon">🍽️</div><div><p class="time">20:00–20:40</p><h3>Ужин и маленький сюрприз</h3><div class="checklist">
-          <label class="check"><input type="checkbox" data-check="9"><span class="box"></span><span>Спокойно поужинать: <b id="dinnerPlanName">сначала выберите ужин во вкладке «Еда»</b>. Фондю оставить на следующий этап.</span></label>
-          <label class="check"><input type="checkbox" data-check="10"><span class="box"></span><span>Подарить <b>Овечку</b> без отдельной церемонии — просто в хороший момент между делом 🐑</span></label>
+        <article class="phase p3" data-plan-phase="3"><div class="icon" id="dinnerPlanIcon">🍽️</div><div><p class="time">20:00–20:40</p><h3>Небольшой ужин</h3><div class="checklist">
+          <label class="check"><input type="checkbox" data-check="9"><span class="box"></span><span>Спокойно и <b>не слишком плотно</b> поужинать: <b id="dinnerPlanName">сначала выберите ужин во вкладке «Еда»</b>. Дальше ещё будут фондю, сладкое и какао, поэтому лучше оставить место.</span></label>
+          <label class="check"><input type="checkbox" data-check="10"><span class="box"></span><span>Если поймается хороший момент — устроить <b>маленький сюрприз</b> без отдельной церемонии ✨</span></label>
         </div></div></article>
 
         <article class="phase p4" data-plan-phase="4" id="planPhaseFour"><div class="icon" id="planP4Icon">🎨</div><div><p class="time" id="planP4Time">20:40–22:15</p><h3 id="planP4Title">Фондю, свечи и творчество</h3><div class="checklist">
@@ -591,8 +598,8 @@
       <div class="section-head"><div><h2>Что будем есть?</h2><p>Сначала выбираем нормальный ужин, потом собираем продукты для шоколадного фондю. Всё сохраняется на этом устройстве.</p></div></div>
       <div class="food-grid">
         <article class="food-box dinner-box">
-          <div class="food-title"><span>🍽️</span><div><small>ДОСТАВКА</small><h3>Ужин домой</h3></div></div>
-          <p class="food-help">Выберите то, что хочется сегодня. Иконка автоматически появится в плане вечера.</p>
+          <div class="food-title"><span>🍽️</span><div><small>ДОСТАВКА · НЕБОЛЬШАЯ ПОРЦИЯ</small><h3>Лёгкий ужин домой</h3></div></div>
+          <p class="food-help"><b>Ужин лучше взять небольшой.</b> После него ещё будут фондю, сладкое и какао — цель просто нормально перекусить, а не наесться на весь вечер. Иконка выбранного варианта автоматически появится в плане.</p>
           <div class="dinner-options">
             <button class="food-choice" data-dinner="Пицца" data-icon="🍕"><span>🍕</span><b>Пицца</b><small>удобно делить</small></button>
             <button class="food-choice" data-dinner="Бургеры" data-icon="🍔"><span>🍔</span><b>Бургеры</b><small>если хочется сытно</small></button>
@@ -670,7 +677,7 @@
           <div class="shopping-view-intro"><small>УЮТНЫЙ ВЕЧЕР ПЯТНИЦЫ</small><b>Полный список продуктов на вечер</b><span>Фондю здесь не прячется отдельной мелочью: выбранные продукты показываются обычными строками с пометкой «для фондю».</span></div>
           <div class="plan-add-row"><input id="fridayCustomInput" maxlength="80" placeholder="Добавить к пятнице: воду, орешки, соус…"><button id="fridayCustomAdd" type="button">+ Добавить</button></div>
           <div class="plan-product-list" id="fridayShoppingPreview"></div>
-          <p class="shopping-view-note">Ужин домой выбираете отдельно — доставку в продуктовый список не добавляем.</p>
+          <p class="shopping-view-note">Ужин домой выбираете отдельно — доставку в продуктовый список не добавляем. К какао лучше взять <b>что-то одно небольшое</b>: например, мини-печенье, пару конфет, зефир или маленькие круассаны — фондю и так будет главным сладким.</p>
         </section>
 
         <section class="shopping-view-panel" data-shopping-panel="breakfast">
@@ -984,6 +991,7 @@
     }
     function planActionFor(phaseNo){
       phaseNo=String(phaseNo);
+      if(phaseNo==="0")return {tab:"food",label:"Открыть список покупок"};
       if(phaseNo==="1")return {tab:"food",label:"Открыть еду и покупки"};
       if(phaseNo==="2")return {tab:"plan",label:"Показать подробности"};
       if(phaseNo==="3")return {tab:"food",label:"Открыть выбранный ужин"};
@@ -1105,7 +1113,7 @@
         shoppingView=sessionStorage.getItem("kostromaShoppingView")||"friday",
         savedStoreList=JSON.parse(localStorage.getItem("kostromaSavedStoreList")||"[]"),
         savedStoreDone=JSON.parse(localStorage.getItem("kostromaSavedStoreDone")||"{}"),
-        fridayShopping=["Молоко для какао","Шоколад для фондю","Сливки для фондю","Coca-Cola Original","Pringles","Другие закуски к вечеру"],
+        fridayShopping=["Молоко для какао","Шоколад для фондю","Сливки для фондю","Coca-Cola Original","Pringles","Другие закуски к вечеру","Небольшая сладость к какао"],
         breakfastBase=["Хлеб / булочки","Яйца","Колбаса / ветчина","Сыр","Йогурт / творожок","Сливочное масло","Овощи к завтраку","Что-нибудь сладкое к чаю"],
         baseShopping=fridayShopping;
     function shoppingKey(item){return String(item).trim().toLocaleLowerCase("ru-RU")}
