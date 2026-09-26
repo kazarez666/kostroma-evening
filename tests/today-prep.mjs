@@ -110,6 +110,18 @@ try {
   assert.equal(await page.locator('[data-prep-item="Зарядка для вибратора"]').count(), 1);
   assert.equal(await page.locator('[data-prep-item="Сексуальный костюм для Сони — по желанию"]').count(), 1);
 
+  // After departure the packing card gets out of the way, but can be restored.
+  await page.locator('#prepDepart').click();
+  assert.equal(await page.locator('#prepCard').isVisible(), false);
+  assert.equal(await page.locator('#prepRestore').isVisible(), true);
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  if (await page.locator('#startEvening').isVisible().catch(()=>false)) await page.locator('#startEvening').click();
+  assert.equal(await page.locator('#prepCard').isVisible(), false);
+  assert.equal(await page.locator('#prepRestore').isVisible(), true);
+  await page.locator('#prepRestore').click();
+  assert.equal(await page.locator('#prepCard').isVisible(), true);
+  assert.equal(await page.locator('#prepBody').isVisible(), true);
+
   assert.deepEqual(errors, [], 'Uncaught page errors: '+errors.join('\n'));
   console.log('TODAY_PREP_OK');
 } finally {
