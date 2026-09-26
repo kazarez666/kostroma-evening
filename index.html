@@ -345,6 +345,11 @@
     .saved-shopping-launch{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:14px;padding:14px 15px;border:1px solid rgba(35,79,58,.2);border-radius:16px;background:linear-gradient(135deg,rgba(231,241,231,.95),rgba(255,251,243,.94))}.saved-shopping-launch.hidden{display:none}.saved-shopping-launch div{display:grid;gap:2px}.saved-shopping-launch small{font-size:9px;letter-spacing:.12em;color:var(--forest);font-weight:900}.saved-shopping-launch b{font-size:14px}.saved-shopping-launch span{font-size:10px;color:var(--muted)}.saved-shopping-launch button{border:0;border-radius:12px;background:var(--forest);color:#fff;padding:10px 13px;font-weight:900;white-space:nowrap}
     .store-list-modal{position:fixed;inset:0;z-index:310;display:grid;place-items:center;padding:14px}.store-list-modal.hidden{display:none}.store-list-card{position:relative;z-index:1;width:min(620px,100%);max-height:92vh;overflow:auto;padding:22px;border-radius:24px;background:linear-gradient(180deg,#fffaf2,#f1e6d9);box-shadow:0 30px 90px rgba(35,25,18,.35);border:1px solid rgba(255,255,255,.85)}.store-list-card>small{font-size:9px;letter-spacing:.13em;font-weight:900;color:var(--forest)}.store-list-card h3{margin:5px 0 5px;font-size:26px}.store-list-card>p{margin:0 38px 12px 0;color:var(--muted);font-size:12px;line-height:1.5}.store-list-progress{position:sticky;top:-22px;z-index:2;margin:0 -22px 12px;padding:11px 22px;background:rgba(255,250,242,.95);backdrop-filter:blur(8px);font-size:12px;font-weight:900;color:var(--forest);border-bottom:1px solid rgba(76,54,39,.08)}.store-list-items{display:grid;gap:8px}.store-list-item{display:grid;grid-template-columns:28px minmax(0,1fr);align-items:center;gap:10px;width:100%;text-align:left;border:1px solid rgba(76,54,39,.1);background:rgba(255,255,255,.78);border-radius:15px;padding:12px 13px;color:var(--ink)}.store-list-check{width:24px;height:24px;border:2px solid rgba(35,79,58,.35);border-radius:8px;display:grid;place-items:center;color:#fff;background:transparent;font-weight:900}.store-list-item.done{opacity:.55}.store-list-item.done b{text-decoration:line-through}.store-list-item.done .store-list-check{background:var(--forest);border-color:var(--forest)}.store-list-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
     @media(max-width:620px){.plan-product-list{grid-template-columns:1fr}.plan-add-row{grid-template-columns:1fr}.plan-add-row button{width:100%}.saved-shopping-launch{align-items:stretch;display:grid}.saved-shopping-launch button{width:100%}.store-list-modal{padding:0}.store-list-card{width:100%;height:100%;max-height:none;border-radius:0;padding:20px 16px}.store-list-progress{top:-20px;margin:0 -16px 12px;padding:11px 16px}}
+
+    .section-head-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .section-head-actions .moment-launch{background:linear-gradient(135deg,rgba(255,253,248,.95),rgba(222,234,223,.9));border-color:rgba(35,79,58,.17);color:var(--forest)}
+    .case-moment{color:#d7eadf!important;border-color:rgba(215,234,223,.18)!important;background:rgba(215,234,223,.055)!important}
+    @media(max-width:620px){.section-head-actions{width:100%;display:grid;grid-template-columns:1fr 1fr}.section-head-actions .soft{width:100%}}
 </style>
 </head>
 <body>
@@ -674,6 +679,7 @@
             </div>
             <div class="case-head__right">
               <div class="case-progress"><span>Материалов на доске</span><b id="caseProgress">0</b></div>
+              <button class="case-reset case-moment moment-launch" type="button">✨ Случайный момент</button>
               <button class="case-reset" id="caseSound" type="button" aria-pressed="false">🔇 Звук выкл.</button>
               <div class="case-backup-actions"><button class="case-reset" id="exportCase" type="button">↓ Копия дела</button><button class="case-reset" id="importCase" type="button">↑ Восстановить</button><input class="case-backup-input" id="importCaseFile" type="file" accept="application/json,.json" aria-label="Файл сохранения дела"><span class="case-backup-status" id="caseBackupStatus" role="status" aria-live="polite"></span></div>
               <button class="case-reset" id="resetCase" type="button">Сброс</button>
@@ -698,7 +704,7 @@
     </section>
 
     <section class="panel" id="movies">
-      <div class="section-head"><div><h2>Какой фильм смотрим?</h2><p>Два фильма Сони + четыре ваших. Поля сохраняются на устройстве.</p></div><button class="soft focus-launch" data-focus="movies" type="button">⛶ Большой режим</button></div>
+      <div class="section-head"><div><h2>Какой фильм смотрим?</h2><p>Два фильма Сони + четыре ваших. Поля сохраняются на устройстве.</p></div><div class="section-head-actions"><button class="soft moment-launch" type="button">✨ Случайный момент</button><button class="soft focus-launch" data-focus="movies" type="button">⛶ Большой режим</button></div></div>
       <div class="movie-grid">
         <div class="slots">
           <label class="slot sonya"><span class="owner">Соня · 1</span><input class="movie" placeholder="Вписать фильм Сони"></label>
@@ -713,16 +719,15 @@
     </section>
 
     <section class="panel" id="emoji">
-      <div class="section-head"><div><h2>Фильм по эмодзи</h2><p>Одна загадка за раз. Сначала отвечаете вслух, потом открываете.</p></div><button class="soft focus-launch" data-focus="emoji" type="button">⛶ Большой режим</button></div>
+      <div class="section-head"><div><h2>Фильм по эмодзи</h2><p>Одна загадка за раз. Сначала отвечаете вслух, потом открываете.</p></div><div class="section-head-actions"><button class="soft moment-launch" type="button">✨ Случайный момент</button><button class="soft focus-launch" data-focus="emoji" type="button">⛶ Большой режим</button></div></div>
       <div class="emoji-card"><div class="emoji-line" id="emojiLine"></div><div class="answer hidden" id="emojiAnswer"></div><div class="actions"><button class="primary" id="reveal">Показать ответ</button><button class="ghost" id="nextEmoji">Следующая →</button><button class="ghost" id="shuffle">↻ Перемешать</button></div></div>
       <div class="counter"><span id="emojiIndex">1</span> / <span id="emojiTotal">20</span></div>
     </section>
 
     <section class="panel" id="talk">
-      <div class="section-head"><div><h2>Шесть режимов разговора</h2><p>Выберите настроение и доставайте вопросы по одному.</p></div><button class="soft focus-launch" data-focus="talk" type="button">⛶ Большой режим</button></div>
+      <div class="section-head"><div><h2>Шесть режимов разговора</h2><p>Выберите настроение и доставайте вопросы по одному.</p></div><div class="section-head-actions"><button class="soft moment-launch" id="randomMoment" type="button">✨ Случайный момент</button><button class="soft focus-launch" data-focus="talk" type="button">⛶ Большой режим</button></div></div>
       <div class="gamechips" id="gamechips"></div>
       <div class="talk-card"><div class="talk-top"><span class="badge" id="talkLabel"></span><span class="count" id="talkCount">20 вопросов</span></div><div class="question" id="talkQuestion">Нажмите «Следующий вопрос» — и начинаем.</div><div class="actions"><button class="primary" id="nextQuestion">🎲 Следующий вопрос</button><button class="ghost" id="showAll">Показать все 20</button></div></div>
-      <div class="talk-extra"><button class="soft moment-launch" id="randomMoment" type="button">✨ Случайный момент</button><span>Если вопросы надоели — маленькое действие для вас двоих.</span></div>
       <div class="all hidden" id="allQuestions"></div>
     </section>
   </main>
@@ -1269,7 +1274,7 @@
 
     var moments=["Поцелуйте друг друга без всякой причины.","Сделайте одно фото прямо сейчас — не позируя слишком долго.","Дайте друг другу попробовать по одной штуке из фондю с закрытыми глазами.","Обнимитесь на 30 секунд и ничего не говорите.","Каждый выбирает одну песню, которую хочет услышать прямо сейчас.","Скажите друг другу по одной смешной вещи, которая сегодня уже случилась.","Сядьте рядом под один плед хотя бы на пять минут.","Выберите следующую вкусняшку друг для друга.","Сделайте максимально дурацкое совместное селфи.","На минуту уберите телефоны и просто полежите рядом.","Каждый называет одно место, куда хотел бы съездить вдвоём.","Поменяйтесь кружками на один глоток — просто потому что можно."];
     function openMoment(){q("#momentText").textContent=moments[Math.floor(Math.random()*moments.length)];q("#momentModal").classList.remove("hidden");burstHearts(innerWidth/2,innerHeight*.48)}
-    q("#randomMoment").addEventListener("click",openMoment);q("#anotherMoment").addEventListener("click",openMoment);qa("[data-close-moment]").forEach(function(x){x.addEventListener("click",function(){q("#momentModal").classList.add("hidden")})});
+    qa(".moment-launch").forEach(function(btn){btn.addEventListener("click",openMoment)});q("#anotherMoment").addEventListener("click",openMoment);qa("[data-close-moment]").forEach(function(x){x.addEventListener("click",function(){q("#momentModal").classList.add("hidden")})});
 
     q("#sheepPeek").addEventListener("click",function(ev){showToast("🐑 Я вообще-то тоже приехала на свидание");openLove(ev)});
     document.addEventListener("pointerdown",function(ev){if(ev.target.closest("button,input,label,.love-modal,.coupon-modal,.moment-modal,.welcome")||Math.random()>.38)return;var s=document.createElement("span");s.className="touch-spark";s.textContent=Math.random()>.55?"🍂":"♡";s.style.left=ev.clientX+"px";s.style.top=ev.clientY+"px";document.body.appendChild(s);setTimeout(function(){s.remove()},950)});
