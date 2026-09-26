@@ -27,6 +27,12 @@ try {
   assert.equal(await page.locator('[data-plan-phase="2"]').evaluate(el => el.classList.contains('is-current')), true);
   assert.doesNotMatch(await page.locator('#progressText').innerText(), /%/);
 
+  // Random Moment is available in every long-running activity.
+  assert.equal(await page.locator('#movies .moment-launch').count(), 1);
+  assert.equal(await page.locator('#emoji .moment-launch').count(), 1);
+  assert.equal(await page.locator('#talk .moment-launch').count(), 1);
+  assert.equal(await page.locator('#detective .case-moment').count(), 1);
+
   // Activity tabs compact the decorative hero on laptop.
   await page.locator('.tab[data-tab="food"]').click();
   assert.equal(await page.evaluate(() => document.body.classList.contains('activity-mode')), true);
