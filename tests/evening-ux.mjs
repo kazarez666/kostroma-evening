@@ -48,6 +48,7 @@ try {
   assert.match(await page.locator('.shopping-reminder').innerText(), /шоколад/i);
   assert.ok(await page.locator('[data-shopping-item="Шоколад для фондю"]').count() === 1);
   assert.ok(await page.locator('[data-shopping-item="Клубника"]').count() === 1, 'Chosen fondue ingredient should enter shopping list');
+  await page.locator('[data-shopping-view="list"]').click();
   await page.locator('[data-shopping-item="Шоколад для фондю"]').check();
   assert.match(await page.locator('#shoppingCount').innerText(), /^1 \/ /);
 
