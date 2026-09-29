@@ -151,6 +151,9 @@ try{
   assert.equal(await page.locator('.interview-stage').count(),1,'interrogation should open as a dedicated room scene');
   assert.equal(await page.locator('.interview-lamp').count(),1,'room should include the interrogation lamp');
   assert.equal(await page.locator('.interview-subject').count(),1,'suspect should sit in the interrogation scene');
+  const emotionSrc=await page.locator('.interview-emotion-image').getAttribute('src');
+  assert.ok(emotionSrc&&emotionSrc.startsWith('data:image/webp;base64,'),'generated emotion frame should be loaded instead of portrait fallback');
+  assert.ok(await page.locator('.interview-emotion-image').evaluate(img=>img.complete&&img.naturalWidth>0),'emotion frame should decode successfully');
   assert.ok(await page.locator('[data-interview-question]').count()>=1);
   assert.ok(await page.locator('[data-interview-question]').count()>=3,'all currently available questions should be visible');
   assert.equal(await page.locator('[data-interview-question="return"]').count(),0,'evidence follow-up should wait for the base answer');

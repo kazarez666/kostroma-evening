@@ -1,10 +1,17 @@
-const CACHE="kostroma-evening-v2";
+const CACHE="kostroma-evening-v3";
 const CASE_ASSETS=[
   "portrait-kirill","portrait-marina","portrait-denis","portrait-alina","portrait-pavel","portrait-artem",
   "scene-studio","scene-restaurant","scene-bus","scene-train","scene-studio2",
   "scene-trophy","scene-coffee","scene-dog","scene-home"
 ].map(name=>"./assets/case/"+name+".webp");
-const CORE=["./","./index.html","./manifest.webmanifest",...CASE_ASSETS];
+const INTERROGATION_ASSETS=[
+  "./assets/case/interrogation/marina.js",
+  "./assets/case/interrogation/denis.js",
+  "./assets/case/interrogation/alina.js",
+  "./assets/case/interrogation/pavel.js",
+  "./assets/case/interrogation/artem.js"
+];
+const CORE=["./","./index.html","./manifest.webmanifest",...CASE_ASSETS,...INTERROGATION_ASSETS];
 
 self.addEventListener("install",event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));

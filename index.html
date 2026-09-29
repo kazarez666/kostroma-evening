@@ -902,6 +902,11 @@
   <button class="focus-exit" id="focusExit" type="button">× Выйти из большого режима</button>
   <div class="focus-help" id="focusHint">Пробел / → — дальше · Esc — выйти</div>
 
+  <script src="./assets/case/interrogation/marina.js"></script>
+  <script src="./assets/case/interrogation/denis.js"></script>
+  <script src="./assets/case/interrogation/alina.js"></script>
+  <script src="./assets/case/interrogation/pavel.js"></script>
+  <script src="./assets/case/interrogation/artem.js"></script>
   <script>
     function q(s,r){return (r||document).querySelector(s)}
     function qa(s,r){return Array.from((r||document).querySelectorAll(s))}
@@ -1505,7 +1510,7 @@
       pavel:"./assets/case/portrait-pavel.webp",
       artem:"./assets/case/portrait-artem.webp"
     };
-    var CASE_INTERROGATION={
+    var CASE_INTERROGATION=window.CASE_INTERROGATION_ASSETS||{
       marina:{calm:"./assets/case/interrogation/marina/calm.webp",guarded:"./assets/case/interrogation/marina/guarded.webp",tense:"./assets/case/interrogation/marina/tense.webp",defensive:"./assets/case/interrogation/marina/defensive.webp",shaken:"./assets/case/interrogation/marina/shaken.webp",open:"./assets/case/interrogation/marina/open.webp"},
       denis:{calm:"./assets/case/interrogation/denis/calm.webp",guarded:"./assets/case/interrogation/denis/guarded.webp",tense:"./assets/case/interrogation/denis/tense.webp",defensive:"./assets/case/interrogation/denis/defensive.webp",shaken:"./assets/case/interrogation/denis/shaken.webp",open:"./assets/case/interrogation/denis/open.webp"},
       alina:{calm:"./assets/case/interrogation/alina/calm.webp",guarded:"./assets/case/interrogation/alina/guarded.webp",tense:"./assets/case/interrogation/alina/tense.webp",defensive:"./assets/case/interrogation/alina/defensive.webp",shaken:"./assets/case/interrogation/alina/shaken.webp",open:"./assets/case/interrogation/alina/open.webp"},
