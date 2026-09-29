@@ -52,12 +52,16 @@ try {
   await visibleText('Люди');
   await visibleText('Марина Орлова');
   await page.waitForFunction(()=>[...document.querySelectorAll('.person-photo img')].length>=6 && [...document.querySelectorAll('.person-photo img')].every(img=>img.complete&&img.naturalWidth>0),null,{timeout:10000});
-  await page.locator('[data-profile="marina"]').first().click();
+  await page.locator('[data-web-search-person="marina"]').first().click();
+  await visibleText('Результаты по запросу');
+  await page.locator('[data-webpage="marina"]').first().click();
   await visibleText('Марина Орлова');
+  await visibleText('БАШКИНОГРАМ');
   await visibleText('Дома наконец-то');
+  assert.ok(await page.locator('.feed-post').count()>=8,'Bashkinogram profile should feel populated');
   await page.waitForFunction(()=>[...document.querySelectorAll('.feed-image img')].filter(img=>img.offsetParent!==null).every(img=>img.complete&&img.naturalWidth>0),null,{timeout:10000});
-  await page.locator('[data-web-home]').click();
-  await visibleText('Открытый веб');
+  await page.locator('[data-browser-home]').click();
+  await visibleText('БашПоиск');
 
   // Devices -> laptop -> files. Every folder must be navigable and there must be a way out.
   await page.locator('[data-case-app="devices"]').click();
@@ -81,10 +85,20 @@ try {
   await page.locator('[data-device="laptop"]').first().click();
   await visibleText('ThinkPad · образ диска');
 
-  // Mail login.
-  await page.locator('[data-device="laptop_mail"]').click();
+  // Webmail is discoverable through the browser, not a standalone laptop app.
+  await page.locator('[data-open-app="web"]').click();
+  await page.locator('#caseWebQuery').fill('почта');
+  await page.locator('#caseWebSearch').click();
+  await visibleText('КостромаПочта — веб-почта');
+  await page.locator('[data-webpage="mail"]').click();
+  await page.locator('#mailPass').fill('wrong');
+  await page.locator('#unlockMail').click();
+  await visibleText('Пароль не подошёл');
   await page.locator('#mailPass').fill('fibi2019');
   await page.locator('#unlockMail').click();
+  await visibleText('Входящие');
+  assert.ok(await page.locator('.mail-web-row').count()>=10,'mailbox should contain ambient messages, not only plot clues');
+  await page.locator('.mail-web-row').first().click();
   await visibleText('удалить после чтения');
 
   // Phone sections.
@@ -138,11 +152,12 @@ try {
   // Final answer path.
   await page.locator('[data-case-app="final"]').click();
   await page.locator('#finalWho').selectOption('marina');
-  await page.locator('#finalMotive').selectOption('leak');
-  await page.locator('#finalMethod').selectOption('trophy');
-  await page.locator('#finalEvidence').selectOption('wifi_voice');
+  await page.locator('#finalMotive').selectOption('lawsuit');
+  await page.locator('#finalMethod').selectOption('poison');
+  await page.locator('#finalEvidence').selectOption('photo_email');
   await page.locator('#submitCase').click();
   await visibleText('Вы раскрыли');
+  await visibleText('0 из 3');
 
   // Leave detective back to normal site from mobile bottom nav.
   await page.locator('.mnav[data-tab="plan"]').click();

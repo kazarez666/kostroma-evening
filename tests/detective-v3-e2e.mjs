@@ -33,9 +33,11 @@ try{
   await page.locator('[data-pin="profile_pavel"]').click();
 
   // Public posts are uniformly pinnable.
-  await page.locator('[data-profile="marina"]').first().click();
-  assert.ok(await page.locator('.feed-post').count()>=2);
+  await page.locator('[data-web-search-person="marina"]').first().click();
+  await page.locator('[data-webpage="marina"]').first().click();
+  assert.ok(await page.locator('.feed-post').count()>=8);
   assert.equal(await page.locator('.feed-post [data-pin]').count(),await page.locator('.feed-post').count());
+  assert.ok(await page.locator('.bash-comments').count()>=1,'social profiles should contain activity and comments');
   await page.locator('.feed-post [data-pin]').last().click();
 
   // Unlock forensic snapshots in-state so this test focuses on navigation and file behavior.
@@ -71,12 +73,16 @@ try{
   await page.locator('[data-open-file]').first().click();
   await page.locator('.file-viewer [data-pin]').click();
 
-  // Mail: every mailbox item has the exact same board affordance.
-  await page.locator('[data-device="laptop"]').first().click();
-  await page.locator('[data-device="laptop_mail"]').click();
-  assert.ok(await page.locator('.mail-item').count()>=3);
-  assert.equal(await page.locator('.mail-item [data-pin]').count(),await page.locator('.mail-item').count());
-  await page.locator('.mail-item [data-pin]').last().click();
+  // Webmail: discover the site in the browser and open a message as a board source.
+  await app('web');
+  await page.locator('#caseWebQuery').fill('почта');
+  await page.locator('#caseWebSearch').click();
+  assert.ok(await page.locator('.browser-result').count()>=3,'mail search should return multiple plausible services');
+  await page.locator('[data-webpage="mail"]').click();
+  assert.ok(await page.locator('.mail-web-row').count()>=10);
+  await page.locator('.mail-web-row').last().click();
+  assert.equal(await page.locator('.mail-web-message [data-pin]').count(),1);
+  await page.locator('.mail-web-message [data-pin]').click();
 
   // All five message threads are pinnable, including irrelevant-looking ones.
   await app('devices');
@@ -92,6 +98,11 @@ try{
   await page.locator('[data-pin="thread_pavel"]').click();
   await page.locator('[data-thread="marina"]').click();
   await page.locator('[data-pin="thread_marina"]').click();
+  await page.locator('#messageSearch').fill('договор');
+  await page.locator('#messageSearchBtn').click();
+  assert.ok(await page.locator('[data-message-search-thread]').count()>=1,'message search should find older conversation history');
+  await page.locator('[data-message-search-thread="alina"]').first().click();
+  await textVisible('Нашла ещё два договора');
 
   // Photos, calls and notes use the same neutral pin mechanic.
   await page.locator('[data-device="hub"]').first().click();
@@ -259,6 +270,13 @@ try{
   assert.equal(await page.locator('[data-suspect-mark="pavel"]').inputValue(),'solid');
   assert.match(await page.locator('[data-suspect-note="pavel"]').inputValue(),/заправку/);
 
+  await page.locator('[data-board-view="notes"]').click();
+  assert.equal(await page.locator('.notebook-kpis>div').count(),3);
+  await page.locator('#caseNotebook').fill('Сверить допросы с журналом и ещё раз обсудить алиби.');
+  await page.locator('[data-board-view="cards"]').click();
+  await page.locator('[data-board-view="notes"]').click();
+  assert.match(await page.locator('#caseNotebook').inputValue(),/Сверить допросы/);
+
   await page.locator('[data-board-view="cards"]').click();
   await page.locator('[data-remove-pin]').first().click();
   assert.equal(await page.locator('.board-clue').count(),before-1);
@@ -300,9 +318,13 @@ try{
   assert.equal(await page.locator('.board-tabs').count(),1);
   await app('final');
   assert.equal(await page.locator('#finalWho').inputValue(),'denis','wrong versions should remain editable after returning to evidence');
-  for(const id of ['#finalWho','#finalMotive','#finalMethod','#finalEvidence']) await page.locator(id).selectOption({index:1});
+  await page.locator('#finalWho').selectOption('marina');
+  await page.locator('#finalMotive').selectOption('revenge');
+  await page.locator('#finalMethod').selectOption('cable');
+  await page.locator('#finalEvidence').selectOption('photo_email');
   await page.locator('#submitCase').click();
   await textVisible('Вы раскрыли');
+  await textVisible('0 из 3');
 
   await page.locator('.mnav[data-tab="plan"]').click();
   await page.locator('#plan .section-head h2').waitFor({state:'visible'});
