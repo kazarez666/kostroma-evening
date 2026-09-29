@@ -41,7 +41,7 @@ try {
   // Open packing list directly and add a custom neutral item.
   await page.locator('#prepToggle').click();
   assert.equal(await page.locator('#prepBody').isVisible(), true);
-  assert.equal(await page.locator('[data-prep-item]').count(), 47);
+  assert.equal(await page.locator('[data-prep-item]').count(), 49);
   await page.locator('#prepCustomInput').fill('Книга');
   await page.locator('#prepAdd').click();
   assert.equal(await page.locator('[data-prep-item="Книга"]').count(), 1);
@@ -54,7 +54,7 @@ try {
   // Mark two things packed; the packing counter must reflect the remaining count.
   await page.locator('[data-prep-item="Паспорта"]').check();
   await page.locator('[data-prep-item="Книга"]').check();
-  assert.match(await page.locator('#prepCount').innerText(), /2 \/ 48 собрано.*осталось 46/);
+  assert.match(await page.locator('#prepCount').innerText(), /2 \/ 50 собрано.*осталось 48/);
 
   // State survives reload.
   await page.reload({ waitUntil: 'domcontentloaded' });
@@ -106,6 +106,8 @@ try {
   assert.equal(await page.locator('[data-prep-item="Зонт"]').count(), 1);
   assert.equal(await page.locator('[data-prep-item="Алиса"]').count(), 1);
   assert.equal(await page.locator('[data-prep-item="Зарядка для Алисы"]').count(), 1);
+  assert.equal(await page.locator('[data-prep-item="Всё для уютного вечера"]').count(), 1);
+  assert.equal(await page.locator('[data-prep-item="Декорации из Fix Price"]').count(), 1);
   assert.equal(await page.locator('[data-prep-item="Вибратор №1"]').count(), 1);
   assert.equal(await page.locator('[data-prep-item="Вибратор №2"]').count(), 1);
   assert.equal(await page.locator('[data-prep-item="Смазка"]').count(), 1);
