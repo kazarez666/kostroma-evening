@@ -1307,6 +1307,7 @@
       var n=foundNotes.length;
       if(n>=20)return "Все записки найдены · история собрана ❤️";
       if(n===19&&!specialNoteUnlocked)return "19 из 20 · последнюю больше не надо искать…";
+      if(n===19&&specialNoteUnlocked)return "19 из 20 · последняя появилась на странице кино →";
       if(n>=15)return "Финиш близко · осталось совсем немного →";
       if(n>=10)return "Половина позади · дальше спрятано хитрее →";
       if(n>=5)return "Ты вошла во вкус · записки ещё повсюду →";
@@ -1322,7 +1323,8 @@
     }
     function updateSpecialNoteButton(){
       var btn=q("#movieSecretNote");if(!btn)return;
-      btn.classList.toggle("hidden",!specialNoteUnlocked||foundNotes.indexOf(SPECIAL_NOTE_INDEX)>=0)
+      var regularFound=foundNotes.filter(function(i){return i!==SPECIAL_NOTE_INDEX}).length;
+      btn.classList.toggle("hidden",!specialNoteUnlocked||regularFound<19||foundNotes.indexOf(SPECIAL_NOTE_INDEX)>=0)
     }
     function updateNoteCounter(animate){
       var txt=foundNotes.length+"/"+loveNotes.length;q("#noteCount").textContent=txt;q("#noteFoundMeta").textContent="Найдено "+txt;q("#noteHuntHint").textContent=noteStoryHint();updateSpecialNoteButton();
