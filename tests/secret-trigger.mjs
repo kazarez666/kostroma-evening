@@ -24,6 +24,13 @@ try {
   const opacity = await page.locator('#secretOwnerTrigger').evaluate(el => parseFloat(getComputedStyle(el).opacity));
   assert.ok(opacity <= .75, 'Footer owner leaf should blend into the footer copy');
 
+  // On mobile the fixed bottom navigation must never cover the owner trigger.
+  await page.locator('#secretOwnerTrigger').scrollIntoViewIfNeeded();
+  const triggerBox = await page.locator('#secretOwnerTrigger').boundingBox();
+  const navBox = await page.locator('.mobile-nav').boundingBox();
+  assert.ok(triggerBox && navBox && triggerBox.y + triggerBox.height < navBox.y,
+    'Footer owner trigger must remain fully tappable above the fixed mobile navigation');
+
   // First owner action only arms the visible surprise card; it does not reveal the detective.
   await page.locator('#secretOwnerTrigger').click();
   assert.equal(await page.locator('#caseSecretLaunch').isVisible(), true);
