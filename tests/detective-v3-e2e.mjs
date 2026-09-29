@@ -98,6 +98,11 @@ try{
   await page.locator('[data-pin="thread_pavel"]').click();
   await page.locator('[data-thread="marina"]').click();
   await page.locator('[data-pin="thread_marina"]').click();
+  await page.locator('#messageSearch').fill('договоры');
+  await page.locator('#messageSearchBtn').click();
+  assert.ok(await page.locator('[data-message-search-thread]').count()>=1,'message search should find older conversation history');
+  await page.locator('[data-message-search-thread="alina"]').first().click();
+  await textVisible('Нашла ещё два договора');
 
   // Photos, calls and notes use the same neutral pin mechanic.
   await page.locator('[data-device="hub"]').first().click();
@@ -264,6 +269,13 @@ try{
   await page.locator('[data-board-view="people"]').click();
   assert.equal(await page.locator('[data-suspect-mark="pavel"]').inputValue(),'solid');
   assert.match(await page.locator('[data-suspect-note="pavel"]').inputValue(),/заправку/);
+
+  await page.locator('[data-board-view="notes"]').click();
+  assert.equal(await page.locator('.notebook-kpis>div').count(),3);
+  await page.locator('#caseNotebook').fill('Сверить допросы с журналом и ещё раз обсудить алиби.');
+  await page.locator('[data-board-view="cards"]').click();
+  await page.locator('[data-board-view="notes"]').click();
+  assert.match(await page.locator('#caseNotebook').inputValue(),/Сверить допросы/);
 
   await page.locator('[data-board-view="cards"]').click();
   await page.locator('[data-remove-pin]').first().click();
