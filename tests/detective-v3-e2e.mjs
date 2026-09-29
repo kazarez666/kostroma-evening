@@ -98,7 +98,7 @@ try{
   await page.locator('[data-pin="thread_pavel"]').click();
   await page.locator('[data-thread="marina"]').click();
   await page.locator('[data-pin="thread_marina"]').click();
-  await page.locator('#messageSearch').fill('договоры');
+  await page.locator('#messageSearch').fill('договор');
   await page.locator('#messageSearchBtn').click();
   assert.ok(await page.locator('[data-message-search-thread]').count()>=1,'message search should find older conversation history');
   await page.locator('[data-message-search-thread="alina"]').first().click();
