@@ -89,14 +89,16 @@ try{
   assert.equal(await page.locator('#noteCount').innerText(),'1/20');
   await page.locator('[data-close-love]').last().click();
 
-  // Four taps on the trip date open a separate easter egg and do not count as a note.
-  for(let i=0;i<4;i++) await page.locator('#datePill').evaluate(el=>el.click());
+  // One tap on the trip date opens a separate easter egg and does not count as a note.
+  await page.locator('#datePill').evaluate(el=>el.click());
   assert.equal(await page.locator('#storyModal').isVisible(),true);
   assert.match(await page.locator('#storyModalTitle').innerText(),/Почему вообще существует этот сайт/);
   assert.equal(await page.locator('#noteCount').innerText(),'1/20');
   await page.locator('[data-close-story]').last().click();
 
-  // The deliberately wrong button escalates over three presses.
+  // The deliberately wrong button is visible in the hero near progress and escalates over three presses.
+  assert.equal(await page.locator('.hero-card #doNotPress').count(),1);
+  assert.equal(await page.locator('#doNotPress').isVisible(),true);
   for(let i=0;i<3;i++) await page.locator('#doNotPress').evaluate(el=>el.click());
   assert.equal(await page.locator('#storyModal').isVisible(),true);
   assert.match(await page.locator('#storyModalTitle').innerText(),/Раз уж ты всё-таки нажала/);
