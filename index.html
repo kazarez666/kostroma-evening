@@ -383,6 +383,18 @@
     .note-hunt-bar{position:relative;z-index:2;margin-top:18px;max-width:650px}.note-hunt-button{width:100%;display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:11px;align-items:center;text-align:left;padding:11px 13px;border:1px solid rgba(244,218,181,.26);border-radius:17px;background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(194,138,87,.11));color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.07);backdrop-filter:blur(10px)}.note-hunt-button:hover{background:linear-gradient(135deg,rgba(255,255,255,.17),rgba(194,138,87,.16));transform:translateY(-1px)}.note-hunt-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:rgba(255,255,255,.1);font-size:21px}.note-hunt-copy{display:grid;gap:2px;min-width:0}.note-hunt-copy small{font-size:9px;letter-spacing:.12em;font-weight:900;color:rgba(255,255,255,.64)}.note-hunt-copy b{font-size:14px}.note-hunt-copy strong{color:#f1d6ac;font-variant-numeric:tabular-nums}.note-hunt-hint{font-size:10px;color:rgba(255,255,255,.68);font-weight:750;text-align:right;max-width:180px;line-height:1.3}.note-hunt-bar.note-found{animation:noteFoundPulse .85s ease}@keyframes noteFoundPulse{35%{transform:scale(1.018);filter:drop-shadow(0 0 14px rgba(234,196,139,.28))}}
     body.activity-mode .note-hunt-bar{margin-top:8px;max-width:none}.hero .romance-actions{display:none!important}
     @media(max-width:760px){.note-hunt-bar{margin-top:13px}.note-hunt-button{grid-template-columns:36px minmax(0,1fr);padding:9px 10px;border-radius:14px}.note-hunt-icon{width:34px;height:34px;font-size:18px}.note-hunt-hint{grid-column:2;max-width:none;text-align:left;margin-top:-3px;font-size:9px}body.activity-mode .note-hunt-copy small{display:none}body.activity-mode .note-hunt-hint{display:none}body.activity-mode .note-hunt-button{grid-template-columns:30px 1fr;padding:7px 9px}body.activity-mode .note-hunt-icon{width:28px;height:28px;font-size:15px}}
+
+    .midnight-badge{padding:5px 9px;border-radius:999px;background:rgba(12,22,25,.28);border:1px solid rgba(255,255,255,.12);font-size:9px;font-weight:900;letter-spacing:.08em;color:#e9dfce}.midnight-badge.hidden{display:none}
+    body.midnight-mode{background:radial-gradient(circle at 50% 0%,#24312b 0,#171d1a 42%,#111411 100%);background-attachment:fixed}
+    body.midnight-mode .hero-card{background:radial-gradient(circle at 22% 0%,rgba(255,255,255,.07),transparent 32%),linear-gradient(145deg,#10241e,#2a2826 58%,#30231f);box-shadow:0 24px 80px rgba(0,0,0,.32)}
+    body.midnight-mode .tabs,body.midnight-mode .mobile-nav{box-shadow:0 12px 42px rgba(0,0,0,.24)}
+    body.midnight-mode .secret-leaf{filter:drop-shadow(0 2px 5px rgba(210,178,128,.12))}
+    .movie-after{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-top:15px}.movie-after.hidden{display:none}.movie-secret-note,.finish-evening{border:1px solid var(--line);border-radius:18px;padding:14px 16px;background:rgba(255,253,248,.84);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:11px;text-align:left;color:var(--ink);box-shadow:0 8px 22px rgba(62,43,29,.05)}.movie-secret-note:hover,.finish-evening:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(62,43,29,.09)}.movie-secret-note>span:first-child{font-size:25px}.movie-secret-note div,.finish-evening{min-width:0}.movie-secret-note small,.finish-evening small{display:block;font-size:9px;letter-spacing:.11em;color:var(--brown2);font-weight:900}.movie-secret-note b,.finish-evening b{display:block;margin-top:2px;font-size:13px}.finish-evening{grid-template-columns:1fr auto;background:linear-gradient(135deg,rgba(235,242,233,.94),rgba(255,250,241,.94))}.movie-secret-note.hidden{display:none}
+    .story-modal{position:fixed;inset:0;z-index:360;display:grid;place-items:center;padding:20px}.story-modal.hidden{display:none}.story-card{position:relative;z-index:1;width:min(480px,100%);padding:34px 27px 28px;border-radius:28px;background:linear-gradient(145deg,#fffaf1,#efe5d6);box-shadow:0 28px 90px rgba(28,20,16,.28);text-align:center}.story-mark{font-size:38px;margin-bottom:8px}.story-card>small{font-size:9px;letter-spacing:.15em;font-weight:900;color:var(--brown2)}.story-card h3{margin:7px 0 10px;font-family:Georgia,serif;font-size:28px}.story-card p{margin:0 auto 20px;max-width:390px;color:var(--muted);line-height:1.6}
+    .do-not-press{display:block;margin:10px auto 0;border:0;background:transparent;color:rgba(91,61,47,.38);font-size:9px;text-transform:lowercase;text-decoration:underline dotted;text-underline-offset:3px}.do-not-press:hover{color:var(--brown)}
+    .evening-finale{position:fixed;inset:0;z-index:500;display:grid;place-items:center;padding:18px;color:#fff}.evening-finale.hidden{display:none}.evening-finale__backdrop{position:absolute;inset:0;background:radial-gradient(circle at 50% 20%,rgba(111,91,62,.25),transparent 35%),rgba(10,18,15,.94);backdrop-filter:blur(10px)}.evening-finale__card{position:relative;z-index:1;width:min(600px,100%);padding:44px 32px 32px;border:1px solid rgba(255,255,255,.1);border-radius:34px;background:linear-gradient(145deg,rgba(31,64,49,.94),rgba(70,49,38,.94));box-shadow:0 35px 110px rgba(0,0,0,.45);text-align:center}.evening-finale__leaf{font-size:42px}.evening-finale__card>small{display:block;margin-top:8px;font-size:9px;letter-spacing:.17em;font-weight:900;color:#d8c8b3}.evening-finale__card h2{margin:7px 0 6px;font-family:Georgia,serif;font-size:clamp(32px,7vw,48px)}.evening-finale__card>p{margin:0 0 22px;color:#cad5ce}.evening-finale__facts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.evening-finale__facts div{padding:14px 10px;border-radius:16px;background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.08)}.evening-finale__facts span{display:block;font-size:9px;color:#d2c6b7;font-weight:850}.evening-finale__facts b{display:block;margin-top:5px;font-size:12px;line-height:1.3}.evening-finale__message{margin:22px 0 18px;display:grid;gap:3px}.evening-finale__message b{font-family:Georgia,serif;font-size:21px}.evening-finale__message span{font-size:12px;color:#cbd5cf}.evening-finale__close{border:0;border-radius:999px;padding:12px 20px;background:#f0e5d4;color:#2a3f34;font-weight:900}
+    body.finale-open{overflow:hidden}
+    @media(max-width:620px){.movie-after{grid-template-columns:1fr}.evening-finale__card{padding:36px 20px 25px;border-radius:28px}.evening-finale__facts{grid-template-columns:1fr}.evening-finale__facts div{display:grid;grid-template-columns:1fr 1.4fr;align-items:center;text-align:left}.evening-finale__facts b{text-align:right;margin:0}.story-card{padding:32px 22px 24px}}
 </style>
 </head>
 <body>
@@ -425,6 +437,35 @@
   <div class="heart-layer" id="heartLayer" aria-hidden="true"></div>
   <div class="final-banner" id="finalBanner"><b>Вечер удался ❤️</b><span>Теперь просто отдыхайте и будьте рядом.</span></div>
   <div class="toast" id="toast" aria-live="polite"></div>
+
+  <div class="story-modal hidden" id="storyModal" role="dialog" aria-modal="true" aria-labelledby="storyModalTitle">
+    <div class="love-backdrop" data-close-story></div>
+    <div class="story-card">
+      <button class="love-close" data-close-story aria-label="Закрыть">×</button>
+      <div class="story-mark" id="storyModalMark">🍂</div>
+      <small id="storyModalEyebrow">СЕКРЕТ</small>
+      <h3 id="storyModalTitle"></h3>
+      <p id="storyModalText"></p>
+      <button class="soft" data-close-story type="button">Ладно ❤️</button>
+    </div>
+  </div>
+
+  <div class="evening-finale hidden" id="eveningFinale" role="dialog" aria-modal="true" aria-labelledby="eveningFinaleTitle">
+    <div class="evening-finale__backdrop"></div>
+    <div class="evening-finale__card">
+      <div class="evening-finale__leaf">🍂</div>
+      <small>КОСТРОМА · ДЕНЬ 1</small>
+      <h2 id="eveningFinaleTitle">Первый день завершён</h2>
+      <p>Вот каким получился ваш пятничный вечер.</p>
+      <div class="evening-finale__facts">
+        <div><span>🍁 Записки</span><b id="finaleNotes">0 / 20</b></div>
+        <div><span>🍽️ Ужин</span><b id="finaleDinner">наш ужин</b></div>
+        <div><span>🎬 Фильм</span><b id="finaleMovie">фильм вечера</b></div>
+      </div>
+      <div class="evening-finale__message"><b>На сегодня план закончился ❤️</b><span>Остальное — уже не для сайта.</span></div>
+      <button class="evening-finale__close" id="closeEveningFinale" type="button">Закрыть первый день 🍁</button>
+    </div>
+  </div>
 
   <div class="welcome hidden" id="welcome">
     <div class="welcome-bg"></div>
@@ -473,7 +514,7 @@
   <button class="sheep-peek hidden" id="sheepPeek" aria-label="Секретная овечка">🐑</button>
   <header class="hero shell">
     <div class="hero-card">
-      <div class="topline"><span class="pill secret-date" id="datePill">2 октября • Кострома</span><span class="status">вечер для двоих</span></div>
+      <div class="topline"><span class="pill secret-date" id="datePill">2 октября • Кострома</span><span class="midnight-badge hidden" id="midnightBadge">🌙 после полуночи</span><span class="status" id="eveningStatus">вечер для двоих</span></div>
       <div class="hero-main">
         <p class="kicker">пятница • домашний вечер</p>
         <h1>Наш уютный вечер</h1>
@@ -774,6 +815,10 @@
         </div>
         <aside class="draw"><div class="big">🫙</div><small>шесть бумажек · один фильм</small><div class="result" id="movieResult">Добавьте два фильма Сони</div><button class="primary" id="pickMovie">🎟️ Крутим рулетку</button><p class="rule">Закидываем все шесть названий в банку и тянем одну бумажку.</p></aside>
       </div>
+      <div class="movie-after hidden" id="movieAfter">
+        <button class="movie-secret-note hidden" id="movieSecretNote" type="button"><span>🍁</span><div><small>СТРАННО...</small><b>После рулетки здесь появилась записка</b></div><span>→</span></button>
+        <button class="finish-evening" id="finishEvening" type="button"><small>ПОСЛЕ ФИЛЬМА</small><b>Закрыть первый день красиво ❤️</b><span>→</span></button>
+      </div>
     </section>
 
     <section class="panel" id="emoji">
@@ -829,6 +874,7 @@
       <button class="case-secret-launch__button" id="openSecretCase" type="button">Открыть сюрприз 🍁</button>
     </div>
     <div class="footer-copy"><button class="secret-owner-trigger" id="secretOwnerTrigger" type="button" aria-label="Дополнительное действие">🍂</button>Кострома • 2 октября • один очень уютный вечер <button class="footer-heart" id="footerHeart" aria-label="Секретное сердечко">♡</button></div>
+    <button class="do-not-press" id="doNotPress" type="button">не нажимать</button>
   </footer>
 
   <nav class="mobile-nav">
@@ -1247,17 +1293,60 @@
       "Мне нравится сохранять наши фотки, потому что потом смотришь — и обычный день уже кажется особенным.",
       "С тобой уютно даже молчать. Это вообще-то довольно редкая суперспособность.",
       "Если вечер уже подходит к концу: спасибо, что проживаешь со мной все эти придуманные мной странности ❤️",
-      "Финальная записка: никаких загадок. Я просто очень тебя люблю."
+      "Фильм выбран, вечер почти дошёл до финала, а я всё равно хочу сказать самое простое: я очень тебя люблю ❤️"
     ];
+    var SPECIAL_NOTE_INDEX=19;
     var tripNow=new Date(),tripDay=tripNow.getFullYear()===2026&&tripNow.getMonth()===9&&tripNow.getDate()===2;
-    if(tripDay&&!sessionStorage.getItem("kostromaTripFreshNotes")){sessionStorage.removeItem("kostromaFoundNotes");sessionStorage.removeItem("kostromaAllNotes");sessionStorage.setItem("kostromaTripFreshNotes","1")}
+    if(tripDay&&!sessionStorage.getItem("kostromaTripFreshNotes")){sessionStorage.removeItem("kostromaFoundNotes");sessionStorage.removeItem("kostromaAllNotes");sessionStorage.removeItem("kostromaSpecialNoteUnlocked");sessionStorage.setItem("kostromaTripFreshNotes","1")}
     var foundNotes=JSON.parse(sessionStorage.getItem("kostromaFoundNotes")||"[]"),lastLove=-1;
+    var specialNoteUnlocked=sessionStorage.getItem("kostromaSpecialNoteUnlocked")==="1" || !!localStorage.getItem("kostromaMovieResult");
 
     function showToast(text){var t=q("#toast");t.textContent=text;t.classList.add("show");clearTimeout(showToast.timer);showToast.timer=setTimeout(function(){t.classList.remove("show")},2300)}
     function burstHearts(x,y){var layer=q("#heartLayer");for(var i=0;i<10;i++){var h=document.createElement("span");h.className="burst-heart";h.textContent=i%3===0?"🍁":"❤";h.style.left=(x+(Math.random()*46-23))+"px";h.style.top=(y+(Math.random()*22-11))+"px";h.style.setProperty("--dx",(Math.random()*150-75)+"px");h.style.setProperty("--rot",(Math.random()*100-50)+"deg");layer.appendChild(h);setTimeout(function(el){el.remove()},1300,h)}}
-    function updateNoteCounter(animate){var txt=foundNotes.length+"/"+loveNotes.length,remaining=loveNotes.length-foundNotes.length;q("#noteCount").textContent=txt;q("#noteFoundMeta").textContent="Найдено "+txt;q("#noteHuntHint").textContent=remaining?"Осталось найти "+remaining+" · ищи по всему сайту →":"Все записки найдены ❤️";if(animate){var bar=q("#noteHuntBar");bar.classList.remove("note-found");void bar.offsetWidth;bar.classList.add("note-found");setTimeout(function(){bar.classList.remove("note-found")},900)}}
-    function nextUnseenNote(){var unseen=[];for(var i=0;i<loveNotes.length;i++)if(foundNotes.indexOf(i)<0)unseen.push(i);if(unseen.length)return unseen[Math.floor(Math.random()*unseen.length)];var r=Math.floor(Math.random()*loveNotes.length);while(loveNotes.length>1&&r===lastLove)r=Math.floor(Math.random()*loveNotes.length);return r}
-    function openLove(ev,forced){q("#loveTitle").textContent="Для Сони";var i=typeof forced==="number"?forced:nextUnseenNote();lastLove=i;if(foundNotes.indexOf(i)<0){foundNotes.push(i);sessionStorage.setItem("kostromaFoundNotes",JSON.stringify(foundNotes));showToast("🍁 Найдена записка "+foundNotes.length+" из "+loveNotes.length)}q("#loveText").textContent=loveNotes[i];q("#noteMeta").textContent="Записка "+(i+1)+" из "+loveNotes.length;q("#loveModal").classList.remove("hidden");updateNoteCounter(true);var x=innerWidth/2,y=innerHeight*.48;if(ev&&typeof ev.clientX==="number"){x=ev.clientX;y=ev.clientY}burstHearts(x,y);if(foundNotes.length===loveNotes.length&&!sessionStorage.getItem("kostromaAllNotes")){sessionStorage.setItem("kostromaAllNotes","1");setTimeout(function(){leafStorm(30);showToast("❤️ Все 20 записок найдены")},300)}}
+    function noteStoryHint(){
+      var n=foundNotes.length;
+      if(n>=20)return "Все записки найдены · история собрана ❤️";
+      if(n===19&&!specialNoteUnlocked)return "19 из 20 · последнюю больше не надо искать…";
+      if(n===19&&specialNoteUnlocked)return "19 из 20 · последняя появилась на странице кино →";
+      if(n>=15)return "Финиш близко · осталось совсем немного →";
+      if(n>=10)return "Половина позади · дальше спрятано хитрее →";
+      if(n>=5)return "Ты вошла во вкус · записки ещё повсюду →";
+      return "20 записок спрятаны по всему сайту →";
+    }
+    function noteFindToast(n){
+      if(n===5)return "🍂 5 записок. Кажется, это уже маленькая охота";
+      if(n===10)return "🍁 Половина найдена. Дальше будет хитрее";
+      if(n===15)return "❤️ 15 из 20. Финал уже близко";
+      if(n===19&&!specialNoteUnlocked)return "🍂 19 из 20. Последняя появится сама, когда придёт время";
+      if(n===20)return "❤️ Все 20 записок найдены";
+      return "🍁 Найдена записка "+n+" из "+loveNotes.length;
+    }
+    function updateSpecialNoteButton(){
+      var btn=q("#movieSecretNote");if(!btn)return;
+      var regularFound=foundNotes.filter(function(i){return i!==SPECIAL_NOTE_INDEX}).length;
+      btn.classList.toggle("hidden",!specialNoteUnlocked||regularFound<19||foundNotes.indexOf(SPECIAL_NOTE_INDEX)>=0)
+    }
+    function updateNoteCounter(animate){
+      var txt=foundNotes.length+"/"+loveNotes.length;q("#noteCount").textContent=txt;q("#noteFoundMeta").textContent="Найдено "+txt;q("#noteHuntHint").textContent=noteStoryHint();updateSpecialNoteButton();
+      if(animate){var bar=q("#noteHuntBar");bar.classList.remove("note-found");void bar.offsetWidth;bar.classList.add("note-found");setTimeout(function(){bar.classList.remove("note-found")},900)}
+    }
+    function nextUnseenNote(){
+      var unseen=[];for(var i=0;i<loveNotes.length;i++)if(i!==SPECIAL_NOTE_INDEX&&foundNotes.indexOf(i)<0)unseen.push(i);
+      if(unseen.length)return unseen[Math.floor(Math.random()*unseen.length)];
+      var seenRegular=[];for(var j=0;j<loveNotes.length-1;j++)seenRegular.push(j);
+      var r=seenRegular[Math.floor(Math.random()*seenRegular.length)];while(seenRegular.length>1&&r===lastLove)r=seenRegular[Math.floor(Math.random()*seenRegular.length)];return r
+    }
+    function openLove(ev,forced){
+      q("#loveTitle").textContent="Для Сони";var i=typeof forced==="number"?forced:nextUnseenNote();
+      if(i===SPECIAL_NOTE_INDEX&&!specialNoteUnlocked){showToast("🍂 Эта записка пока не хочет открываться");return}
+      lastLove=i;var isNew=foundNotes.indexOf(i)<0;if(isNew){foundNotes.push(i);sessionStorage.setItem("kostromaFoundNotes",JSON.stringify(foundNotes));showToast(noteFindToast(foundNotes.length))}
+      q("#loveText").textContent=loveNotes[i];q("#noteMeta").textContent=i===SPECIAL_NOTE_INDEX?"Последняя записка · 20 из 20":"Записка "+(i+1)+" из "+loveNotes.length;q("#loveModal").classList.remove("hidden");updateNoteCounter(true);
+      var x=innerWidth/2,y=innerHeight*.48;if(ev&&typeof ev.clientX==="number"){x=ev.clientX;y=ev.clientY}burstHearts(x,y);
+      if(foundNotes.length===loveNotes.length&&!sessionStorage.getItem("kostromaAllNotes")){sessionStorage.setItem("kostromaAllNotes","1");setTimeout(function(){leafStorm(30);showToast("❤️ Все 20 записок найдены. История собрана")},500)}
+    }
+    function unlockSpecialNote(){
+      if(specialNoteUnlocked)return;specialNoteUnlocked=true;sessionStorage.setItem("kostromaSpecialNoteUnlocked","1");updateNoteCounter(true);setTimeout(function(){showToast("🍁 После рулетки на странице кино что-то появилось…")},700)
+    }
     updateNoteCounter();
     function leafSpark(x,y){for(var i=0;i<3;i++){var s=document.createElement("span");s.className="leaf-spark";s.textContent=Math.random()>.5?"🍂":"🍁";s.style.left=(x+Math.random()*18-9)+"px";s.style.top=(y+Math.random()*12-6)+"px";s.style.setProperty("--sx",(Math.random()*52-26)+"px");s.style.setProperty("--sr",(Math.random()*100-50)+"deg");document.body.appendChild(s);setTimeout(function(el){el.remove()},850,s)}}
     function makeAmbientLeaves(){
@@ -1331,7 +1420,7 @@
     q("#footerHeart").addEventListener("click",function(ev){if(ownerHeartOpened){ev.preventDefault();ownerHeartOpened=false;return}openLove(ev)});
 
     q("#noteCollection").addEventListener("click",function(){showToast("🍁 На сайте спрятано 20 записок. Ищи осенние листики и другие подозрительные мелочи.")});
-    var resetNotesTimer;q("#noteCollection").addEventListener("pointerdown",function(){resetNotesTimer=setTimeout(function(){foundNotes=[];sessionStorage.removeItem("kostromaFoundNotes");sessionStorage.removeItem("kostromaAllNotes");updateNoteCounter();showToast("🍁 Коллекция записок сброшена")},1600)});["pointerup","pointercancel","pointerleave"].forEach(function(ev){q("#noteCollection").addEventListener(ev,function(){clearTimeout(resetNotesTimer)})});
+    var resetNotesTimer;q("#noteCollection").addEventListener("pointerdown",function(){resetNotesTimer=setTimeout(function(){foundNotes=[];sessionStorage.removeItem("kostromaFoundNotes");sessionStorage.removeItem("kostromaAllNotes");specialNoteUnlocked=!!localStorage.getItem("kostromaMovieResult");if(specialNoteUnlocked)sessionStorage.setItem("kostromaSpecialNoteUnlocked","1");else sessionStorage.removeItem("kostromaSpecialNoteUnlocked");updateNoteCounter();showToast("🍁 Коллекция записок сброшена")},1600)});["pointerup","pointercancel","pointerleave"].forEach(function(ev){q("#noteCollection").addEventListener(ev,function(){clearTimeout(resetNotesTimer)})});
     qa("[data-close-love]").forEach(function(x){x.addEventListener("click",function(){q("#loveModal").classList.add("hidden")})});
 
     function leafStorm(count){for(var i=0;i<(count||18);i++){(function(delay){setTimeout(function(){var el=document.createElement("span");el.className="leaf-storm-item";el.textContent=Math.random()>.45?"🍁":"🍂";el.style.left=(Math.random()*100)+"vw";el.style.setProperty("--x",(Math.random()*180-90)+"px");el.style.setProperty("--rot",(Math.random()*900-450)+"deg");el.style.setProperty("--dur",(2.7+Math.random()*2.2)+"s");document.body.appendChild(el);setTimeout(function(){el.remove()},5200)},delay)})(i*55)}}
@@ -1351,8 +1440,32 @@
     function openCoupon(){var c=coupons[Math.floor(Math.random()*coupons.length)];q("#couponTitle").textContent=c[0];q("#couponText").textContent=c[1];q("#couponModal").classList.remove("hidden");burstHearts(innerWidth/2,innerHeight*.45)}
     q("#couponSecret").addEventListener("click",openCoupon);qa("[data-close-coupon]").forEach(function(x){x.addEventListener("click",function(){q("#couponModal").classList.add("hidden")})});
 
+    function openStory(mark,eyebrow,title,text){
+      q("#storyModalMark").textContent=mark;q("#storyModalEyebrow").textContent=eyebrow;q("#storyModalTitle").textContent=title;q("#storyModalText").textContent=text;q("#storyModal").classList.remove("hidden");burstHearts(innerWidth/2,innerHeight*.44)
+    }
+    qa("[data-close-story]").forEach(function(x){x.addEventListener("click",function(){q("#storyModal").classList.add("hidden")})});
+    var doNotPressCount=parseInt(sessionStorage.getItem("kostromaDoNotPress")||"0",10);
+    q("#doNotPress").addEventListener("click",function(){
+      doNotPressCount++;sessionStorage.setItem("kostromaDoNotPress",String(doNotPressCount));
+      if(doNotPressCount===1){showToast("Я же написал: не нажимать 😐");return}
+      if(doNotPressCount===2){showToast("Соня. Серьёзно? 😏");return}
+      openStory("❤️","НУ ЛАДНО","Раз уж ты всё-таки нажала","Три нажатия засчитаны. Теперь эта кнопка официально выдаёт один поцелуй. Требовать немедленного исполнения разрешается.")
+    });
+    q("#movieSecretNote").addEventListener("click",function(ev){openLove(ev,SPECIAL_NOTE_INDEX)});
+    function openEveningFinale(){
+      var movie=localStorage.getItem("kostromaMovieResult")||"наш фильм",dinnerText=(typeof dinner!=="undefined"&&dinner&&dinner.name)?dinner.name:"наш ужин";
+      q("#finaleNotes").textContent=foundNotes.length+" / "+loveNotes.length;q("#finaleDinner").textContent=dinnerText;q("#finaleMovie").textContent=movie;q("#eveningFinale").classList.remove("hidden");document.body.classList.add("finale-open");localStorage.setItem("kostromaFridayFinished","1");leafStorm(24)
+    }
+    q("#finishEvening").addEventListener("click",openEveningFinale);
+    q("#closeEveningFinale").addEventListener("click",function(){q("#eveningFinale").classList.add("hidden");document.body.classList.remove("finale-open")});
+    function isAfterMidnight(now){return now.getFullYear()===2026&&now.getMonth()===9&&now.getDate()===3&&now.getHours()<5}
+    function applyMidnightMode(now){
+      var active=isAfterMidnight(now||new Date());document.body.classList.toggle("midnight-mode",active);q("#midnightBadge").classList.toggle("hidden",!active);q("#eveningStatus").textContent=active?"ночь только начинается":"вечер для двоих";return active
+    }
+    applyMidnightMode();setInterval(function(){applyMidnightMode()},60000);
+
     q("#luckyButton").addEventListener("click",function(){q("#loveTitle").textContent="Мне повезло";q("#loveText").textContent="Из всех людей мне досталась ты. Неплохо я устроился ❤️";q("#noteMeta").textContent="не записка — просто факт";q("#loveModal").classList.remove("hidden");burstHearts(innerWidth/2,innerHeight*.42)});
-    var dateTaps=0,dateTimer;q("#datePill").addEventListener("click",function(ev){dateTaps++;q("#datePill").classList.add("pulse");setTimeout(function(){q("#datePill").classList.remove("pulse")},700);clearTimeout(dateTimer);dateTimer=setTimeout(function(){dateTaps=0},1800);if(dateTaps>=4){dateTaps=0;q("#datePill").textContent="Соня ❤️";openLove(ev);setTimeout(function(){q("#datePill").textContent="2 октября • Кострома"},2600)}});
+    var dateTaps=0,dateTimer;q("#datePill").addEventListener("click",function(){dateTaps++;q("#datePill").classList.add("pulse");setTimeout(function(){q("#datePill").classList.remove("pulse")},700);clearTimeout(dateTimer);dateTimer=setTimeout(function(){dateTaps=0},1800);if(dateTaps>=4){dateTaps=0;q("#datePill").textContent="наш маленький секрет ❤️";openStory("🍂","ПАСХАЛКА","Почему вообще существует этот сайт","Я хотел, чтобы эта поездка была не просто «съездили в Кострому», а чем-то нашим. Поэтому здесь столько странных мелочей, записок и сюрпризов. Если ты это нашла — значит, всё было не зря ❤️");setTimeout(function(){q("#datePill").textContent="2 октября • Кострома"},2600)}});
 
     var cozy=parseInt(localStorage.getItem("kostromaCozy")||"0",10);function applyCozy(){document.body.classList.remove("cozy-1","cozy-2","cozy-3","cozy-4");if(cozy>0)document.body.classList.add("cozy-"+cozy);q("#cozyLevel").textContent=cozy+"/4";q("#cozyButton").childNodes[0].nodeValue=cozy===4?"🕯️ Максимальный уют ":"🕯️ Сделать уютнее "};applyCozy();q("#cozyButton").addEventListener("click",function(){if(cozy<4){cozy++;localStorage.setItem("kostromaCozy",String(cozy));applyCozy();leafStorm(5+cozy*3);showToast(cozy===4?"🍁 Максимальный уровень уюта достигнут":"🕯️ Уют: уровень "+cozy+" из 4")}else{showToast("❤️ Уют уже на максимуме")}});
 
@@ -1365,7 +1478,7 @@
 
     function showFinalBanner(){var b=q("#finalBanner");b.classList.add("show");setTimeout(function(){b.classList.remove("show")},4000)}
     if(!sessionStorage.getItem("kostromaWelcomeShown")){q("#welcome").classList.remove("hidden")}q("#startEvening").addEventListener("click",function(){sessionStorage.setItem("kostromaWelcomeShown","1");q("#welcome").classList.add("hidden");leafStorm(24);showToast("🍂 Начинаем наш вечер")});
-    document.addEventListener("keydown",function(e){if(e.key==="Escape"){q("#loveModal").classList.add("hidden");q("#couponModal").classList.add("hidden");q("#momentModal").classList.add("hidden")}});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"){q("#loveModal").classList.add("hidden");q("#couponModal").classList.add("hidden");q("#momentModal").classList.add("hidden");q("#storyModal").classList.add("hidden");q("#eveningFinale").classList.add("hidden");document.body.classList.remove("finale-open")}});
 
 
     // ---------- Дело №24: «Последний эфир» v2 ----------
@@ -2103,6 +2216,8 @@
 
     var movies=qa(".movie"), savedMovies=JSON.parse(localStorage.getItem("kostromaMovies")||"null");
     if(savedMovies){savedMovies.forEach(function(v,i){if(movies[i])movies[i].value=v})}
+    var savedMovieResult=localStorage.getItem("kostromaMovieResult");
+    if(savedMovieResult){q("#movieResult").textContent="🍿 "+savedMovieResult;q("#movieResult").classList.add("is-winner");q("#movieAfter").classList.remove("hidden")}
     movies.forEach(function(i){i.addEventListener("input",function(){localStorage.setItem("kostromaMovies",JSON.stringify(movies.map(function(x){return x.value})))})})
     var movieRouletteTimer=[];
     function clearMovieRouletteTimers(){movieRouletteTimer.forEach(function(t){clearTimeout(t)});movieRouletteTimer=[]}
@@ -2124,6 +2239,7 @@
         var winner="Как отделаться от парня за 10 дней",res=q("#movieResult");
         q("#moviePulledTitle").textContent=winner;pulled.classList.remove("hidden");jarWrap.classList.remove("is-picking");status.textContent="Есть! Фильм выбран ✨";done.classList.remove("hidden");
         res.textContent="🍿 "+winner;res.classList.remove("is-spinning");res.classList.add("is-winner");localStorage.setItem("kostromaMovieResult",winner);
+        q("#movieAfter").classList.remove("hidden");unlockSpecialNote();
         var r=pulled.getBoundingClientRect();burstHearts(r.left+r.width/2,r.top+r.height/2);leafStorm(18);showToast("🎬 Выпала бумажка — смотрим фильм")
       },4050)
     }
