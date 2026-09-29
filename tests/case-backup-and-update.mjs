@@ -29,6 +29,8 @@ try {
   await page.locator('[data-interview-suspect="pavel"]').click();
   await page.locator('[data-interview-question="evening"]').click();
   await page.locator('[data-interview-question="work"]').click();
+  await page.locator('[data-interview-question="access"]').click();
+  await page.locator('[data-interview-question="kirill"]').click();
   await page.locator('[data-case-app="police"]').click();
   assert.equal(await page.locator('.police-index-card').count(), 8, 'The optional update should arrive after exploration');
   await page.locator('[data-police-open="7"]').click();
