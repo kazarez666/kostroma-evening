@@ -32,6 +32,9 @@ try{
 
   // Movie roulette with all six slots and full-screen jar animation.
   await page.locator('.mnav[data-tab="movies"]').click();
+  assert.equal(await page.evaluate(() => Array.from({length:80},()=>nextUnseenNote()).includes(SPECIAL_NOTE_INDEX)), false, 'Final note must not appear in ordinary note search');
+  assert.equal(await page.evaluate(() => isAfterMidnight(new Date(2026,9,3,1,15))), true);
+  assert.equal(await page.evaluate(() => isAfterMidnight(new Date(2026,9,2,23,59))), false);
   const movies=page.locator('.movie');
   await movies.nth(0).fill('Амели');
   await movies.nth(1).fill('Отпуск по обмену');
@@ -43,6 +46,14 @@ try{
   assert.equal(await page.locator('#movieResult').innerText(), '🍿 Как отделаться от парня за 10 дней');
   await page.locator('#movieRouletteDone').click();
   assert.equal(await page.locator('#movieRoulette').isVisible(), false);
+  assert.equal(await page.locator('#movieAfter').isVisible(), true);
+  assert.equal(await page.locator('#movieSecretNote').evaluate(el=>el.classList.contains('hidden')), true);
+  assert.equal(await page.locator('#finishEvening').isVisible(), true);
+  await page.locator('#finishEvening').click();
+  assert.equal(await page.locator('#eveningFinale').isVisible(), true);
+  assert.match(await page.locator('#finaleMovie').innerText(), /Как отделаться от парня за 10 дней/);
+  await page.locator('#closeEveningFinale').click();
+  assert.equal(await page.locator('#eveningFinale').isVisible(), false);
 
   // Emoji game.
   await page.locator('.mnav[data-tab="emoji"]').click();
@@ -70,13 +81,45 @@ try{
   assert.equal(await page.locator('.romance-actions').isVisible(),false);
   assert.equal(await page.locator('#noteHuntBar').isVisible(),true);
   assert.equal(await page.locator('#noteCount').innerText(),'0/20');
-  assert.match(await page.locator('#noteHuntHint').innerText(),/Осталось найти 20/);
+  assert.match(await page.locator('#noteHuntHint').innerText(),/20 записок/);
   await page.locator('#noteCollection').click();
   assert.equal(await page.locator('#loveModal').evaluate(el=>el.classList.contains('hidden')),true);
   await page.locator('#footerHeart').evaluate(el=>el.click());
   assert.equal(await page.locator('#loveModal').evaluate(el=>el.classList.contains('hidden')),false);
   assert.equal(await page.locator('#noteCount').innerText(),'1/20');
   await page.locator('[data-close-love]').last().click();
+
+  // Four taps on the trip date open a separate easter egg and do not count as a note.
+  for(let i=0;i<4;i++) await page.locator('#datePill').evaluate(el=>el.click());
+  assert.equal(await page.locator('#storyModal').isVisible(),true);
+  assert.match(await page.locator('#storyModalTitle').innerText(),/Почему вообще существует этот сайт/);
+  assert.equal(await page.locator('#noteCount').innerText(),'1/20');
+  await page.locator('[data-close-story]').last().click();
+
+  // The deliberately wrong button escalates over three presses.
+  for(let i=0;i<3;i++) await page.locator('#doNotPress').evaluate(el=>el.click());
+  assert.equal(await page.locator('#storyModal').isVisible(),true);
+  assert.match(await page.locator('#storyModalTitle').innerText(),/Раз уж ты всё-таки нажала/);
+  await page.locator('[data-close-story]').last().click();
+
+  // Once 19 ordinary notes are found and the movie was selected, the event-only final note appears.
+  await page.evaluate(() => {
+    foundNotes=Array.from({length:19},(_,i)=>i);
+    sessionStorage.setItem('kostromaFoundNotes',JSON.stringify(foundNotes));
+    specialNoteUnlocked=true;
+    sessionStorage.setItem('kostromaSpecialNoteUnlocked','1');
+    updateNoteCounter();
+  });
+  assert.equal(await page.locator('#noteCount').innerText(),'19/20');
+  assert.match(await page.locator('#noteHuntHint').innerText(),/последняя появилась/);
+  await page.locator('.mnav[data-tab="movies"]').click();
+  assert.equal(await page.locator('#movieSecretNote').isVisible(),true);
+  await page.locator('#movieSecretNote').click();
+  assert.equal(await page.locator('#noteCount').innerText(),'20/20');
+  assert.match(await page.locator('#noteMeta').innerText(),/Последняя записка/);
+  await page.locator('[data-close-love]').last().click();
+  await page.locator('.mnav[data-tab="plan"]').click();
+
   await page.locator('#luckyButton').evaluate(el=>el.click());
   assert.equal(await page.locator('#loveModal').evaluate(el=>el.classList.contains('hidden')),false);
   await page.locator('[data-close-love]').last().click();
