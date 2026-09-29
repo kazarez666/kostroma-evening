@@ -122,6 +122,14 @@ try{
   await page.locator('[data-police-open="5"]').click();
   await page.locator('[data-pin="police_5"]').click();
 
+  // The board must not validate a decisive guess before the related testimony exists.
+  await app('board');
+  await page.locator('[data-board-view="questions"]').click();
+  await page.locator('[data-board-answer="0"]').fill('Марина');
+  await page.locator('[data-check-board="0"]').click();
+  assert.match(await page.locator('#board-feedback-0').innerText(),/Пока рано/);
+  assert.equal(await page.locator('#boardQuestionProgress').innerText(),'0/6');
+
   // Interrogations: five suspects, cinematic room, branching questions, progress and repeat visits.
   await app('interview');
   assert.equal(await page.locator('.interview-card').count(),5);
