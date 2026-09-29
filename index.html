@@ -806,7 +806,7 @@
             <button class="case-app" data-case-app="devices"><span>💻</span>Устройства</button>
             <button class="case-app" data-case-app="people"><span>👤</span>Люди</button>
             <button class="case-app" data-case-app="interview"><span>🗣️</span>Допрос</button>
-            <button class="case-app" data-case-app="web"><span>🌐</span>Открытый веб</button>
+            <button class="case-app" data-case-app="web"><span>🌐</span>Браузер</button>
             <button class="case-app" data-case-app="police"><span>🗃️</span>Материалы</button>
             <button class="case-app" data-case-app="board"><span>🧷</span>Доска</button>
             <button class="case-app" data-case-app="hints"><span>💡</span>Подсказки</button>
@@ -2160,7 +2160,7 @@
         '<div class="case-doc-head"><div><div class="case-doc-agency">ПРИЛОЖЕНИЕ №3</div><div class="case-doc-title">Круг лиц и задачи расследования</div><div class="case-doc-subtitle">ИСХОДНЫЙ СПИСОК ДЛЯ ПРОВЕРКИ</div></div><div class="case-doc-stamp">В РАБОТЕ</div></div>'+
         '<div class="case-suspects-paper"><div class="case-suspect-paper"><b>Марина Орлова, 29</b><span>Продюсер подкаста. Ушла со студии около 20:32. Заявляет, что позже находилась дома.</span></div><div class="case-suspect-paper"><b>Денис Карпов, 36</b><span>Директор PR‑агентства Prism. Его клиент фигурирует в готовящемся расследовании.</span></div><div class="case-suspect-paper"><b>Алина Петрова, 24</b><span>Ресерчер. Имела доступ к исходным документам и знала личность конфиденциального источника.</span></div><div class="case-suspect-paper"><b>Павел Чернов, 32</b><span>Звукорежиссёр. Знает студию и систему доступа, работал с финальным монтажом.</span></div><div class="case-suspect-paper"><b>Артём Зорин, 30</b><span>Источник расследования. Просил Кирилла не раскрывать его личность.</span></div><div class="case-suspect-paper"><b>Неустановленное лицо</b><span>Версия сохраняется до проверки журналов доступа и цифровых следов.</span></div></div>'+
         '<div class="case-doc-section"><h4>Основные вопросы, на которые должно ответить расследование</h4><ol><li>Кто находился в студии в промежутке 21:15–21:30?</li><li>Кто имел причину остановить публикацию нового выпуска?</li><li>Почему Кирилл незадолго до смерти говорил о внутренней утечке?</li><li>Какой предмет мог быть использован при нападении?</li><li>Какие алиби подтверждаются независимыми цифровыми следами, а какие — только словами самого человека?</li></ol></div>'+
-        '<div class="case-doc-callout"><b>После прочтения:</b> переходите во вкладки «Люди», «Устройства», «Открытый веб» и «Материалы». Не пытайтесь угадать убийцу сразу — сначала восстановите последние 40–50 минут вечера.</div>'
+        '<div class="case-doc-callout"><b>После прочтения:</b> переходите во вкладки «Люди», «Устройства», «Браузер» и «Материалы». Не пытайтесь угадать убийцу сразу — сначала восстановите последние 40–50 минут вечера.</div>'
       ];
       return '<div class="case-file-shell"><div class="case-file-toolbar"><div><small style="color:#71887c;font:800 10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em">ОФИЦИАЛЬНАЯ СВОДКА ДЕЛА</small><h3 style="margin-top:4px">Сначала прочитайте материалы</h3></div><div class="case-file-toolbar__meta"><span>ДЕЛО 24/10-26</span><span>4 СТРАНИЦЫ</span></div></div><div class="case-file-pages"><article class="case-paper">'+pages[page]+'<div class="case-doc-foot"><span>ДЕЛО №24/10-26 · КОПИЯ</span><span>СТР. '+(page+1)+' / 4</span></div></article></div><div class="case-file-controls"><button id="casePrevPage" '+(page===0?'disabled':'')+'>← Предыдущая</button><span class="case-file-pagecount">'+(page+1)+' / 4</span><button id="caseNextPage" '+(page===3?'disabled':'')+'>Следующая →</button></div></div>';
     }
@@ -2214,7 +2214,7 @@
         setCaseContext("Допросы и повторные вызовы");
         out=renderInterrogation();
       }else if(app==="web"){
-        setCaseContext("Копия открытого интернета на момент расследования");
+        setCaseContext("Изъятый браузер Кирилла · поиск, история и сайты");
         out=renderWeb(caseState.webPage||"home");
       }else if(app==="police"){
         setCaseContext("Приложение к материалам осмотра и цифровой экспертизы");
