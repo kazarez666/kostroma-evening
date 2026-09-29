@@ -122,11 +122,16 @@ try{
   await page.locator('[data-police-open="5"]').click();
   await page.locator('[data-pin="police_5"]').click();
 
-  // Interrogations: five suspects, branching questions, evidence unlocks and repeat visits.
+  // Interrogations: five suspects, cinematic room, branching questions, progress and repeat visits.
   await app('interview');
   assert.equal(await page.locator('.interview-card').count(),5);
+  assert.equal(await page.locator('.interrogation-overview').count(),1);
+  assert.match(await page.locator('.interrogation-overview').innerText(),/Ключевые показания/);
   await page.locator('[data-interview-suspect="marina"]').click();
   await textVisible('Марина Орлова');
+  assert.equal(await page.locator('.interview-stage').count(),1,'interrogation should open as a dedicated room scene');
+  assert.equal(await page.locator('.interview-lamp').count(),1,'room should include the interrogation lamp');
+  assert.equal(await page.locator('.interview-subject').count(),1,'suspect should sit in the interrogation scene');
   assert.ok(await page.locator('[data-interview-question]').count()>=1);
   assert.ok(await page.locator('[data-interview-question]').count()>=3,'all currently available questions should be visible');
   assert.equal(await page.locator('[data-interview-question="return"]').count(),0,'evidence follow-up should wait for the base answer');
@@ -151,6 +156,29 @@ try{
   await page.locator('[data-interview-suspect="pavel"]').click();
   await page.locator('[data-interview-question="evening"]').click();
   assert.ok(await page.locator('.interview-turn').count()>=1);
+  await page.locator('[data-interview-back]').click();
+
+  // All ordinary answers = 90%; a secret three-topic sequence can optionally take a suspect to 100%.
+  await page.evaluate(()=>{
+    const ordinary=interrogationData.marina.questions.filter(x=>!x.secret).map(x=>x.id);
+    caseState.interrogation.asked.marina=ordinary;
+    caseState.interrogation.history.marina=ordinary.slice();
+    saveCase();
+  });
+  await page.locator('[data-interview-suspect="marina"]').click();
+  assert.match(await page.locator('.interview-person-head .interview-meter__top').innerText(),/90%/);
+  assert.equal(await page.locator('.interview-combo').count(),1);
+  await page.locator('[data-interview-combo-step="last"]').click();
+  await page.locator('[data-interview-combo-step="return"]').click();
+  await page.locator('[data-interview-combo-step="money"]').click();
+  assert.equal(await page.locator('[data-interview-question="breakthrough"]').count(),0,'wrong sequence must not unlock the hidden answer');
+  await page.locator('[data-interview-combo-step="return"]').click();
+  await page.locator('[data-interview-combo-step="money"]').click();
+  await page.locator('[data-interview-combo-step="last"]').click();
+  assert.equal(await page.locator('[data-interview-question="breakthrough"]').count(),1,'correct sequence should reveal the optional hidden question');
+  await page.locator('[data-interview-question="breakthrough"]').click();
+  assert.match(await page.locator('.interview-person-head .interview-meter__top').innerText(),/100%/);
+  assert.match(await page.locator('.interview-done').last().innerText(),/100%/);
   await page.locator('[data-interview-back]').click();
 
   // Board accepts mixed relevant/irrelevant material, notes, manual time and user-defined links.
@@ -236,7 +264,24 @@ try{
   await page.locator('[data-next-hint="timeline"]').click();
   assert.equal(await page.locator('.hint-level:not(.locked)').count(),2);
   assert.equal(await page.locator('.hint-group').last().locator('.hint-level:not(.locked)').count(),0);
+  // Documents alone are not enough: the final form stays locked until key testimony exists.
   await app('final');
+  assert.equal(await page.locator('.final-interrogation-lock').count(),1);
+  assert.equal(await page.locator('#finalWho').count(),0);
+  assert.match(await page.locator('.final-interrogation-lock').innerText(),/ключевые допросы/i);
+
+  // Complete only the required testimony; optional 100% branches for the other suspects remain unnecessary.
+  await page.evaluate(()=>{
+    caseState.interrogation.asked.denis=['evening','marina','payment','restaurant'];
+    caseState.interrogation.asked.alina=['evening','draft','mood','bus','jurist'];
+    caseState.interrogation.asked.pavel=['evening','access','trophy','wifi'];
+    caseState.interrogation.asked.artem=['evening','fear','train','promise'];
+    saveCase();
+  });
+  await app('final');
+  assert.equal(await page.locator('.final-interrogation-lock').count(),0);
+  assert.equal(await page.locator('#finalWho').count(),1);
+
   await page.locator('#finalWho').selectOption({index:2});
   for(const id of ['#finalMotive','#finalMethod','#finalEvidence']) await page.locator(id).selectOption({index:1});
   await page.locator('#submitCase').click();
