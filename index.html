@@ -2485,7 +2485,7 @@
         var done=checks.find(function(x){return x.getAttribute("data-check")==="15"});if(done&&!done.checked){done.checked=true;saved["15"]=true;localStorage.setItem("kostromaChecks",JSON.stringify(saved));progress()}
         leafStorm(32);showToast("🔎 Убийца назван верно — дело раскрыто");renderCaseApp("final")
       }else{
-        fb.textContent="Убийца выбран неверно. Дополнительные пункты пока не оцениваются; ничего не сброшено.";
+        fb.textContent="Пока неверно. Убийца выбран неверно. Дополнительные пункты пока не оцениваются. Ничего не сброшено.";
         fb.classList.remove("hidden")
       }
     }
