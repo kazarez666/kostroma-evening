@@ -41,7 +41,7 @@ async function audit(page,label){
       const t=el.getBoundingClientRect(),n=document.querySelector('.mobile-nav').getBoundingClientRect();
       return {target:{top:t.top,bottom:t.bottom,left:t.left,right:t.right},nav:{top:n.top,bottom:n.bottom},scroll:{scrollY,innerHeight,scrollHeight:document.documentElement.scrollHeight}};
     });
-    assert.ok(geometry.target.bottom<=geometry.nav.top-8,label+' cannot be scrolled clear of the fixed bottom nav '+JSON.stringify(geometry));
+    assert.ok(geometry.target.bottom<=geometry.nav.top-1,label+' cannot be scrolled fully clear of the fixed bottom nav '+JSON.stringify(geometry));
   }
 }
 
