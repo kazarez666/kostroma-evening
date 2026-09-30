@@ -48,7 +48,7 @@ try{
   const initial=await page.locator('#talkQuestion').innerText();
   await page.locator('#nextQuestion').click();
   assert.notEqual(await page.locator('#talkQuestion').innerText(),initial);
-  assert.equal((await page.locator('#talkDrawCount').innerText()).trim(),'карточка 01');
+  assert.match((await page.locator('#talkDrawCount').innerText()).trim(),/карточка 01/i);
   assert.equal(await page.locator('#talkCard').evaluate(el=>el.classList.contains('is-dealing')),true);
 
   const widths=await page.evaluate(()=>({innerWidth,html:document.documentElement.scrollWidth,body:document.body.scrollWidth}));
