@@ -30,13 +30,17 @@ async function audit(page,label){
   const actions=page.locator('#caseScreen button:visible');
   if(await actions.count()){
     const target=actions.last();
-    await target.evaluate(el=>el.scrollIntoView({block:'center',inline:'nearest'}));
+    await target.evaluate(el=>{
+      const t=el.getBoundingClientRect(),n=document.querySelector('.mobile-nav').getBoundingClientRect();
+      const delta=t.bottom-(n.top-16);
+      if(delta>0)window.scrollBy(0,delta);
+    });
     await page.waitForTimeout(20);
     const geometry=await target.evaluate(el=>{
       const t=el.getBoundingClientRect(),n=document.querySelector('.mobile-nav').getBoundingClientRect();
       return {target:{top:t.top,bottom:t.bottom,left:t.left,right:t.right},nav:{top:n.top,bottom:n.bottom},scroll:{scrollY,innerHeight,scrollHeight:document.documentElement.scrollHeight}};
     });
-    assert.ok(geometry.target.bottom<=geometry.nav.top+1,label+' leaves a case action underneath the fixed bottom nav '+JSON.stringify(geometry));
+    assert.ok(geometry.target.bottom<=geometry.nav.top-8,label+' cannot be scrolled clear of the fixed bottom nav '+JSON.stringify(geometry));
   }
 }
 
