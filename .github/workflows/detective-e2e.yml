@@ -10,6 +10,7 @@ on:
       - "tests/case24-clean-playthrough.mjs"
       - "tests/site-smoke.mjs"
       - "tests/game-visual-polish.mjs"
+      - "tests/final-motion-polish.mjs"
       - "tests/evening-ux.mjs"
       - "tests/laptop-1366.mjs"
       - "tests/shopping-list.mjs"
@@ -58,6 +59,8 @@ jobs:
         run: node tests/site-smoke.mjs
       - name: Verify polished movie and game experiences
         run: node tests/game-visual-polish.mjs
+      - name: Verify final motion polish
+        run: node tests/final-motion-polish.mjs
       - name: Verify calm evening experience
         run: node tests/evening-ux.mjs
       - name: Verify 1366x768 laptop experience
