@@ -31,11 +31,12 @@ async function audit(page,label){
   if(await actions.count()){
     const target=actions.last();
     await target.evaluate(el=>{
+      document.documentElement.style.scrollBehavior='auto';
       const t=el.getBoundingClientRect(),n=document.querySelector('.mobile-nav').getBoundingClientRect();
       const delta=t.bottom-(n.top-16);
-      if(delta>0)window.scrollBy(0,delta);
+      if(delta>0)window.scrollBy({top:delta,left:0,behavior:'instant'});
     });
-    await page.waitForTimeout(20);
+    await page.waitForTimeout(50);
     const geometry=await target.evaluate(el=>{
       const t=el.getBoundingClientRect(),n=document.querySelector('.mobile-nav').getBoundingClientRect();
       return {target:{top:t.top,bottom:t.bottom,left:t.left,right:t.right},nav:{top:n.top,bottom:n.bottom},scroll:{scrollY,innerHeight,scrollHeight:document.documentElement.scrollHeight}};
