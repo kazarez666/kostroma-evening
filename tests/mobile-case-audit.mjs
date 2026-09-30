@@ -32,12 +32,11 @@ async function audit(page,label){
     const target=actions.last();
     await target.evaluate(el=>el.scrollIntoView({block:'center',inline:'nearest'}));
     await page.waitForTimeout(20);
-    const box=await target.boundingBox();
-    const nav=await page.locator('.mobile-nav').boundingBox();
-    if(box&&nav){
-      const scroll=await page.evaluate(()=>({scrollY,innerHeight,scrollHeight:document.documentElement.scrollHeight}));
-      assert.ok(box.y+box.height<=nav.y+1,label+' leaves a case action underneath the fixed bottom nav '+JSON.stringify({box,nav,scroll}));
-    }
+    const geometry=await target.evaluate(el=>{
+      const t=el.getBoundingClientRect(),n=document.querySelector('.mobile-nav').getBoundingClientRect();
+      return {target:{top:t.top,bottom:t.bottom,left:t.left,right:t.right},nav:{top:n.top,bottom:n.bottom},scroll:{scrollY,innerHeight,scrollHeight:document.documentElement.scrollHeight}};
+    });
+    assert.ok(geometry.target.bottom<=geometry.nav.top+1,label+' leaves a case action underneath the fixed bottom nav '+JSON.stringify(geometry));
   }
 }
 
