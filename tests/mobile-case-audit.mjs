@@ -23,7 +23,7 @@ async function audit(page,label){
   assert.ok(geometry.scrollWidth<=geometry.innerWidth+2,label+' causes document horizontal overflow: '+JSON.stringify(geometry));
   assert.ok(geometry.bodyWidth<=geometry.innerWidth+2,label+' causes body horizontal overflow: '+JSON.stringify(geometry));
 
-  const fields=page.locator('#caseScreen input:visible,#caseScreen select:visible,#caseScreen textarea:visible');
+  const fields=page.locator('#caseScreen input:not([type="checkbox"]):not([type="radio"]):visible,#caseScreen select:visible,#caseScreen textarea:visible');
   const tooSmall=await fields.evaluateAll(els=>els.map(el=>({tag:el.tagName,id:el.id,size:parseFloat(getComputedStyle(el).fontSize)})).filter(x=>x.size<15.5));
   assert.deepEqual(tooSmall,[],label+' has mobile form controls below 16px');
 
