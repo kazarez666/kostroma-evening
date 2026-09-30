@@ -6,6 +6,8 @@ on:
       - "index.html"
       - "tests/detective-e2e.mjs"
       - "tests/detective-v3-e2e.mjs"
+      - "tests/mobile-case-audit.mjs"
+      - "tests/case24-clean-playthrough.mjs"
       - "tests/site-smoke.mjs"
       - "tests/evening-ux.mjs"
       - "tests/laptop-1366.mjs"
@@ -63,6 +65,10 @@ jobs:
         run: node tests/today-prep.mjs
       - name: Verify hidden owner trigger
         run: node tests/secret-trigger.mjs
+      - name: Audit detective on mobile viewports
+        run: node tests/mobile-case-audit.mjs
+      - name: Complete case from clean save
+        run: node tests/case24-clean-playthrough.mjs
       - name: Run detective browser test
         run: node tests/detective-v3-e2e.mjs
       - name: Verify trip-day progress survives reopening
