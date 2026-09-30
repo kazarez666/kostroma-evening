@@ -52,6 +52,17 @@ try{
   await baseInterview('pavel',['evening','access']);
   await baseInterview('artem',['evening','fear']);
 
+  // Early working theories are possible, but the case is intentionally not closable yet.
+  await app('interview');
+  await page.locator('[data-interview-suspect="marina"]').click();
+  assert.equal(await page.locator('[data-interview-question="money"]').count(),0,'mail evidence must be needed for Marina money follow-up');
+  await page.locator('[data-interview-back]').click();
+  await page.locator('[data-interview-suspect="alina"]').click();
+  assert.equal(await page.locator('[data-interview-question="bus"]').count(),0,'Bashkinogram post must be needed for Alina bus follow-up');
+  await page.locator('[data-interview-back]').click();
+  await app('final');
+  assert.equal(await page.locator('.final-interrogation-lock').count(),1,'early theories must not bypass the remaining investigation');
+
   // Browser research: profile -> social evidence.
   await app('web');
   await page.locator('#caseWebQuery').fill('Кирилл Волков');
@@ -120,6 +131,10 @@ try{
   for(const id of ['trophy','wifi'])await ask(id);
   await page.locator('[data-interview-back]').click();
 
+  // Even four fully checked suspect paths are insufficient: the fifth core testimony still matters.
+  await app('final');
+  assert.equal(await page.locator('.final-interrogation-lock').count(),1,'four suspect paths must not be enough for the final');
+  await app('interview');
   await page.locator('[data-interview-suspect="artem"]').click();
   for(const id of ['train','promise'])await ask(id);
   await page.locator('[data-interview-back]').click();
