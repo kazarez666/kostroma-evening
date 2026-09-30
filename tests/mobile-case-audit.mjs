@@ -35,7 +35,8 @@ async function audit(page,label){
     const box=await target.boundingBox();
     const nav=await page.locator('.mobile-nav').boundingBox();
     if(box&&nav){
-      assert.ok(box.y+box.height<=nav.y+1,label+' leaves a case action underneath the fixed bottom nav');
+      const scroll=await page.evaluate(()=>({scrollY,innerHeight,scrollHeight:document.documentElement.scrollHeight}));
+      assert.ok(box.y+box.height<=nav.y+1,label+' leaves a case action underneath the fixed bottom nav '+JSON.stringify({box,nav,scroll}));
     }
   }
 }
