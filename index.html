@@ -2612,25 +2612,27 @@
     function clearMovieRouletteTimers(){movieRouletteTimer.forEach(function(t){clearTimeout(t)});movieRouletteTimer=[]}
     function laterMovieRoulette(fn,delay){movieRouletteTimer.push(setTimeout(fn,delay))}
     function closeMovieRoulette(){
-      q("#movieRoulette").classList.add("hidden");document.body.classList.remove("movie-roulette-open");clearMovieRouletteTimers();q("#pickMovie").disabled=false
+      var modal=q("#movieRoulette"),jar=q("#movieJarWrap");modal.classList.add("hidden");modal.classList.remove("is-revealed");jar.classList.remove("is-shaking","is-settling","is-picking");document.body.classList.remove("movie-roulette-open");clearMovieRouletteTimers();q("#pickMovie").disabled=false
     }
     function startMovieRoulette(entries){
       var modal=q("#movieRoulette"),stream=q("#movieSlipStream"),jarSlips=q("#movieJarSlips"),jarWrap=q("#movieJarWrap"),pulled=q("#moviePulled"),done=q("#movieRouletteDone"),status=q("#movieRouletteStatus");
-      clearMovieRouletteTimers();stream.innerHTML="";jarSlips.innerHTML="";pulled.classList.add("hidden");done.classList.add("hidden");jarWrap.classList.remove("is-shaking","is-picking");modal.classList.remove("hidden");document.body.classList.add("movie-roulette-open");status.textContent="Закидываем бумажки в банку…";
+      clearMovieRouletteTimers();stream.innerHTML="";jarSlips.innerHTML="";pulled.classList.add("hidden");done.classList.add("hidden");modal.classList.remove("is-revealed");jarWrap.classList.remove("is-shaking","is-settling","is-picking");modal.classList.remove("hidden");document.body.classList.add("movie-roulette-open");status.textContent="Закидываем бумажки в банку…";
       entries.forEach(function(entry,i){
-        var flying=document.createElement("div");flying.className="movie-flying-slip";flying.textContent=entry.name;flying.style.setProperty("--i",String(i));stream.appendChild(flying);
-        var inside=document.createElement("div");inside.className="movie-jar-slip";inside.textContent=entry.name;inside.style.setProperty("--r",((i*23)%30-15)+"deg");inside.style.setProperty("--x",((i*31)%58+12)+"%");inside.style.setProperty("--y",((i*19)%42+44)+"%");jarSlips.appendChild(inside);
-        laterMovieRoulette(function(){flying.classList.add("drop");inside.classList.add("landed")},180+i*190)
+        var flying=document.createElement("div");flying.className="movie-flying-slip";flying.textContent=entry.name;
+        flying.style.setProperty("--i",String(i));flying.style.setProperty("--fx",(((i*37)%86)-43)+"px");flying.style.setProperty("--drift",(((i*29)%70)-35)+"px");flying.style.setProperty("--fr",(((i*17)%22)-11)+"deg");flying.style.setProperty("--landr",(((i*31)%28)-14)+"deg");stream.appendChild(flying);
+        var inside=document.createElement("div");inside.className="movie-jar-slip";inside.textContent=entry.name;inside.style.setProperty("--r",((i*23)%30-15)+"deg");inside.style.setProperty("--x",((i*31)%58+12)+"%");inside.style.setProperty("--y",((i*19)%42+44)+"%");inside.style.setProperty("--mx",(((i*17)%30)+9)+"px");inside.style.setProperty("--my",-(((i*13)%20)+8)+"px");inside.style.setProperty("--mr",(((i*19)%34)-17)+"deg");inside.style.setProperty("--delay",(-i*.08)+"s");jarSlips.appendChild(inside);
+        laterMovieRoulette(function(){flying.classList.add("drop");inside.classList.add("landed")},150+i*175)
       });
-      laterMovieRoulette(function(){status.textContent="Перемешиваем…";jarWrap.classList.add("is-shaking")},1550);
-      laterMovieRoulette(function(){jarWrap.classList.remove("is-shaking");jarWrap.classList.add("is-picking");status.textContent="Тянем одну бумажку…"},3050);
+      laterMovieRoulette(function(){status.textContent="Бумажки внутри. Хорошенько встряхиваем…";jarWrap.classList.add("is-shaking")},1450);
+      laterMovieRoulette(function(){jarWrap.classList.remove("is-shaking");jarWrap.classList.add("is-settling");status.textContent="Почти… даём им улечься."},3000);
+      laterMovieRoulette(function(){jarWrap.classList.remove("is-settling");jarWrap.classList.add("is-picking");status.textContent="Теперь тянем одну бумажку…"},3550);
       laterMovieRoulette(function(){
         var winner="Как отделаться от парня за 10 дней",res=q("#movieResult");
-        q("#moviePulledTitle").textContent=winner;pulled.classList.remove("hidden");jarWrap.classList.remove("is-picking");status.textContent="Есть! Фильм выбран ✨";done.classList.remove("hidden");
+        q("#moviePulledTitle").textContent=winner;pulled.classList.remove("hidden");jarWrap.classList.remove("is-picking");modal.classList.add("is-revealed");status.textContent="Есть! Бумажка выбрана ✨";done.classList.remove("hidden");
         res.textContent="🍿 "+winner;res.classList.remove("is-spinning");res.classList.add("is-winner");localStorage.setItem("kostromaMovieResult",winner);
         q("#movieAfter").classList.remove("hidden");unlockSpecialNote();
         var r=pulled.getBoundingClientRect();burstHearts(r.left+r.width/2,r.top+r.height/2);leafStorm(18);showToast("🎬 Выпала бумажка — смотрим фильм")
-      },4050)
+      },4550)
     }
     q("#pickMovie").addEventListener("click",function(){
       var entries=movies.map(function(x){return {name:x.value.trim(),input:x}}).filter(function(x){return x.name}),res=q("#movieResult");
@@ -2649,10 +2651,14 @@
       ["🤠 🧸 🚀","История игрушек"],["🦇 🌃 🤡","Тёмный рыцарь"],["🚀 🌌 ⏳ 🌽","Интерстеллар"],["👨‍💼 📺 🌎 🚪","Шоу Трумана"],
       ["👱‍♀️ 💖 ⚖️","Блондинка в законе"],["🎭 💚 🐶 💰","Маска"]
     ],ei=0,revealed=false;
-    function renderEmoji(){q("#emojiLine").textContent=emoji[ei][0];q("#emojiAnswer").textContent=emoji[ei][1];q("#emojiAnswer").classList.toggle("hidden",!revealed);q("#reveal").textContent=revealed?"Скрыть ответ":"Показать ответ";q("#emojiIndex").textContent=ei+1;q("#emojiTotal").textContent=emoji.length}
-    q("#reveal").addEventListener("click",function(){revealed=!revealed;renderEmoji()})
-    q("#nextEmoji").addEventListener("click",function(){ei=(ei+1)%emoji.length;revealed=false;renderEmoji()})
-    q("#shuffle").addEventListener("click",function(){emoji.sort(function(){return Math.random()-.5});ei=0;revealed=false;renderEmoji()});renderEmoji()
+    function renderEmoji(animate){
+      var card=q("#emojiCard");q("#emojiLine").textContent=emoji[ei][0];q("#emojiAnswer").textContent=emoji[ei][1];q("#emojiAnswer").classList.toggle("hidden",!revealed);card.classList.toggle("is-revealed",revealed);
+      q("#reveal").textContent=revealed?"🙈 Скрыть ответ":"👀 Показать ответ";q("#emojiIndex").textContent=ei+1;q("#emojiRoundTop").textContent=ei+1;q("#emojiTotal").textContent=emoji.length;q("#emojiProgressFill").style.width=(((ei+1)/emoji.length)*100)+"%";
+      if(animate){card.classList.remove("is-changing");void card.offsetWidth;card.classList.add("is-changing");setTimeout(function(){card.classList.remove("is-changing")},480)}
+    }
+    q("#reveal").addEventListener("click",function(){revealed=!revealed;renderEmoji(false)})
+    q("#nextEmoji").addEventListener("click",function(){ei=(ei+1)%emoji.length;revealed=false;renderEmoji(true)})
+    q("#shuffle").addEventListener("click",function(){emoji.sort(function(){return Math.random()-.5});ei=0;revealed=false;renderEmoji(true)});renderEmoji(false)
 
     var focusSection=null;
     function openFocusMode(id){
@@ -2710,11 +2716,13 @@
     games["Суд над вещами"].push("Кетчуп с макаронами.","Спать с открытым окном осенью.","Ставить десять будильников вместо одного.","Есть пиццу на следующий день холодной.","Снимать концерт на телефон вместо того, чтобы смотреть глазами.","Ходить дома в уличной одежде.","Отвечать «ок» на длинное сообщение.","Подарочные сертификаты вместо обычных подарков.","Смотреть фильм с субтитрами, когда есть дубляж.","Забирать из отеля маленькие шампуни и тапочки.");
     games["Что хуже?"].push("Неделю носить слегка тесную обувь или свитер, который постоянно колется?","Потерять телефон на сутки или ключи от квартиры на сутки?","Провести ночь в аэропорту или шесть часов ждать автобус на холодном вокзале?","Каждый чай пить слишком горячим или каждый кофе — уже почти холодным?","Всегда попадать под дождь без зонта или всегда забывать перчатки зимой?","Жить рядом с очень шумными соседями или с соседями, которые постоянно приходят знакомиться?","Разбить любимую кружку или случайно удалить любимый плейлист?","Два часа выбирать фильм и уснуть через 15 минут или сразу включить плохой фильм и досмотреть до конца?","Доставка всегда на 30 минут позже или всегда приходит один неправильный соус?","Забыть годовщину или забыть, что именно подарил на прошлую годовщину?");
     games["Смешной рандом"]=["Если бы про нас снимали ситком, как называлась бы серия про этот вечер?","Какой самый нелепый предмет мог бы стать нашим семейным талисманом?","Если бы квартира умела говорить, на что бы она пожаловалась первой?","Какой закон мы бы ввели, если бы на один день стали мэрами города?","Какое абсолютно бесполезное суперумение идеально подошло бы каждому из нас?","Если бы маленькая игрушка могла написать на нас отзыв, что бы там было?","Какой самый странный ресторан мы могли бы открыть и что было бы в меню?","Если бы завтра все люди обязаны были ходить в одном костюме, какой выбрали бы мы?","Какую фразу каждый из нас говорит настолько часто, что её можно печатать на футболке?","Если бы у нашей пары был герб, что на нём обязательно должно быть?","Какой максимально нелепый вид спорта мы могли бы придумать для двоих?","Если бы нас отправили на реалити-шоу, за что зрители бы нас запомнили?","Какой предмет из квартиры мы бы выбрали оружием в очень несерьёзном зомби-апокалипсисе?","Если бы можно было дать друг другу новое имя на один день, какие бы выбрали?","Какой максимально плохой совет мы могли бы дать человеку перед первым свиданием?","Если бы каждое наше появление сопровождалось одной звуковой дорожкой, что бы там звучало?","Какой нелепый праздник мы бы отмечали каждый год только вдвоём?","Если бы вечером пришлось снять рекламу одного предмета вокруг нас, что бы выбрали и как продавали?","Какой самый абсурдный штраф можно было бы ввести дома?","Если бы о нас написали новость завтра утром, каким был бы заголовок?"];
-    var current=Object.keys(games)[0],prev=-1;
-    function gameTabs(){var wrap=q("#gamechips");wrap.innerHTML="";Object.keys(games).forEach(function(name){var b=document.createElement("button");b.className="chip"+(name===current?" active":"");b.textContent=name;b.onclick=function(){current=name;prev=-1;q("#talkLabel").textContent=current;q("#talkCount").textContent=games[current].length+" вопросов";q("#showAll").textContent="Показать все "+games[current].length;q("#talkQuestion").textContent="Нажмите «Следующий вопрос» — и начинаем.";q("#allQuestions").classList.add("hidden");gameTabs()};wrap.appendChild(b)});q("#talkLabel").textContent=current;q("#talkCount").textContent=games[current].length+" вопросов";q("#showAll").textContent="Показать все "+games[current].length}
+    var current=Object.keys(games)[0],prev=-1,talkDraws=0;
+    var talkModeIcons={"Деньги, но с условием":"💸","Абсурдный выбор":"🌀","Открываем бизнес":"💡","Суд над вещами":"⚖️","Что хуже?":"😬","Смешной рандом":"🎪"};
+    function syncTalkHeader(){q("#talkLabel").textContent=current;q("#talkCount").textContent=games[current].length+" вопросов";q("#talkModeIcon").textContent=talkModeIcons[current]||"☕";q("#showAll").textContent="Показать все "+games[current].length;q("#talkDrawCount").textContent=talkDraws?"карточка "+String(talkDraws).padStart(2,"0"):"готовы?"}
+    function gameTabs(){var wrap=q("#gamechips");wrap.innerHTML="";Object.keys(games).forEach(function(name){var b=document.createElement("button");b.className="chip"+(name===current?" active":"");b.setAttribute("data-icon",talkModeIcons[name]||"☕");b.textContent=name;b.onclick=function(){current=name;prev=-1;talkDraws=0;q("#talkQuestion").textContent="Нажмите «Следующий вопрос» — и начинаем.";q("#allQuestions").classList.add("hidden");gameTabs()};wrap.appendChild(b)});syncTalkHeader()}
     gameTabs();
-    q("#nextQuestion").addEventListener("click",function(){var a=games[current],i=Math.floor(Math.random()*a.length);while(a.length>1&&i===prev)i=Math.floor(Math.random()*a.length);prev=i;q("#talkQuestion").textContent=a[i]})
-    q("#showAll").addEventListener("click",function(){var box=q("#allQuestions");if(!box.classList.contains("hidden")){box.classList.add("hidden");return}box.innerHTML="<ol>"+games[current].map(function(x){return "<li>"+x+"</li>"}).join("")+"</ol>";box.classList.remove("hidden")})
+    q("#nextQuestion").addEventListener("click",function(){var a=games[current],i=Math.floor(Math.random()*a.length);while(a.length>1&&i===prev)i=Math.floor(Math.random()*a.length);prev=i;talkDraws++;q("#talkQuestion").textContent=a[i];syncTalkHeader();var card=q("#talkCard");card.classList.remove("is-dealing");void card.offsetWidth;card.classList.add("is-dealing");setTimeout(function(){card.classList.remove("is-dealing")},520)})
+    q("#showAll").addEventListener("click",function(){var box=q("#allQuestions");if(!box.classList.contains("hidden")){box.classList.add("hidden");this.textContent="Показать все "+games[current].length;return}box.innerHTML="<ol>"+games[current].map(function(x){return "<li>"+x+"</li>"}).join("")+"</ol>";box.classList.remove("hidden");this.textContent="Скрыть список"})
     if("serviceWorker" in navigator&&location.hostname.endsWith("github.io")){addEventListener("load",function(){navigator.serviceWorker.register("./sw.js").catch(function(){})})}
   </script>
 </body>
