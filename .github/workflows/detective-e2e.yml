@@ -65,12 +65,12 @@ jobs:
         run: node tests/today-prep.mjs
       - name: Verify hidden owner trigger
         run: node tests/secret-trigger.mjs
-      - name: Run detective browser test
-        run: node tests/detective-v3-e2e.mjs
       - name: Audit detective on mobile viewports
         run: node tests/mobile-case-audit.mjs
       - name: Complete case from clean save
         run: node tests/case24-clean-playthrough.mjs
+      - name: Run detective browser test
+        run: node tests/detective-v3-e2e.mjs
       - name: Verify trip-day progress survives reopening
         run: node tests/trip-day-resume.mjs
       - name: Verify spoiler-safe case navigation and reading
