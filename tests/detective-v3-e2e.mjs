@@ -80,9 +80,9 @@ try{
   assert.ok(await page.locator('.browser-result').count()>=3,'mail search should return multiple plausible services');
   await page.locator('[data-webpage="mail"]').click();
   assert.ok(await page.locator('.mail-web-row').count()>=10);
-  await page.locator('.mail-web-row').last().click();
-  assert.equal(await page.locator('.mail-web-message [data-pin]').count(),1);
-  await page.locator('.mail-web-message [data-pin]').click();
+  await page.locator('[data-mail-open="1"]').click();
+  assert.equal(await page.locator('.mail-web-message [data-pin="mail_1"]').count(),1);
+  await page.locator('.mail-web-message [data-pin="mail_1"]').click();
 
   // All five message threads are pinnable, including irrelevant-looking ones.
   await app('devices');
