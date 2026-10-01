@@ -301,7 +301,7 @@ try{
 
   // Complete only the required testimony; optional 100% branches for the other suspects remain unnecessary.
   await page.evaluate(()=>{
-    caseState.interrogation.asked.denis=['evening','marina','payment','restaurant'];
+    caseState.interrogation.asked.denis=['evening','marina','payment','restaurant','badge','car'];
     caseState.interrogation.asked.alina=['evening','draft','mood','bus','jurist'];
     caseState.interrogation.asked.pavel=['evening','access','trophy','wifi'];
     caseState.interrogation.asked.artem=['evening','fear','train','promise'];
@@ -311,7 +311,7 @@ try{
   assert.equal(await page.locator('.final-interrogation-lock').count(),0);
   assert.equal(await page.locator('#finalWho').count(),1);
 
-  await page.locator('#finalWho').selectOption({index:2});
+  await page.locator('#finalWho').selectOption({index:1});
   for(const id of ['#finalMotive','#finalMethod','#finalEvidence']) await page.locator(id).selectOption({index:1});
   await page.locator('#submitCase').click();
   await page.locator('#finalFeedback').getByText('Пока неверно',{exact:false}).waitFor({state:'visible'});
@@ -320,8 +320,8 @@ try{
   await page.locator('.final-back').click();
   assert.equal(await page.locator('.board-tabs').count(),1);
   await app('final');
-  assert.equal(await page.locator('#finalWho').inputValue(),'denis','wrong versions should remain editable after returning to evidence');
-  await page.locator('#finalWho').selectOption('marina');
+  assert.equal(await page.locator('#finalWho').inputValue(),'marina','wrong versions should remain editable after returning to evidence');
+  await page.locator('#finalWho').selectOption('denis');
   await page.locator('#finalMotive').selectOption('revenge');
   await page.locator('#finalMethod').selectOption('cable');
   await page.locator('#finalEvidence').selectOption('photo_email');
