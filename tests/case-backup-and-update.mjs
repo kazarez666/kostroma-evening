@@ -34,7 +34,7 @@ try {
   await page.locator('[data-case-app="police"]').click();
   assert.equal(await page.locator('.police-index-card').count(), 8, 'The optional update should arrive after exploration');
   await page.locator('[data-police-open="7"]').click();
-  assert.match(await page.locator('.police-paper').innerText(), /сверка временных отметок/i);
+  assert.match(await page.locator('.police-paper').innerText(), /гостевой доступ и сверка времени/i);
   await page.locator('[data-police-back]').click();
 
   await page.locator('[data-case-app="board"]').click();
