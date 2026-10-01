@@ -112,6 +112,7 @@ try{
 
   // Independent records required by the key testimony.
   for(const i of [0,1,2,4,5])await pinPolice(i);
+  await pinPolice(7);
 
   // Key follow-ups. No hidden 100% combination is touched.
   await app('interview');
@@ -120,7 +121,7 @@ try{
   await page.locator('[data-interview-back]').click();
 
   await page.locator('[data-interview-suspect="denis"]').click();
-  for(const id of ['payment','restaurant'])await ask(id);
+  for(const id of ['payment','restaurant','badge','car'])await ask(id);
   await page.locator('[data-interview-back]').click();
 
   await page.locator('[data-interview-suspect="alina"]').click();
@@ -152,7 +153,7 @@ try{
   assert.ok(Object.values(state.progress).every(x=>x<100),'clean completion path should leave optional interrogation material');
   assert.equal(state.mail,true);
   assert.equal(state.files,true);
-  for(const required of ['mail_1','post_alina_0','file_lawyer_draft','file_source_protection','file_payment','police_0','police_1','police_2','police_4','police_5']){
+  for(const required of ['mail_1','post_alina_0','file_lawyer_draft','file_source_protection','file_payment','police_0','police_1','police_2','police_4','police_5','police_7']){
     assert.ok(state.pins.includes(required),'clean route missed required evidence '+required);
   }
 
