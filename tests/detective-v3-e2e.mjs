@@ -166,6 +166,7 @@ try{
   assert.equal(await page.locator('[data-interview-question="money"]').count(),1,'payment evidence should unlock a money follow-up');
   await page.locator('[data-interview-question="return"]').click();
   await page.locator('[data-interview-question="money"]').click();
+  assert.equal(await page.locator('[data-interview-question="last"]').count(),1,'Marina final key testimony must unlock after return + money');
   assert.ok(await page.locator('.interview-turn').count()>=4);
   assert.equal(await page.locator('.interview-a [data-pin]').count(),await page.locator('.interview-turn').count(),'every interrogation answer should be pinnable');
   await page.locator('[data-pin="interview_marina_return"]').click();
