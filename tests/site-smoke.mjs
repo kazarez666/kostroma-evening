@@ -99,7 +99,7 @@ try{
   // The deliberately wrong button is visible in the hero near progress and escalates over three presses.
   assert.equal(await page.locator('.hero-card #doNotPress').count(),1);
   assert.equal(await page.locator('#doNotPress').isVisible(),true);
-  for(let i=0;i<3;i++) await page.locator('#doNotPress').evaluate(el=>el.click());
+  for(let i=0;i<3;i++) await page.locator('#doNotPress').click();
   assert.equal(await page.locator('#storyModal').isVisible(),true);
   assert.match(await page.locator('#storyModalTitle').innerText(),/Раз уж ты всё-таки нажала/);
   await page.locator('[data-close-story]').last().click();
