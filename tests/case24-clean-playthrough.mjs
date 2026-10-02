@@ -31,14 +31,13 @@ async function baseInterview(sid,ids){
   for(const id of ids)await ask(id);
   await page.locator('[data-interview-back]').click();
 }
-async function pinPolice(i){
+async function viewPolice(i){
   await app('police');
   if(await page.locator('[data-police-open="'+i+'"]').count())await page.locator('[data-police-open="'+i+'"]').click();
   else{
     await page.locator('[data-police-back]').click();
     await page.locator('[data-police-open="'+i+'"]').click();
   }
-  await pinCurrent('police_'+i);
   await page.locator('[data-police-back]').click();
 }
 
@@ -73,7 +72,6 @@ try{
   await page.locator('#caseWebQuery').fill('Алина Петрова');
   await page.locator('#caseWebSearch').click();
   await page.locator('[data-webpage="alina"]').first().click();
-  await pinCurrent('post_alina_0');
 
   // Webmail must be found through the browser and unlocked normally.
   await page.locator('#caseWebQuery').fill('почта');
@@ -84,7 +82,6 @@ try{
   await page.locator('#unlockMail').click();
   assert.ok(await page.locator('.mail-web-row').count()>=10);
   await page.locator('[data-mail-open="1"]').click();
-  await pinCurrent('mail_1');
 
   // The new evidence should create a persistent, non-spoiler interrogation signal.
   await app('people');
@@ -98,7 +95,6 @@ try{
   await page.locator('[data-filepath="docs"]').first().click();
   for(const id of ['lawyer_draft','source_protection']){
     await page.locator('[data-open-file="'+id+'"]').click();
-    await pinCurrent('file_'+id);
     await page.locator('[data-close-file]').click();
   }
   await page.locator('[data-filepath="evidence"]').click();
@@ -106,13 +102,12 @@ try{
   await page.locator('#unlockFiles').click();
   for(const id of ['payment','mail_export']){
     await page.locator('[data-open-file="'+id+'"]').click();
-    await pinCurrent('file_'+id);
     await page.locator('[data-close-file]').click();
   }
 
   // Independent records required by the key testimony.
-  for(const i of [0,1,2,4,5])await pinPolice(i);
-  await pinPolice(7);
+  for(const i of [0,1,2,4,5])await viewPolice(i);
+  await viewPolice(7);
 
   // Key follow-ups. No hidden 100% combination is touched.
   await app('interview');
@@ -153,9 +148,7 @@ try{
   assert.ok(Object.values(state.progress).every(x=>x<100),'clean completion path should leave optional interrogation material');
   assert.equal(state.mail,true);
   assert.equal(state.files,true);
-  for(const required of ['mail_1','post_alina_0','file_lawyer_draft','file_source_protection','file_payment','police_0','police_1','police_2','police_4','police_5','police_7']){
-    assert.ok(state.pins.includes(required),'clean route missed required evidence '+required);
-  }
+  assert.equal(state.pins.length,0,'viewed evidence should unlock required follow-ups without forcing board pins');
 
   await app('final');
   assert.equal(await page.locator('.final-interrogation-lock').count(),0,'final version should open after core testimony only');
