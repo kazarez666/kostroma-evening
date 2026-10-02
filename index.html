@@ -1670,9 +1670,11 @@
       return '<div class="case-smart-updates"><div class="case-smart-updates__head"><span>🔔</span><div><small>ЧТО ИЗМЕНИЛОСЬ</small><b>'+unread.length+' '+(unread.length===1?'новая возможность':'новых возможности')+'</b></div></div>'+unread.slice(-3).reverse().map(function(x){return '<button data-update-open="'+caseEsc(x.app||"board")+'"><span>'+caseEsc(x.text)+'</span><em>Перейти →</em></button>'}).join("")+'</div>'
     }
     function markSeen(listName,value){
+      var before=typeof caseOpportunitySnapshot==="function"?caseOpportunitySnapshot():null;
       caseState[listName]=Array.isArray(caseState[listName])?caseState[listName]:[];
       if(caseState[listName].indexOf(value)<0)caseState[listName].push(value);
       maybeUnlockMidpoint();
+      if(before)notifyCaseOpportunityDiff(before);
     }
     function maybeUnlockMidpoint(){
       if(caseState.midpointUnlocked)return;
@@ -2435,6 +2437,7 @@
     function browserCanBack(){return (caseState.webHistoryIndex||0)>0}
     function browserCanForward(){return (caseState.webHistoryIndex||0)<(caseState.webHistory||[]).length-1}
     function browserNavigate(page,push){
+      var before=caseOpportunitySnapshot();
       page=page||"home";caseState.app="web";caseState.webPage=page;
       caseState.webHistory=Array.isArray(caseState.webHistory)&&caseState.webHistory.length?caseState.webHistory:["home"];
       var idx=Math.max(0,Math.min(caseState.webHistory.length-1,Number(caseState.webHistoryIndex)||0));
@@ -2443,7 +2446,7 @@
         if(caseState.webHistory[caseState.webHistory.length-1]!==page)caseState.webHistory.push(page);
         caseState.webHistoryIndex=caseState.webHistory.length-1
       }else caseState.webHistoryIndex=idx;
-      saveCase();renderCaseApp("web")
+      saveCase();notifyCaseOpportunityDiff(before);renderCaseApp("web")
     }
     function browserMove(delta){
       var h=caseState.webHistory||["home"],next=Math.max(0,Math.min(h.length-1,(Number(caseState.webHistoryIndex)||0)+delta));
