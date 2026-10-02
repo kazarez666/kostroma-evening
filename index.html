@@ -2097,11 +2097,22 @@
       var h=caseState.interrogation.history[sid]||[],last=h.length?h[h.length-1]:null;
       return (interrogationEmotionMap[sid]&&interrogationEmotionMap[sid][last])||"calm"
     }
+    function caseEvidenceKnown(id){
+      var pins=caseState.pins||[];
+      if(pins.indexOf(id)>=0)return true;
+      var m;
+      if((m=id.match(/^police_(\d+)$/)))return (caseState.seenPolice||[]).indexOf(Number(m[1]))>=0;
+      if((m=id.match(/^file_(.+)$/)))return (caseState.seenFiles||[]).indexOf(m[1])>=0;
+      if((m=id.match(/^mail_(\d+)$/)))return (caseState.webHistory||[]).indexOf(id)>=0||caseState.webPage===id;
+      if((m=id.match(/^post_([a-z]+)_\d+$/)))return (caseState.webHistory||[]).indexOf(m[1])>=0||caseState.webPage===m[1];
+      if((m=id.match(/^web_(.+)$/)))return (caseState.webHistory||[]).indexOf(m[1])>=0||caseState.webPage===m[1];
+      return false
+    }
     function interviewAvailable(sid,item){
-      var asked=interviewAsked(sid),pins=caseState.pins||[];
+      var asked=interviewAsked(sid);
       if(item.secret&&!caseState.interrogation.breakthroughs[sid])return false;
       if(item.askedAny&&item.askedAny.length&&!item.askedAny.some(function(x){return asked.indexOf(x)>=0}))return false;
-      if(item.pinsAny&&item.pinsAny.length&&!item.pinsAny.some(function(x){return pins.indexOf(x)>=0}))return false;
+      if(item.pinsAny&&item.pinsAny.length&&!item.pinsAny.some(caseEvidenceKnown))return false;
       return true
     }
     function interviewPinId(sid,qid){return "interview_"+sid+"_"+qid}
