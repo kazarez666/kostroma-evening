@@ -36,14 +36,15 @@ try{
   assert.equal(await page.evaluate(() => isAfterMidnight(new Date(2026,9,3,1,15))), true);
   assert.equal(await page.evaluate(() => isAfterMidnight(new Date(2026,9,2,23,59))), false);
   const movies=page.locator('.movie');
-  await movies.nth(0).fill('Амели');
-  await movies.nth(1).fill('Отпуск по обмену');
+  const movieChoices=['Амели','Отпуск по обмену','Полночь в Париже','Энканто','Дьявол носит Prada','Ноттинг Хилл'];
+  for(let i=0;i<movieChoices.length;i++)await movies.nth(i).fill(movieChoices[i]);
   await page.locator('#pickMovie').click();
   assert.equal(await page.locator('#movieRoulette').isVisible(), true);
   assert.equal(await page.locator('.movie-flying-slip').count(), 6);
   await page.waitForFunction(()=>!document.querySelector('#moviePulled')?.classList.contains('hidden'),null,{timeout:6000});
-  assert.equal(await page.locator('#moviePulledTitle').innerText(), 'Как отделаться от парня за 10 дней');
-  assert.equal(await page.locator('#movieResult').innerText(), '🍿 Как отделаться от парня за 10 дней');
+  const movieWinner=await page.locator('#moviePulledTitle').innerText();
+  assert.ok(movieChoices.includes(movieWinner),'roulette must choose one of the six actual slips');
+  assert.equal(await page.locator('#movieResult').innerText(), '🍿 '+movieWinner);
   await page.locator('#movieRouletteDone').click();
   assert.equal(await page.locator('#movieRoulette').isVisible(), false);
   assert.equal(await page.locator('#movieAfter').isVisible(), true);
@@ -51,7 +52,7 @@ try{
   assert.equal(await page.locator('#finishEvening').isVisible(), true);
   await page.locator('#finishEvening').click();
   assert.equal(await page.locator('#eveningFinale').isVisible(), true);
-  assert.match(await page.locator('#finaleMovie').innerText(), /Как отделаться от парня за 10 дней/);
+  assert.equal(await page.locator('#finaleMovie').innerText(), movieWinner);
   await page.locator('#closeEveningFinale').click();
   assert.equal(await page.locator('#eveningFinale').isVisible(), false);
 

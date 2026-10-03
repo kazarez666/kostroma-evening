@@ -25,12 +25,12 @@ try {
   // Movie draw opens the full-screen jar roulette and settles cleanly.
   await page.locator('.tab[data-tab="movies"]').click();
   const movies = page.locator('.movie');
-  await movies.nth(0).fill('Амели');
-  await movies.nth(1).fill('Отпуск по обмену');
+  const movieChoices = ['Амели','Отпуск по обмену','Полночь в Париже','Энканто','Дьявол носит Prada','Ноттинг Хилл'];
+  for(let i=0;i<movieChoices.length;i++)await movies.nth(i).fill(movieChoices[i]);
   await page.locator('#pickMovie').click();
   assert.equal(await page.locator('#movieRoulette').isVisible(), true);
   await page.waitForFunction(() => !document.querySelector('#moviePulled')?.classList.contains('hidden'), null, { timeout: 6000 });
-  assert.equal(await page.locator('#moviePulledTitle').innerText(), 'Как отделаться от парня за 10 дней');
+  assert.ok(movieChoices.includes(await page.locator('#moviePulledTitle').innerText()), 'roulette winner must come from the six entered movies');
   assert.equal(await page.locator('#movieResult').evaluate(el => el.classList.contains('is-winner')), true);
   await page.locator('#movieRouletteDone').click();
   assert.equal(await page.locator('#movieRoulette').isVisible(), false);
