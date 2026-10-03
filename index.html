@@ -2657,6 +2657,15 @@
     function closeMovieRoulette(){
       var modal=q("#movieRoulette"),jar=q("#movieJarWrap");modal.classList.add("hidden");modal.classList.remove("is-revealed");jar.classList.remove("is-shaking","is-settling","is-picking");document.body.classList.remove("movie-roulette-open");clearMovieRouletteTimers();q("#pickMovie").disabled=false
     }
+    function randomMovieIndex(length){
+      if(length<=1)return 0;
+      if(window.crypto&&crypto.getRandomValues){
+        var range=0x100000000,limit=Math.floor(range/length)*length,value=new Uint32Array(1);
+        do{crypto.getRandomValues(value)}while(value[0]>=limit);
+        return value[0]%length
+      }
+      return Math.floor(Math.random()*length)
+    }
     function startMovieRoulette(entries){
       var modal=q("#movieRoulette"),stream=q("#movieSlipStream"),jarSlips=q("#movieJarSlips"),jarWrap=q("#movieJarWrap"),pulled=q("#moviePulled"),done=q("#movieRouletteDone"),status=q("#movieRouletteStatus");
       clearMovieRouletteTimers();stream.innerHTML="";jarSlips.innerHTML="";pulled.classList.add("hidden");done.classList.add("hidden");modal.classList.remove("is-revealed");jarWrap.classList.remove("is-shaking","is-settling","is-picking");modal.classList.remove("hidden");document.body.classList.add("movie-roulette-open");status.textContent="Закидываем бумажки в банку…";
@@ -2670,7 +2679,7 @@
       laterMovieRoulette(function(){jarWrap.classList.remove("is-shaking");jarWrap.classList.add("is-settling");status.textContent="Почти… даём им улечься."},3000);
       laterMovieRoulette(function(){jarWrap.classList.remove("is-settling");jarWrap.classList.add("is-picking");status.textContent="Теперь тянем одну бумажку…"},3550);
       laterMovieRoulette(function(){
-        var winner="Как отделаться от парня за 10 дней",res=q("#movieResult");
+        var winner=entries[randomMovieIndex(entries.length)].name,res=q("#movieResult");
         q("#moviePulledTitle").textContent=winner;pulled.classList.remove("hidden");jarWrap.classList.remove("is-picking");modal.classList.add("is-revealed");status.textContent="Есть! Бумажка выбрана ✨";done.classList.remove("hidden");
         res.textContent="🍿 "+winner;res.classList.remove("is-spinning");res.classList.add("is-winner");localStorage.setItem("kostromaMovieResult",winner);
         q("#movieAfter").classList.remove("hidden");unlockSpecialNote();
